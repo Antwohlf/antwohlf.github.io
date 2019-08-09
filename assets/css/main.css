@@ -2073,10 +2073,6 @@ input, select, textarea {
 				border-radius: 0.35em;
 				border: solid 3px rgba(255, 255, 255, 0.5);
 				color: #fff;
-				content: '';
-				display: inline-block;
-				font-size: 0.8em;
-				font-weight: 400;
 				left: 50%;
 				line-height: 2.25em;
 				margin: -1.25em 0 0 -3em;
