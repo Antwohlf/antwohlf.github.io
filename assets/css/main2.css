@@ -1332,7 +1332,7 @@ input, select, textarea {
 			#header .content p {
 				letter-spacing: 0.05rem;
 				font-size: 1.5rem;
-				line-height: 1.5;
+				line-height: 1.2;
 			}
 
 		#header nav ul {
@@ -1455,7 +1455,7 @@ input, select, textarea {
 			}
 
 			#header .content p {
-				line-height: 1.875;
+				line-height: 1.65;
 			}
 
 		}
