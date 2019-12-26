@@ -38,7 +38,7 @@
 								<li><a href="#travel">Travel</a></li>
 								<li><a href="#resume">Resume</a></li>
 								<li><a href="#contact">Contact</a></li>
-								<!-- <li><a href="#elements">Elements</a></li> -->
+								<!--<li><a href="#elements">Elements</a></li>-->
 							</ul>
 						</nav>
 					</header>
@@ -140,10 +140,10 @@
 							<span class="image main"><img src="images/Resume.jpg" alt="" /></span>
 						</article>
 
-						<!-- Contact -->
+						<!-- Contact OLD
 							<article id="contact">
 								<h2 class="major">Contact</h2>
-								<form method="post" action="#">
+								<form method="post" action="contactform.php">
 									<div class="fields">
 										<div class="field half">
 											<label for="name">Name</label>
@@ -163,6 +163,24 @@
 										<li><input type="reset" value="Reset" /></li>
 									</ul>
 								</form>
+							</article>
+						-->
+
+						<!-- Contact -->
+							<article id="contact">
+								<h2 class="major">Contact</h2>
+								<div class="row">
+									<div class="col-7 col-4-xsmall">
+										<iframe src="https://snazzymaps.com/embed/177016" width="300px" height="250px" style="border:none" frameborder="0" allowfullscreen=""></iframe>
+									</div>
+									<div class="col-4 col-6-xsmall">
+										<ul class="labeled-icons">
+											<p class="icon solid fa-home"></br>415 East Hoover Ave.<br/>Ann Arbor, MI 48104<br/>United States</p>
+											<p class="icon solid fa-mobile-alt"><br/>(734) 819-8994</p>
+											<p class="icon solid fa-envelope"><br/><a href="mailto:antwohlf@umich.edu"> antwohlf@umich.edu</a></p>
+										</ul>
+									</div>
+								</div>
 							</article>
 
 						<!-- Elements -->
@@ -185,14 +203,12 @@
 									<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
 									<h4>Preformatted</h4>
 									<pre><code>i = 0;
-
-while (!deck.isInOrder()) {
-    print 'Iteration ' + i;
-    deck.shuffle();
-    i++;
-}
-
-print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
+									while (!deck.isInOrder()) {
+										print 'Iteration ' + i;
+										deck.shuffle();
+										i++;
+									}
+									print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 								</section>
 
 								<section>
