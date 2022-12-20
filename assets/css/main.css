@@ -1324,6 +1324,58 @@ input, select, textarea {
 					margin-bottom: 0;
 				}
 
+			#header .content .inner .codinfox-changing-keywords {
+				overflow:hidden;
+				height:10px;
+				position:center;
+				display: block;
+				  width: 600px;
+			}
+
+			.hidden {
+				position:absolute;
+				top: center;
+				display:block;
+				width:600px;
+				  opacity:0;
+				animation: slideme 8s infinite;
+			}
+			.hidden:nth-child(3){
+				animation-delay: 2s;
+			}
+			.hidden:nth-child(5){
+				animation-delay: 4s;
+			}
+			.hidden:nth-child(7){
+				animation-delay: 6s;
+			}
+
+			@keyframes slideme {
+				0% {
+				  top: 20px;
+				  opacity:0;
+				}
+				5% {
+				  top: 0px;
+				  opacity:1;
+				}
+				10%{
+				  top : 0;
+				  opacity:1;
+				}
+				20%{
+				  opacity:1;
+				}
+				25% {    
+				opacity:0.1;
+				  top : 0;
+				}
+				30% {
+				  opacity:0;
+				  top: 20px;
+				}
+			}
+
 			#header .content p {
 				text-transform: uppercase;
 				letter-spacing: 0.2rem;
