@@ -1324,12 +1324,46 @@ input, select, textarea {
 					margin-bottom: 0;
 				}
 
-			#header .content p {
-				text-transform: uppercase;
-				letter-spacing: 0.2rem;
-				font-size: 0.8rem;
-				line-height: 2;
-			}
+		#header .content p {
+			text-transform: uppercase;
+			letter-spacing: 0.2rem;
+			font-size: 0.8rem;
+			line-height: 2;
+		}
+
+		#header .typing-wrapper {
+			display: -moz-flex;
+			display: -webkit-flex;
+			display: -ms-flex;
+			display: flex;
+			-moz-justify-content: center;
+			-webkit-justify-content: center;
+			-ms-justify-content: center;
+			justify-content: center;
+			margin: 0.75rem 0 2rem 0;
+			min-height: 1.6em;
+		}
+
+		#header .typing-demo {
+			position: relative;
+			display: inline-block;
+			min-height: 1.6em;
+			padding-right: 0.2em;
+			border-right: 3px solid currentColor;
+			font-family: "Source Code Pro", monospace;
+			font-size: 1.35rem;
+			font-weight: 600;
+			white-space: nowrap;
+			letter-spacing: 0;
+			text-transform: none;
+			animation: blink 0.65s step-end infinite alternate;
+		}
+
+	@keyframes blink {
+		50% {
+			border-color: transparent;
+		}
+	}
 
 		#header nav ul {
 			display: -moz-flex;
