@@ -398,4 +398,71 @@
 						$main._show(location.hash.substr(1), true);
 					});
 
+	// Typing headline rotation.
+	var typingTarget = document.querySelector('#header .typing-demo');
+	if (typingTarget) {
+		var typingPhrases = [
+			'Software Engineer',
+			'Traveler',
+			'Michigan Engineering Alumnus'
+		];
+		var typingSpeed = 90;
+		var backspaceSpeed = 60;
+		var holdDuration = 2000;
+		var typingIndex = 0;
+		var charIndex = 0;
+		var deleting = false;
+		var typingTimer = null;
+		var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		typingTarget.setAttribute('aria-live', 'polite');
+
+		var scheduleNextStep = function(delay) {
+			if (typingTimer !== null)
+				clearTimeout(typingTimer);
+			typingTimer = window.setTimeout(step, delay);
+		};
+
+		var step = function() {
+			var phrase = typingPhrases[typingIndex];
+
+			if (!deleting) {
+				if (charIndex === 0)
+					typingTarget.setAttribute('aria-label', phrase);
+
+				if (charIndex < phrase.length) {
+					charIndex++;
+					typingTarget.textContent = phrase.substring(0, charIndex);
+					scheduleNextStep(typingSpeed);
+					return;
+				}
+
+				deleting = true;
+				scheduleNextStep(holdDuration);
+				return;
+			}
+
+			if (charIndex > 0) {
+				charIndex--;
+				typingTarget.textContent = phrase.substring(0, charIndex);
+				scheduleNextStep(backspaceSpeed);
+				return;
+			}
+
+			deleting = false;
+			typingIndex = (typingIndex + 1) % typingPhrases.length;
+			scheduleNextStep(typingSpeed);
+		};
+
+		if (prefersReducedMotion) {
+			typingTarget.textContent = typingPhrases[0];
+			typingTarget.setAttribute('aria-label', typingPhrases[0]);
+		}
+		else {
+			typingTarget.textContent = '';
+			scheduleNextStep(typingSpeed);
+		}
+	}
+
+
 })(jQuery);
