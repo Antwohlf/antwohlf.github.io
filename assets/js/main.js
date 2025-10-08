@@ -403,8 +403,9 @@
 	if (typingTarget) {
 		var typingPhrases = [
 			'Software Engineer',
+			'Michigan Engineering Alumnus',
 			'Traveler',
-			'Michigan Engineering Alumnus'
+			'Airbnb Superhost'
 		];
 		var typingSpeed = 90;
 		var backspaceSpeed = 60;
