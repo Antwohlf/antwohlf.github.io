@@ -631,14 +631,20 @@
   locationIndex = getSavedLocationIndex();
   setBackground();
 
+  var menuBackdrop = document.createElement('div');
+  menuBackdrop.className = 'bg-menu-backdrop';
+  document.body.appendChild(menuBackdrop);
+
   var closeMenu = function() {
     menu.classList.remove('is-visible');
     menu.setAttribute('aria-hidden', 'true');
+    menuBackdrop.classList.remove('is-visible');
   };
 
   var openMenu = function() {
     menu.classList.add('is-visible');
     menu.setAttribute('aria-hidden', 'false');
+    menuBackdrop.classList.add('is-visible');
   };
 
   toggle.addEventListener('click', function() {
@@ -694,6 +700,12 @@
     }
 
     closeMenu();
+  });
+
+  menuBackdrop.addEventListener('click', function() {
+    if (menu.classList.contains('is-visible')) {
+      closeMenu();
+    }
   });
 
   var globeCanvas = toggle.querySelector('.globe-canvas');
