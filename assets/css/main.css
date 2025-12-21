@@ -188,15 +188,29 @@ input, select, textarea {
 			text-decoration: none;
 		}
 
-		h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
-			border-bottom: solid 1px #ffffff;
-			width: -moz-max-content;
-			width: -webkit-max-content;
-			width: -ms-max-content;
-			width: max-content;
-			padding-bottom: 0.5rem;
-			margin: 0 0 2rem 0;
-		}
+h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
+	border-bottom: solid 1px #ffffff;
+	width: -moz-max-content;
+	width: -webkit-max-content;
+	width: -ms-max-content;
+	width: max-content;
+	padding-bottom: 0.5rem;
+	margin: 0 0 2rem 0;
+}
+
+#main article .major {
+	margin-top: 0;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	border-bottom: 0;
+	padding-bottom: 0;
+}
+
+#main article h2.major {
+	font-size: 2rem;
+}
+
 
 	h1 {
 		font-size: 2.25rem;
@@ -1791,6 +1805,12 @@ input, select, textarea {
 			background-color: rgba(27, 31, 34, 0.85);
 			border-radius: 4px;
 		opacity: 0;
+	}
+
+	@media screen and (min-width: 980px) {
+		#main article#projects {
+			width: 60rem;
+		}
 	}
 
 		#main article h1,
@@ -3388,6 +3408,189 @@ input, select, textarea {
     margin-bottom: 20px; /* Adjust as needed */
     font-size: 1.5em; /* Adjust as needed */
 }
+
+.project-year {
+    margin: 1.5rem 0;
+}
+
+    .project-year > summary {
+        cursor: pointer;
+        list-style: none;
+        outline: none;
+        color: inherit;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        padding-right: 0;
+    }
+
+        .project-year > summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .project-year > summary::after {
+            content: '+';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+    .project-year[open] > summary::after {
+        content: '−';
+    }
+
+    .project-year[open] > summary {
+        margin-bottom: 1rem;
+    }
+
+    .project-year > summary:focus-visible {
+        outline: 2px solid rgba(255, 255, 255, 0.6);
+        outline-offset: 4px;
+    }
+
+    .project-year > summary + * {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.3s ease;
+    }
+
+        .project-year > summary + * > * {
+            overflow: hidden;
+        }
+
+    .project-year[open] > summary + * {
+        grid-template-rows: 1fr;
+    }
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+#projects .major,
+#projects .year-heading,
+#projects .project-year > summary {
+    text-align: center;
+}
+
+#intro .major,
+#travel .major,
+#resume .major,
+#contact .major {
+    text-align: center;
+}
+
+#main article > h1.major,
+#main article > h2.major,
+#main article > h3.major,
+#main article > h1:first-of-type,
+#main article > h2:first-of-type,
+#main article > h3:first-of-type {
+    text-align: center !important;
+}
+
+@media screen and (min-width: 980px) {
+    #projects .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.project-card {
+    background: rgba(0, 0, 0, 0.18);
+    border-radius: 6px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+}
+
+    .project-card h2 {
+        margin-top: 0;
+    }
+
+.project-actions {
+    display: flex;
+    gap: 1.1rem;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 1rem;
+    justify-content: center;
+}
+
+    .project-actions .button {
+        font-weight: 300;
+        text-transform: none;
+        letter-spacing: 0.08rem;
+    }
+
+    .project-actions .project-link {
+        font-weight: 600;
+    }
+
+.skills-popover-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    z-index: 6;
+}
+
+    .skills-popover-backdrop.is-visible {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+.skills-popover {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 0.6rem;
+    padding: 0.6rem 0.9rem;
+    min-width: 12rem;
+    max-width: 18rem;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-4px) scale(0.98);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 7;
+}
+
+    .skills-popover.is-visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0) scale(1);
+    }
+
+.skills-popover-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+    .skills-popover-heading {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08rem;
+        opacity: 0.75;
+        margin-top: 0.4rem;
+    }
+
+    .skills-popover-heading:first-child {
+        margin-top: 0;
+    }
+
+    .skills-popover-list li + li {
+        margin-top: 0.3rem;
+    }
+
 
 .travel-year {
     margin: 1.5rem 0;

@@ -404,7 +404,7 @@
 		var typingPhrases = [
 			'Software Engineer',
 			'Michigan Engineering Alumnus',
-			'City Explorer',
+			'Travel Enthusiast',
 			'Airbnb Superhost'
 		];
 		var typingSpeed = 90;
@@ -860,4 +860,173 @@
   }
 
   window.setInterval(setBackground, 60 * 1000);
+})();
+
+(() => {
+  const projectCards = document.querySelectorAll('#projects .project-card');
+  if (!projectCards.length) {
+    return;
+  }
+
+  projectCards.forEach((card) => {
+    if (card.querySelector('.project-actions')) {
+      return;
+    }
+
+    const actions = document.createElement('div');
+    actions.className = 'project-actions';
+
+    const skills = card.dataset.skills;
+    const categorizedSkills = [
+      { key: 'skillsLanguages', label: 'Languages' },
+      { key: 'skillsFrameworks', label: 'Frameworks & Libraries' },
+      { key: 'skillsHosting', label: 'Hosting & Infrastructure' },
+      { key: 'skillsOther', label: 'Other / Services' }
+    ];
+
+    const hasCategorized = categorizedSkills.some((item) => card.dataset[item.key]);
+
+    if (skills || hasCategorized) {
+      const skillsButton = document.createElement('button');
+      skillsButton.className = 'button project-skills-trigger';
+      skillsButton.type = 'button';
+      skillsButton.textContent = 'Tech Stack';
+      skillsButton.dataset.skills = skills || '';
+      if (hasCategorized) {
+        categorizedSkills.forEach((item) => {
+          if (card.dataset[item.key]) {
+            skillsButton.dataset[item.key] = card.dataset[item.key];
+          }
+        });
+      }
+      actions.appendChild(skillsButton);
+    }
+
+    const link = card.dataset.link;
+    const linkLabel = card.dataset.linkLabel || 'Link';
+    if (link) {
+      const linkEl = document.createElement('a');
+      linkEl.className = 'button project-link';
+      linkEl.textContent = linkLabel;
+      linkEl.href = link;
+      linkEl.target = '_blank';
+      linkEl.rel = 'noopener';
+      actions.appendChild(linkEl);
+    }
+    card.appendChild(actions);
+  });
+})();
+
+(() => {
+  const triggers = document.querySelectorAll('.project-skills-trigger');
+  if (!triggers.length) {
+    return;
+  }
+
+  const backdrop = document.createElement('div');
+  backdrop.className = 'skills-popover-backdrop';
+
+  const popover = document.createElement('div');
+  popover.className = 'skills-popover';
+
+  const list = document.createElement('ul');
+  list.className = 'skills-popover-list';
+  popover.appendChild(list);
+
+  document.body.appendChild(backdrop);
+  document.body.appendChild(popover);
+
+  const closePopover = () => {
+    backdrop.classList.remove('is-visible');
+    popover.classList.remove('is-visible');
+  };
+
+  const openPopover = (trigger) => {
+    list.innerHTML = '';
+
+    const sections = [
+      { key: 'skillsLanguages', label: 'Languages' },
+      { key: 'skillsFrameworks', label: 'Frameworks & Libraries' },
+      { key: 'skillsHosting', label: 'Hosting & Infrastructure' },
+      { key: 'skillsOther', label: 'Other / Services' }
+    ];
+
+    const hasSections = sections.some((section) => trigger.dataset[section.key]);
+
+    if (hasSections) {
+      sections.forEach((section) => {
+        const raw = trigger.dataset[section.key];
+        if (!raw) {
+          return;
+        }
+
+        const title = document.createElement('li');
+        title.className = 'skills-popover-heading';
+        title.textContent = section.label;
+        list.appendChild(title);
+
+        raw.split(',').map((item) => item.trim()).filter(Boolean).forEach((item) => {
+          const li = document.createElement('li');
+          li.textContent = item;
+          list.appendChild(li);
+        });
+      });
+    } else {
+      const skills = trigger.dataset.skills || '';
+      skills.split(',').map((item) => item.trim()).filter(Boolean).forEach((item) => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        list.appendChild(li);
+      });
+    }
+
+    backdrop.classList.add('is-visible');
+    popover.classList.add('is-visible');
+
+    window.requestAnimationFrame(() => {
+      const rect = trigger.getBoundingClientRect();
+      const popRect = popover.getBoundingClientRect();
+      const gap = 10;
+      let left = rect.left + rect.width / 2 - popRect.width / 2;
+      let top = rect.bottom + gap;
+
+      if (left < 12) {
+        left = 12;
+      }
+      if (left + popRect.width > window.innerWidth - 12) {
+        left = window.innerWidth - popRect.width - 12;
+      }
+      if (top + popRect.height > window.innerHeight - 12) {
+        top = rect.top - popRect.height - gap;
+      }
+
+      popover.style.left = `${left}px`;
+      popover.style.top = `${top}px`;
+    });
+  };
+
+  triggers.forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      if (popover.classList.contains('is-visible')) {
+        closePopover();
+        return;
+      }
+      openPopover(trigger);
+    });
+  });
+
+  backdrop.addEventListener('click', (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    closePopover();
+  });
+
+  popover.addEventListener('click', (event) => {
+    event.stopPropagation();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      closePopover();
+    }
+  });
 })();
