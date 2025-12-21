@@ -910,6 +910,18 @@
       linkEl.rel = 'noopener';
       actions.appendChild(linkEl);
     }
+
+    const github = card.dataset.github;
+    const githubLabel = card.dataset.githubLabel || 'Github';
+    if (github) {
+      const githubEl = document.createElement('a');
+      githubEl.className = 'button project-github';
+      githubEl.textContent = githubLabel;
+      githubEl.href = github;
+      githubEl.target = '_blank';
+      githubEl.rel = 'noopener';
+      actions.appendChild(githubEl);
+    }
     card.appendChild(actions);
   });
 })();

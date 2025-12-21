@@ -3524,7 +3524,8 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
         letter-spacing: 0.08rem;
     }
 
-    .project-actions .project-link {
+    .project-actions .project-link,
+    .project-actions .project-github {
         font-weight: 600;
     }
 
@@ -3658,4 +3659,3 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
         outline: 2px solid rgba(255, 255, 255, 0.6);
         outline-offset: 4px;
     }
-
