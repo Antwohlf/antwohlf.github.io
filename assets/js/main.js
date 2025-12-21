@@ -404,7 +404,7 @@
 		var typingPhrases = [
 			'Software Engineer',
 			'Michigan Engineering Alumnus',
-			'Traveler',
+			'City Explorer',
 			'Airbnb Superhost'
 		];
 		var typingSpeed = 90;
@@ -467,3 +467,397 @@
 
 
 })(jQuery);
+(function() {
+  var bg = document.getElementById('bg');
+  var toggle = document.getElementById('bg-toggle');
+  var menu = document.getElementById('bg-menu');
+  var locationTime = document.getElementById('location-time');
+
+  if (!bg || !toggle || !menu || !locationTime) {
+    return;
+  }
+
+  var locations = [
+    { id: 'annarbor', label: 'Ann Arbor', timeZone: 'America/New_York' },
+    { id: 'detroit', label: 'Detroit', timeZone: 'America/New_York' },
+    { id: 'nyc', label: 'New York City', timeZone: 'America/New_York' },
+    { id: 'sansebastian', label: 'San Sebastian', timeZone: 'Europe/Madrid' },
+  ];
+  var storageKey = 'bgLocation';
+  var locationIndex = 0;
+  var currentImageUrl = null;
+  var fadeOutTimeoutId = null;
+  var fadeInTimeoutId = null;
+
+  var getHourInTimeZone = function(timeZone) {
+    try {
+      if (window.Intl && Intl.DateTimeFormat) {
+        var formatter = new Intl.DateTimeFormat('en-US', {
+          hour: 'numeric',
+          hour12: false,
+          timeZone: timeZone
+        });
+        return Number(formatter.format(new Date()));
+      }
+    } catch (error) {
+      // Fall back to local time.
+    }
+
+    return new Date().getHours();
+  };
+
+  var getTimeSegment = function(timeZone) {
+    var hour = getHourInTimeZone(timeZone);
+
+    if (hour >= 5 && hour < 11) {
+      return 'morning';
+    }
+    if (hour >= 11 && hour < 17) {
+      return 'day';
+    }
+    if (hour >= 17 && hour < 21) {
+      return 'evening';
+    }
+    return 'night';
+  };
+
+  var getSavedLocationIndex = function() {
+    try {
+      var saved = localStorage.getItem(storageKey);
+      var i;
+
+      for (i = 0; i < locations.length; i++) {
+        if (locations[i].id === saved) {
+          return i;
+        }
+      }
+    } catch (error) {
+      // Ignore storage failures (privacy mode, etc.).
+    }
+
+    for (i = 0; i < locations.length; i++) {
+      if (locations[i].id === 'sansebastian') {
+        return i;
+      }
+    }
+
+    return 0;
+  };
+
+  var formatSegment = function(segment) {
+    return segment.charAt(0).toUpperCase() + segment.slice(1);
+  };
+
+  var formatLocalTime = function(timeZone) {
+    try {
+      if (window.Intl && Intl.DateTimeFormat) {
+        var formatter = new Intl.DateTimeFormat('en-US', {
+          hour: 'numeric',
+          minute: '2-digit',
+          hour12: true,
+          timeZone: timeZone
+        });
+        return formatter.format(new Date());
+      }
+    } catch (error) {
+      // Fall back to local time.
+    }
+
+    return new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+  };
+
+  var updateLocationTime = function(location) {
+    var labelEl = locationTime.querySelector('.label');
+    var valueEl = locationTime.querySelector('.value');
+
+    if (labelEl) {
+      labelEl.textContent = 'Location';
+    }
+    if (valueEl) {
+      valueEl.textContent = location.label + ' · ' + formatLocalTime(location.timeZone);
+    }
+  };
+
+  var updateActiveButton = function(locationId) {
+    var buttons = menu.querySelectorAll('[data-location]');
+    var i;
+
+    for (i = 0; i < buttons.length; i++) {
+      var button = buttons[i];
+      var isActive = button.getAttribute('data-location') === locationId;
+
+      if (isActive) {
+        button.classList.add('is-active');
+      } else {
+        button.classList.remove('is-active');
+      }
+    }
+  };
+
+  var setBackground = function() {
+    var location = locations[locationIndex];
+    var segment = getTimeSegment(location.timeZone);
+    var imageUrl = '../../images/backgrounds/' + location.id + '_' + segment + '.png';
+    var segmentLabel = formatSegment(segment);
+
+    if (currentImageUrl && currentImageUrl !== imageUrl) {
+      window.clearTimeout(fadeOutTimeoutId);
+      window.clearTimeout(fadeInTimeoutId);
+
+      bg.classList.add('is-fading');
+      fadeOutTimeoutId = window.setTimeout(function() {
+        bg.style.setProperty('--bg-image', 'url("' + imageUrl + '")');
+        currentImageUrl = imageUrl;
+
+        fadeInTimeoutId = window.setTimeout(function() {
+          bg.classList.remove('is-fading');
+        }, 80);
+      }, 350);
+    } else {
+      bg.style.setProperty('--bg-image', 'url("' + imageUrl + '")');
+      currentImageUrl = imageUrl;
+    }
+
+    toggle.setAttribute(
+      'title',
+      'Change background location (' + location.label + ' - ' + segmentLabel + ')'
+    );
+    toggle.setAttribute(
+      'aria-label',
+      'Change background location (' + location.label + ' - ' + segmentLabel + ')'
+    );
+
+    updateLocationTime(location);
+    updateActiveButton(location.id);
+  };
+
+  locationIndex = getSavedLocationIndex();
+  setBackground();
+
+  var closeMenu = function() {
+    menu.classList.remove('is-visible');
+    menu.setAttribute('aria-hidden', 'true');
+  };
+
+  var openMenu = function() {
+    menu.classList.add('is-visible');
+    menu.setAttribute('aria-hidden', 'false');
+  };
+
+  toggle.addEventListener('click', function() {
+    var isOpen = menu.classList.contains('is-visible');
+    if (isOpen) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  menu.addEventListener('click', function(event) {
+    var target = event.target;
+
+    while (target && target !== menu) {
+      if (target.getAttribute && target.getAttribute('data-location')) {
+        break;
+      }
+      target = target.parentNode;
+    }
+
+    if (!target || target === menu) {
+      return;
+    }
+
+    var nextId = target.getAttribute('data-location');
+    var i;
+
+    for (i = 0; i < locations.length; i++) {
+      if (locations[i].id === nextId) {
+        locationIndex = i;
+        break;
+      }
+    }
+
+    try {
+      localStorage.setItem(storageKey, locations[locationIndex].id);
+    } catch (error) {
+      // Ignore storage failures (privacy mode, etc.).
+    }
+
+    setBackground();
+    closeMenu();
+  });
+
+  document.addEventListener('click', function(event) {
+    if (!menu.classList.contains('is-visible')) {
+      return;
+    }
+
+    if (menu.contains(event.target) || toggle.contains(event.target)) {
+      return;
+    }
+
+    closeMenu();
+  });
+
+  var globeCanvas = toggle.querySelector('.globe-canvas');
+  if (globeCanvas && globeCanvas.getContext) {
+    var globeCtx = globeCanvas.getContext('2d');
+    var globeAngle = 0;
+    var globeHover = false;
+    var globeSize = 0;
+    var globeRadius = 0;
+    var globeCenter = 0;
+
+    var resizeGlobe = function() {
+      var size = globeCanvas.clientWidth || 32;
+      var ratio = window.devicePixelRatio || 1;
+      globeCanvas.width = size * ratio;
+      globeCanvas.height = size * ratio;
+      globeCtx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      globeSize = size;
+      globeRadius = size * 0.34;
+      globeCenter = size / 2;
+    };
+
+    var projectPoint = function(point) {
+      var depth = 0.55;
+      var scale = 1 / (1 + point.z * depth);
+      return {
+        x: globeCenter + point.x * globeRadius * scale,
+        y: globeCenter + point.y * globeRadius * scale,
+        z: point.z
+      };
+    };
+
+    var rotateY = function(point, angle) {
+      var cos = Math.cos(angle);
+      var sin = Math.sin(angle);
+      return {
+        x: point.x * cos + point.z * sin,
+        y: point.y,
+        z: -point.x * sin + point.z * cos
+      };
+    };
+
+    var mapReady = false;
+    var mapTexture = null;
+
+    var drawGlobe = function(angle) {
+      globeCtx.clearRect(0, 0, globeSize, globeSize);
+      globeCtx.imageSmoothingEnabled = true;
+
+      var sphereFill = globeCtx.createRadialGradient(
+        globeCenter - globeRadius * 0.5,
+        globeCenter - globeRadius * 0.4,
+        globeRadius * 0.2,
+        globeCenter,
+        globeCenter,
+        globeRadius
+      );
+      sphereFill.addColorStop(0, 'rgba(20, 22, 26, 0.95)');
+      sphereFill.addColorStop(0.6, 'rgba(12, 13, 16, 0.95)');
+      sphereFill.addColorStop(1, 'rgba(5, 6, 8, 0.95)');
+
+      globeCtx.fillStyle = sphereFill;
+      globeCtx.beginPath();
+      globeCtx.arc(globeCenter, globeCenter, globeRadius, 0, Math.PI * 2);
+      globeCtx.fill();
+
+      globeCtx.strokeStyle = 'rgba(255, 255, 255, 0.35)';
+      globeCtx.lineWidth = 1;
+      globeCtx.beginPath();
+      globeCtx.arc(globeCenter, globeCenter, globeRadius, 0, Math.PI * 2);
+      globeCtx.stroke();
+
+      if (mapReady) {
+        globeCtx.save();
+        globeCtx.beginPath();
+        globeCtx.arc(globeCenter, globeCenter, globeRadius, 0, Math.PI * 2);
+        globeCtx.clip();
+
+        globeCtx.globalCompositeOperation = 'screen';
+        globeCtx.globalAlpha = 0.9;
+        globeCtx.filter = 'grayscale(1)';
+        globeCtx.imageSmoothingEnabled = true;
+
+        var mapSource = mapTexture || mapImage;
+        var mapW = mapSource.width;
+        var mapH = mapSource.height;
+        var radius = globeRadius;
+
+        for (var x = -radius; x <= radius; x += 1) {
+          var xNorm = x / radius;
+          var lon = Math.asin(xNorm);
+          var z = Math.cos(lon);
+          var mapLon = lon + angle;
+          var mapX = ((mapLon / (Math.PI * 2)) + 0.5) * mapW;
+          mapX = (mapX % mapW + mapW) % mapW;
+
+          var screenX = globeCenter + x;
+          var colH = 2 * radius * z;
+          var destY = globeCenter - colH / 2;
+
+          globeCtx.drawImage(mapSource, mapX, 0, 1, mapH, screenX, destY, 1, colH);
+        }
+
+        globeCtx.restore();
+        globeCtx.filter = 'none';
+        globeCtx.globalCompositeOperation = 'source-over';
+        globeCtx.globalAlpha = 1;
+      }
+    };
+
+    var tick = function() {
+      if (globeHover) {
+        globeAngle += 0.02;
+      }
+      drawGlobe(globeAngle);
+      window.requestAnimationFrame(tick);
+    };
+
+    var mapImage = new Image();
+    var triedFallback = false;
+    mapImage.onload = function() {
+      var maxWidth = 720;
+      var scale = Math.min(1, maxWidth / mapImage.width);
+      if (scale < 1) {
+        var texCanvas = document.createElement('canvas');
+        texCanvas.width = Math.round(mapImage.width * scale);
+        texCanvas.height = Math.round(mapImage.height * scale);
+        var texCtx = texCanvas.getContext('2d');
+        texCtx.imageSmoothingEnabled = true;
+        texCtx.drawImage(mapImage, 0, 0, texCanvas.width, texCanvas.height);
+        mapTexture = texCanvas;
+      }
+      mapReady = true;
+      drawGlobe(globeAngle);
+    };
+    mapImage.onerror = function() {
+      if (!triedFallback) {
+        triedFallback = true;
+        mapImage.src = new URL('../images/theImage.png', window.location.href).toString();
+      }
+    };
+    mapImage.src = new URL('images/theImage.png', window.location.href).toString();
+
+    resizeGlobe();
+    drawGlobe(globeAngle);
+    window.addEventListener('resize', resizeGlobe);
+    toggle.addEventListener('mouseenter', function() {
+      globeHover = true;
+    });
+    toggle.addEventListener('mouseleave', function() {
+      globeHover = false;
+    });
+    toggle.addEventListener('focus', function() {
+      globeHover = true;
+    });
+    toggle.addEventListener('blur', function() {
+      globeHover = false;
+    });
+
+    window.requestAnimationFrame(tick);
+  }
+
+  window.setInterval(setBackground, 60 * 1000);
+})();
