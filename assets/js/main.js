@@ -594,7 +594,7 @@
   var setBackground = function() {
     var location = locations[locationIndex];
     var segment = getTimeSegment(location.timeZone);
-    var imageUrl = '../../images/backgrounds/' + location.id + '_' + segment + '.png';
+    var imageUrl = 'https://uqmjvvghhhtjqbzzvtop.supabase.co/storage/v1/object/public/personal-website/backgrounds/' + location.id + '_' + segment + '.png';
     var segmentLabel = formatSegment(segment);
 
     if (currentImageUrl && currentImageUrl !== imageUrl) {
@@ -844,10 +844,10 @@
     mapImage.onerror = function() {
       if (!triedFallback) {
         triedFallback = true;
-        mapImage.src = new URL('../images/theImage.png', window.location.href).toString();
+        mapImage.src = 'https://uqmjvvghhhtjqbzzvtop.supabase.co/storage/v1/object/public/personal-website/theImage.png';
       }
     };
-    mapImage.src = new URL('images/theImage.png', window.location.href).toString();
+    mapImage.src = 'https://uqmjvvghhhtjqbzzvtop.supabase.co/storage/v1/object/public/personal-website/theImage.png';
 
     resizeGlobe();
     drawGlobe(globeAngle);
