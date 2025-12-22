@@ -1213,8 +1213,9 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 
 		body.is-article-visible .location-time,
 		body.is-article-visible .bg-toggle {
-			opacity: 0;
-			pointer-events: none;
+			opacity: 1;
+			pointer-events: auto;
+			filter: blur(0.2rem);
 		}
 
 		body.is-preload #bg:before {
@@ -1401,6 +1402,13 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 
 		.bg-menu-backdrop {
 			display: block;
+		}
+
+		body.is-article-visible .location-time,
+		body.is-article-visible .bg-toggle {
+			opacity: 0;
+			pointer-events: none;
+			filter: none;
 		}
 	}
 
@@ -3552,6 +3560,13 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
     text-align: center !important;
 }
 
+#intro a {
+    color: #4fc3ff;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+
 @media screen and (min-width: 980px) {
     #projects .projects-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3576,7 +3591,7 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
     flex-wrap: wrap;
     align-items: center;
     margin-top: auto;
-    padding-top: 1rem;
+    padding-top: 0.8rem;
     justify-content: center;
 }
 
