@@ -957,9 +957,35 @@
   document.body.appendChild(backdrop);
   document.body.appendChild(popover);
 
+  let activeTrigger = null;
+
   const closePopover = () => {
     backdrop.classList.remove('is-visible');
     popover.classList.remove('is-visible');
+    activeTrigger = null;
+  };
+
+  const positionPopover = (trigger) => {
+    const rect = trigger.getBoundingClientRect();
+    const popRect = popover.getBoundingClientRect();
+    const gap = 10;
+    const scrollY = window.scrollY || window.pageYOffset;
+    const scrollX = window.scrollX || window.pageXOffset;
+    let left = rect.left + rect.width / 2 - popRect.width / 2 + scrollX;
+    let top = rect.bottom + gap + scrollY;
+
+    if (left < 12) {
+      left = 12;
+    }
+    if (left + popRect.width > window.innerWidth - 12 + scrollX) {
+      left = window.innerWidth - popRect.width - 12 + scrollX;
+    }
+    if (top + popRect.height > window.innerHeight - 12 + scrollY) {
+      top = rect.top - popRect.height - gap + scrollY;
+    }
+
+    popover.style.left = `${left}px`;
+    popover.style.top = `${top}px`;
   };
 
   const openPopover = (trigger) => {
@@ -1003,26 +1029,10 @@
 
     backdrop.classList.add('is-visible');
     popover.classList.add('is-visible');
+    activeTrigger = trigger;
 
     window.requestAnimationFrame(() => {
-      const rect = trigger.getBoundingClientRect();
-      const popRect = popover.getBoundingClientRect();
-      const gap = 10;
-      let left = rect.left + rect.width / 2 - popRect.width / 2;
-      let top = rect.bottom + gap;
-
-      if (left < 12) {
-        left = 12;
-      }
-      if (left + popRect.width > window.innerWidth - 12) {
-        left = window.innerWidth - popRect.width - 12;
-      }
-      if (top + popRect.height > window.innerHeight - 12) {
-        top = rect.top - popRect.height - gap;
-      }
-
-      popover.style.left = `${left}px`;
-      popover.style.top = `${top}px`;
+      positionPopover(trigger);
     });
   };
 
@@ -1048,6 +1058,18 @@
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') {
       closePopover();
+    }
+  });
+
+  window.addEventListener('scroll', () => {
+    if (activeTrigger && popover.classList.contains('is-visible')) {
+      positionPopover(activeTrigger);
+    }
+  }, { passive: true });
+
+  window.addEventListener('resize', () => {
+    if (activeTrigger && popover.classList.contains('is-visible')) {
+      positionPopover(activeTrigger);
     }
   });
 })();
