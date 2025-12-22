@@ -483,38 +483,8 @@
   var storageKey = 'bgLocation';
   var locationIndex = 0;
   var currentImageUrl = null;
-  var crossfadeTimeoutId = null;
-  var pendingImageToken = 0;
-
-  var preloadImage = function(url, callback) {
-    var img = new Image();
-    var done = false;
-
-    var finish = function() {
-      if (done) {
-        return;
-      }
-      done = true;
-      callback();
-    };
-
-    img.onload = finish;
-    img.onerror = finish;
-    img.src = url;
-  };
-
-  var startCrossfade = function(nextUrl) {
-    window.clearTimeout(crossfadeTimeoutId);
-    bg.style.setProperty('--bg-next-image', 'url("' + nextUrl + '")');
-    bg.classList.add('is-crossfading');
-
-    crossfadeTimeoutId = window.setTimeout(function() {
-      bg.style.setProperty('--bg-image', 'url("' + nextUrl + '")');
-      bg.style.setProperty('--bg-next-image', 'none');
-      bg.classList.remove('is-crossfading');
-      currentImageUrl = nextUrl;
-    }, 650);
-  };
+  var fadeOutTimeoutId = null;
+  var fadeInTimeoutId = null;
 
   var getHourInTimeZone = function(timeZone) {
     try {
@@ -628,14 +598,18 @@
     var segmentLabel = formatSegment(segment);
 
     if (currentImageUrl && currentImageUrl !== imageUrl) {
-      var token = ++pendingImageToken;
+      window.clearTimeout(fadeOutTimeoutId);
+      window.clearTimeout(fadeInTimeoutId);
 
-      preloadImage(imageUrl, function() {
-        if (token !== pendingImageToken) {
-          return;
-        }
-        startCrossfade(imageUrl);
-      });
+      bg.classList.add('is-fading');
+      fadeOutTimeoutId = window.setTimeout(function() {
+        bg.style.setProperty('--bg-image', 'url("' + imageUrl + '")');
+        currentImageUrl = imageUrl;
+
+        fadeInTimeoutId = window.setTimeout(function() {
+          bg.classList.remove('is-fading');
+        }, 80);
+      }, 350);
     } else {
       bg.style.setProperty('--bg-image', 'url("' + imageUrl + '")');
       currentImageUrl = imageUrl;
