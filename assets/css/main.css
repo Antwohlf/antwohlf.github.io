@@ -3566,6 +3566,27 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
     border-bottom: none;
 }
 
+#resume a {
+    color: #4fc3ff;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.resume-embed .resume-link {
+    text-align: center;
+    margin-top: 0.75rem;
+}
+
+.resume-embed .resume-link a {
+    border-bottom: none;
+    text-decoration: none;
+}
+
+.resume-embed .resume-frame {
+    aspect-ratio: 8.5 / 11;
+    height: auto;
+}
+
 
 @media screen and (min-width: 980px) {
     #projects .projects-grid {
