@@ -915,19 +915,6 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 		display: inline-block;
 	}
 
-		ul.icons:before {
-			content: '';
-			position: absolute;
-			top: -0.6rem;
-			left: -0.9rem;
-			right: -0.9rem;
-			bottom: -0.6rem;
-			border-radius: 999px;
-			background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.22) 55%, rgba(0, 0, 0, 0) 80%);
-			z-index: 0;
-			pointer-events: none;
-		}
-
 		ul.icons li {
 			display: inline-block;
 			padding: 0 0.75em 0 0;
@@ -949,7 +936,7 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 				width: 2.5rem;
 				position: relative;
 				z-index: 1;
-				background-color: rgba(0, 0, 0, 0.25);
+				background-color: rgba(0, 0, 0, 0.35);
 			}
 
 				ul.icons li a:hover {
@@ -1538,6 +1525,7 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 			line-height: 5.5rem;
 			border: solid 1px #ffffff;
 			border-radius: 100%;
+			background-color: rgba(0, 0, 0, 0.35);
 		}
 
 			#header .logo .fa-lightbulb,
@@ -1656,16 +1644,7 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 		}
 
 			#header nav ul:before {
-				content: '';
-				position: absolute;
-				top: -0.6rem;
-				left: -0.9rem;
-				right: -0.9rem;
-				bottom: -0.6rem;
-				border-radius: 999px;
-				background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.3) 55%, rgba(0, 0, 0, 0) 80%);
-				z-index: 0;
-				pointer-events: none;
+				content: none;
 			}
 
 			#header nav ul li {
@@ -1690,6 +1669,7 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 					border-bottom: 0;
 					position: relative;
 					z-index: 1;
+					background-color: rgba(0, 0, 0, 0.35);
 				}
 
 					#header nav ul li a:hover {
