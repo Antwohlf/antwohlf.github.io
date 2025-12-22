@@ -3605,13 +3605,14 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 }
 
 #contact .contact-preferred a {
-    border-bottom: 1px solid rgba(79, 195, 255, 0.6);
+    color: #4fc3ff;
+    border-bottom: none;
     text-decoration: none;
 }
 
 #contact .contact-preferred a:hover,
 #contact .contact-preferred a:focus-visible {
-    border-bottom-color: transparent;
+    color: #4fc3ff;
 }
 
 .resume-embed .resume-link {
