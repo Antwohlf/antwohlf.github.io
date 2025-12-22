@@ -3687,18 +3687,22 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
     }
 
 .skills-popover {
-    position: fixed;
+    position: absolute;
     background: rgba(0, 0, 0, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 0.6rem;
     padding: 0.6rem 0.9rem;
     min-width: 12rem;
     max-width: 18rem;
+    max-height: calc(100vh - 3rem);
     opacity: 0;
     pointer-events: none;
     transform: translateY(-4px) scale(0.98);
     transition: opacity 0.2s ease, transform 0.2s ease;
     z-index: 7;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
 }
 
     .skills-popover.is-visible {
@@ -3728,6 +3732,7 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
     .skills-popover-list li + li {
         margin-top: 0.3rem;
     }
+
 
 
 .travel-year {
