@@ -3573,6 +3573,47 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
     border-bottom: none;
 }
 
+#contact .contact-content {
+    max-width: 30rem;
+    margin: 0 auto;
+}
+
+#contact .contact-intent {
+    margin: 0 0 0.75rem 0;
+}
+
+#contact .contact-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    opacity: 0.7;
+    margin: 0 0 0.5rem 0;
+}
+
+#contact .contact-list {
+    margin: 0 0 0.7rem 0;
+    padding-left: 1.1rem;
+}
+
+#contact .contact-list li {
+    margin: 0.25rem 0;
+}
+
+#contact .contact-preferred {
+    margin: 0;
+    opacity: 0.9;
+}
+
+#contact .contact-preferred a {
+    border-bottom: 1px solid rgba(79, 195, 255, 0.6);
+    text-decoration: none;
+}
+
+#contact .contact-preferred a:hover,
+#contact .contact-preferred a:focus-visible {
+    border-bottom-color: transparent;
+}
+
 .resume-embed .resume-link {
     text-align: center;
     margin-top: 0.75rem;
