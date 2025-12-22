@@ -1216,6 +1216,7 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 			opacity: 1;
 			pointer-events: auto;
 			filter: blur(0.2rem);
+			z-index: 2;
 		}
 
 		body.is-preload #bg:before {
