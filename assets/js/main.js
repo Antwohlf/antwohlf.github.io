@@ -475,11 +475,11 @@
   }
 
   var locations = [
+    { id: 'tokyo', label: 'Tokyo', timeZone: 'Asia/Tokyo' },
+    { id: 'losangeles', label: 'Los Angeles', timeZone: 'America/Los_Angeles' },
     { id: 'annarbor', label: 'Ann Arbor', timeZone: 'America/New_York' },
     { id: 'detroit', label: 'Detroit', timeZone: 'America/New_York' },
     { id: 'nyc', label: 'New York City', timeZone: 'America/New_York' },
-    { id: 'losangeles', label: 'Los Angeles', timeZone: 'America/Los_Angeles' },
-    { id: 'tokyo', label: 'Tokyo', timeZone: 'Asia/Tokyo' },
     { id: 'sansebastian', label: 'San Sebastian', timeZone: 'Europe/Madrid' }
   ];
   var storageKey = 'bgLocation';
