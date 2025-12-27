@@ -3767,6 +3767,16 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
     text-decoration: none;
 }
 
+.resume-embed .resume-link .button {
+    font-weight: 300;
+    text-transform: none;
+    letter-spacing: 0.08rem;
+}
+
+.resume-embed .resume-link .project-link {
+    font-weight: 600;
+}
+
 .resume-embed .resume-frame {
     aspect-ratio: 8.5 / 11;
     height: auto;
