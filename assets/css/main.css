@@ -1859,6 +1859,10 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 		#main article#projects {
 			width: 60rem;
 		}
+
+		#main article#resume {
+			width: 48rem;
+		}
 	}
 
 		#main article h1,
@@ -3558,6 +3562,12 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
     margin: 0 auto;
 }
 
+#resume .resume-embed {
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+}
+
 #contact .contact-intent {
     margin: 0 0 0.75rem 0;
 }
@@ -3600,6 +3610,158 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
     margin-top: 0.75rem;
 }
 
+.resume-embed .resume-frame-wrap {
+    width: 100%;
+    position: relative;
+}
+
+.resume-embed .resume-placeholder {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 6px;
+    border: 1px dashed rgba(255, 255, 255, 0.25);
+    background: rgba(0, 0, 0, 0.35);
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.05rem;
+    letter-spacing: 0.02rem;
+    line-height: 1.4;
+    width: 100%;
+    aspect-ratio: 8.5 / 11;
+}
+
+.resume-embed .resume-placeholder.is-visible {
+    display: flex;
+}
+
+.resume-embed .resume-variants {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+    .resume-embed .resume-variant {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 0.65rem 0.75rem;
+        border-radius: 0.65rem;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        background: rgba(255, 255, 255, 0.04);
+        color: inherit;
+        cursor: pointer;
+        font: inherit;
+        text-transform: none;
+        letter-spacing: 0.02rem;
+        transition: transform 0.15s ease, border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+        .resume-embed .resume-variant .icon {
+            font-size: 1.35rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .resume-embed .resume-variant svg {
+            width: 1.4rem;
+            height: 1.4rem;
+            display: block;
+        }
+
+        .resume-embed .resume-variant .icon-netflix,
+        .resume-embed .resume-variant .icon-duolingo {
+            color: inherit;
+        }
+
+        .resume-embed .resume-variant .icon-netflix svg path,
+        .resume-embed .resume-variant .icon-netflix svg circle,
+        .resume-embed .resume-variant .icon-netflix svg ellipse,
+        .resume-embed .resume-variant .icon-netflix svg rect,
+        .resume-embed .resume-variant .icon-netflix svg polygon,
+        .resume-embed .resume-variant .icon-netflix svg polyline,
+        .resume-embed .resume-variant .icon-netflix svg line,
+        .resume-embed .resume-variant .icon-duolingo svg path,
+        .resume-embed .resume-variant .icon-duolingo svg circle,
+        .resume-embed .resume-variant .icon-duolingo svg ellipse,
+        .resume-embed .resume-variant .icon-duolingo svg rect,
+        .resume-embed .resume-variant .icon-duolingo svg polygon,
+        .resume-embed .resume-variant .icon-duolingo svg polyline,
+        .resume-embed .resume-variant .icon-duolingo svg line {
+            fill: currentColor;
+        }
+
+        .resume-embed .resume-variant:hover {
+            transform: translateY(-2px);
+            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .resume-embed .resume-variant.is-active {
+            border-color: #ffffff;
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
+        }
+
+        .resume-embed .resume-variant.is-active .fa-home {
+            color: #4fc3ff;
+        }
+
+        .resume-embed .resume-variant.is-active .fa-google {
+            color: #4285f4;
+        }
+
+        .resume-embed .resume-variant.is-active .fa-google:before {
+            background: linear-gradient(135deg, #ea4335 0%, #fbbc05 35%, #34a853 62%, #4285f4 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @supports (background: conic-gradient(red, blue)) {
+            .resume-embed .resume-variant.is-active .fa-google:before {
+                background-image: conic-gradient(
+                    #ea4335 0deg,
+                    #ea4335 45deg,
+                    #4285f4 90deg,
+                    #34a853 225deg,
+                    #fbbc05 315deg,
+                    #ea4335 360deg
+                );
+            }
+        }
+
+        .resume-embed .resume-variant.is-active .fa-amazon {
+            color: #ffffff;
+        }
+
+        .resume-embed .resume-variant.is-active .fa-amazon:before {
+            background: linear-gradient(180deg, #ffffff 0%, #ffffff 62%, #ff9900 62%, #ff9900 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .resume-embed .resume-variant.is-active .fa-airbnb {
+            color: #ff5a5f;
+        }
+
+        .resume-embed .resume-variant.is-active .fa-facebook-f {
+            color: #1877f2;
+        }
+
+        .resume-embed .resume-variant.is-active .icon-netflix {
+            color: #e50914;
+        }
+
+        .resume-embed .resume-variant.is-active .icon-duolingo {
+            color: #58cc02;
+        }
+
 .resume-embed .resume-link a {
     border-bottom: none;
     text-decoration: none;
@@ -3608,6 +3770,10 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 .resume-embed .resume-frame {
     aspect-ratio: 8.5 / 11;
     height: auto;
+}
+
+.resume-embed .resume-frame.is-hidden {
+    display: none;
 }
 
 
