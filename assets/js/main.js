@@ -877,6 +877,73 @@
 })();
 
 (() => {
+  const frame = document.getElementById('resume-frame');
+  const placeholder = document.getElementById('resume-placeholder');
+  const download = document.getElementById('resume-download');
+  const buttons = document.querySelectorAll('.resume-variant');
+  if (!frame || !download || !buttons.length) {
+    return;
+  }
+
+  const defaultSrc = frame.getAttribute('src')
+    ? frame.getAttribute('src').split('#')[0]
+    : '';
+
+  const setActive = (btn) => {
+    buttons.forEach((b) => b.classList.remove('is-active'));
+    btn.classList.add('is-active');
+  };
+
+  const setResume = (src) => {
+    frame.src = src + '#toolbar=0&navpanes=0&scrollbar=0';
+    download.href = src;
+  };
+
+  const showResume = (src) => {
+    frame.classList.remove('is-hidden');
+    if (placeholder) {
+      placeholder.classList.remove('is-visible');
+    }
+    setResume(src);
+  };
+
+  const showPlaceholder = (label) => {
+    if (!placeholder) {
+      return;
+    }
+    frame.classList.add('is-hidden');
+    placeholder.classList.add('is-visible');
+    placeholder.textContent = `${label} themed resume is coming soon.`;
+    if (defaultSrc) {
+      download.href = defaultSrc;
+    }
+  };
+
+  const applySelection = (btn) => {
+    const src = btn.getAttribute('data-resume-src');
+    const label = btn.getAttribute('data-resume-label') || 'This';
+    const ready = btn.getAttribute('data-resume-ready') !== 'false' && !!src;
+    setActive(btn);
+    if (ready) {
+      showResume(src);
+    } else {
+      showPlaceholder(label);
+    }
+  };
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      applySelection(btn);
+    });
+  });
+
+  const initial = document.querySelector('.resume-variant.is-active') || buttons[0];
+  if (initial) {
+    applySelection(initial);
+  }
+})();
+
+(() => {
   const projectCards = document.querySelectorAll('#projects .project-card');
   if (!projectCards.length) {
     return;
