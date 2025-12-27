@@ -880,14 +880,13 @@
   const frame = document.getElementById('resume-frame');
   const placeholder = document.getElementById('resume-placeholder');
   const download = document.getElementById('resume-download');
+  const downloadWrap = download ? download.closest('.resume-link') : null;
   const buttons = document.querySelectorAll('.resume-variant');
   if (!frame || !download || !buttons.length) {
     return;
   }
 
-  const defaultSrc = frame.getAttribute('src')
-    ? frame.getAttribute('src').split('#')[0]
-    : '';
+  const availabilityCache = new Map();
 
   const setActive = (btn) => {
     buttons.forEach((b) => b.classList.remove('is-active'));
@@ -899,36 +898,170 @@
     download.href = src;
   };
 
+  const getDownloadFilename = (src) => {
+    try {
+      const url = new URL(src, window.location.href);
+      const name = url.pathname.split('/').filter(Boolean).pop();
+      return name || 'resume.pdf';
+    } catch (error) {
+      return 'resume.pdf';
+    }
+  };
+
+  const downloadResume = async (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    const src = download.href;
+    if (!src) {
+      return;
+    }
+
+    try {
+      const response = await fetch(src, { cache: 'no-store' });
+      if (!response.ok) {
+        throw new Error('Resume download failed.');
+      }
+      const blob = await response.blob();
+      const blobUrl = URL.createObjectURL(blob);
+      const tempLink = document.createElement('a');
+      tempLink.href = blobUrl;
+      tempLink.download = getDownloadFilename(src);
+      tempLink.target = '_blank';
+      tempLink.rel = 'noopener';
+      tempLink.style.display = 'none';
+      tempLink.addEventListener('click', (linkEvent) => {
+        linkEvent.stopPropagation();
+        linkEvent.stopImmediatePropagation();
+      });
+      (downloadWrap || document.body).appendChild(tempLink);
+      tempLink.click();
+      tempLink.remove();
+      URL.revokeObjectURL(blobUrl);
+    } catch (error) {
+      window.open(src, '_blank', 'noopener');
+    }
+  };
+
+  download.addEventListener('click', downloadResume);
+
+  const setDownloadVisible = (isVisible) => {
+    if (downloadWrap) {
+      downloadWrap.hidden = !isVisible;
+      return;
+    }
+    download.hidden = !isVisible;
+  };
+
   const showResume = (src) => {
     frame.classList.remove('is-hidden');
     if (placeholder) {
       placeholder.classList.remove('is-visible');
     }
+    setDownloadVisible(true);
     setResume(src);
   };
 
   const showPlaceholder = (label) => {
+    frame.classList.add('is-hidden');
+    setDownloadVisible(false);
     if (!placeholder) {
       return;
     }
-    frame.classList.add('is-hidden');
     placeholder.classList.add('is-visible');
     placeholder.textContent = `${label} themed resume is coming soon.`;
-    if (defaultSrc) {
-      download.href = defaultSrc;
+  };
+
+  const checkAvailability = async (src) => {
+    try {
+      const response = await fetch(src, { method: 'HEAD', cache: 'no-store' });
+      if (response.ok) {
+        return { ready: true, definitive: true };
+      }
+      if (response.status === 404 || response.status === 403) {
+        return { ready: false, definitive: true };
+      }
+    } catch (error) {
+      // Fall through to a lightweight GET check.
+    }
+
+    try {
+      const response = await fetch(src, {
+        method: 'GET',
+        headers: { Range: 'bytes=0-0' },
+        cache: 'no-store'
+      });
+      if (response.ok || response.status === 206) {
+        return { ready: true, definitive: true };
+      }
+      return { ready: false, definitive: true };
+    } catch (error) {
+      return { ready: false, definitive: false };
     }
   };
 
-  const applySelection = (btn) => {
+  const ensureAvailability = (btn) => {
+    const src = btn.getAttribute('data-resume-src');
+    if (!src) {
+      return Promise.resolve(false);
+    }
+
+    const cached = availabilityCache.get(src);
+    if (typeof cached === 'boolean') {
+      return Promise.resolve(cached);
+    }
+    if (cached) {
+      return cached;
+    }
+
+    const readyHint = btn.getAttribute('data-resume-ready') === 'true';
+    if (readyHint) {
+      availabilityCache.set(src, true);
+      return Promise.resolve(true);
+    }
+
+    const promise = checkAvailability(src).then((result) => {
+      if (result.definitive) {
+        if (result.ready) {
+          availabilityCache.set(src, true);
+        } else {
+          availabilityCache.delete(src);
+        }
+        btn.setAttribute('data-resume-ready', result.ready ? 'true' : 'false');
+      } else {
+        availabilityCache.delete(src);
+      }
+      return result.ready;
+    }).catch(() => {
+      availabilityCache.delete(src);
+      return false;
+    });
+
+    availabilityCache.set(src, promise);
+    return promise;
+  };
+
+  let selectionToken = 0;
+
+  const applySelection = async (btn) => {
+    selectionToken += 1;
+    const token = selectionToken;
     const src = btn.getAttribute('data-resume-src');
     const label = btn.getAttribute('data-resume-label') || 'This';
-    const ready = btn.getAttribute('data-resume-ready') !== 'false' && !!src;
     setActive(btn);
+    if (!src) {
+      showPlaceholder(label);
+      return;
+    }
+
+    const ready = await ensureAvailability(btn);
+    if (token !== selectionToken || !btn.classList.contains('is-active')) {
+      return;
+    }
     if (ready) {
       showResume(src);
-    } else {
-      showPlaceholder(label);
+      return;
     }
+    showPlaceholder(label);
   };
 
   buttons.forEach((btn) => {
@@ -941,6 +1074,12 @@
   if (initial) {
     applySelection(initial);
   }
+
+  buttons.forEach((btn) => {
+    if (!btn.classList.contains('is-active')) {
+      ensureAvailability(btn);
+    }
+  });
 })();
 
 (() => {
