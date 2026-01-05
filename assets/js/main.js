@@ -887,6 +887,17 @@
   }
 
   const availabilityCache = new Map();
+  const FADE_DURATION = 250;
+  const FADE_OUT_DELAY = 120;
+  const brandColors = new Map([
+    ['default', '#4fc3ff'],
+    ['google', '#4285f4'],
+    ['amazon', '#ff9900'],
+    ['airbnb', '#ff5a5f'],
+    ['facebook', '#1877f2'],
+    ['netflix', '#e50914'],
+    ['duolingo', '#58cc02']
+  ]);
 
   const setActive = (btn) => {
     buttons.forEach((b) => b.classList.remove('is-active'));
@@ -894,7 +905,7 @@
   };
 
   const setResume = (src) => {
-    frame.src = src + '#toolbar=0&navpanes=0&scrollbar=0';
+    frame.src = src + '#toolbar=0&navpanes=0&scrollbar=0&view=Fit';
     download.href = src;
   };
 
@@ -952,23 +963,61 @@
     download.hidden = !isVisible;
   };
 
-  const showResume = (src) => {
+  const showResume = (src, token) => {
     frame.classList.remove('is-hidden');
     if (placeholder) {
       placeholder.classList.remove('is-visible');
     }
     setDownloadVisible(true);
+    const handleLoad = () => {
+      if (token !== selectionToken) {
+        return;
+      }
+      frame.classList.remove('is-fading');
+    };
+    frame.addEventListener('load', handleLoad, { once: true });
     setResume(src);
+    window.setTimeout(() => {
+      if (token !== selectionToken) {
+        return;
+      }
+      frame.classList.remove('is-fading');
+    }, FADE_DURATION + 200);
   };
 
-  const showPlaceholder = (label) => {
-    frame.classList.add('is-hidden');
+  const showPlaceholder = (label, token, btn) => {
     setDownloadVisible(false);
     if (!placeholder) {
+      frame.classList.add('is-hidden');
+      frame.classList.remove('is-fading');
       return;
     }
     placeholder.classList.add('is-visible');
-    placeholder.textContent = `${label} themed resume is coming soon.`;
+    placeholder.textContent = '';
+    const iconNode = btn ? btn.querySelector('.icon') : null;
+    if (iconNode) {
+      const iconClone = iconNode.cloneNode(true);
+      iconClone.classList.add('resume-placeholder-icon');
+      const key = (btn.getAttribute('data-resume-label') || '').toLowerCase();
+      const color = brandColors.get(key);
+      if (key === 'amazon') {
+        iconClone.classList.add('resume-placeholder-amazon');
+      } else if (color) {
+        iconClone.style.color = color;
+      }
+      placeholder.appendChild(iconClone);
+    }
+    const message = document.createElement('span');
+    message.className = 'resume-placeholder-text';
+    message.textContent = `${label} themed resume is coming soon.`;
+    placeholder.appendChild(message);
+    window.setTimeout(() => {
+      if (token !== selectionToken) {
+        return;
+      }
+      frame.classList.add('is-hidden');
+      frame.classList.remove('is-fading');
+    }, FADE_DURATION);
   };
 
   const checkAvailability = async (src) => {
@@ -1048,20 +1097,32 @@
     const src = btn.getAttribute('data-resume-src');
     const label = btn.getAttribute('data-resume-label') || 'This';
     setActive(btn);
+    frame.classList.add('is-fading');
+    if (placeholder) {
+      placeholder.classList.remove('is-visible');
+    }
+    const fadeOut = new Promise((resolve) => {
+      window.setTimeout(resolve, FADE_OUT_DELAY);
+    });
     if (!src) {
-      showPlaceholder(label);
+      await fadeOut;
+      if (token !== selectionToken || !btn.classList.contains('is-active')) {
+        return;
+      }
+      showPlaceholder(label, token, btn);
       return;
     }
 
     const ready = await ensureAvailability(btn);
+    await fadeOut;
     if (token !== selectionToken || !btn.classList.contains('is-active')) {
       return;
     }
     if (ready) {
-      showResume(src);
+      showResume(src, token);
       return;
     }
-    showPlaceholder(label);
+    showPlaceholder(label, token, btn);
   };
 
   buttons.forEach((btn) => {
