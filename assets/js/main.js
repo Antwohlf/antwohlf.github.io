@@ -487,6 +487,19 @@
   var currentImageUrl = null;
   var fadeOutTimeoutId = null;
   var fadeInTimeoutId = null;
+  var snowLocationIds = ['annarbor', 'nyc'];
+  var prefersReducedMotion = false;
+  var snowCanvas = bg.querySelector('.snow-canvas');
+  var snowCtx = null;
+  var snowAnimationId = null;
+  var snowParticles = [];
+  var snowLastTime = 0;
+  var snowBounds = { width: 0, height: 0 };
+  var snowResizeHandler = null;
+
+  if (window.matchMedia) {
+    prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
 
   var getHourInTimeZone = function(timeZone) {
     try {
@@ -596,11 +609,193 @@
     }
   };
 
+  var randomBetween = function(min, max) {
+    return min + Math.random() * (max - min);
+  };
+
+  var ensureSnowCanvas = function() {
+    if (!snowCanvas) {
+      snowCanvas = document.createElement('canvas');
+      snowCanvas.className = 'snow-canvas';
+      snowCanvas.setAttribute('aria-hidden', 'true');
+      bg.appendChild(snowCanvas);
+    }
+
+    if (!snowCtx && snowCanvas.getContext) {
+      snowCtx = snowCanvas.getContext('2d');
+    }
+  };
+
+  var resizeSnowCanvas = function() {
+    if (!snowCanvas || !snowCtx) {
+      return;
+    }
+
+    var width = bg.clientWidth || window.innerWidth;
+    var height = bg.clientHeight || window.innerHeight;
+    var ratio = window.devicePixelRatio || 1;
+
+    snowCanvas.width = Math.max(1, Math.floor(width * ratio));
+    snowCanvas.height = Math.max(1, Math.floor(height * ratio));
+    snowCanvas.style.width = width + 'px';
+    snowCanvas.style.height = height + 'px';
+    snowCtx.setTransform(ratio, 0, 0, ratio, 0, 0);
+
+    snowBounds.width = width;
+    snowBounds.height = height;
+  };
+
+  var createSnowParticle = function(width, height) {
+    var depth = Math.random();
+    var size = randomBetween(0.6, 1.6) + depth * 1.6;
+    var speed = randomBetween(18, 46) + depth * 62;
+    var drift = randomBetween(-36, 36);
+    var swayAmp = randomBetween(12, 54) + depth * 26;
+    var swaySpeed = randomBetween(0.4, 1.5);
+    var alpha = Math.min(0.95, randomBetween(0.25, 0.55) + depth * 0.35);
+
+    return {
+      x: Math.random() * width,
+      y: Math.random() * height,
+      radius: size,
+      vy: speed,
+      vx: drift,
+      driftTarget: drift,
+      swayAmp: swayAmp,
+      swaySpeed: swaySpeed,
+      swayPhase: Math.random() * Math.PI * 2,
+      alpha: alpha
+    };
+  };
+
+  var seedSnowParticles = function() {
+    var width = snowBounds.width;
+    var height = snowBounds.height;
+    var area = width * height;
+    var count = Math.round(area * 0.00003);
+    var i;
+
+    count = Math.max(40, Math.min(110, count));
+    snowParticles = [];
+
+    for (i = 0; i < count; i++) {
+      snowParticles.push(createSnowParticle(width, height));
+    }
+  };
+
+  var updateSnow = function(timestamp) {
+    var width = snowBounds.width;
+    var height = snowBounds.height;
+    var i;
+
+    if (!snowCtx || !width || !height) {
+      return;
+    }
+
+    if (!snowLastTime) {
+      snowLastTime = timestamp;
+    }
+
+    var dt = (timestamp - snowLastTime) / 1000;
+    snowLastTime = timestamp;
+
+    if (dt > 0.05) {
+      dt = 0.05;
+    }
+
+    snowCtx.clearRect(0, 0, width, height);
+
+    for (i = 0; i < snowParticles.length; i++) {
+      var particle = snowParticles[i];
+      var sway;
+      var drawX;
+
+      if (Math.random() < 0.02) {
+        particle.driftTarget = randomBetween(-70, 70);
+      }
+
+      particle.vx += (particle.driftTarget - particle.vx) * 0.02;
+      particle.swayPhase += particle.swaySpeed * dt;
+      sway = Math.sin(particle.swayPhase) * particle.swayAmp;
+
+      particle.x += particle.vx * dt;
+      particle.y += particle.vy * dt;
+
+      drawX = particle.x + sway;
+
+      if (drawX < -80) {
+        particle.x = width + 80;
+      } else if (drawX > width + 80) {
+        particle.x = -80;
+      }
+
+      if (particle.y > height + 40) {
+        particle.y = -40;
+        particle.x = Math.random() * width;
+        particle.swayPhase = Math.random() * Math.PI * 2;
+      }
+
+      snowCtx.beginPath();
+      snowCtx.fillStyle = 'rgba(255, 255, 255, ' + particle.alpha.toFixed(3) + ')';
+      snowCtx.arc(drawX, particle.y, particle.radius, 0, Math.PI * 2);
+      snowCtx.fill();
+    }
+
+    snowAnimationId = window.requestAnimationFrame(updateSnow);
+  };
+
+  var startSnow = function() {
+    ensureSnowCanvas();
+
+    if (!snowCtx) {
+      return;
+    }
+
+    resizeSnowCanvas();
+    seedSnowParticles();
+    snowLastTime = 0;
+
+    if (snowAnimationId) {
+      window.cancelAnimationFrame(snowAnimationId);
+    }
+
+    snowAnimationId = window.requestAnimationFrame(updateSnow);
+
+    if (!snowResizeHandler) {
+      snowResizeHandler = function() {
+        resizeSnowCanvas();
+        seedSnowParticles();
+      };
+      window.addEventListener('resize', snowResizeHandler);
+    }
+  };
+
+  var stopSnow = function() {
+    if (snowAnimationId) {
+      window.cancelAnimationFrame(snowAnimationId);
+      snowAnimationId = null;
+    }
+
+    snowLastTime = 0;
+
+    if (snowCtx && snowBounds.width && snowBounds.height) {
+      snowCtx.clearRect(0, 0, snowBounds.width, snowBounds.height);
+    }
+
+    if (snowResizeHandler) {
+      window.removeEventListener('resize', snowResizeHandler);
+      snowResizeHandler = null;
+    }
+  };
+
   var setBackground = function() {
     var location = locations[locationIndex];
     var segment = getTimeSegment(location.timeZone);
     var imageUrl = 'https://uqmjvvghhhtjqbzzvtop.supabase.co/storage/v1/object/public/personal-website/backgrounds/' + location.id + '_' + segment + '.png';
     var segmentLabel = formatSegment(segment);
+    var shouldSnow = segment === 'night'
+      && snowLocationIds.indexOf(location.id) !== -1
+      && !prefersReducedMotion;
 
     if (currentImageUrl && currentImageUrl !== imageUrl) {
       window.clearTimeout(fadeOutTimeoutId);
@@ -629,6 +824,12 @@
       'Change background location (' + location.label + ' - ' + segmentLabel + ')'
     );
 
+    bg.classList.toggle('has-snow', shouldSnow);
+    if (shouldSnow) {
+      startSnow();
+    } else {
+      stopSnow();
+    }
     updateLocationTime(location);
     updateActiveButton(location.id);
   };
@@ -896,7 +1097,8 @@
     ['airbnb', '#ff5a5f'],
     ['facebook', '#1877f2'],
     ['netflix', '#e50914'],
-    ['duolingo', '#58cc02']
+    ['duolingo', '#58cc02'],
+    ['spotify', '#1db954']
   ]);
 
   const setActive = (btn) => {
