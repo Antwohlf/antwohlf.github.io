@@ -475,12 +475,12 @@
   }
 
   var locations = [
-    { id: 'tokyo', label: 'Tokyo', timeZone: 'Asia/Tokyo' },
-    { id: 'losangeles', label: 'Los Angeles', timeZone: 'America/Los_Angeles' },
-    { id: 'annarbor', label: 'Ann Arbor', timeZone: 'America/New_York' },
-    { id: 'detroit', label: 'Detroit', timeZone: 'America/New_York' },
-    { id: 'nyc', label: 'New York City', timeZone: 'America/New_York' },
-    { id: 'sansebastian', label: 'San Sebastian', timeZone: 'Europe/Madrid' }
+    { id: 'tokyo', label: 'Tokyo', timeZone: 'Asia/Tokyo', lat: 35.6895, lon: 139.6917 },
+    { id: 'losangeles', label: 'Los Angeles', timeZone: 'America/Los_Angeles', lat: 34.0522, lon: -118.2437 },
+    { id: 'annarbor', label: 'Ann Arbor', timeZone: 'America/New_York', lat: 42.2808, lon: -83.7430 },
+    { id: 'detroit', label: 'Detroit', timeZone: 'America/New_York', lat: 42.3314, lon: -83.0458 },
+    { id: 'nyc', label: 'New York City', timeZone: 'America/New_York', lat: 40.7128, lon: -74.0060 },
+    { id: 'sansebastian', label: 'San Sebastian', timeZone: 'Europe/Madrid', lat: 43.3183, lon: -1.9812 }
   ];
   var storageKey = 'bgLocation';
   var locationIndex = 0;
@@ -496,6 +496,10 @@
   var snowLastTime = 0;
   var snowBounds = { width: 0, height: 0 };
   var snowResizeHandler = null;
+  var weatherCache = {};
+  var weatherInFlight = {};
+  var weatherRequestId = 0;
+  var WEATHER_CACHE_TTL_MS = 10 * 60 * 1000;
 
   if (window.matchMedia) {
     prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -581,6 +585,85 @@
     return new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
   };
 
+  var weatherCondition = function(code) {
+    var map = {
+      0: 'Clear',
+      1: 'Mainly clear',
+      2: 'Partly cloudy',
+      3: 'Overcast',
+      45: 'Fog',
+      48: 'Fog',
+      51: 'Drizzle',
+      53: 'Drizzle',
+      55: 'Drizzle',
+      61: 'Rain',
+      63: 'Rain',
+      65: 'Heavy rain',
+      71: 'Snow',
+      73: 'Snow',
+      75: 'Heavy snow',
+      80: 'Rain showers',
+      81: 'Rain showers',
+      82: 'Heavy rain showers',
+      95: 'Thunderstorm',
+      96: 'Thunderstorm',
+      99: 'Thunderstorm'
+    };
+
+    return map[code] || 'Current conditions';
+  };
+
+  var updateWeather = function(location) {
+    var weatherEl = locationTime.querySelector('.weather');
+    if (!weatherEl || !location || location.lat == null || location.lon == null) {
+      return;
+    }
+
+    var now = Date.now();
+    var cached = weatherCache[location.id];
+    if (cached && now - cached.updatedAt < WEATHER_CACHE_TTL_MS) {
+      weatherEl.textContent = cached.text;
+      return;
+    }
+
+    if (weatherInFlight[location.id]) {
+      return;
+    }
+
+    weatherInFlight[location.id] = true;
+    weatherEl.textContent = 'Loading weather...';
+    var requestId = ++weatherRequestId;
+    var url = 'https://api.open-meteo.com/v1/forecast?latitude=' + encodeURIComponent(location.lat) + '&longitude=' + encodeURIComponent(location.lon) + '&current_weather=true&temperature_unit=fahrenheit&timezone=' + encodeURIComponent(location.timeZone);
+
+    fetch(url)
+      .then(function(response) {
+        if (!response.ok) {
+          throw new Error('Weather request failed');
+        }
+        return response.json();
+      })
+      .then(function(payload) {
+        var temp = payload && payload.current_weather ? payload.current_weather.temperature : null;
+        var code = payload && payload.current_weather ? payload.current_weather.weathercode : null;
+        var text = 'Weather unavailable';
+
+        if (temp != null && code != null && requestId === weatherRequestId) {
+          text = Math.round(temp) + '°F · ' + weatherCondition(code);
+          weatherCache[location.id] = {
+            text: text,
+            updatedAt: Date.now()
+          };
+        }
+        weatherEl.textContent = text;
+      })
+      .catch(function() {
+        weatherEl.textContent = 'Weather unavailable';
+      })
+      .finally(function() {
+        delete weatherInFlight[location.id];
+      });
+  };
+
   var updateLocationTime = function(location) {
     var labelEl = locationTime.querySelector('.label');
     var valueEl = locationTime.querySelector('.value');
@@ -591,6 +674,7 @@
     if (valueEl) {
       valueEl.textContent = location.label + ' · ' + formatLocalTime(location.timeZone);
     }
+    updateWeather(location);
   };
 
   var updateActiveButton = function(locationId) {

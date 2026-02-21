@@ -1359,6 +1359,13 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 		margin-top: 0.15rem;
 	}
 
+		.location-time .value.weather {
+			font-size: 0.58rem;
+			letter-spacing: 0.1rem;
+			margin-top: 0.08rem;
+			opacity: 0.9;
+		}
+
 	.bg-menu-backdrop {
 		position: fixed;
 		inset: 0;
@@ -1396,6 +1403,12 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 				font-size: 0.58rem;
 				letter-spacing: 0.08rem;
 				margin-top: 0.1rem;
+			}
+
+			.location-time .value.weather {
+				font-size: 0.48rem;
+				letter-spacing: 0.06rem;
+				margin-top: 0.06rem;
 			}
 
 		.bg-menu {
