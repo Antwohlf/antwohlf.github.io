@@ -501,6 +501,61 @@
   var weatherRequestId = 0;
   var WEATHER_CACHE_TTL_MS = 10 * 60 * 1000;
 
+  var getWeatherFromPayload = function(payload) {
+    var temp = payload && payload.current_weather ? payload.current_weather.temperature : null;
+    var code = payload && payload.current_weather ? payload.current_weather.weathercode : null;
+
+    if (temp == null || code == null) {
+      return null;
+    }
+
+    return Math.round(temp) + '°F · ' + weatherCondition(code);
+  };
+
+  var getWeatherFromWttrPayload = function(payload) {
+    var current = payload && payload.current_condition && payload.current_condition[0] ? payload.current_condition[0] : null;
+
+    if (!current) {
+      return null;
+    }
+
+    var temp = current.temp_F;
+    var desc = current.weatherDesc && current.weatherDesc[0] && current.weatherDesc[0].value;
+
+    if (temp == null || !desc) {
+      return null;
+    }
+
+    return Math.round(Number(temp)) + '°F · ' + desc;
+  };
+
+  var fetchWeatherJson = function(url, parser) {
+    return fetch(url).then(function(response) {
+      if (!response.ok) {
+        throw new Error('Weather request failed');
+      }
+
+      return response.text().then(function(text) {
+        var payload = JSON.parse(text);
+        var textValue = parser(payload);
+        if (!textValue) {
+          throw new Error('Weather payload missing required fields');
+        }
+        return textValue;
+      });
+    });
+  };
+
+  var fetchWeather = function(location) {
+    var openMeteoUrl = 'https://api.open-meteo.com/v1/forecast?latitude=' + encodeURIComponent(location.lat) + '&longitude=' + encodeURIComponent(location.lon) + '&current_weather=true&temperature_unit=fahrenheit&timezone=' + encodeURIComponent(location.timeZone);
+    var wttrUrl = 'https://wttr.in/' + encodeURIComponent(location.lat) + ',' + encodeURIComponent(location.lon) + '?format=j1';
+
+    return fetchWeatherJson(openMeteoUrl, getWeatherFromPayload)
+      .catch(function() {
+        return fetchWeatherJson(wttrUrl, getWeatherFromWttrPayload);
+      });
+  };
+
   if (window.matchMedia) {
     prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
@@ -635,25 +690,16 @@
     var requestId = ++weatherRequestId;
     var url = 'https://api.open-meteo.com/v1/forecast?latitude=' + encodeURIComponent(location.lat) + '&longitude=' + encodeURIComponent(location.lon) + '&current_weather=true&temperature_unit=fahrenheit&timezone=' + encodeURIComponent(location.timeZone);
 
-    fetch(url)
-      .then(function(response) {
-        if (!response.ok) {
-          throw new Error('Weather request failed');
+    fetchWeather(location)
+      .then(function(text) {
+        if (requestId !== weatherRequestId) {
+          return;
         }
-        return response.json();
-      })
-      .then(function(payload) {
-        var temp = payload && payload.current_weather ? payload.current_weather.temperature : null;
-        var code = payload && payload.current_weather ? payload.current_weather.weathercode : null;
-        var text = 'Weather unavailable';
 
-        if (temp != null && code != null && requestId === weatherRequestId) {
-          text = Math.round(temp) + '°F · ' + weatherCondition(code);
-          weatherCache[location.id] = {
-            text: text,
-            updatedAt: Date.now()
-          };
-        }
+        weatherCache[location.id] = {
+          text: text,
+          updatedAt: Date.now()
+        };
         weatherEl.textContent = text;
       })
       .catch(function() {
