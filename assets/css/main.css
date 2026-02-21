@@ -1618,6 +1618,14 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 			font-weight: 700;
 		}
 
+		#header h1 .full-name {
+			display: inline;
+		}
+
+		#header h1 .mobile-name {
+			display: none;
+		}
+
 		#header .typing-wrapper {
 			display: -moz-flex;
 			display: -webkit-flex;
@@ -1787,6 +1795,15 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 		}
 
 		@media screen and (max-width: 480px) {
+
+			#header h1 .full-name {
+				display: none;
+			}
+
+			#header h1 .mobile-name {
+				display: inline;
+			}
+
 
 			#header {
 				padding: 1.5rem 0;
@@ -4036,3 +4053,13 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
         outline: 2px solid rgba(255, 255, 255, 0.6);
         outline-offset: 4px;
     }
+
+@media screen and (max-width: 480px) {
+	#header h1 .full-name {
+		display: none;
+	}
+
+	#header h1 .mobile-name {
+		display: inline;
+	}
+}
