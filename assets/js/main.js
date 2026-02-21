@@ -501,32 +501,83 @@
   var weatherRequestId = 0;
   var WEATHER_CACHE_TTL_MS = 10 * 60 * 1000;
 
-  var getWeatherFromPayload = function(payload) {
-    var temp = payload && payload.current_weather ? payload.current_weather.temperature : null;
-    var code = payload && payload.current_weather ? payload.current_weather.weathercode : null;
+  var getWeatherFromOpenMeteoPayload = function(payload) {
+    var current = payload && payload.current ? payload.current : null;
+    var legacyCurrent = payload && payload.current_weather ? payload.current_weather : null;
+    var temp = null;
+    var code = null;
+
+    if (current && current.temperature_2m != null && current.weather_code != null) {
+      temp = current.temperature_2m;
+      code = current.weather_code;
+    } else if (legacyCurrent && legacyCurrent.temperature != null && legacyCurrent.weathercode != null) {
+      temp = legacyCurrent.temperature;
+      code = legacyCurrent.weathercode;
+    }
 
     if (temp == null || code == null) {
       return null;
     }
 
-    return Math.round(temp) + '°F · ' + weatherCondition(code);
+    return Math.round(Number(temp)) + '°F · ' + weatherCondition(code);
   };
 
-  var getWeatherFromWttrPayload = function(payload) {
-    var current = payload && payload.current_condition && payload.current_condition[0] ? payload.current_condition[0] : null;
+  var metNoCondition = function(symbolCode) {
+    if (!symbolCode) {
+      return 'Current conditions';
+    }
 
-    if (!current) {
+    var code = String(symbolCode).replace(/_(day|night|polartwilight)$/i, '');
+
+    if (code.indexOf('thunder') !== -1) {
+      return 'Thunderstorm';
+    }
+    if (code.indexOf('snow') !== -1) {
+      return 'Snow';
+    }
+    if (code.indexOf('sleet') !== -1) {
+      return 'Sleet';
+    }
+    if (code.indexOf('rain') !== -1) {
+      return 'Rain';
+    }
+    if (code.indexOf('fog') !== -1) {
+      return 'Fog';
+    }
+    if (code.indexOf('partlycloudy') !== -1) {
+      return 'Partly cloudy';
+    }
+    if (code.indexOf('cloudy') !== -1) {
+      return 'Cloudy';
+    }
+    if (code.indexOf('clearsky') !== -1) {
+      return 'Clear';
+    }
+    if (code.indexOf('fair') !== -1) {
+      return 'Fair';
+    }
+
+    return 'Current conditions';
+  };
+
+  var getWeatherFromMetNoPayload = function(payload) {
+    var timeseries = payload && payload.properties && payload.properties.timeseries ? payload.properties.timeseries[0] : null;
+    var details = timeseries && timeseries.data && timeseries.data.instant ? timeseries.data.instant.details : null;
+    var tempC = details ? details.air_temperature : null;
+    var summary = null;
+
+    if (timeseries && timeseries.data) {
+      summary = (timeseries.data.next_1_hours && timeseries.data.next_1_hours.summary && timeseries.data.next_1_hours.summary.symbol_code)
+        || (timeseries.data.next_6_hours && timeseries.data.next_6_hours.summary && timeseries.data.next_6_hours.summary.symbol_code)
+        || (timeseries.data.next_12_hours && timeseries.data.next_12_hours.summary && timeseries.data.next_12_hours.summary.symbol_code);
+    }
+
+    if (tempC == null) {
       return null;
     }
 
-    var temp = current.temp_F;
-    var desc = current.weatherDesc && current.weatherDesc[0] && current.weatherDesc[0].value;
-
-    if (temp == null || !desc) {
-      return null;
-    }
-
-    return Math.round(Number(temp)) + '°F · ' + desc;
+    var tempF = (Number(tempC) * 9 / 5) + 32;
+    return Math.round(tempF) + '°F · ' + metNoCondition(summary);
   };
 
   var fetchWeatherJson = function(url, parser) {
@@ -547,12 +598,12 @@
   };
 
   var fetchWeather = function(location) {
-    var openMeteoUrl = 'https://api.open-meteo.com/v1/forecast?latitude=' + encodeURIComponent(location.lat) + '&longitude=' + encodeURIComponent(location.lon) + '&current_weather=true&temperature_unit=fahrenheit&timezone=' + encodeURIComponent(location.timeZone);
-    var wttrUrl = 'https://wttr.in/' + encodeURIComponent(location.lat) + ',' + encodeURIComponent(location.lon) + '?format=j1';
+    var openMeteoUrl = 'https://api.open-meteo.com/v1/forecast?latitude=' + encodeURIComponent(location.lat) + '&longitude=' + encodeURIComponent(location.lon) + '&current=temperature_2m,weather_code&temperature_unit=fahrenheit&timezone=' + encodeURIComponent(location.timeZone);
+    var metNoUrl = 'https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=' + encodeURIComponent(location.lat) + '&lon=' + encodeURIComponent(location.lon);
 
-    return fetchWeatherJson(openMeteoUrl, getWeatherFromPayload)
+    return fetchWeatherJson(openMeteoUrl, getWeatherFromOpenMeteoPayload)
       .catch(function() {
-        return fetchWeatherJson(wttrUrl, getWeatherFromWttrPayload);
+        return fetchWeatherJson(metNoUrl, getWeatherFromMetNoPayload);
       });
   };
 
@@ -688,7 +739,6 @@
     weatherInFlight[location.id] = true;
     weatherEl.textContent = 'Loading weather...';
     var requestId = ++weatherRequestId;
-    var url = 'https://api.open-meteo.com/v1/forecast?latitude=' + encodeURIComponent(location.lat) + '&longitude=' + encodeURIComponent(location.lon) + '&current_weather=true&temperature_unit=fahrenheit&timezone=' + encodeURIComponent(location.timeZone);
 
     fetchWeather(location)
       .then(function(text) {
@@ -703,6 +753,9 @@
         weatherEl.textContent = text;
       })
       .catch(function() {
+        if (requestId !== weatherRequestId) {
+          return;
+        }
         weatherEl.textContent = 'Weather unavailable';
       })
       .finally(function() {
