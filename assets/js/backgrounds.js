@@ -17,8 +17,13 @@
     { id: 'sansebastian', label: 'San Sebastian', timeZone: 'Europe/Madrid' }
   ];
   var seasonalLocations = {
-    spring: ['tokyo', 'losangeles', 'annarbor', 'detroit', 'nyc', 'sansebastian'],
+    spring: ['tokyo', 'losangeles', 'annarbor', 'nyc'],
     fall: ['tokyo', 'detroit', 'nyc']
+  };
+  var seasonalOverrides = {
+    spring: {
+      detroit: 'fall'
+    }
   };
   var storageBaseUrl = 'https://uqmjvvghhhtjqbzzvtop.supabase.co/storage/v1/object/public/personal-website/backgrounds/';
   var storageKey = 'bgLocation';
@@ -98,9 +103,14 @@
   }
 
   function getImageUrl(location, season, segment) {
+    var assetSeason = seasonalOverrides[season] && seasonalOverrides[season][location.id]
+      ? seasonalOverrides[season][location.id]
+      : season;
     var availableLocations = seasonalLocations[season] || [];
-    var filename = availableLocations.indexOf(location.id) !== -1
-      ? location.id + '_' + season + '_' + segment + '_clear.png'
+    var filename = seasonalOverrides[season] && seasonalOverrides[season][location.id]
+      ? location.id + '_' + assetSeason + '_' + segment + '_clear.png'
+      : availableLocations.indexOf(location.id) !== -1
+        ? location.id + '_' + season + '_' + segment + '_clear.png'
       : location.id + '_' + segment + '.png';
 
     return storageBaseUrl + filename;
