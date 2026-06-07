@@ -12,17 +12,7 @@
   var NEVER_SNOW_LOCATIONS = {
     losangeles: true
   };
-  var LOCAL_DEBUG_BLOCKED_SEASONS = {
-    nyc: {
-      spring: 'manual_audit_failed'
-    },
-    tokyo: {
-      spring: 'manual_audit_failed'
-    },
-    detroit: {
-      spring: 'manual_audit_failed'
-    }
-  };
+  var LOCAL_DEBUG_BLOCKED_SEASONS = {};
 
   var getDatePartInTimeZone = function(date, timeZone, part) {
     try {
@@ -312,16 +302,23 @@
 
   var getApprovedBackgroundRequest = function(locationId, season, segment, sky, approvalManifest) {
     var requestedKey = getBackgroundKey(locationId, season, segment, sky);
-    var approvalStatus = getBackgroundApprovalStatus(requestedKey, approvalManifest);
-    var approved = season === 'winter' || approvalStatus === 'approved';
+    var seasonOverrides = approvalManifest && approvalManifest.policy
+      ? approvalManifest.policy.season_render_overrides
+      : null;
+    var renderSeason = seasonOverrides && seasonOverrides[season]
+      ? seasonOverrides[season]
+      : season;
+    var renderKey = getBackgroundKey(locationId, renderSeason, segment, sky);
+    var approvalStatus = getBackgroundApprovalStatus(renderKey, approvalManifest);
+    var approved = renderSeason === 'winter' || approvalStatus === 'approved';
 
     return {
       requestedKey: requestedKey,
       requestedSeason: season,
-      renderSeason: approved ? season : 'winter',
+      renderSeason: approved ? renderSeason : 'winter',
       approved: approved,
       approvalStatus: approved
-        ? (season === 'winter' ? 'approved_winter' : 'approved_seasonal')
+        ? (renderSeason === 'winter' ? 'approved_winter' : 'approved_seasonal')
         : 'winter_fallback_failed_audit'
     };
   };
