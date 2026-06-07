@@ -45,6 +45,7 @@
   function getLocationDateParts(location) {
     var parts = new Intl.DateTimeFormat('en-US', {
       month: 'numeric',
+      day: 'numeric',
       hour: 'numeric',
       minute: '2-digit',
       hour12: true,
@@ -58,19 +59,22 @@
 
     return {
       month: Number(values.month),
+      day: Number(values.day),
       hour: Number(values.hour) % 12 + (values.dayPeriod === 'PM' ? 12 : 0),
       time: values.hour + ':' + values.minute + ' ' + values.dayPeriod
     };
   }
 
-  function getSeason(month) {
-    if (month >= 3 && month <= 5) {
+  function getSeason(month, day) {
+    var date = month * 100 + day;
+
+    if (date >= 320 && date < 621) {
       return 'spring';
     }
-    if (month >= 6 && month <= 8) {
+    if (date >= 621 && date < 922) {
       return 'summer';
     }
-    if (month >= 9 && month <= 11) {
+    if (date >= 922 && date < 1221) {
       return 'fall';
     }
     return 'winter';
@@ -115,7 +119,7 @@
   function setBackground() {
     var location = locations[locationIndex];
     var parts = getLocationDateParts(location);
-    var season = getSeason(parts.month);
+    var season = getSeason(parts.month, parts.day);
     var segment = getTimeSegment(parts.hour);
 
     locationTime.querySelector('.value').textContent = location.label + ' · ' + parts.time;
