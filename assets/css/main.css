@@ -1183,32 +1183,6 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 			z-index: 1;
 		}
 
-		#bg .snow-canvas {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			pointer-events: none;
-			opacity: 0;
-			transition: opacity 1.2s ease-in-out;
-			z-index: 3;
-		}
-
-		#bg.has-snow .snow-canvas {
-			opacity: 1;
-		}
-
-		@media (prefers-reduced-motion: reduce) {
-			#bg.has-snow .snow-canvas {
-				opacity: 0;
-			}
-		}
-
-		#bg.is-fading:after {
-			opacity: 0;
-		}
-
 		body.is-article-visible #bg:after {
 			-moz-transform: scale(1);
 			-webkit-transform: scale(1);
@@ -1256,12 +1230,14 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 			content: none;
 		}
 
-		.bg-toggle .globe-canvas {
+		.bg-toggle .icon {
 			width: 2.2rem;
 			height: 2.2rem;
 			display: block;
 			position: relative;
 			z-index: 1;
+			font-size: 2.1rem;
+			line-height: 2.2rem;
 		}
 
 		.bg-toggle:hover {
@@ -1359,12 +1335,13 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 		margin-top: 0.15rem;
 	}
 
-		.location-time .value.weather {
-			font-size: 0.58rem;
-			letter-spacing: 0.1rem;
-			margin-top: 0.08rem;
-			opacity: 0.9;
-		}
+	.location-time .value.context {
+		font-size: 0.58rem;
+		letter-spacing: 0.1rem;
+		margin-top: 0.08rem;
+		opacity: 0.9;
+	}
+
 
 	.bg-menu-backdrop {
 		position: fixed;
@@ -1405,11 +1382,12 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 				margin-top: 0.1rem;
 			}
 
-			.location-time .value.weather {
-				font-size: 0.48rem;
-				letter-spacing: 0.06rem;
-				margin-top: 0.06rem;
-			}
+		.location-time .value.context {
+			font-size: 0.48rem;
+			letter-spacing: 0.06rem;
+			margin-top: 0.06rem;
+		}
+
 
 		.bg-menu {
 			right: 0.8rem;
