@@ -1868,79 +1868,37 @@
     var autoSegment = getTimeSegmentForDate(now, location.timeZone);
     var season = debugVisual.enabled && debugVisual.season !== 'auto' ? debugVisual.season : autoSeason;
     var segment = debugVisual.enabled && debugVisual.segment !== 'auto' ? debugVisual.segment : autoSegment;
-    var seasonLabel = season.charAt(0).toUpperCase() + season.slice(1);
     var segmentLabel = formatSegment(segment);
     var cachedWeather = getCachedWeather(location);
     var weatherText = cachedWeather ? cachedWeather.text : 'Loading weather...';
 
     var applyVisualState = function(kind, text) {
-      var normalizedKind = normalizeWeatherKind(kind, {
-        season: season,
-        locationId: location.id
-      });
-      var overlay = 'none';
-      var sky = 'clear';
+      var imageUrl = storageBaseUrl + location.id + '_' + segment + '.png';
+      var resolvedInfo = getAssetInfoForUrl(imageUrl);
 
       stopOverlay();
       updateLocationTime(location, text || 'Weather unavailable');
       toggle.setAttribute(
         'title',
-        'Change background location (' + location.label + ' - ' + seasonLabel + ' ' + segmentLabel + ')'
+        'Change background location (' + location.label + ' - ' + segmentLabel + ')'
       );
       toggle.setAttribute(
         'aria-label',
-        'Change background location (' + location.label + ' - ' + seasonLabel + ' ' + segmentLabel + ')'
+        'Change background location (' + location.label + ' - ' + segmentLabel + ')'
       );
 
-      var approvalRequest = getApprovedBackgroundRequest(location.id, season, segment, sky, backgroundAssetApproval);
-
-      currentRequestedAssetKey = location.id + '_' + season + '_' + segment + '_' + sky + '.png';
-      currentApprovalStateLabel = debugVisual.enabled
-        ? 'Using generated local assets'
-        : (
-          approvalRequest.approvalStatus === 'winter_fallback_failed_audit'
-            ? 'Winter fallback due to failed audit'
-            : (approvalRequest.approvalStatus === 'approved_winter' ? 'Approved winter' : 'Approved seasonal')
-        );
+      currentRequestedAssetKey = resolvedInfo.key;
+      currentResolvedAssetKey = resolvedInfo.key;
+      currentResolvedAssetSource = resolvedInfo.source;
+      currentApprovalStateLabel = 'Showing original background';
       updateDebugStatus();
 
-      var resolvePromise = debugVisual.enabled
-        ? resolveLocalDebugImageUrl(location.id, season, segment, sky)
-        : resolveImageUrl(location.id, approvalRequest.renderSeason, segment, sky);
+      if (requestId !== currentVisualRequestId) {
+        return Promise.resolve();
+      }
 
-      return resolvePromise.then(function(imageUrl) {
-        var resolvedInfo = getAssetInfoForUrl(imageUrl);
-
-        if (requestId !== currentVisualRequestId) {
-          return;
-        }
-
-        applyBackgroundImage(imageUrl);
-        currentApprovalStateLabel = resolvedInfo.key.indexOf('_winter_') !== -1
-          ? (
-            isLocalDebugSeasonBlocked(location.id, season)
-              ? 'Using local winter fallback (blocked by manual audit)'
-              : 'Using local winter fallback'
-          )
-          : 'Showing generated seasonal asset';
-        updateDebugStatus();
-        if (overlay === 'none') {
-          stopOverlay();
-        } else {
-          startOverlay(overlay);
-          bg.classList.toggle('has-snow', overlay === 'snow');
-        }
-      }).catch(function(error) {
-        if (requestId !== currentVisualRequestId) {
-          return;
-        }
-
-        currentResolvedAssetKey = 'missing-local-asset';
-        currentResolvedAssetSource = 'local generated';
-        currentApprovalStateLabel = 'Missing local generated asset';
-        updateDebugStatus();
-        stopOverlay();
-      });
+      applyBackgroundImage(imageUrl);
+      return Promise.resolve();
     };
 
     if (debugVisual.enabled && debugVisual.weather !== 'auto') {
