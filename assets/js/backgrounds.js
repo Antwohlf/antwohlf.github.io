@@ -9,22 +9,22 @@
   }
 
   var locations = [
-    { id: 'tokyo', label: 'Tokyo', timeZone: 'Asia/Tokyo' },
-    { id: 'losangeles', label: 'Los Angeles', timeZone: 'America/Los_Angeles' },
-    { id: 'annarbor', label: 'Ann Arbor', timeZone: 'America/New_York' },
-    { id: 'detroit', label: 'Detroit', timeZone: 'America/New_York' },
-    { id: 'nyc', label: 'New York City', timeZone: 'America/New_York' },
-    { id: 'sansebastian', label: 'San Sebastian', timeZone: 'Europe/Madrid' }
+    { id: 'detroit', label: 'Detroit', timeZone: 'America/New_York', active: true },
+    { id: 'annarbor', label: 'Ann Arbor', timeZone: 'America/New_York', active: true },
+    { id: 'nyc', label: 'New York City', timeZone: 'America/New_York', active: true },
+    { id: 'sansebastian', label: 'San Sebastian', timeZone: 'Europe/Madrid', active: true },
+    { id: 'tokyo', label: 'Tokyo', timeZone: 'Asia/Tokyo', active: false },
+    { id: 'losangeles', label: 'Los Angeles', timeZone: 'America/Los_Angeles', active: false }
   ];
-  var seasonalLocations = {
-    spring: [],
-    fall: ['tokyo', 'detroit', 'nyc']
-  };
-  var seasonalOverrides = {
-    spring: {
-      detroit: 'fall'
-    }
-  };
+  var activeLocationIds = ['detroit', 'annarbor', 'nyc', 'sansebastian'];
+  var timeSegments = ['morning', 'day', 'evening', 'night'];
+  var springAssetsApproved = false;
+  var approvedSpringAssetKeys = activeLocationIds.reduce(function(keys, locationId) {
+    timeSegments.forEach(function(segment) {
+      keys.push(locationId + '_spring_' + segment + '_clear.png');
+    });
+    return keys;
+  }, []);
   var storageBaseUrl = 'https://uqmjvvghhhtjqbzzvtop.supabase.co/storage/v1/object/public/personal-website/backgrounds/';
   var storageKey = 'bgLocation';
   var locationIndex = getSavedLocationIndex();
@@ -39,7 +39,7 @@
     }
 
     for (var i = 0; i < locations.length; i++) {
-      if (locations[i].id === savedId) {
+      if (locations[i].active && locations[i].id === savedId) {
         return i;
       }
     }
@@ -103,14 +103,9 @@
   }
 
   function getImageUrl(location, season, segment) {
-    var assetSeason = seasonalOverrides[season] && seasonalOverrides[season][location.id]
-      ? seasonalOverrides[season][location.id]
-      : season;
-    var availableLocations = seasonalLocations[season] || [];
-    var filename = seasonalOverrides[season] && seasonalOverrides[season][location.id]
-      ? location.id + '_' + assetSeason + '_' + segment + '_clear.png'
-      : availableLocations.indexOf(location.id) !== -1
-        ? location.id + '_' + season + '_' + segment + '_clear.png'
+    var springFilename = location.id + '_spring_' + segment + '_clear.png';
+    var filename = springAssetsApproved && season === 'spring' && approvedSpringAssetKeys.indexOf(springFilename) !== -1
+      ? springFilename
       : location.id + '_' + segment + '.png';
 
     return storageBaseUrl + filename;
@@ -163,8 +158,13 @@
     }
 
     locationIndex = locations.findIndex(function(location) {
-      return location.id === button.getAttribute('data-location');
+      return location.active && location.id === button.getAttribute('data-location');
     });
+    if (locationIndex === -1) {
+      locationIndex = getSavedLocationIndex();
+      closeMenu();
+      return;
+    }
 
     try {
       localStorage.setItem(storageKey, locations[locationIndex].id);
