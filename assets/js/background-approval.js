@@ -1,25 +1,28 @@
 window.__BACKGROUND_APPROVAL__ = {
   "version": 1,
-  "generated_at": "2026-06-07T02:15:18.033Z",
+  "generated_at": "2026-06-07T02:27:18.900Z",
   "policy": {
     "winter_default_status": "approved",
     "nonwinter_default_status": "fallback_only",
     "nonwinter_rendering_policy": "blocked_pairs_fall_back_to_winter",
-    "promotion_policy": "manual_approved_remote_assets_only"
+    "promotion_policy": "spring_pivot_remote_assets",
+    "season_render_overrides": {
+      "summer": "spring",
+      "winter": "spring"
+    }
   },
   "summary": {
-    "approved_assets": 224,
-    "fallback_only_assets": 64,
-    "validator_failure_count": 0,
-    "validator_status": "pass",
-    "validator_exit_code": 0,
+    "approved_assets": 160,
+    "fallback_only_assets": 128,
+    "validator_failure_count": 70,
+    "validator_status": "spring_pivot_user_approved",
+    "validator_exit_code": 1,
     "reason_counts": {
-      "deterministic_nonwinter_fallback_only": 64,
-      "manual_curated_candidate_approved": 16,
-      "manual_curated_candidate_promoted": 40,
+      "deterministic_nonwinter_fallback_only": 32,
       "manual_curated_gemini_candidate": 64,
-      "manual_summer_rollout_approved": 96,
-      "too_similar_to_winter_reference": 39
+      "manual_spring_pivot_approved": 96,
+      "retired_summer_local_only": 96,
+      "too_similar_to_winter_reference": 12
     },
     "location_season_counts": {
       "annarbor:fall": {
@@ -29,7 +32,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "approved": 16
       },
       "annarbor:summer": {
-        "approved": 16
+        "fallback_only": 16
       },
       "detroit:fall": {
         "approved": 16
@@ -38,16 +41,16 @@ window.__BACKGROUND_APPROVAL__ = {
         "approved": 16
       },
       "detroit:summer": {
-        "approved": 16
+        "fallback_only": 16
       },
       "losangeles:fall": {
         "fallback_only": 16
       },
       "losangeles:spring": {
-        "fallback_only": 16
+        "approved": 16
       },
       "losangeles:summer": {
-        "approved": 16
+        "fallback_only": 16
       },
       "nyc:fall": {
         "approved": 16
@@ -56,16 +59,16 @@ window.__BACKGROUND_APPROVAL__ = {
         "approved": 16
       },
       "nyc:summer": {
-        "approved": 16
+        "fallback_only": 16
       },
       "sansebastian:fall": {
         "fallback_only": 16
       },
       "sansebastian:spring": {
-        "fallback_only": 16
+        "approved": 16
       },
       "sansebastian:summer": {
-        "approved": 16
+        "fallback_only": 16
       },
       "tokyo:fall": {
         "approved": 16
@@ -74,7 +77,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "approved": 16
       },
       "tokyo:summer": {
-        "approved": 16
+        "fallback_only": 16
       }
     }
   },
@@ -88,7 +91,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 10.855,
@@ -101,7 +104,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "tokyo_spring_morning_partly.png": {
       "status": "approved",
@@ -112,7 +115,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 14.0376,
@@ -125,7 +128,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "tokyo_spring_morning_cloudy.png": {
       "status": "approved",
@@ -136,7 +139,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 14.5547,
@@ -149,7 +152,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "tokyo_spring_morning_dark.png": {
       "status": "approved",
@@ -160,7 +163,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 23.7322,
@@ -173,10 +176,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "tokyo_summer_morning_clear.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "tokyo",
         "season": "summer",
@@ -184,7 +187,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 13.6301,
@@ -197,10 +200,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "tokyo_summer_morning_partly.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "tokyo",
         "season": "summer",
@@ -208,7 +211,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 16.5651,
@@ -221,10 +224,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "tokyo_summer_morning_cloudy.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "tokyo",
         "season": "summer",
@@ -232,7 +235,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 16.7405,
@@ -245,10 +248,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "tokyo_summer_morning_dark.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "tokyo",
         "season": "summer",
@@ -256,7 +259,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 25.7671,
@@ -269,7 +272,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "tokyo_fall_morning_clear.png": {
       "status": "approved",
@@ -380,7 +383,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 16.867,
@@ -393,7 +396,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "tokyo_spring_day_partly.png": {
       "status": "approved",
@@ -404,7 +407,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 25.4877,
@@ -417,7 +420,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "tokyo_spring_day_cloudy.png": {
       "status": "approved",
@@ -428,7 +431,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 29.348,
@@ -441,7 +444,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "tokyo_spring_day_dark.png": {
       "status": "approved",
@@ -452,7 +455,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 41.6472,
@@ -465,10 +468,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "tokyo_summer_day_clear.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "tokyo",
         "season": "summer",
@@ -476,7 +479,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 21.5572,
@@ -489,10 +492,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "tokyo_summer_day_partly.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "tokyo",
         "season": "summer",
@@ -500,7 +503,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 28.5978,
@@ -513,10 +516,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "tokyo_summer_day_cloudy.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "tokyo",
         "season": "summer",
@@ -524,7 +527,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 31.7917,
@@ -537,10 +540,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "tokyo_summer_day_dark.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "tokyo",
         "season": "summer",
@@ -548,7 +551,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 44.2309,
@@ -561,7 +564,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "tokyo_fall_day_clear.png": {
       "status": "approved",
@@ -672,7 +675,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 0.5836,
@@ -685,7 +688,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "tokyo_spring_evening_partly.png": {
       "status": "approved",
@@ -696,7 +699,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 7.9556,
@@ -709,7 +712,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "tokyo_spring_evening_cloudy.png": {
       "status": "approved",
@@ -720,7 +723,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 12.5182,
@@ -733,7 +736,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "tokyo_spring_evening_dark.png": {
       "status": "approved",
@@ -744,7 +747,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 5.0334,
@@ -757,10 +760,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "tokyo_summer_evening_clear.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "tokyo",
         "season": "summer",
@@ -768,7 +771,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 4.9311,
@@ -781,10 +784,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "tokyo_summer_evening_partly.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "tokyo",
         "season": "summer",
@@ -792,7 +795,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 13.466,
@@ -805,10 +808,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "tokyo_summer_evening_cloudy.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "tokyo",
         "season": "summer",
@@ -816,7 +819,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 16.2883,
@@ -829,10 +832,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "tokyo_summer_evening_dark.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "tokyo",
         "season": "summer",
@@ -840,7 +843,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 8.894,
@@ -853,7 +856,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "tokyo_fall_evening_clear.png": {
       "status": "approved",
@@ -964,7 +967,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 0.6126,
@@ -977,7 +980,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "tokyo_spring_night_partly.png": {
       "status": "approved",
@@ -988,7 +991,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 26.3248,
@@ -1001,7 +1004,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "tokyo_spring_night_cloudy.png": {
       "status": "approved",
@@ -1012,7 +1015,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 35.5513,
@@ -1025,7 +1028,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "tokyo_spring_night_dark.png": {
       "status": "approved",
@@ -1036,7 +1039,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 12.6944,
@@ -1049,10 +1052,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "tokyo_summer_night_clear.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "tokyo",
         "season": "summer",
@@ -1060,7 +1063,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 6.3321,
@@ -1073,10 +1076,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "tokyo_summer_night_partly.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "tokyo",
         "season": "summer",
@@ -1084,7 +1087,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 31.3722,
@@ -1097,10 +1100,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "tokyo_summer_night_cloudy.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "tokyo",
         "season": "summer",
@@ -1108,7 +1111,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 40.0106,
@@ -1121,10 +1124,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "tokyo_summer_night_dark.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "tokyo",
         "season": "summer",
@@ -1132,7 +1135,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 17.8377,
@@ -1145,7 +1148,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "tokyo_fall_night_clear.png": {
       "status": "approved",
@@ -1248,7 +1251,7 @@ window.__BACKGROUND_APPROVAL__ = {
       "approved_from": "review/current-pass/tokyo-fall-candidates"
     },
     "losangeles_spring_morning_clear.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "losangeles",
         "season": "spring",
@@ -1256,8 +1259,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only",
-        "too_similar_to_winter_reference"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 2.2142,
@@ -1270,10 +1272,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "losangeles_spring_morning_partly.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "losangeles",
         "season": "spring",
@@ -1281,8 +1283,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only",
-        "too_similar_to_winter_reference"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 3.9285,
@@ -1295,10 +1296,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "losangeles_spring_morning_cloudy.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "losangeles",
         "season": "spring",
@@ -1306,8 +1307,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only",
-        "too_similar_to_winter_reference"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 5.1729,
@@ -1320,10 +1320,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "losangeles_spring_morning_dark.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "losangeles",
         "season": "spring",
@@ -1331,7 +1331,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 17.8732,
@@ -1344,10 +1344,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "losangeles_summer_morning_clear.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "losangeles",
         "season": "summer",
@@ -1355,7 +1355,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 7.3332,
@@ -1368,10 +1368,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "losangeles_summer_morning_partly.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "losangeles",
         "season": "summer",
@@ -1379,7 +1379,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 8.2856,
@@ -1392,10 +1392,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "losangeles_summer_morning_cloudy.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "losangeles",
         "season": "summer",
@@ -1403,7 +1403,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 9.9185,
@@ -1416,10 +1416,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "losangeles_summer_morning_dark.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "losangeles",
         "season": "summer",
@@ -1427,7 +1427,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 22.4615,
@@ -1440,7 +1440,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "losangeles_fall_morning_clear.png": {
       "status": "fallback_only",
@@ -1542,7 +1542,7 @@ window.__BACKGROUND_APPROVAL__ = {
       "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
     },
     "losangeles_spring_day_clear.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "losangeles",
         "season": "spring",
@@ -1550,8 +1550,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only",
-        "too_similar_to_winter_reference"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 5.2501,
@@ -1564,10 +1563,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "losangeles_spring_day_partly.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "losangeles",
         "season": "spring",
@@ -1575,8 +1574,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only",
-        "too_similar_to_winter_reference"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 11.0547,
@@ -1589,10 +1587,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "losangeles_spring_day_cloudy.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "losangeles",
         "season": "spring",
@@ -1600,7 +1598,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 14.7547,
@@ -1613,10 +1611,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "losangeles_spring_day_dark.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "losangeles",
         "season": "spring",
@@ -1624,7 +1622,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 38.3359,
@@ -1637,10 +1635,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "losangeles_summer_day_clear.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "losangeles",
         "season": "summer",
@@ -1648,7 +1646,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 12.3464,
@@ -1661,10 +1659,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "losangeles_summer_day_partly.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "losangeles",
         "season": "summer",
@@ -1672,7 +1670,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 16.2807,
@@ -1685,10 +1683,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "losangeles_summer_day_cloudy.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "losangeles",
         "season": "summer",
@@ -1696,7 +1694,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 20.1711,
@@ -1709,10 +1707,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "losangeles_summer_day_dark.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "losangeles",
         "season": "summer",
@@ -1720,7 +1718,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 43.8871,
@@ -1733,7 +1731,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "losangeles_fall_day_clear.png": {
       "status": "fallback_only",
@@ -1832,7 +1830,7 @@ window.__BACKGROUND_APPROVAL__ = {
       "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
     },
     "losangeles_spring_evening_clear.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "losangeles",
         "season": "spring",
@@ -1840,8 +1838,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only",
-        "too_similar_to_winter_reference"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 0.817,
@@ -1854,10 +1851,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "losangeles_spring_evening_partly.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "losangeles",
         "season": "spring",
@@ -1865,8 +1862,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only",
-        "too_similar_to_winter_reference"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 8.0364,
@@ -1879,10 +1875,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "losangeles_spring_evening_cloudy.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "losangeles",
         "season": "spring",
@@ -1890,8 +1886,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only",
-        "too_similar_to_winter_reference"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 9.4748,
@@ -1904,10 +1899,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "losangeles_spring_evening_dark.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "losangeles",
         "season": "spring",
@@ -1915,8 +1910,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only",
-        "too_similar_to_winter_reference"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 4.7666,
@@ -1929,10 +1923,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "losangeles_summer_evening_clear.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "losangeles",
         "season": "summer",
@@ -1940,7 +1934,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 6.9681,
@@ -1953,10 +1947,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "losangeles_summer_evening_partly.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "losangeles",
         "season": "summer",
@@ -1964,7 +1958,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 14.7316,
@@ -1977,10 +1971,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "losangeles_summer_evening_cloudy.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "losangeles",
         "season": "summer",
@@ -1988,7 +1982,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 15.4738,
@@ -2001,10 +1995,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "losangeles_summer_evening_dark.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "losangeles",
         "season": "summer",
@@ -2012,7 +2006,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 10.731,
@@ -2025,7 +2019,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "losangeles_fall_evening_clear.png": {
       "status": "fallback_only",
@@ -2126,7 +2120,7 @@ window.__BACKGROUND_APPROVAL__ = {
       "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
     },
     "losangeles_spring_night_clear.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "losangeles",
         "season": "spring",
@@ -2134,8 +2128,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only",
-        "too_similar_to_winter_reference"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 0.7681,
@@ -2148,10 +2141,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "losangeles_spring_night_partly.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "losangeles",
         "season": "spring",
@@ -2159,7 +2152,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 24.2767,
@@ -2172,10 +2165,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "losangeles_spring_night_cloudy.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "losangeles",
         "season": "spring",
@@ -2183,7 +2176,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 39.235,
@@ -2196,10 +2189,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "losangeles_spring_night_dark.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "losangeles",
         "season": "spring",
@@ -2207,7 +2200,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 17.9743,
@@ -2220,10 +2213,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "losangeles_summer_night_clear.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "losangeles",
         "season": "summer",
@@ -2231,7 +2224,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 10.098,
@@ -2244,10 +2237,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "losangeles_summer_night_partly.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "losangeles",
         "season": "summer",
@@ -2255,7 +2248,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 32.5112,
@@ -2268,10 +2261,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "losangeles_summer_night_cloudy.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "losangeles",
         "season": "summer",
@@ -2279,7 +2272,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 48.4967,
@@ -2292,10 +2285,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "losangeles_summer_night_dark.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "losangeles",
         "season": "summer",
@@ -2303,7 +2296,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 26.2819,
@@ -2316,7 +2309,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.015
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "losangeles_fall_night_clear.png": {
       "status": "fallback_only",
@@ -2424,7 +2417,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 6.5166,
@@ -2437,7 +2430,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "annarbor_spring_morning_partly.png": {
       "status": "approved",
@@ -2448,7 +2441,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 13.0532,
@@ -2461,7 +2454,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "annarbor_spring_morning_cloudy.png": {
       "status": "approved",
@@ -2472,7 +2465,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 14.2804,
@@ -2485,7 +2478,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "annarbor_spring_morning_dark.png": {
       "status": "approved",
@@ -2496,7 +2489,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 12.6406,
@@ -2509,10 +2502,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "annarbor_summer_morning_clear.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "annarbor",
         "season": "summer",
@@ -2520,7 +2513,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 9.5117,
@@ -2533,10 +2526,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "annarbor_summer_morning_partly.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "annarbor",
         "season": "summer",
@@ -2544,7 +2537,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 15.8674,
@@ -2557,10 +2550,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "annarbor_summer_morning_cloudy.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "annarbor",
         "season": "summer",
@@ -2568,7 +2561,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 16.7206,
@@ -2581,10 +2574,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "annarbor_summer_morning_dark.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "annarbor",
         "season": "summer",
@@ -2592,7 +2585,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 15.0642,
@@ -2605,7 +2598,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "annarbor_fall_morning_clear.png": {
       "status": "approved",
@@ -2716,7 +2709,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 9.8296,
@@ -2729,7 +2722,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "annarbor_spring_day_partly.png": {
       "status": "approved",
@@ -2740,7 +2733,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 16.392,
@@ -2753,7 +2746,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "annarbor_spring_day_cloudy.png": {
       "status": "approved",
@@ -2764,7 +2757,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 20.4931,
@@ -2777,7 +2770,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "annarbor_spring_day_dark.png": {
       "status": "approved",
@@ -2788,7 +2781,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 32.6249,
@@ -2801,10 +2794,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "annarbor_summer_day_clear.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "annarbor",
         "season": "summer",
@@ -2812,7 +2805,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 14.2789,
@@ -2825,10 +2818,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "annarbor_summer_day_partly.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "annarbor",
         "season": "summer",
@@ -2836,7 +2829,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 20.8318,
@@ -2849,10 +2842,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "annarbor_summer_day_cloudy.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "annarbor",
         "season": "summer",
@@ -2860,7 +2853,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 23.7584,
@@ -2873,10 +2866,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "annarbor_summer_day_dark.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "annarbor",
         "season": "summer",
@@ -2884,7 +2877,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 35.2892,
@@ -2897,7 +2890,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "annarbor_fall_day_clear.png": {
       "status": "approved",
@@ -3008,7 +3001,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 2.0844,
@@ -3021,7 +3014,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "annarbor_spring_evening_partly.png": {
       "status": "approved",
@@ -3032,7 +3025,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 10.971,
@@ -3045,7 +3038,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "annarbor_spring_evening_cloudy.png": {
       "status": "approved",
@@ -3056,7 +3049,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 16.1007,
@@ -3069,7 +3062,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "annarbor_spring_evening_dark.png": {
       "status": "approved",
@@ -3080,7 +3073,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 5.748,
@@ -3093,10 +3086,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "annarbor_summer_evening_clear.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "annarbor",
         "season": "summer",
@@ -3104,7 +3097,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 5.8682,
@@ -3117,10 +3110,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "annarbor_summer_evening_partly.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "annarbor",
         "season": "summer",
@@ -3128,7 +3121,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 14.8832,
@@ -3141,10 +3134,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "annarbor_summer_evening_cloudy.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "annarbor",
         "season": "summer",
@@ -3152,7 +3145,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 19.8697,
@@ -3165,10 +3158,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "annarbor_summer_evening_dark.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "annarbor",
         "season": "summer",
@@ -3176,7 +3169,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 9.3474,
@@ -3189,7 +3182,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "annarbor_fall_evening_clear.png": {
       "status": "approved",
@@ -3300,7 +3293,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 32.3314,
@@ -3313,7 +3306,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "annarbor_spring_night_partly.png": {
       "status": "approved",
@@ -3324,7 +3317,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 43.9354,
@@ -3337,7 +3330,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "annarbor_spring_night_cloudy.png": {
       "status": "approved",
@@ -3348,7 +3341,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 51.166,
@@ -3361,7 +3354,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "annarbor_spring_night_dark.png": {
       "status": "approved",
@@ -3372,7 +3365,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 36.3008,
@@ -3385,10 +3378,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "annarbor_summer_night_clear.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "annarbor",
         "season": "summer",
@@ -3396,7 +3389,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 31.7329,
@@ -3409,10 +3402,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "annarbor_summer_night_partly.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "annarbor",
         "season": "summer",
@@ -3420,7 +3413,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 43.0242,
@@ -3433,10 +3426,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "annarbor_summer_night_cloudy.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "annarbor",
         "season": "summer",
@@ -3444,7 +3437,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 50.8986,
@@ -3457,10 +3450,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "annarbor_summer_night_dark.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "annarbor",
         "season": "summer",
@@ -3468,7 +3461,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 35.7557,
@@ -3481,7 +3474,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "annarbor_fall_night_clear.png": {
       "status": "approved",
@@ -3592,7 +3585,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "too_similar_to_winter_reference"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 5.2015,
@@ -3605,7 +3598,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "detroit_spring_morning_partly.png": {
       "status": "approved",
@@ -3616,7 +3609,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "too_similar_to_winter_reference"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 9.0127,
@@ -3629,7 +3622,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "detroit_spring_morning_cloudy.png": {
       "status": "approved",
@@ -3640,7 +3633,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "too_similar_to_winter_reference"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 9.0348,
@@ -3653,7 +3646,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "detroit_spring_morning_dark.png": {
       "status": "approved",
@@ -3664,7 +3657,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 15.075,
@@ -3677,10 +3670,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "detroit_summer_morning_clear.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "detroit",
         "season": "summer",
@@ -3688,7 +3681,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 8.5169,
@@ -3701,10 +3694,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "detroit_summer_morning_partly.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "detroit",
         "season": "summer",
@@ -3712,7 +3705,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 11.8104,
@@ -3725,10 +3718,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "detroit_summer_morning_cloudy.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "detroit",
         "season": "summer",
@@ -3736,7 +3729,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 12.084,
@@ -3749,10 +3742,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "detroit_summer_morning_dark.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "detroit",
         "season": "summer",
@@ -3760,7 +3753,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 18.0223,
@@ -3773,7 +3766,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "detroit_fall_morning_clear.png": {
       "status": "approved",
@@ -3884,7 +3877,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 14.8923,
@@ -3897,7 +3890,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "detroit_spring_day_partly.png": {
       "status": "approved",
@@ -3908,7 +3901,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 17.6092,
@@ -3921,7 +3914,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "detroit_spring_day_cloudy.png": {
       "status": "approved",
@@ -3932,7 +3925,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 21.0326,
@@ -3945,7 +3938,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "detroit_spring_day_dark.png": {
       "status": "approved",
@@ -3956,7 +3949,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 46.8528,
@@ -3969,10 +3962,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "detroit_summer_day_clear.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "detroit",
         "season": "summer",
@@ -3980,7 +3973,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 17.7807,
@@ -3993,10 +3986,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "detroit_summer_day_partly.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "detroit",
         "season": "summer",
@@ -4004,7 +3997,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 19.9431,
@@ -4017,10 +4010,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "detroit_summer_day_cloudy.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "detroit",
         "season": "summer",
@@ -4028,7 +4021,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 22.8444,
@@ -4041,10 +4034,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "detroit_summer_day_dark.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "detroit",
         "season": "summer",
@@ -4052,7 +4045,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 48.545,
@@ -4065,7 +4058,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "detroit_fall_day_clear.png": {
       "status": "approved",
@@ -4176,7 +4169,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "too_similar_to_winter_reference"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 0.7818,
@@ -4189,7 +4182,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "detroit_spring_evening_partly.png": {
       "status": "approved",
@@ -4200,7 +4193,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "too_similar_to_winter_reference"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 8.2639,
@@ -4213,7 +4206,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "detroit_spring_evening_cloudy.png": {
       "status": "approved",
@@ -4224,7 +4217,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "too_similar_to_winter_reference"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 10.2766,
@@ -4237,7 +4230,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "detroit_spring_evening_dark.png": {
       "status": "approved",
@@ -4248,7 +4241,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "too_similar_to_winter_reference"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 5.8996,
@@ -4261,10 +4254,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "detroit_summer_evening_clear.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "detroit",
         "season": "summer",
@@ -4272,7 +4265,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 4.3864,
@@ -4285,10 +4278,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "detroit_summer_evening_partly.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "detroit",
         "season": "summer",
@@ -4296,7 +4289,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 10.6339,
@@ -4309,10 +4302,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "detroit_summer_evening_cloudy.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "detroit",
         "season": "summer",
@@ -4320,7 +4313,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 13.2955,
@@ -4333,10 +4326,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "detroit_summer_evening_dark.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "detroit",
         "season": "summer",
@@ -4344,7 +4337,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 8.9574,
@@ -4357,7 +4350,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "detroit_fall_evening_clear.png": {
       "status": "approved",
@@ -4468,7 +4461,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "too_similar_to_winter_reference"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 1.0101,
@@ -4481,7 +4474,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "detroit_spring_night_partly.png": {
       "status": "approved",
@@ -4492,7 +4485,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 25.5472,
@@ -4505,7 +4498,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "detroit_spring_night_cloudy.png": {
       "status": "approved",
@@ -4516,7 +4509,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 35.2358,
@@ -4529,7 +4522,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "detroit_spring_night_dark.png": {
       "status": "approved",
@@ -4540,7 +4533,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_curated_candidate_promoted"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 14.599,
@@ -4553,10 +4546,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_curated_candidate_promoted"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "detroit_summer_night_clear.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "detroit",
         "season": "summer",
@@ -4564,7 +4557,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 5.8483,
@@ -4577,10 +4570,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "detroit_summer_night_partly.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "detroit",
         "season": "summer",
@@ -4588,7 +4581,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 28.0384,
@@ -4601,10 +4594,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "detroit_summer_night_cloudy.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "detroit",
         "season": "summer",
@@ -4612,7 +4605,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 40.2575,
@@ -4625,10 +4618,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "detroit_summer_night_dark.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "detroit",
         "season": "summer",
@@ -4636,7 +4629,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 18.6122,
@@ -4649,7 +4642,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "detroit_fall_night_clear.png": {
       "status": "approved",
@@ -4760,7 +4753,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_curated_candidate_approved"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 6.743,
@@ -4773,7 +4766,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_approved_curated_candidate"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "nyc_spring_morning_partly.png": {
       "status": "approved",
@@ -4784,7 +4777,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_curated_candidate_approved"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 7.9713,
@@ -4797,7 +4790,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_approved_curated_candidate"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "nyc_spring_morning_cloudy.png": {
       "status": "approved",
@@ -4808,7 +4801,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_curated_candidate_approved"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 13.9599,
@@ -4821,7 +4814,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_approved_curated_candidate"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "nyc_spring_morning_dark.png": {
       "status": "approved",
@@ -4832,7 +4825,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_curated_candidate_approved"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 19.2569,
@@ -4845,10 +4838,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_approved_curated_candidate"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "nyc_summer_morning_clear.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "nyc",
         "season": "summer",
@@ -4856,7 +4849,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 9.5508,
@@ -4869,10 +4862,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "nyc_summer_morning_partly.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "nyc",
         "season": "summer",
@@ -4880,7 +4873,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 10.473,
@@ -4893,10 +4886,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "nyc_summer_morning_cloudy.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "nyc",
         "season": "summer",
@@ -4904,7 +4897,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 16.3208,
@@ -4917,10 +4910,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "nyc_summer_morning_dark.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "nyc",
         "season": "summer",
@@ -4928,7 +4921,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 21.6605,
@@ -4941,7 +4934,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "nyc_fall_morning_clear.png": {
       "status": "approved",
@@ -5052,7 +5045,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_curated_candidate_approved"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 22.4611,
@@ -5065,7 +5058,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_approved_curated_candidate"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "nyc_spring_day_partly.png": {
       "status": "approved",
@@ -5076,7 +5069,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_curated_candidate_approved"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 27.2319,
@@ -5089,7 +5082,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_approved_curated_candidate"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "nyc_spring_day_cloudy.png": {
       "status": "approved",
@@ -5100,7 +5093,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_curated_candidate_approved"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 32.0239,
@@ -5113,7 +5106,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_approved_curated_candidate"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "nyc_spring_day_dark.png": {
       "status": "approved",
@@ -5124,7 +5117,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_curated_candidate_approved"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 51.1485,
@@ -5137,10 +5130,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_approved_curated_candidate"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "nyc_summer_day_clear.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "nyc",
         "season": "summer",
@@ -5148,7 +5141,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 26.046,
@@ -5161,10 +5154,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "nyc_summer_day_partly.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "nyc",
         "season": "summer",
@@ -5172,7 +5165,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 29.5398,
@@ -5185,10 +5178,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "nyc_summer_day_cloudy.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "nyc",
         "season": "summer",
@@ -5196,7 +5189,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 34.3369,
@@ -5209,10 +5202,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "nyc_summer_day_dark.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "nyc",
         "season": "summer",
@@ -5220,7 +5213,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 53.0464,
@@ -5233,7 +5226,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "nyc_fall_day_clear.png": {
       "status": "approved",
@@ -5344,7 +5337,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_curated_candidate_approved"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 3.1301,
@@ -5357,7 +5350,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_approved_curated_candidate"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "nyc_spring_evening_partly.png": {
       "status": "approved",
@@ -5368,7 +5361,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_curated_candidate_approved"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 9.5805,
@@ -5381,7 +5374,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_approved_curated_candidate"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "nyc_spring_evening_cloudy.png": {
       "status": "approved",
@@ -5392,7 +5385,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_curated_candidate_approved"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 13.9518,
@@ -5405,7 +5398,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_approved_curated_candidate"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "nyc_spring_evening_dark.png": {
       "status": "approved",
@@ -5416,7 +5409,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_curated_candidate_approved"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 6.4591,
@@ -5429,10 +5422,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_approved_curated_candidate"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "nyc_summer_evening_clear.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "nyc",
         "season": "summer",
@@ -5440,7 +5433,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 6.3703,
@@ -5453,10 +5446,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "nyc_summer_evening_partly.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "nyc",
         "season": "summer",
@@ -5464,7 +5457,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 14.662,
@@ -5477,10 +5470,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "nyc_summer_evening_cloudy.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "nyc",
         "season": "summer",
@@ -5488,7 +5481,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 16.8233,
@@ -5501,10 +5494,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "nyc_summer_evening_dark.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "nyc",
         "season": "summer",
@@ -5512,7 +5505,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 9.2292,
@@ -5525,7 +5518,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "nyc_fall_evening_clear.png": {
       "status": "approved",
@@ -5636,7 +5629,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_curated_candidate_approved"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 5.754,
@@ -5649,7 +5642,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_approved_curated_candidate"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "nyc_spring_night_partly.png": {
       "status": "approved",
@@ -5660,7 +5653,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_curated_candidate_approved"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 19.2738,
@@ -5673,7 +5666,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_approved_curated_candidate"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "nyc_spring_night_cloudy.png": {
       "status": "approved",
@@ -5684,7 +5677,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_curated_candidate_approved"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 22.296,
@@ -5697,7 +5690,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_approved_curated_candidate"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "nyc_spring_night_dark.png": {
       "status": "approved",
@@ -5708,7 +5701,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_curated_candidate_approved"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 17.5664,
@@ -5721,10 +5714,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_approved_curated_candidate"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "nyc_summer_night_clear.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "nyc",
         "season": "summer",
@@ -5732,7 +5725,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 9.8415,
@@ -5745,10 +5738,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "nyc_summer_night_partly.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "nyc",
         "season": "summer",
@@ -5756,7 +5749,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 20.9738,
@@ -5769,10 +5762,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "nyc_summer_night_cloudy.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "nyc",
         "season": "summer",
@@ -5780,7 +5773,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 25.2624,
@@ -5793,10 +5786,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "nyc_summer_night_dark.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "nyc",
         "season": "summer",
@@ -5804,7 +5797,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 20.9534,
@@ -5817,7 +5810,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "nyc_fall_night_clear.png": {
       "status": "approved",
@@ -5920,7 +5913,7 @@ window.__BACKGROUND_APPROVAL__ = {
       "approved_from": "review/current-pass/nyc-fall-candidates"
     },
     "sansebastian_spring_morning_clear.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "sansebastian",
         "season": "spring",
@@ -5928,8 +5921,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only",
-        "too_similar_to_winter_reference"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 5.4917,
@@ -5942,10 +5934,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "sansebastian_spring_morning_partly.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "sansebastian",
         "season": "spring",
@@ -5953,8 +5945,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only",
-        "too_similar_to_winter_reference"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 7.9361,
@@ -5967,10 +5958,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "sansebastian_spring_morning_cloudy.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "sansebastian",
         "season": "spring",
@@ -5978,8 +5969,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only",
-        "too_similar_to_winter_reference"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 9.2347,
@@ -5992,10 +5982,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "sansebastian_spring_morning_dark.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "sansebastian",
         "season": "spring",
@@ -6003,7 +5993,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 20.599,
@@ -6016,10 +6006,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "sansebastian_summer_morning_clear.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "sansebastian",
         "season": "summer",
@@ -6027,7 +6017,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 8.0079,
@@ -6040,10 +6030,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "sansebastian_summer_morning_partly.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "sansebastian",
         "season": "summer",
@@ -6051,7 +6041,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 9.5186,
@@ -6064,10 +6054,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "sansebastian_summer_morning_cloudy.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "sansebastian",
         "season": "summer",
@@ -6075,7 +6065,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 11.3754,
@@ -6088,10 +6078,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "sansebastian_summer_morning_dark.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "sansebastian",
         "season": "summer",
@@ -6099,7 +6089,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 22.4639,
@@ -6112,7 +6102,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "sansebastian_fall_morning_clear.png": {
       "status": "fallback_only",
@@ -6213,7 +6203,7 @@ window.__BACKGROUND_APPROVAL__ = {
       "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
     },
     "sansebastian_spring_day_clear.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "sansebastian",
         "season": "spring",
@@ -6221,8 +6211,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only",
-        "too_similar_to_winter_reference"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 6.2283,
@@ -6235,10 +6224,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "sansebastian_spring_day_partly.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "sansebastian",
         "season": "spring",
@@ -6246,7 +6235,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 12.1065,
@@ -6259,10 +6248,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "sansebastian_spring_day_cloudy.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "sansebastian",
         "season": "spring",
@@ -6270,7 +6259,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 16.4077,
@@ -6283,10 +6272,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "sansebastian_spring_day_dark.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "sansebastian",
         "season": "spring",
@@ -6294,7 +6283,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 28.9545,
@@ -6307,10 +6296,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "sansebastian_summer_day_clear.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "sansebastian",
         "season": "summer",
@@ -6318,7 +6307,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 10.4549,
@@ -6331,10 +6320,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "sansebastian_summer_day_partly.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "sansebastian",
         "season": "summer",
@@ -6342,7 +6331,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 14.9446,
@@ -6355,10 +6344,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "sansebastian_summer_day_cloudy.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "sansebastian",
         "season": "summer",
@@ -6366,7 +6355,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 19.5909,
@@ -6379,10 +6368,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "sansebastian_summer_day_dark.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "sansebastian",
         "season": "summer",
@@ -6390,7 +6379,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 31.8369,
@@ -6403,7 +6392,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "sansebastian_fall_day_clear.png": {
       "status": "fallback_only",
@@ -6502,7 +6491,7 @@ window.__BACKGROUND_APPROVAL__ = {
       "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
     },
     "sansebastian_spring_evening_clear.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "sansebastian",
         "season": "spring",
@@ -6510,8 +6499,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only",
-        "too_similar_to_winter_reference"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 0.7703,
@@ -6524,10 +6512,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "sansebastian_spring_evening_partly.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "sansebastian",
         "season": "spring",
@@ -6535,8 +6523,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only",
-        "too_similar_to_winter_reference"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 7.1584,
@@ -6549,10 +6536,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "sansebastian_spring_evening_cloudy.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "sansebastian",
         "season": "spring",
@@ -6560,8 +6547,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only",
-        "too_similar_to_winter_reference"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 9.2429,
@@ -6574,10 +6560,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "sansebastian_spring_evening_dark.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "sansebastian",
         "season": "spring",
@@ -6585,8 +6571,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only",
-        "too_similar_to_winter_reference"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 5.9011,
@@ -6599,10 +6584,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "sansebastian_summer_evening_clear.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "sansebastian",
         "season": "summer",
@@ -6610,7 +6595,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 3.9932,
@@ -6623,10 +6608,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "sansebastian_summer_evening_partly.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "sansebastian",
         "season": "summer",
@@ -6634,7 +6619,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 9.533,
@@ -6647,10 +6632,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "sansebastian_summer_evening_cloudy.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "sansebastian",
         "season": "summer",
@@ -6658,7 +6643,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 12.1974,
@@ -6671,10 +6656,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "sansebastian_summer_evening_dark.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "sansebastian",
         "season": "summer",
@@ -6682,7 +6667,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 8.5371,
@@ -6695,7 +6680,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "sansebastian_fall_evening_clear.png": {
       "status": "fallback_only",
@@ -6797,7 +6782,7 @@ window.__BACKGROUND_APPROVAL__ = {
       "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
     },
     "sansebastian_spring_night_clear.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "sansebastian",
         "season": "spring",
@@ -6805,8 +6790,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only",
-        "too_similar_to_winter_reference"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 0.524,
@@ -6819,10 +6803,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "sansebastian_spring_night_partly.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "sansebastian",
         "season": "spring",
@@ -6830,7 +6814,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 23.5905,
@@ -6843,10 +6827,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "sansebastian_spring_night_cloudy.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "sansebastian",
         "season": "spring",
@@ -6854,7 +6838,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 34.9997,
@@ -6867,10 +6851,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "sansebastian_spring_night_dark.png": {
-      "status": "fallback_only",
+      "status": "approved",
       "requested": {
         "location": "sansebastian",
         "season": "spring",
@@ -6878,7 +6862,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "deterministic_nonwinter_fallback_only"
+        "manual_spring_pivot_approved"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 14.4108,
@@ -6891,10 +6875,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "generated_deterministic_nonwinter_never_auto_approved"
+      "source_policy": "manual_spring_pivot_approved"
     },
     "sansebastian_summer_night_clear.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "sansebastian",
         "season": "summer",
@@ -6902,7 +6886,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "clear"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 6.4587,
@@ -6915,10 +6899,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "sansebastian_summer_night_partly.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "sansebastian",
         "season": "summer",
@@ -6926,7 +6910,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "partly"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 29.5727,
@@ -6939,10 +6923,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "sansebastian_summer_night_cloudy.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "sansebastian",
         "season": "summer",
@@ -6950,7 +6934,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "cloudy"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 40.3631,
@@ -6963,10 +6947,10 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "sansebastian_summer_night_dark.png": {
-      "status": "approved",
+      "status": "fallback_only",
       "requested": {
         "location": "sansebastian",
         "season": "summer",
@@ -6974,7 +6958,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "sky": "dark"
       },
       "reasons": [
-        "manual_summer_rollout_approved"
+        "retired_summer_local_only"
       ],
       "metrics": {
         "winter_mean_abs_rgb_diff": 19.1735,
@@ -6987,7 +6971,7 @@ window.__BACKGROUND_APPROVAL__ = {
         "snow_ratio_limit": 0.055
       },
       "validator_checks": [],
-      "source_policy": "manual_summer_rollout_approved"
+      "source_policy": "retired_summer_local_only"
     },
     "sansebastian_fall_night_clear.png": {
       "status": "fallback_only",
