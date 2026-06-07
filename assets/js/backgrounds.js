@@ -17,7 +17,7 @@
     { id: 'sansebastian', label: 'San Sebastian', timeZone: 'Europe/Madrid' }
   ];
   var seasonalLocations = {
-    spring: ['tokyo', 'annarbor', 'nyc'],
+    spring: ['annarbor', 'nyc'],
     fall: ['tokyo', 'detroit', 'nyc']
   };
   var seasonalOverrides = {
