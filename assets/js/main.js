@@ -488,7 +488,7 @@
   var fadeOutTimeoutId = null;
   var fadeInTimeoutId = null;
   var bgLogic = window.BackgroundLogic || {};
-  var backgroundAssetApproval = window.BackgroundAssetApproval || null;
+  var backgroundAssetApproval = window.BackgroundAssetApproval || window.__BACKGROUND_APPROVAL__ || null;
   var storageBaseUrl = 'https://uqmjvvghhhtjqbzzvtop.supabase.co/storage/v1/object/public/personal-website/backgrounds/';
   var prefersReducedMotion = false;
   var overlayCanvas = bg.querySelector('.weather-canvas') || bg.querySelector('.snow-canvas');
@@ -1109,6 +1109,16 @@
         approved: true,
         approvalStatus: season === 'winter' ? 'approved_winter' : 'approved_seasonal'
       };
+    };
+
+  var getLocalDebugBackgroundCandidates = typeof bgLogic.getLocalDebugBackgroundCandidates === 'function'
+    ? bgLogic.getLocalDebugBackgroundCandidates
+    : buildBackgroundCandidates;
+
+  var isLocalDebugSeasonBlocked = typeof bgLogic.isLocalDebugSeasonBlocked === 'function'
+    ? bgLogic.isLocalDebugSeasonBlocked
+    : function() {
+      return false;
     };
 
   var getWeatherFromOpenMeteoPayload = function(payload) {
