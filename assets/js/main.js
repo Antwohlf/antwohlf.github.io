@@ -1878,9 +1878,10 @@
         season: season,
         locationId: location.id
       });
-      var overlay = getOverlayForWeatherKind(normalizedKind);
-      var sky = getSkyForWeatherKind(normalizedKind);
+      var overlay = 'none';
+      var sky = 'clear';
 
+      stopOverlay();
       updateLocationTime(location, text || 'Weather unavailable');
       toggle.setAttribute(
         'title',

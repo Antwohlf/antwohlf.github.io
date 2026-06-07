@@ -176,9 +176,6 @@
     if (kind === 'rain') {
       return 'rain';
     }
-    if (kind === 'fog') {
-      return 'fog';
-    }
     return 'none';
   };
 
