@@ -18,13 +18,34 @@
   ];
   var activeLocationIds = ['detroit', 'annarbor', 'nyc', 'sansebastian'];
   var timeSegments = ['morning', 'day', 'evening', 'night'];
-  var springAssetsApproved = false;
+  var springAssetApprovals = {
+    detroit_spring_morning_clear: false,
+    detroit_spring_day_clear: false,
+    detroit_spring_evening_clear: true,
+    detroit_spring_night_clear: false,
+    annarbor_spring_morning_clear: true,
+    annarbor_spring_day_clear: true,
+    annarbor_spring_evening_clear: true,
+    annarbor_spring_night_clear: true,
+    nyc_spring_morning_clear: true,
+    nyc_spring_day_clear: false,
+    nyc_spring_evening_clear: true,
+    nyc_spring_night_clear: true,
+    sansebastian_spring_morning_clear: false,
+    sansebastian_spring_day_clear: false,
+    sansebastian_spring_evening_clear: true,
+    sansebastian_spring_night_clear: true
+  };
   var approvedSpringAssetKeys = activeLocationIds.reduce(function(keys, locationId) {
     timeSegments.forEach(function(segment) {
-      keys.push(locationId + '_spring_' + segment + '_clear.png');
+      var key = locationId + '_spring_' + segment + '_clear';
+      if (springAssetApprovals[key]) {
+        keys.push(key + '.png');
+      }
     });
     return keys;
   }, []);
+  var springAssetsApproved = approvedSpringAssetKeys.length === activeLocationIds.length * timeSegments.length;
   var storageBaseUrl = 'https://uqmjvvghhhtjqbzzvtop.supabase.co/storage/v1/object/public/personal-website/backgrounds/';
   var storageKey = 'bgLocation';
   var locationIndex = getSavedLocationIndex();
