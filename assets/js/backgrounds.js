@@ -18,37 +18,83 @@
   ];
   var activeLocationIds = ['detroit', 'annarbor', 'nyc', 'sansebastian'];
   var timeSegments = ['morning', 'day', 'evening', 'night'];
-  var springAssetApprovals = {
-    detroit_spring_morning_clear: false,
-    detroit_spring_day_clear: false,
-    detroit_spring_evening_clear: true,
-    detroit_spring_night_clear: false,
-    annarbor_spring_morning_clear: true,
-    annarbor_spring_day_clear: true,
-    annarbor_spring_evening_clear: true,
-    annarbor_spring_night_clear: true,
-    nyc_spring_morning_clear: true,
-    nyc_spring_day_clear: false,
-    nyc_spring_evening_clear: true,
-    nyc_spring_night_clear: true,
-    sansebastian_spring_morning_clear: false,
-    sansebastian_spring_day_clear: false,
-    sansebastian_spring_evening_clear: true,
-    sansebastian_spring_night_clear: true
+  var seasonalAssetApprovals = {
+    spring: {
+      detroit_spring_morning_clear: false,
+      detroit_spring_day_clear: false,
+      detroit_spring_evening_clear: true,
+      detroit_spring_night_clear: false,
+      annarbor_spring_morning_clear: true,
+      annarbor_spring_day_clear: true,
+      annarbor_spring_evening_clear: true,
+      annarbor_spring_night_clear: true,
+      nyc_spring_morning_clear: true,
+      nyc_spring_day_clear: false,
+      nyc_spring_evening_clear: true,
+      nyc_spring_night_clear: true,
+      sansebastian_spring_morning_clear: false,
+      sansebastian_spring_day_clear: false,
+      sansebastian_spring_evening_clear: true,
+      sansebastian_spring_night_clear: true
+    },
+    summer: {
+      detroit_summer_morning_clear: true,
+      detroit_summer_day_clear: true,
+      detroit_summer_evening_clear: true,
+      detroit_summer_night_clear: true,
+      annarbor_summer_morning_clear: true,
+      annarbor_summer_day_clear: true,
+      annarbor_summer_evening_clear: true,
+      annarbor_summer_night_clear: true,
+      nyc_summer_morning_clear: false,
+      nyc_summer_day_clear: false,
+      nyc_summer_evening_clear: false,
+      nyc_summer_night_clear: false,
+      sansebastian_summer_morning_clear: true,
+      sansebastian_summer_day_clear: true,
+      sansebastian_summer_evening_clear: true,
+      sansebastian_summer_night_clear: true
+    }
   };
-  var approvedSpringAssetKeys = activeLocationIds.reduce(function(keys, locationId) {
-    timeSegments.forEach(function(segment) {
-      var key = locationId + '_spring_' + segment + '_clear';
-      if (springAssetApprovals[key]) {
-        keys.push(key + '.png');
-      }
-    });
-    return keys;
-  }, []);
-  var springAssetsApproved = approvedSpringAssetKeys.length === activeLocationIds.length * timeSegments.length;
-  var storageBaseUrl = 'https://uqmjvvghhhtjqbzzvtop.supabase.co/storage/v1/object/public/personal-website/backgrounds/';
+  var seasonalApprovalState = getSeasonalApprovalState();
+  var isLocalReviewMode = window.location.protocol === 'file:' || ['localhost', '127.0.0.1', '0.0.0.0'].indexOf(window.location.hostname) !== -1;
+  var remoteStorageBaseUrl = 'https://uqmjvvghhhtjqbzzvtop.supabase.co/storage/v1/object/public/personal-website/backgrounds/';
+  var localStorageBaseUrl = '/dev-assets/supabase-mirror/personal-website/backgrounds/';
+  var storageBaseUrl = isLocalReviewMode ? localStorageBaseUrl : remoteStorageBaseUrl;
   var storageKey = 'bgLocation';
+  var reviewSegmentKey = 'bgReviewSegment';
   var locationIndex = getSavedLocationIndex();
+  var reviewSegment = getSavedReviewSegment();
+
+  function getSeasonalApprovalState() {
+    var state = {};
+
+    Object.keys(seasonalAssetApprovals).forEach(function(season) {
+      var approvedKeys = [];
+
+      activeLocationIds.forEach(function(locationId) {
+        timeSegments.forEach(function(segment) {
+          var key = locationId + '_' + season + '_' + segment + '_clear';
+          if (seasonalAssetApprovals[season][key]) {
+            approvedKeys.push(key + '.png');
+          }
+        });
+      });
+
+      var approvedLocationIds = activeLocationIds.filter(function(locationId) {
+        return timeSegments.every(function(segment) {
+          return seasonalAssetApprovals[season][locationId + '_' + season + '_' + segment + '_clear'];
+        });
+      });
+
+      state[season] = {
+        approvedKeys: approvedKeys,
+        approvedLocationIds: approvedLocationIds
+      };
+    });
+
+    return state;
+  }
 
   function getSavedLocationIndex() {
     var savedId = '';
@@ -66,6 +112,18 @@
     }
 
     return 0;
+  }
+
+  function getSavedReviewSegment() {
+    var savedSegment = '';
+
+    try {
+      savedSegment = localStorage.getItem(reviewSegmentKey) || '';
+    } catch (error) {
+      return 'morning';
+    }
+
+    return timeSegments.indexOf(savedSegment) !== -1 ? savedSegment : 'morning';
   }
 
   function getLocationDateParts(location) {
@@ -124,12 +182,18 @@
   }
 
   function getImageUrl(location, season, segment) {
-    var springFilename = location.id + '_spring_' + segment + '_clear.png';
-    var filename = springAssetsApproved && season === 'spring' && approvedSpringAssetKeys.indexOf(springFilename) !== -1
-      ? springFilename
+    var seasonalFilename = location.id + '_' + season + '_' + segment + '_clear.png';
+    var approvalState = seasonalApprovalState[season];
+    var locationSeasonApproved = approvalState && approvalState.approvedLocationIds.indexOf(location.id) !== -1;
+    var filename = locationSeasonApproved && approvalState.approvedKeys.indexOf(seasonalFilename) !== -1
+      ? seasonalFilename
       : location.id + '_' + segment + '.png';
 
     return storageBaseUrl + filename;
+  }
+
+  function getReviewImageUrl(location, segment) {
+    return storageBaseUrl + location.id + '_summer_' + segment + '_clear.png';
   }
 
   function applyBackgroundImage(imageUrl) {
@@ -140,20 +204,44 @@
     Array.prototype.forEach.call(menu.querySelectorAll('[data-location]'), function(button) {
       button.classList.toggle('is-active', button.getAttribute('data-location') === locationId);
     });
+
+    Array.prototype.forEach.call(menu.querySelectorAll('[data-review-segment]'), function(button) {
+      button.classList.toggle('is-active', button.getAttribute('data-review-segment') === reviewSegment);
+    });
   }
 
   function setBackground() {
     var location = locations[locationIndex];
     var parts = getLocationDateParts(location);
     var season = getSeason(parts.month, parts.day);
-    var segment = getTimeSegment(parts.hour);
+    var segment = isLocalReviewMode ? reviewSegment : getTimeSegment(parts.hour);
+    var renderSeason = isLocalReviewMode ? 'summer' : season;
 
     locationTime.querySelector('.value').textContent = location.label + ' · ' + parts.time;
-    locationTime.querySelector('.context').textContent = titleCase(season) + ' · ' + titleCase(segment);
+    locationTime.querySelector('.context').textContent = titleCase(renderSeason) + ' · ' + titleCase(segment);
     toggle.setAttribute('aria-label', 'Change background location');
-    toggle.setAttribute('title', location.label + ' · ' + titleCase(season) + ' · ' + titleCase(segment));
+    toggle.setAttribute('title', location.label + ' · ' + titleCase(renderSeason) + ' · ' + titleCase(segment));
     updateActiveButton(location.id);
-    applyBackgroundImage(getImageUrl(location, season, segment));
+    applyBackgroundImage(isLocalReviewMode ? getReviewImageUrl(location, segment) : getImageUrl(location, season, segment));
+  }
+
+  function buildLocalReviewControls() {
+    if (!isLocalReviewMode) {
+      return;
+    }
+
+    var divider = document.createElement('div');
+    divider.className = 'bg-menu-label';
+    divider.textContent = 'Summer Review';
+    menu.appendChild(divider);
+
+    timeSegments.forEach(function(segment) {
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.setAttribute('data-review-segment', segment);
+      button.textContent = titleCase(segment);
+      menu.appendChild(button);
+    });
   }
 
   function closeMenu() {
@@ -197,12 +285,35 @@
     closeMenu();
   });
 
+  menu.addEventListener('click', function(event) {
+    var button = event.target.closest('[data-review-segment]');
+
+    if (!button || !isLocalReviewMode) {
+      return;
+    }
+
+    reviewSegment = button.getAttribute('data-review-segment');
+    if (timeSegments.indexOf(reviewSegment) === -1) {
+      reviewSegment = 'morning';
+    }
+
+    try {
+      localStorage.setItem(reviewSegmentKey, reviewSegment);
+    } catch (error) {
+      // Ignore storage failures.
+    }
+
+    setBackground();
+    closeMenu();
+  });
+
   document.addEventListener('click', function(event) {
     if (!menu.contains(event.target) && !toggle.contains(event.target)) {
       closeMenu();
     }
   });
 
+  buildLocalReviewControls();
   setBackground();
   window.setInterval(setBackground, 60 * 1000);
 })();
