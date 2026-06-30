@@ -115,7 +115,9 @@ fs.writeFileSync(
   JSON.stringify(
     {
       version: 1,
-      model: specs.model,
+      generator: specs.generator || 'manual-image-generation',
+      generation_mode: specs.generation_mode || 'manual_review',
+      output: specs.output || null,
       generated_at: new Date().toISOString(),
       seasons,
       total: prompts.length,

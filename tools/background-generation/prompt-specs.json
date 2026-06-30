@@ -1,9 +1,10 @@
 {
   "version": 1,
-  "model": "gemini-nano-banana-image-gen",
+  "generator": "codex-built-in-image-generation",
+  "generation_mode": "manual_review",
   "output": {
-    "width": 1920,
-    "height": 1080,
+    "width": 2816,
+    "height": 1536,
     "format": "png",
     "naming": "<location>_<season>_<segment>_<sky>.png"
   },
