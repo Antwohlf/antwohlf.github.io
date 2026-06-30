@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "bucket": "personal-website",
+  "prefix": "backgrounds",
+  "generated_on": "2026-03-11",
+  "notes": "Reference frames are used to preserve camera/composition consistency. Do not commit binary source images; use URLs below.",
+  "locations": [
+    {
+      "id": "tokyo",
+      "label": "Tokyo",
+      "reference": {
+        "source_key": "backgrounds/tokyo_day.png",
+        "url": "https://uqmjvvghhhtjqbzzvtop.supabase.co/storage/v1/object/public/personal-website/backgrounds/tokyo_day.png",
+        "size_bytes": 6082030,
+        "etag": "\"6e943e661929d3d407b70ffd4069f8e9\"",
+        "last_modified": "2025-12-23T06:47:28.000Z"
+      }
+    },
+    {
+      "id": "losangeles",
+      "label": "Los Angeles",
+      "reference": {
+        "source_key": "backgrounds/losangeles_day.png",
+        "url": "https://uqmjvvghhhtjqbzzvtop.supabase.co/storage/v1/object/public/personal-website/backgrounds/losangeles_day.png",
+        "size_bytes": 6405069,
+        "etag": "\"da464beb4a84368b4d1bfbf03950cb90\"",
+        "last_modified": "2025-12-22T20:34:50.000Z"
+      }
+    },
+    {
+      "id": "annarbor",
+      "label": "Ann Arbor",
+      "reference": {
+        "source_key": "backgrounds/annarbor_day.png",
+        "url": "https://uqmjvvghhhtjqbzzvtop.supabase.co/storage/v1/object/public/personal-website/backgrounds/annarbor_day.png",
+        "size_bytes": 6378018,
+        "etag": "\"995304497068ec093f1e8426e325125d-2\"",
+        "last_modified": "2025-12-22T00:53:58.000Z"
+      }
+    },
+    {
+      "id": "detroit",
+      "label": "Detroit",
+      "reference": {
+        "source_key": "backgrounds/detroit_day.png",
+        "url": "https://uqmjvvghhhtjqbzzvtop.supabase.co/storage/v1/object/public/personal-website/backgrounds/detroit_day.png",
+        "size_bytes": 6114799,
+        "etag": "\"a45179cb8289d2984388285cfad08dc5\"",
+        "last_modified": "2025-12-22T20:51:04.000Z"
+      }
+    },
+    {
+      "id": "nyc",
+      "label": "New York City",
+      "reference": {
+        "source_key": "backgrounds/nyc_day.png",
+        "url": "https://uqmjvvghhhtjqbzzvtop.supabase.co/storage/v1/object/public/personal-website/backgrounds/nyc_day.png",
+        "size_bytes": 6688900,
+        "etag": "\"bb97c7b3939c39d7415add2a5693109d-2\"",
+        "last_modified": "2025-12-22T00:53:41.000Z"
+      }
+    },
+    {
+      "id": "sansebastian",
+      "label": "San Sebastian",
+      "reference": {
+        "source_key": "backgrounds/sansebastian_day.png",
+        "url": "https://uqmjvvghhhtjqbzzvtop.supabase.co/storage/v1/object/public/personal-website/backgrounds/sansebastian_day.png",
+        "size_bytes": 6607141,
+        "etag": "\"9f513ab9bbed1e81949b9eef3bf3f455-2\"",
+        "last_modified": "2025-12-22T00:53:41.000Z"
+      }
+    }
+  ]
+}
