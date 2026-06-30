@@ -1,0 +1,247 @@
+{
+  "version": 1,
+  "storage_base_url": "https://uqmjvvghhhtjqbzzvtop.supabase.co/storage/v1/object/public/personal-website/backgrounds/",
+  "thresholds": {
+    "geometry_max_shift_px": 3.0,
+    "sun_angle_tolerance_deg": 30.0,
+    "sun_expected_dot_min": 0.0,
+    "cloudy_vs_clear_min_structure_delta": 9.0,
+    "partly_vs_clear_min_structure_delta": 5.0,
+    "dark_min_luminance_drop": 12.0,
+    "evening_day_min_luminance_drop": 8.0,
+    "night_evening_min_luminance_drop": 10.0,
+    "color_shift_abs_tolerance": 0.22,
+    "color_shift_min_reference_magnitude": 0.04,
+    "snow_mask_ratio_max_nonwinter": 0.055,
+    "snow_mask_ratio_max_losangeles": 0.015,
+    "nyc_car_roi_diff_max": 36.0
+  },
+  "locations": [
+    {
+      "id": "tokyo",
+      "segments": {
+        "morning": {
+          "reference_key": "tokyo_morning.png",
+          "geometry_roi": [0.05, 0.24, 0.95, 0.95],
+          "sky_roi": [0.05, 0.02, 0.95, 0.40],
+          "horizon_roi": [0.12, 0.16, 0.88, 0.56],
+          "ground_roi": [0.08, 0.50, 0.92, 0.95],
+          "expected_light_vector": [-0.983913, 0.178649]
+        },
+        "day": {
+          "reference_key": "tokyo_day.png",
+          "geometry_roi": [0.05, 0.24, 0.95, 0.95],
+          "sky_roi": [0.05, 0.02, 0.95, 0.40],
+          "horizon_roi": [0.12, 0.16, 0.88, 0.56],
+          "ground_roi": [0.08, 0.50, 0.92, 0.95],
+          "expected_light_vector": [0.0, -1.0]
+        },
+        "evening": {
+          "reference_key": "tokyo_evening.png",
+          "geometry_roi": [0.05, 0.24, 0.95, 0.95],
+          "sky_roi": [0.05, 0.02, 0.95, 0.40],
+          "horizon_roi": [0.12, 0.16, 0.88, 0.56],
+          "ground_roi": [0.08, 0.50, 0.92, 0.95],
+          "expected_light_vector": [-0.65456, 0.75601]
+        },
+        "night": {
+          "reference_key": "tokyo_night.png",
+          "geometry_roi": [0.05, 0.24, 0.95, 0.95],
+          "sky_roi": [0.05, 0.02, 0.95, 0.40],
+          "horizon_roi": [0.12, 0.16, 0.88, 0.56],
+          "ground_roi": [0.08, 0.50, 0.92, 0.95],
+          "expected_light_vector": [0.0, -1.0]
+        }
+      }
+    },
+    {
+      "id": "losangeles",
+      "segments": {
+        "morning": {
+          "reference_key": "losangeles_morning.png",
+          "geometry_roi": [0.04, 0.22, 0.96, 0.95],
+          "sky_roi": [0.04, 0.02, 0.96, 0.38],
+          "horizon_roi": [0.10, 0.14, 0.90, 0.56],
+          "ground_roi": [0.08, 0.52, 0.94, 0.96],
+          "expected_light_vector": [0.998393, -0.056665]
+        },
+        "day": {
+          "reference_key": "losangeles_day.png",
+          "geometry_roi": [0.04, 0.22, 0.96, 0.95],
+          "sky_roi": [0.04, 0.02, 0.96, 0.38],
+          "horizon_roi": [0.10, 0.14, 0.90, 0.56],
+          "ground_roi": [0.08, 0.52, 0.94, 0.96],
+          "expected_light_vector": [0.0, -1.0]
+        },
+        "evening": {
+          "reference_key": "losangeles_evening.png",
+          "geometry_roi": [0.04, 0.22, 0.96, 0.95],
+          "sky_roi": [0.04, 0.02, 0.96, 0.38],
+          "horizon_roi": [0.10, 0.14, 0.90, 0.56],
+          "ground_roi": [0.08, 0.52, 0.94, 0.96],
+          "expected_light_vector": [-0.964966, 0.262375]
+        },
+        "night": {
+          "reference_key": "losangeles_night.png",
+          "geometry_roi": [0.04, 0.22, 0.96, 0.95],
+          "sky_roi": [0.04, 0.02, 0.96, 0.38],
+          "horizon_roi": [0.10, 0.14, 0.90, 0.56],
+          "ground_roi": [0.08, 0.52, 0.94, 0.96],
+          "expected_light_vector": [0.0, -1.0]
+        }
+      }
+    },
+    {
+      "id": "annarbor",
+      "segments": {
+        "morning": {
+          "reference_key": "annarbor_morning.png",
+          "geometry_roi": [0.05, 0.24, 0.95, 0.95],
+          "sky_roi": [0.05, 0.02, 0.95, 0.36],
+          "horizon_roi": [0.10, 0.16, 0.90, 0.54],
+          "ground_roi": [0.08, 0.52, 0.94, 0.96],
+          "expected_light_vector": [-0.030331, 0.99954]
+        },
+        "day": {
+          "reference_key": "annarbor_day.png",
+          "geometry_roi": [0.05, 0.24, 0.95, 0.95],
+          "sky_roi": [0.05, 0.02, 0.95, 0.36],
+          "horizon_roi": [0.10, 0.16, 0.90, 0.54],
+          "ground_roi": [0.08, 0.52, 0.94, 0.96],
+          "expected_light_vector": [0.0, -1.0]
+        },
+        "evening": {
+          "reference_key": "annarbor_evening.png",
+          "geometry_roi": [0.05, 0.24, 0.95, 0.95],
+          "sky_roi": [0.05, 0.02, 0.95, 0.36],
+          "horizon_roi": [0.10, 0.16, 0.90, 0.54],
+          "ground_roi": [0.08, 0.52, 0.94, 0.96],
+          "expected_light_vector": [-0.988292, 0.152575]
+        },
+        "night": {
+          "reference_key": "annarbor_night.png",
+          "geometry_roi": [0.05, 0.24, 0.95, 0.95],
+          "sky_roi": [0.05, 0.02, 0.95, 0.36],
+          "horizon_roi": [0.10, 0.16, 0.90, 0.54],
+          "ground_roi": [0.08, 0.52, 0.94, 0.96],
+          "expected_light_vector": [0.0, -1.0]
+        }
+      }
+    },
+    {
+      "id": "detroit",
+      "segments": {
+        "morning": {
+          "reference_key": "detroit_morning.png",
+          "geometry_roi": [0.05, 0.22, 0.95, 0.95],
+          "sky_roi": [0.05, 0.02, 0.95, 0.36],
+          "horizon_roi": [0.10, 0.15, 0.90, 0.56],
+          "ground_roi": [0.08, 0.52, 0.94, 0.96],
+          "expected_light_vector": [0.997621, -0.06893]
+        },
+        "day": {
+          "reference_key": "detroit_day.png",
+          "geometry_roi": [0.05, 0.22, 0.95, 0.95],
+          "sky_roi": [0.05, 0.02, 0.95, 0.36],
+          "horizon_roi": [0.10, 0.15, 0.90, 0.56],
+          "ground_roi": [0.08, 0.52, 0.94, 0.96],
+          "expected_light_vector": [0.0, -1.0]
+        },
+        "evening": {
+          "reference_key": "detroit_evening.png",
+          "geometry_roi": [0.05, 0.22, 0.95, 0.95],
+          "sky_roi": [0.05, 0.02, 0.95, 0.36],
+          "horizon_roi": [0.10, 0.15, 0.90, 0.56],
+          "ground_roi": [0.08, 0.52, 0.94, 0.96],
+          "expected_light_vector": [-0.981621, -0.190843]
+        },
+        "night": {
+          "reference_key": "detroit_night.png",
+          "geometry_roi": [0.05, 0.22, 0.95, 0.95],
+          "sky_roi": [0.05, 0.02, 0.95, 0.36],
+          "horizon_roi": [0.10, 0.15, 0.90, 0.56],
+          "ground_roi": [0.08, 0.52, 0.94, 0.96],
+          "expected_light_vector": [0.0, -1.0]
+        }
+      }
+    },
+    {
+      "id": "nyc",
+      "segments": {
+        "morning": {
+          "reference_key": "nyc_morning.png",
+          "geometry_roi": [0.05, 0.22, 0.95, 0.95],
+          "sky_roi": [0.05, 0.02, 0.95, 0.36],
+          "horizon_roi": [0.10, 0.14, 0.90, 0.54],
+          "ground_roi": [0.08, 0.50, 0.94, 0.96],
+          "car_forbidden_roi": [0.44, 0.56, 0.70, 0.82],
+          "expected_light_vector": [-0.993131, 0.117007]
+        },
+        "day": {
+          "reference_key": "nyc_day.png",
+          "geometry_roi": [0.05, 0.22, 0.95, 0.95],
+          "sky_roi": [0.05, 0.02, 0.95, 0.36],
+          "horizon_roi": [0.10, 0.14, 0.90, 0.54],
+          "ground_roi": [0.08, 0.50, 0.94, 0.96],
+          "car_forbidden_roi": [0.44, 0.56, 0.70, 0.82],
+          "expected_light_vector": [0.0, -1.0]
+        },
+        "evening": {
+          "reference_key": "nyc_evening.png",
+          "geometry_roi": [0.05, 0.22, 0.95, 0.95],
+          "sky_roi": [0.05, 0.02, 0.95, 0.36],
+          "horizon_roi": [0.10, 0.14, 0.90, 0.54],
+          "ground_roi": [0.08, 0.50, 0.94, 0.96],
+          "car_forbidden_roi": [0.44, 0.56, 0.70, 0.82],
+          "expected_light_vector": [0.962455, 0.271442]
+        },
+        "night": {
+          "reference_key": "nyc_night.png",
+          "geometry_roi": [0.05, 0.22, 0.95, 0.95],
+          "sky_roi": [0.05, 0.02, 0.95, 0.36],
+          "horizon_roi": [0.10, 0.14, 0.90, 0.54],
+          "ground_roi": [0.08, 0.50, 0.94, 0.96],
+          "car_forbidden_roi": [0.44, 0.56, 0.70, 0.82],
+          "expected_light_vector": [0.0, -1.0]
+        }
+      }
+    },
+    {
+      "id": "sansebastian",
+      "segments": {
+        "morning": {
+          "reference_key": "sansebastian_morning.png",
+          "geometry_roi": [0.05, 0.22, 0.95, 0.95],
+          "sky_roi": [0.05, 0.02, 0.95, 0.36],
+          "horizon_roi": [0.10, 0.14, 0.90, 0.54],
+          "ground_roi": [0.08, 0.50, 0.94, 0.96],
+          "expected_light_vector": [0.917132, -0.398585]
+        },
+        "day": {
+          "reference_key": "sansebastian_day.png",
+          "geometry_roi": [0.05, 0.22, 0.95, 0.95],
+          "sky_roi": [0.05, 0.02, 0.95, 0.36],
+          "horizon_roi": [0.10, 0.14, 0.90, 0.54],
+          "ground_roi": [0.08, 0.50, 0.94, 0.96],
+          "expected_light_vector": [0.0, -1.0]
+        },
+        "evening": {
+          "reference_key": "sansebastian_evening.png",
+          "geometry_roi": [0.05, 0.22, 0.95, 0.95],
+          "sky_roi": [0.05, 0.02, 0.95, 0.36],
+          "horizon_roi": [0.10, 0.14, 0.90, 0.54],
+          "ground_roi": [0.08, 0.50, 0.94, 0.96],
+          "expected_light_vector": [0.885018, -0.465556]
+        },
+        "night": {
+          "reference_key": "sansebastian_night.png",
+          "geometry_roi": [0.05, 0.22, 0.95, 0.95],
+          "sky_roi": [0.05, 0.02, 0.95, 0.36],
+          "horizon_roi": [0.10, 0.14, 0.90, 0.54],
+          "ground_roi": [0.08, 0.50, 0.94, 0.96],
+          "expected_light_vector": [0.0, -1.0]
+        }
+      }
+    }
+  ]
+}

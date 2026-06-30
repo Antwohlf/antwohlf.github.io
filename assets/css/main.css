@@ -1291,6 +1291,15 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 			transition: background-color 0.2s ease-in-out;
 		}
 
+		.bg-menu .bg-menu-label {
+			margin: 0.35rem 0 0.1rem;
+			padding: 0.2rem 0.6rem 0;
+			color: rgba(255, 255, 255, 0.65);
+			font-size: 0.55rem;
+			letter-spacing: 0.12rem;
+			text-transform: uppercase;
+		}
+
 		.bg-menu button:hover,
 		.bg-menu button.is-active {
 			background-color: rgba(255, 255, 255, 0.2);

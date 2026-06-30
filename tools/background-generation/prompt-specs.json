@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "model": "gemini-nano-banana-image-gen",
+  "output": {
+    "width": 1920,
+    "height": 1080,
+    "format": "png",
+    "naming": "<location>_<season>_<segment>_<sky>.png"
+  },
+  "seasons": {
+    "spring": "Early spring transition: trees begin budding, limited blossoms, wet pavement possible. No snow, ice, slush, or frost accumulation anywhere in scene.",
+    "summer": "Lush foliage, vibrant greens, warm ambient light, dry pavement unless weather explicitly implies recent rain. No snow, ice, slush, or frost accumulation anywhere in scene.",
+    "fall": "Autumn leaves with mixed green/orange/red tones, some leaf drop, cooler atmosphere. No snow, ice, slush, or frost accumulation anywhere in scene.",
+    "winter": "Dormant or bare foliage, cold tones, potential snow residue depending on sky/weather context."
+  },
+  "segments": {
+    "morning": "Soft morning light, low-angle sun, long subtle shadows.",
+    "day": "Balanced mid-day illumination with natural contrast.",
+    "evening": "Golden-hour or blue-hour transition with warmer practical lights beginning to appear.",
+    "night": "Nighttime lighting with practical lights, signage, windows, and streetlamps naturally illuminated."
+  },
+  "sky_variants": {
+    "clear": "Mostly clear sky with bright visibility.",
+    "partly": "Partly cloudy sky with mixed sun and cloud cover.",
+    "cloudy": "Overcast but non-storm cloud coverage.",
+    "dark": "Heavy dark cloud deck suitable for rain/storm overlays (snow only where winter and local climate plausibly support it)."
+  },
+  "style_instruction": "Create a cinematic, semi-realistic illustrated scene variant for <location>. Keep painterly texture and soft atmospheric glow while preserving real-world structure.",
+  "composition_structure": [
+    "Use an ultra-wide 16:9 website hero composition with open central negative space suitable behind centered white portfolio text.",
+    "Keep the original image's region balance: sky, skyline/buildings, foreground, paths/roads, water, railings, and trees must occupy the same approximate areas as the reference.",
+    "Do not let foreground paths, roads, railings, trees, or greenery expand into the main subject unless they already dominate the reference.",
+    "For city skyline scenes, keep skyline massing dominant and visible; do not cover it with new foliage, clouds, or foreground elements."
+  ],
+  "seasonal_edit_constraints": [
+    "Treat seasonal variants as restrained edits of the reference image, not new scene generation.",
+    "Spring should read as early spring: budding leaves, sparse fresh greenery, limited pale blossoms, and clean ground surfaces. Summer should read as warm and established but still natural: full healthy greenery, clear visibility, dry or clean ground surfaces, and no extreme heat haze or tropical exaggeration.",
+    "When removing winter conditions, preserve the underlying geometry and texture of paths, roads, lawns, railings, rivers, roofs, and plazas instead of replacing them with new layouts.",
+    "If the source contains snow, remove all snow, ice, slush, frost, white-coated branches, snowbanks, and frozen water unless the target season is winter."
+  ],
+  "global_constraints": [
+    "Use the provided reference image as a strict composition anchor.",
+    "Preserve camera position, focal length, horizon line, perspective, and framing exactly.",
+    "Preserve all fixed scene geometry and object positions (roads, buildings, parked cars, poles, signs, skyline shape).",
+    "Do not add or remove landmarks, vehicles, trees, lanes, or major objects.",
+    "Only modify seasonal cues, sky/light conditions, and subtle environment details consistent with requested variant.",
+    "Maintain a consistent semi-realistic cinematic illustration style with subtle painterly texture and natural lighting continuity."
+  ],
+  "negative_constraints": [
+    "No camera movement or reframing.",
+    "No new objects, no object deletion, no surreal artifacts.",
+    "No flat cartoon look, no anime stylization, no text overlays, and no hard photoreal compositing seams."
+  ],
+  "locations": [
+    {
+      "id": "tokyo",
+      "scene_anchor": "Tokyo hilltop Chureito Pagoda overlook with Mount Fuji in the distance and city lights below.",
+      "consistency_notes": "Keep pagoda tier geometry, Mount Fuji silhouette, foreground railings/paths, and cherry tree placement fixed."
+    },
+    {
+      "id": "losangeles",
+      "scene_anchor": "Los Angeles city scene with broad road geometry and west-coast lighting profile.",
+      "consistency_notes": "Keep palm/tree placement, curb lines, and skyline silhouettes fixed.",
+      "climate_constraints": "Los Angeles must never show snow, sleet, slush, or frozen accumulation in any season. Treat precipitation as rain only."
+    },
+    {
+      "id": "annarbor",
+      "scene_anchor": "Ann Arbor streetscape with midwestern architecture and tree-lined framing.",
+      "consistency_notes": "Keep building facades, intersections, and parked vehicle positions consistent."
+    },
+    {
+      "id": "detroit",
+      "scene_anchor": "Detroit riverfront skyline view with historic downtown towers on the left, Renaissance Center cylindrical glass towers on the right, Detroit River along the lower right, riverboat near the lower edge, and plaza/road geometry in the foreground.",
+      "consistency_notes": "Keep skyline split, Renaissance Center placement, river edge, riverboat, plaza monument, road curves, major building geometry, and streetlight/pole positions unchanged. Remove winter accumulation for non-winter seasons without changing the riverfront layout."
+    },
+    {
+      "id": "nyc",
+      "scene_anchor": "New York City Central Park view toward the Midtown Manhattan skyline and Billionaires' Row, with a Gapstow Bridge style stone railing/path in the lower foreground, mature park trees through the middle, and dense skyline across the background.",
+      "consistency_notes": "Use generated full-scene time-of-day variants, not filter/tint overlays on a daytime image. Keep the approved summer day composition stable: stone railing and walkway in the lower foreground, leafy Central Park trees across the middle, visible Midtown skyline behind them, tall slender supertall towers near center/right, and older stone towers left/center. The camera faces south, so morning sunrise light comes from image-left/east and evening sunset light comes from image-right/west. Morning must have a distinct sunrise sky, left-side warm light, and shadows cast toward image-right. Evening must have a distinct sunset sky, right-side warm light, and shadows cast toward image-left. Night must be genuinely after dark with deep sky, park lamps, and lit windows, not a blue-filtered day scene. For summer, use mature green foliage while keeping skyline visibility and foreground balance. Do not create a waterfront, Times Square scene, Japanese landmark, roads, cars, graphic ground stripes, maps, labels, infographic elements, duplicate towers, malformed towers, or impossible railings."
+    },
+    {
+      "id": "sansebastian",
+      "scene_anchor": "San Sebastian city/coastal atmosphere with European street/architecture framing.",
+      "consistency_notes": "Keep street topology, building edges, and foreground alignment unchanged."
+    }
+  ]
+}
