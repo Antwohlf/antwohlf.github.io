@@ -5,6 +5,9 @@ background generation. It should contain source code, prompt specs, and metadata
 only. Generated images, review sheets, Supabase backups, and QA output are local
 artifacts and are ignored by git.
 
+Prompt payloads are written for manual use with Codex built-in image generation;
+they are not tied to a paid external image API key.
+
 ## Inputs
 
 - `source-manifest.json`: canonical reference image URLs and storage keys.
