@@ -21,6 +21,7 @@ node tools/background-generation/build-prompts.mjs \
   --seasons=fall \
   --locations=detroit,annarbor,nyc,sansebastian \
   --skies=clear \
+  --reference-mode=manifest \
   --out=tools/background-generation/generated/prompts-fall-active-clear.json
 ```
 
@@ -34,11 +35,16 @@ node tools/background-generation/build-prompts.mjs \
   --seasons=fall \
   --locations=detroit,annarbor,nyc,sansebastian \
   --skies=clear,partly,cloudy,dark \
+  --reference-mode=seasonal-clear \
   --out=tools/background-generation/generated/prompts-fall-weather.json
 ```
 
 This writes 64 prompts for one season across the active locations, time
 segments, and supported sky variants.
+
+Use `--reference-mode=seasonal-clear` for weather prompts. That makes each
+weather variant use the already-approved clear image for the same season,
+location, and time segment as its composition anchor.
 
 ## Candidate Filenames
 

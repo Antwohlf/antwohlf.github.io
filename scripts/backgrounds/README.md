@@ -13,6 +13,7 @@ node tools/background-generation/build-prompts.mjs \
   --seasons=fall \
   --locations=detroit,annarbor,nyc,sansebastian \
   --skies=clear \
+  --reference-mode=manifest \
   --out=tools/background-generation/generated/prompts-fall-active-clear.json
 ```
 
@@ -57,15 +58,23 @@ requesting the uploaded season.
 
 ## Weather Extension
 
-Weather variants use the same scripts with multiple sky values:
+Weather variants use the same scripts with multiple sky values. Rain, snow, fog,
+and storm are CSS overlays in the website runtime, not separate generated image
+families:
 
 ```bash
 node tools/background-generation/build-prompts.mjs \
   --seasons=fall \
   --locations=detroit,annarbor,nyc,sansebastian \
   --skies=clear,partly,cloudy,dark \
+  --reference-mode=seasonal-clear \
   --out=tools/background-generation/generated/prompts-fall-weather.json
 ```
+
+Use `--reference-mode=seasonal-clear` for weather passes so each generated sky
+variant anchors to the approved `location_season_time_clear.png` image for the
+same location and time segment. Use `--reference-mode=manifest` for first-pass
+clear seasonal generation from the original source references.
 
 Use the canonical naming pattern:
 
@@ -74,6 +83,10 @@ Use the canonical naming pattern:
 ```
 
 Keep weather generated assets local until the full approved matrix is ready.
+Weather approval is per location: a location needs all four time segments and all
+four sky variants approved before production can request non-clear weather
+backgrounds for that location. Until then, production falls back to the approved
+clear seasonal image, then to the original `location_time.png` image.
 
 ## Legacy Helpers
 

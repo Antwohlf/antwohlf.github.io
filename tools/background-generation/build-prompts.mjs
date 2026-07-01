@@ -9,6 +9,7 @@ const seasonsArg = args.find((arg) => arg.startsWith('--seasons='));
 const outputArg = args.find((arg) => arg.startsWith('--out='));
 const locationsArg = args.find((arg) => arg.startsWith('--locations='));
 const skiesArg = args.find((arg) => arg.startsWith('--skies='));
+const referenceModeArg = args.find((arg) => arg.startsWith('--reference-mode='));
 const seasons = (seasonsArg ? seasonsArg.slice('--seasons='.length) : 'spring')
   .split(',')
   .map((value) => value.trim().toLowerCase())
@@ -19,6 +20,7 @@ const requestedLocations = locationsArg
 const requestedSkies = skiesArg
   ? skiesArg.slice('--skies='.length).split(',').map((value) => value.trim().toLowerCase()).filter(Boolean)
   : [];
+const referenceMode = referenceModeArg ? referenceModeArg.slice('--reference-mode='.length) : 'manifest';
 
 const segments = ['morning', 'day', 'evening', 'night'];
 const skies = requestedSkies.length ? requestedSkies : ['clear', 'partly', 'cloudy', 'dark'];
@@ -35,6 +37,17 @@ const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
 const locationRefs = new Map(manifest.locations.map((location) => [location.id, location.reference]));
 const locationSpecs = new Map(specs.locations.map((location) => [location.id, location]));
 const prompts = [];
+
+if (!['manifest', 'seasonal-clear'].includes(referenceMode)) {
+  throw new Error('Unsupported --reference-mode. Use "manifest" or "seasonal-clear".');
+}
+
+const getStorageBaseUrl = (reference) => {
+  if (!reference || !reference.url || !reference.source_key) {
+    return '';
+  }
+  return reference.url.slice(0, reference.url.length - reference.source_key.length);
+};
 
 const buildPromptText = (location, season, segment, sky) => {
   const seasonText = specs.seasons[season] || `${season} seasonal atmosphere.`;
@@ -76,9 +89,9 @@ if (missingLocations.length) {
 
 for (let i = 0; i < locationsToBuild.length; i++) {
   const location = locationsToBuild[i];
-  const reference = locationRefs.get(location.id);
+  const manifestReference = locationRefs.get(location.id);
 
-  if (!reference) {
+  if (!manifestReference) {
     throw new Error(`No source reference found for location "${location.id}" in source-manifest.json`);
   }
 
@@ -93,6 +106,13 @@ for (let i = 0; i < locationsToBuild.length; i++) {
         const segment = segments[t];
         const sky = skies[k];
         const fileName = `${location.id}_${season}_${segment}_${sky}.png`;
+        const sourceFileName = referenceMode === 'seasonal-clear'
+          ? `${location.id}_${season}_${segment}_clear.png`
+          : path.basename(manifestReference.source_key);
+        const sourceKey = `${manifest.prefix}/${sourceFileName}`;
+        const sourceUrl = referenceMode === 'seasonal-clear'
+          ? `${getStorageBaseUrl(manifestReference)}${sourceKey}`
+          : manifestReference.url;
 
         prompts.push({
           file_name: fileName,
@@ -100,8 +120,8 @@ for (let i = 0; i < locationsToBuild.length; i++) {
           season,
           segment,
           sky,
-          source_image_url: reference.url,
-          source_image_key: reference.source_key,
+          source_image_url: sourceUrl,
+          source_image_key: sourceKey,
           prompt: buildPromptText(location, season, segment, sky)
         });
       }
@@ -119,6 +139,7 @@ fs.writeFileSync(
       generation_mode: specs.generation_mode || 'manual_review',
       output: specs.output || null,
       generated_at: new Date().toISOString(),
+      reference_mode: referenceMode,
       seasons,
       total: prompts.length,
       prompts
