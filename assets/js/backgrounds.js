@@ -9,15 +9,16 @@
   }
 
   var locations = [
-    { id: 'detroit', label: 'Detroit', timeZone: 'America/New_York', active: true },
-    { id: 'annarbor', label: 'Ann Arbor', timeZone: 'America/New_York', active: true },
-    { id: 'nyc', label: 'New York City', timeZone: 'America/New_York', active: true },
-    { id: 'sansebastian', label: 'San Sebastian', timeZone: 'Europe/Madrid', active: true },
+    { id: 'detroit', label: 'Detroit', timeZone: 'America/New_York', latitude: 42.3314, longitude: -83.0458, active: true },
+    { id: 'annarbor', label: 'Ann Arbor', timeZone: 'America/New_York', latitude: 42.2808, longitude: -83.7430, active: true },
+    { id: 'nyc', label: 'New York City', timeZone: 'America/New_York', latitude: 40.7812, longitude: -73.9665, active: true },
+    { id: 'sansebastian', label: 'San Sebastian', timeZone: 'Europe/Madrid', latitude: 43.3183, longitude: -1.9812, active: true },
     { id: 'tokyo', label: 'Tokyo', timeZone: 'Asia/Tokyo', active: false },
     { id: 'losangeles', label: 'Los Angeles', timeZone: 'America/Los_Angeles', active: false }
   ];
   var activeLocationIds = ['detroit', 'annarbor', 'nyc', 'sansebastian'];
   var timeSegments = ['morning', 'day', 'evening', 'night'];
+  var skyVariants = ['clear', 'partly', 'cloudy', 'dark'];
   var seasonalAssetApprovals = {
     spring: {
       detroit_spring_morning_clear: false,
@@ -56,15 +57,29 @@
       sansebastian_summer_night_clear: true
     }
   };
+  var weatherAssetApprovals = {
+    summer: {
+      detroit: true,
+      annarbor: true,
+      nyc: true,
+      sansebastian: true
+    }
+  };
   var seasonalApprovalState = getSeasonalApprovalState();
+  var weatherApprovalState = getWeatherApprovalState();
   var isLocalReviewMode = window.location.protocol === 'file:' || ['localhost', '127.0.0.1', '0.0.0.0'].indexOf(window.location.hostname) !== -1;
   var remoteStorageBaseUrl = 'https://uqmjvvghhhtjqbzzvtop.supabase.co/storage/v1/object/public/personal-website/backgrounds/';
   var localStorageBaseUrl = '/dev-assets/supabase-mirror/personal-website/backgrounds/';
   var storageBaseUrl = isLocalReviewMode ? localStorageBaseUrl : remoteStorageBaseUrl;
   var storageKey = 'bgLocation';
   var reviewSegmentKey = 'bgReviewSegment';
+  var reviewSkyKey = 'bgReviewSky';
+  var weatherCacheKeyPrefix = 'bgWeather:';
+  var weatherCacheTtlMs = 25 * 60 * 1000;
   var locationIndex = getSavedLocationIndex();
   var reviewSegment = getSavedReviewSegment();
+  var reviewSky = getSavedReviewSky();
+  var weatherStateByLocation = {};
 
   function getSeasonalApprovalState() {
     var state = {};
@@ -91,6 +106,20 @@
         approvedKeys: approvedKeys,
         approvedLocationIds: approvedLocationIds
       };
+    });
+
+    return state;
+  }
+
+  function getWeatherApprovalState() {
+    var state = {};
+
+    Object.keys(weatherAssetApprovals).forEach(function(season) {
+      state[season] = {};
+
+      activeLocationIds.forEach(function(locationId) {
+        state[season][locationId] = weatherAssetApprovals[season] && weatherAssetApprovals[season][locationId] === true;
+      });
     });
 
     return state;
@@ -124,6 +153,18 @@
     }
 
     return timeSegments.indexOf(savedSegment) !== -1 ? savedSegment : 'morning';
+  }
+
+  function getSavedReviewSky() {
+    var savedSky = '';
+
+    try {
+      savedSky = localStorage.getItem(reviewSkyKey) || '';
+    } catch (error) {
+      return 'clear';
+    }
+
+    return skyVariants.indexOf(savedSky) !== -1 ? savedSky : 'clear';
   }
 
   function getLocationDateParts(location) {
@@ -181,23 +222,223 @@
     return value.charAt(0).toUpperCase() + value.slice(1);
   }
 
-  function getImageUrl(location, season, segment) {
-    var seasonalFilename = location.id + '_' + season + '_' + segment + '_clear.png';
+  function getWeatherLabel(code, fallbackSky) {
+    if (code === 0) {
+      return 'Clear';
+    }
+    if ([1, 2].indexOf(code) !== -1) {
+      return 'Partly Cloudy';
+    }
+    if ([3].indexOf(code) !== -1) {
+      return 'Cloudy';
+    }
+    if ([45, 48].indexOf(code) !== -1) {
+      return 'Fog';
+    }
+    if ([51, 53, 55, 56, 57].indexOf(code) !== -1) {
+      return 'Drizzle';
+    }
+    if ([61, 63, 65, 66, 67, 80, 81, 82].indexOf(code) !== -1) {
+      return 'Rain';
+    }
+    if ([71, 73, 75, 77, 85, 86].indexOf(code) !== -1) {
+      return 'Snow';
+    }
+    if ([95, 96, 99].indexOf(code) !== -1) {
+      return 'Storm';
+    }
+    return titleCase(fallbackSky);
+  }
+
+  function getWeatherBucket(code, cloudCover) {
+    if ([95, 96, 99, 65, 67, 82, 75, 86].indexOf(code) !== -1) {
+      return 'dark';
+    }
+    if ([45, 48, 51, 53, 55, 56, 57, 61, 63, 66, 71, 73, 77, 80, 81, 85].indexOf(code) !== -1) {
+      return 'cloudy';
+    }
+    if (code === 0) {
+      return 'clear';
+    }
+    if ([1, 2].indexOf(code) !== -1) {
+      return 'partly';
+    }
+    if (code === 3) {
+      return 'cloudy';
+    }
+    if (typeof cloudCover === 'number') {
+      if (cloudCover < 20) {
+        return 'clear';
+      }
+      if (cloudCover < 70) {
+        return 'partly';
+      }
+      return 'cloudy';
+    }
+    return 'clear';
+  }
+
+  function getOverlayKind(code) {
+    if ([95, 96, 99].indexOf(code) !== -1) {
+      return 'storm';
+    }
+    if ([61, 63, 65, 66, 67, 80, 81, 82, 51, 53, 55, 56, 57].indexOf(code) !== -1) {
+      return 'rain';
+    }
+    if ([71, 73, 75, 77, 85, 86].indexOf(code) !== -1) {
+      return 'snow';
+    }
+    if ([45, 48].indexOf(code) !== -1) {
+      return 'fog';
+    }
+    return 'none';
+  }
+
+  function getFallbackWeather() {
+    return {
+      sky: 'clear',
+      label: 'Clear',
+      temperature: null,
+      overlay: 'none',
+      live: false
+    };
+  }
+
+  function normalizeWeather(data) {
+    var current = data && data.current ? data.current : {};
+    var code = typeof current.weather_code === 'number' ? current.weather_code : null;
+    var cloudCover = typeof current.cloud_cover === 'number' ? current.cloud_cover : null;
+    var sky = code === null ? getWeatherBucket(null, cloudCover) : getWeatherBucket(code, cloudCover);
+
+    return {
+      sky: sky,
+      label: code === null ? titleCase(sky) : getWeatherLabel(code, sky),
+      temperature: typeof current.temperature_2m === 'number' ? Math.round(current.temperature_2m) : null,
+      overlay: code === null ? 'none' : getOverlayKind(code),
+      live: true
+    };
+  }
+
+  function readCachedWeather(locationId) {
+    var cached = null;
+
+    try {
+      cached = JSON.parse(localStorage.getItem(weatherCacheKeyPrefix + locationId) || 'null');
+    } catch (error) {
+      return null;
+    }
+
+    if (!cached || !cached.timestamp || !cached.weather) {
+      return null;
+    }
+    if (Date.now() - cached.timestamp > weatherCacheTtlMs) {
+      return null;
+    }
+    return cached.weather;
+  }
+
+  function writeCachedWeather(locationId, weather) {
+    try {
+      localStorage.setItem(weatherCacheKeyPrefix + locationId, JSON.stringify({
+        timestamp: Date.now(),
+        weather: weather
+      }));
+    } catch (error) {
+      // Ignore storage failures.
+    }
+  }
+
+  function fetchWeather(location) {
+    if (!location.latitude || !location.longitude || !window.fetch) {
+      weatherStateByLocation[location.id] = getFallbackWeather();
+      setBackground();
+      return;
+    }
+
+    var cachedWeather = readCachedWeather(location.id);
+    if (cachedWeather) {
+      weatherStateByLocation[location.id] = cachedWeather;
+      setBackground();
+      return;
+    }
+
+    var url = 'https://api.open-meteo.com/v1/forecast'
+      + '?latitude=' + encodeURIComponent(location.latitude)
+      + '&longitude=' + encodeURIComponent(location.longitude)
+      + '&current=temperature_2m,weather_code,cloud_cover,precipitation,rain,snowfall'
+      + '&temperature_unit=fahrenheit'
+      + '&timezone=' + encodeURIComponent(location.timeZone);
+
+    window.fetch(url)
+      .then(function(response) {
+        if (!response.ok) {
+          throw new Error('Weather request failed');
+        }
+        return response.json();
+      })
+      .then(function(data) {
+        var weather = normalizeWeather(data);
+        weatherStateByLocation[location.id] = weather;
+        writeCachedWeather(location.id, weather);
+        setBackground();
+      })
+      .catch(function() {
+        weatherStateByLocation[location.id] = getFallbackWeather();
+        setBackground();
+      });
+  }
+
+  function getWeatherForLocation(location) {
+    if (isLocalReviewMode) {
+      return {
+        sky: reviewSky,
+        label: titleCase(reviewSky),
+        temperature: null,
+        overlay: 'none',
+        live: false
+      };
+    }
+
+    if (!weatherStateByLocation[location.id]) {
+      weatherStateByLocation[location.id] = getFallbackWeather();
+      fetchWeather(location);
+    }
+
+    return weatherStateByLocation[location.id];
+  }
+
+  function getSeasonalFilename(location, season, segment, sky) {
+    return location.id + '_' + season + '_' + segment + '_' + sky + '.png';
+  }
+
+  function getImageUrl(location, season, segment, weather) {
+    var sky = weather && skyVariants.indexOf(weather.sky) !== -1 ? weather.sky : 'clear';
+    var requestedFilename = getSeasonalFilename(location, season, segment, sky);
+    var clearFilename = getSeasonalFilename(location, season, segment, 'clear');
     var approvalState = seasonalApprovalState[season];
+    var locationWeatherApproved = weatherApprovalState[season] && weatherApprovalState[season][location.id];
     var locationSeasonApproved = approvalState && approvalState.approvedLocationIds.indexOf(location.id) !== -1;
-    var filename = locationSeasonApproved && approvalState.approvedKeys.indexOf(seasonalFilename) !== -1
-      ? seasonalFilename
+    var filename = locationWeatherApproved
+      ? requestedFilename
+      : locationSeasonApproved && approvalState.approvedKeys.indexOf(clearFilename) !== -1
+      ? clearFilename
       : location.id + '_' + segment + '.png';
 
     return storageBaseUrl + filename;
   }
 
-  function getReviewImageUrl(location, segment) {
-    return storageBaseUrl + location.id + '_summer_' + segment + '_clear.png';
+  function getReviewImageUrl(location, segment, sky) {
+    return storageBaseUrl + location.id + '_summer_' + segment + '_' + sky + '.png';
   }
 
   function applyBackgroundImage(imageUrl) {
     bg.style.setProperty('--bg-image', 'url("' + imageUrl + '")');
+  }
+
+  function applyWeatherOverlay(overlay) {
+    ['rain', 'snow', 'fog', 'storm'].forEach(function(kind) {
+      bg.classList.toggle('weather-overlay-' + kind, overlay === kind);
+    });
   }
 
   function updateActiveButton(locationId) {
@@ -208,6 +449,10 @@
     Array.prototype.forEach.call(menu.querySelectorAll('[data-review-segment]'), function(button) {
       button.classList.toggle('is-active', button.getAttribute('data-review-segment') === reviewSegment);
     });
+
+    Array.prototype.forEach.call(menu.querySelectorAll('[data-review-sky]'), function(button) {
+      button.classList.toggle('is-active', button.getAttribute('data-review-sky') === reviewSky);
+    });
   }
 
   function setBackground() {
@@ -216,13 +461,18 @@
     var season = getSeason(parts.month, parts.day);
     var segment = isLocalReviewMode ? reviewSegment : getTimeSegment(parts.hour);
     var renderSeason = isLocalReviewMode ? 'summer' : season;
+    var weather = getWeatherForLocation(location);
+    var weatherText = weather.temperature === null
+      ? weather.label
+      : weather.temperature + '°F · ' + weather.label;
 
     locationTime.querySelector('.value').textContent = location.label + ' · ' + parts.time;
-    locationTime.querySelector('.context').textContent = titleCase(renderSeason) + ' · ' + titleCase(segment);
+    locationTime.querySelector('.context').textContent = titleCase(renderSeason) + ' · ' + titleCase(segment) + ' · ' + weatherText;
     toggle.setAttribute('aria-label', 'Change background location');
-    toggle.setAttribute('title', location.label + ' · ' + titleCase(renderSeason) + ' · ' + titleCase(segment));
+    toggle.setAttribute('title', location.label + ' · ' + titleCase(renderSeason) + ' · ' + titleCase(segment) + ' · ' + weatherText);
     updateActiveButton(location.id);
-    applyBackgroundImage(isLocalReviewMode ? getReviewImageUrl(location, segment) : getImageUrl(location, season, segment));
+    applyWeatherOverlay(weather.overlay);
+    applyBackgroundImage(isLocalReviewMode ? getReviewImageUrl(location, segment, weather.sky) : getImageUrl(location, season, segment, weather));
   }
 
   function buildLocalReviewControls() {
@@ -240,6 +490,19 @@
       button.type = 'button';
       button.setAttribute('data-review-segment', segment);
       button.textContent = titleCase(segment);
+      menu.appendChild(button);
+    });
+
+    var skyDivider = document.createElement('div');
+    skyDivider.className = 'bg-menu-label';
+    skyDivider.textContent = 'Sky Variant';
+    menu.appendChild(skyDivider);
+
+    skyVariants.forEach(function(sky) {
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.setAttribute('data-review-sky', sky);
+      button.textContent = titleCase(sky);
       menu.appendChild(button);
     });
   }
@@ -299,6 +562,28 @@
 
     try {
       localStorage.setItem(reviewSegmentKey, reviewSegment);
+    } catch (error) {
+      // Ignore storage failures.
+    }
+
+    setBackground();
+    closeMenu();
+  });
+
+  menu.addEventListener('click', function(event) {
+    var button = event.target.closest('[data-review-sky]');
+
+    if (!button || !isLocalReviewMode) {
+      return;
+    }
+
+    reviewSky = button.getAttribute('data-review-sky');
+    if (skyVariants.indexOf(reviewSky) === -1) {
+      reviewSky = 'clear';
+    }
+
+    try {
+      localStorage.setItem(reviewSkyKey, reviewSky);
     } catch (error) {
       // Ignore storage failures.
     }
