@@ -656,6 +656,9 @@
       availabilityCache.set(src, true);
       return Promise.resolve(true);
     }
+    if (btn.getAttribute('data-resume-ready') === 'false') {
+      return Promise.resolve(false);
+    }
 
     const promise = checkAvailability(src).then((result) => {
       if (result.definitive) {
