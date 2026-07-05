@@ -9,9 +9,9 @@
   }
 
   var locations = [
-    { id: 'detroit', label: 'Detroit', timeZone: 'America/New_York', latitude: 42.3314, longitude: -83.0458, active: true },
-    { id: 'annarbor', label: 'Ann Arbor', timeZone: 'America/New_York', latitude: 42.2808, longitude: -83.7430, active: true },
-    { id: 'nyc', label: 'New York City', timeZone: 'America/New_York', latitude: 40.7812, longitude: -73.9665, active: true },
+    { id: 'detroit', label: 'Detroit', timeZone: 'America/New_York', latitude: 42.3314, longitude: -83.0458, alertProvider: 'nws', active: true },
+    { id: 'annarbor', label: 'Ann Arbor', timeZone: 'America/New_York', latitude: 42.2808, longitude: -83.7430, alertProvider: 'nws', active: true },
+    { id: 'nyc', label: 'New York City', timeZone: 'America/New_York', latitude: 40.7812, longitude: -73.9665, alertProvider: 'nws', active: true },
     { id: 'sansebastian', label: 'San Sebastian', timeZone: 'Europe/Madrid', latitude: 43.3183, longitude: -1.9812, active: true },
     { id: 'tokyo', label: 'Tokyo', timeZone: 'Asia/Tokyo', active: false },
     { id: 'losangeles', label: 'Los Angeles', timeZone: 'America/Los_Angeles', active: false }
@@ -74,8 +74,11 @@
   var storageKey = 'bgLocation';
   var reviewSegmentKey = 'bgReviewSegment';
   var reviewSkyKey = 'bgReviewSky';
-  var weatherCacheKeyPrefix = 'bgWeather:';
-  var weatherCacheTtlMs = 25 * 60 * 1000;
+  var weatherCacheKeyPrefix = 'bgWeather:v3:';
+  var weatherCacheTtlMs = 5 * 60 * 1000;
+  var stormWeatherCacheTtlMs = 2 * 60 * 1000;
+  var staleWeatherCacheTtlMs = 60 * 60 * 1000;
+  var weatherFetchTimeoutMs = 4500;
   var locationIndex = getSavedLocationIndex();
   var reviewSegment = getSavedReviewSegment();
   var reviewSky = getSavedReviewSky();
@@ -319,7 +322,129 @@
     };
   }
 
-  function readCachedWeather(locationId) {
+  function getAlertPriority(event) {
+    var normalizedEvent = (event || '').toLowerCase();
+
+    if (normalizedEvent.indexOf('tornado warning') !== -1) {
+      return 50;
+    }
+    if (normalizedEvent.indexOf('tornado watch') !== -1) {
+      return 45;
+    }
+    if (normalizedEvent.indexOf('severe thunderstorm warning') !== -1) {
+      return 40;
+    }
+    if (normalizedEvent.indexOf('severe thunderstorm watch') !== -1) {
+      return 35;
+    }
+    if (normalizedEvent.indexOf('severe thunderstorm') !== -1 || normalizedEvent.indexOf('tornado') !== -1) {
+      return 30;
+    }
+    return 0;
+  }
+
+  function getAlertOverride(alertData) {
+    var features = alertData && Array.isArray(alertData.features) ? alertData.features : [];
+    var stormAlert = null;
+    var stormAlertPriority = 0;
+
+    features.forEach(function(feature) {
+      var properties = feature && feature.properties ? feature.properties : {};
+      var event = properties.event || '';
+      var priority = getAlertPriority(event);
+
+      if (priority > stormAlertPriority) {
+        stormAlert = event;
+        stormAlertPriority = priority;
+      }
+    });
+
+    if (!stormAlert) {
+      return null;
+    }
+
+    return {
+      sky: 'dark',
+      label: stormAlert,
+      overlay: 'storm'
+    };
+  }
+
+  function fetchJsonWithTimeout(url, options) {
+    var controller = window.AbortController ? new AbortController() : null;
+    var timeout = null;
+    var requestOptions = options || {};
+
+    if (controller) {
+      requestOptions.signal = controller.signal;
+      timeout = setTimeout(function() {
+        controller.abort();
+      }, weatherFetchTimeoutMs);
+    }
+
+    return window.fetch(url, requestOptions)
+      .then(function(response) {
+        if (!response.ok) {
+          throw new Error('Weather request failed');
+        }
+        return response.json();
+      })
+      .finally(function() {
+        if (timeout) {
+          clearTimeout(timeout);
+        }
+      });
+  }
+
+  function applyAlertOverride(weather, alertOverride) {
+    if (!alertOverride) {
+      return weather;
+    }
+
+    return {
+      sky: alertOverride.sky,
+      label: alertOverride.label,
+      temperature: weather ? weather.temperature : null,
+      overlay: alertOverride.overlay,
+      live: weather ? weather.live : true
+    };
+  }
+
+  function fetchWeatherAlerts(location) {
+    if (location.alertProvider !== 'nws') {
+      return Promise.resolve(null);
+    }
+
+    var url = 'https://api.weather.gov/alerts/active'
+      + '?point=' + encodeURIComponent(location.latitude + ',' + location.longitude);
+
+    return fetchJsonWithTimeout(url, {
+      headers: {
+        Accept: 'application/geo+json'
+      }
+    })
+      .then(getAlertOverride)
+      .catch(function() {
+        return null;
+      });
+  }
+
+  function fetchCurrentWeather(location) {
+    var url = 'https://api.open-meteo.com/v1/forecast'
+      + '?latitude=' + encodeURIComponent(location.latitude)
+      + '&longitude=' + encodeURIComponent(location.longitude)
+      + '&current=temperature_2m,weather_code,cloud_cover,precipitation,rain,snowfall'
+      + '&temperature_unit=fahrenheit'
+      + '&timezone=' + encodeURIComponent(location.timeZone);
+
+    return fetchJsonWithTimeout(url)
+      .then(normalizeWeather)
+      .catch(function() {
+        return null;
+      });
+  }
+
+  function readCachedWeather(locationId, allowStale) {
     var cached = null;
 
     try {
@@ -331,7 +456,14 @@
     if (!cached || !cached.timestamp || !cached.weather) {
       return null;
     }
-    if (Date.now() - cached.timestamp > weatherCacheTtlMs) {
+    var age = Date.now() - cached.timestamp;
+    var ttl = cached.weather.overlay === 'storm' ? stormWeatherCacheTtlMs : weatherCacheTtlMs;
+
+    if (allowStale) {
+      ttl = staleWeatherCacheTtlMs;
+    }
+
+    if (age > ttl) {
       return null;
     }
     return cached.weather;
@@ -355,35 +487,36 @@
       return;
     }
 
-    var cachedWeather = readCachedWeather(location.id);
+    var cachedWeather = readCachedWeather(location.id, false);
     if (cachedWeather) {
       weatherStateByLocation[location.id] = cachedWeather;
       setBackground();
       return;
     }
 
-    var url = 'https://api.open-meteo.com/v1/forecast'
-      + '?latitude=' + encodeURIComponent(location.latitude)
-      + '&longitude=' + encodeURIComponent(location.longitude)
-      + '&current=temperature_2m,weather_code,cloud_cover,precipitation,rain,snowfall'
-      + '&temperature_unit=fahrenheit'
-      + '&timezone=' + encodeURIComponent(location.timeZone);
+    Promise.all([fetchCurrentWeather(location), fetchWeatherAlerts(location)])
+      .then(function(results) {
+        var weather = results[0] || getFallbackWeather();
+        var alertOverride = results[1];
+        var staleWeather = null;
 
-    window.fetch(url)
-      .then(function(response) {
-        if (!response.ok) {
-          throw new Error('Weather request failed');
+        if (!results[0] && !alertOverride) {
+          staleWeather = readCachedWeather(location.id, true);
+          if (staleWeather) {
+            weather = staleWeather;
+          }
         }
-        return response.json();
-      })
-      .then(function(data) {
-        var weather = normalizeWeather(data);
+
+        weather = applyAlertOverride(weather, alertOverride);
         weatherStateByLocation[location.id] = weather;
-        writeCachedWeather(location.id, weather);
+
+        if (weather.live) {
+          writeCachedWeather(location.id, weather);
+        }
         setBackground();
       })
       .catch(function() {
-        weatherStateByLocation[location.id] = getFallbackWeather();
+        weatherStateByLocation[location.id] = readCachedWeather(location.id, true) || getFallbackWeather();
         setBackground();
       });
   }
