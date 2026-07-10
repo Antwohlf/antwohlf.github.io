@@ -74,6 +74,7 @@
   var storageKey = 'bgLocation';
   var reviewSegmentKey = 'bgReviewSegment';
   var reviewSkyKey = 'bgReviewSky';
+  var reviewOverlayKey = 'bgReviewOverlay';
   var weatherCacheKeyPrefix = 'bgWeather:v3:';
   var weatherCacheTtlMs = 5 * 60 * 1000;
   var stormWeatherCacheTtlMs = 2 * 60 * 1000;
@@ -82,6 +83,7 @@
   var locationIndex = getSavedLocationIndex();
   var reviewSegment = getSavedReviewSegment();
   var reviewSky = getSavedReviewSky();
+  var reviewOverlay = getSavedReviewOverlay();
   var weatherStateByLocation = {};
 
   function getSeasonalApprovalState() {
@@ -168,6 +170,19 @@
     }
 
     return skyVariants.indexOf(savedSky) !== -1 ? savedSky : 'clear';
+  }
+
+  function getSavedReviewOverlay() {
+    var savedOverlay = '';
+    var overlays = ['none', 'rain', 'snow', 'fog', 'storm'];
+
+    try {
+      savedOverlay = localStorage.getItem(reviewOverlayKey) || '';
+    } catch (error) {
+      return 'none';
+    }
+
+    return overlays.indexOf(savedOverlay) !== -1 ? savedOverlay : 'none';
   }
 
   function getLocationDateParts(location) {
@@ -527,7 +542,7 @@
         sky: reviewSky,
         label: titleCase(reviewSky),
         temperature: null,
-        overlay: 'none',
+        overlay: reviewOverlay,
         live: false
       };
     }
@@ -586,6 +601,10 @@
     Array.prototype.forEach.call(menu.querySelectorAll('[data-review-sky]'), function(button) {
       button.classList.toggle('is-active', button.getAttribute('data-review-sky') === reviewSky);
     });
+
+    Array.prototype.forEach.call(menu.querySelectorAll('[data-review-overlay]'), function(button) {
+      button.classList.toggle('is-active', button.getAttribute('data-review-overlay') === reviewOverlay);
+    });
   }
 
   function setBackground() {
@@ -600,9 +619,9 @@
       : weather.temperature + '°F · ' + weather.label;
 
     locationTime.querySelector('.value').textContent = location.label + ' · ' + parts.time;
-    locationTime.querySelector('.context').textContent = titleCase(renderSeason) + ' · ' + titleCase(segment) + ' · ' + weatherText;
+    locationTime.querySelector('.context').textContent = titleCase(segment) + ' · ' + weatherText;
     toggle.setAttribute('aria-label', 'Change background location');
-    toggle.setAttribute('title', location.label + ' · ' + titleCase(renderSeason) + ' · ' + titleCase(segment) + ' · ' + weatherText);
+    toggle.setAttribute('title', location.label + ' · ' + titleCase(segment) + ' · ' + weatherText);
     updateActiveButton(location.id);
     applyWeatherOverlay(weather.overlay);
     applyBackgroundImage(isLocalReviewMode ? getReviewImageUrl(location, segment, weather.sky) : getImageUrl(location, season, segment, weather));
@@ -638,11 +657,33 @@
       button.textContent = titleCase(sky);
       menu.appendChild(button);
     });
+
+    var overlayDivider = document.createElement('div');
+    overlayDivider.className = 'bg-menu-label';
+    overlayDivider.textContent = 'Weather Effect';
+    menu.appendChild(overlayDivider);
+
+    ['none', 'rain', 'snow', 'fog', 'storm'].forEach(function(overlay) {
+      var button = document.createElement('button');
+      button.type = 'button';
+      button.setAttribute('data-review-overlay', overlay);
+      button.textContent = titleCase(overlay);
+      menu.appendChild(button);
+    });
   }
 
   function closeMenu() {
     menu.classList.remove('is-visible');
     menu.setAttribute('aria-hidden', 'true');
+  }
+
+  function openMenu() {
+    menu.classList.add('is-visible');
+    menu.setAttribute('aria-hidden', 'false');
+  }
+
+  function keepReviewMenuOpen() {
+    window.setTimeout(openMenu, 0);
   }
 
   toggle.addEventListener('click', function() {
@@ -651,78 +692,98 @@
       return;
     }
 
-    menu.classList.add('is-visible');
-    menu.setAttribute('aria-hidden', 'false');
+    openMenu();
   });
 
   menu.addEventListener('click', function(event) {
-    var button = event.target.closest('[data-location]');
+    var button = event.target.closest('button');
+    var overlays = ['none', 'rain', 'snow', 'fog', 'storm'];
 
     if (!button) {
       return;
     }
 
-    locationIndex = locations.findIndex(function(location) {
-      return location.active && location.id === button.getAttribute('data-location');
-    });
-    if (locationIndex === -1) {
-      locationIndex = getSavedLocationIndex();
-      closeMenu();
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (button.hasAttribute('data-location')) {
+      locationIndex = locations.findIndex(function(location) {
+        return location.active && location.id === button.getAttribute('data-location');
+      });
+      if (locationIndex === -1) {
+        locationIndex = getSavedLocationIndex();
+        closeMenu();
+        return;
+      }
+
+      try {
+        localStorage.setItem(storageKey, locations[locationIndex].id);
+      } catch (error) {
+        // Ignore storage failures.
+      }
+
+      setBackground();
+      if (isLocalReviewMode) {
+        keepReviewMenuOpen();
+      } else {
+        closeMenu();
+      }
       return;
     }
 
-    try {
-      localStorage.setItem(storageKey, locations[locationIndex].id);
-    } catch (error) {
-      // Ignore storage failures.
-    }
-
-    setBackground();
-    closeMenu();
-  });
-
-  menu.addEventListener('click', function(event) {
-    var button = event.target.closest('[data-review-segment]');
-
-    if (!button || !isLocalReviewMode) {
+    if (!isLocalReviewMode) {
       return;
     }
 
-    reviewSegment = button.getAttribute('data-review-segment');
-    if (timeSegments.indexOf(reviewSegment) === -1) {
-      reviewSegment = 'morning';
-    }
+    if (button.hasAttribute('data-review-segment')) {
+      reviewSegment = button.getAttribute('data-review-segment');
+      if (timeSegments.indexOf(reviewSegment) === -1) {
+        reviewSegment = 'morning';
+      }
 
-    try {
-      localStorage.setItem(reviewSegmentKey, reviewSegment);
-    } catch (error) {
-      // Ignore storage failures.
-    }
+      try {
+        localStorage.setItem(reviewSegmentKey, reviewSegment);
+      } catch (error) {
+        // Ignore storage failures.
+      }
 
-    setBackground();
-    closeMenu();
-  });
-
-  menu.addEventListener('click', function(event) {
-    var button = event.target.closest('[data-review-sky]');
-
-    if (!button || !isLocalReviewMode) {
+      setBackground();
+      keepReviewMenuOpen();
       return;
     }
 
-    reviewSky = button.getAttribute('data-review-sky');
-    if (skyVariants.indexOf(reviewSky) === -1) {
-      reviewSky = 'clear';
+    if (button.hasAttribute('data-review-sky')) {
+      reviewSky = button.getAttribute('data-review-sky');
+      if (skyVariants.indexOf(reviewSky) === -1) {
+        reviewSky = 'clear';
+      }
+
+      try {
+        localStorage.setItem(reviewSkyKey, reviewSky);
+      } catch (error) {
+        // Ignore storage failures.
+      }
+
+      setBackground();
+      keepReviewMenuOpen();
+      return;
     }
 
-    try {
-      localStorage.setItem(reviewSkyKey, reviewSky);
-    } catch (error) {
-      // Ignore storage failures.
-    }
+    if (button.hasAttribute('data-review-overlay')) {
+      reviewOverlay = button.getAttribute('data-review-overlay');
+      if (overlays.indexOf(reviewOverlay) === -1) {
+        reviewOverlay = 'none';
+      }
 
-    setBackground();
-    closeMenu();
+      try {
+        localStorage.setItem(reviewOverlayKey, reviewOverlay);
+      } catch (error) {
+        // Ignore storage failures.
+      }
+
+      setBackground();
+      keepReviewMenuOpen();
+    }
   });
 
   document.addEventListener('click', function(event) {
