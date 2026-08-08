@@ -494,7 +494,7 @@
   };
 
   const setResume = (src) => {
-    frame.src = src + '#toolbar=0&navpanes=0&scrollbar=0&view=Fit';
+    frame.src = src + '#toolbar=0&navpanes=0&scrollbar=0&view=FitH';
     download.href = src;
   };
 
