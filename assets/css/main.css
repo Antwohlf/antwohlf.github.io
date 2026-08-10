@@ -4430,6 +4430,14 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
     flex-direction: column;
 }
 
+#projects .project-image-trim-top {
+    overflow: hidden;
+}
+
+    #projects .project-image-trim-top img {
+        margin-top: -2px;
+    }
+
     .project-card h2 {
         margin-top: 0;
     }
