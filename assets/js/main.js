@@ -466,6 +466,7 @@
 })(jQuery);
 (() => {
   const frame = document.getElementById('resume-frame');
+  const preview = document.getElementById('resume-preview');
   const placeholder = document.getElementById('resume-placeholder');
   const download = document.getElementById('resume-download');
   const downloadWrap = download ? download.closest('.resume-link') : null;
@@ -477,7 +478,8 @@
   const availabilityCache = new Map();
   const FADE_DURATION = 250;
   const FADE_OUT_DELAY = 120;
-  const PDF_VIEW_OPTIONS = 'page=1&zoom=page-width&toolbar=0&navpanes=0&scrollbar=0';
+  const PDF_VIEW_OPTIONS = 'toolbar=0&navpanes=0&scrollbar=0&view=FitH';
+  const resumeViews = [frame, preview].filter(Boolean);
   const brandColors = new Map([
     ['default', '#4fc3ff'],
     ['google', '#4285f4'],
@@ -494,9 +496,24 @@
     btn.classList.add('is-active');
   };
 
-  const setResume = (src) => {
-    frame.src = `${src}#${PDF_VIEW_OPTIONS}`;
+  const setResume = (src, previewSrc, label) => {
     download.href = src;
+    if (preview && previewSrc) {
+      preview.src = previewSrc;
+      preview.alt = `${label} resume preview for Anthony Wohlfeil`;
+      preview.hidden = false;
+      frame.hidden = true;
+      return preview;
+    }
+
+    frame.src = `${src}#${PDF_VIEW_OPTIONS}`;
+    frame.hidden = false;
+    if (preview) {
+      preview.hidden = true;
+      preview.removeAttribute('src');
+      preview.alt = '';
+    }
+    return frame;
   };
 
   const getDownloadFilename = (src) => {
@@ -553,33 +570,47 @@
     download.hidden = !isVisible;
   };
 
-  const showResume = (src, token) => {
-    frame.classList.remove('is-hidden');
+  const showResume = (src, previewSrc, label, token) => {
+    resumeViews.forEach((view) => view.classList.remove('is-hidden'));
     if (placeholder) {
       placeholder.classList.remove('is-visible');
     }
     setDownloadVisible(true);
+    const activeView = setResume(src, previewSrc, label);
     const handleLoad = () => {
       if (token !== selectionToken) {
         return;
       }
-      frame.classList.remove('is-fading');
+      activeView.classList.remove('is-fading');
     };
-    frame.addEventListener('load', handleLoad, { once: true });
-    setResume(src);
+    activeView.addEventListener('load', handleLoad, { once: true });
+    if (activeView === preview && activeView.complete && activeView.naturalWidth > 0) {
+      activeView.classList.remove('is-fading');
+    }
+    if (activeView === preview) {
+      activeView.addEventListener('error', () => {
+        if (token !== selectionToken) {
+          return;
+        }
+        const fallbackView = setResume(src, null, label);
+        fallbackView.classList.remove('is-fading');
+      }, { once: true });
+    }
     window.setTimeout(() => {
       if (token !== selectionToken) {
         return;
       }
-      frame.classList.remove('is-fading');
+      activeView.classList.remove('is-fading');
     }, FADE_DURATION + 200);
   };
 
   const showPlaceholder = (label, token, btn) => {
     setDownloadVisible(false);
     if (!placeholder) {
-      frame.classList.add('is-hidden');
-      frame.classList.remove('is-fading');
+      resumeViews.forEach((view) => {
+        view.classList.add('is-hidden');
+        view.classList.remove('is-fading');
+      });
       return;
     }
     placeholder.classList.add('is-visible');
@@ -605,8 +636,10 @@
       if (token !== selectionToken) {
         return;
       }
-      frame.classList.add('is-hidden');
-      frame.classList.remove('is-fading');
+      resumeViews.forEach((view) => {
+        view.classList.add('is-hidden');
+        view.classList.remove('is-fading');
+      });
     }, FADE_DURATION);
   };
 
@@ -688,9 +721,10 @@
     selectionToken += 1;
     const token = selectionToken;
     const src = btn.getAttribute('data-resume-src');
+    const previewSrc = btn.getAttribute('data-resume-preview-src');
     const label = btn.getAttribute('data-resume-label') || 'This';
     setActive(btn);
-    frame.classList.add('is-fading');
+    resumeViews.forEach((view) => view.classList.add('is-fading'));
     if (placeholder) {
       placeholder.classList.remove('is-visible');
     }
@@ -712,7 +746,7 @@
       return;
     }
     if (ready) {
-      showResume(src, token);
+      showResume(src, previewSrc, label, token);
       return;
     }
     showPlaceholder(label, token, btn);

@@ -4190,11 +4190,13 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 }
 
 .resume-embed .resume-frame,
+.resume-embed .resume-preview,
 .resume-embed .resume-placeholder {
     transition: opacity 0.25s ease;
 }
 
-.resume-embed .resume-frame.is-fading {
+.resume-embed .resume-frame.is-fading,
+.resume-embed .resume-preview.is-fading {
     opacity: 0;
 }
 
@@ -4410,7 +4412,24 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
     opacity: 1;
 }
 
-.resume-embed .resume-frame.is-hidden {
+.resume-embed .resume-preview {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: #fff;
+    opacity: 1;
+}
+
+.resume-embed .resume-preview[hidden] {
+    display: none;
+}
+
+.resume-embed .resume-frame[hidden] {
+    display: none;
+}
+
+.resume-embed .resume-frame.is-hidden,
+.resume-embed .resume-preview.is-hidden {
     visibility: hidden;
     pointer-events: none;
 }
