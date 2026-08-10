@@ -498,7 +498,7 @@
   };
 
   const getResumeRenderer = () => {
-    rendererPromise ||= import('./resume-pdf-viewer.mjs?v=20260810-seamless-switching');
+    rendererPromise ||= import('./resume-pdf-viewer.mjs?v=20260810-hidpi-mobile');
     return rendererPromise;
   };
 

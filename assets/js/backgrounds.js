@@ -679,11 +679,15 @@
   function closeMenu() {
     menu.classList.remove('is-visible');
     menu.setAttribute('aria-hidden', 'true');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('is-bg-menu-open');
   }
 
   function openMenu() {
     menu.classList.add('is-visible');
     menu.setAttribute('aria-hidden', 'false');
+    toggle.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('is-bg-menu-open');
   }
 
   function keepReviewMenuOpen() {

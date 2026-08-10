@@ -14,6 +14,10 @@ GlobalWorkerOptions.workerSrc = new URL(
 const renderStates = new WeakMap();
 let renderSequence = 0;
 
+const MAX_CANVAS_PIXELS = 8_000_000;
+const MOBILE_QUALITY_BOOST = 1.5;
+const DESKTOP_QUALITY_BOOST = 1.25;
+
 const linkLabels = new Map([
   ['linkedin.com', 'Open Anthony Wohlfeil on LinkedIn'],
   ['github.com', 'Open Anthony Wohlfeil on GitHub'],
@@ -41,6 +45,9 @@ const isCurrent = (container, state) => renderStates.get(container) === state;
 
 const cancelState = (state) => {
   state.resizeObserver?.disconnect();
+  if (state.viewportResizeHandler) {
+    window.visualViewport?.removeEventListener('resize', state.viewportResizeHandler);
+  }
   window.clearTimeout(state.resizeTimer);
   state.renderTask?.cancel();
   state.textLayer?.cancel();
@@ -78,23 +85,39 @@ const labelAnnotationLinks = (annotationLayer) => {
   });
 };
 
+const getOutputScale = (viewport) => {
+  const deviceScale = window.devicePixelRatio || 1;
+  const zoomScale = Math.max(1, window.visualViewport?.scale || 1);
+  const qualityBoost = window.matchMedia('(max-width: 736px)').matches
+    ? MOBILE_QUALITY_BOOST
+    : DESKTOP_QUALITY_BOOST;
+  const requestedScale = deviceScale * zoomScale * qualityBoost;
+  const pagePixels = Math.max(1, viewport.width * viewport.height);
+  const memorySafeScale = Math.sqrt(MAX_CANVAS_PIXELS / pagePixels);
+  return Math.max(1, Math.min(requestedScale, memorySafeScale));
+};
+
 const buildPage = async (container, state) => {
   if (!isCurrent(container, state)) {
     return;
   }
 
   const width = Math.max(1, container.getBoundingClientRect().width);
-  if (Math.abs(width - state.renderedWidth) < 1 && state.pageElement) {
+  const unscaledViewport = state.page.getViewport({ scale: 1 });
+  const scale = width / unscaledViewport.width;
+  const viewport = state.page.getViewport({ scale });
+  const outputScale = getOutputScale(viewport);
+  if (
+    Math.abs(width - state.renderedWidth) < 1
+    && Math.abs(outputScale - state.renderedOutputScale) < 0.05
+    && state.pageElement
+  ) {
     return;
   }
 
   state.renderTask?.cancel();
   state.textLayer?.cancel();
   const renderId = ++state.renderId;
-  const unscaledViewport = state.page.getViewport({ scale: 1 });
-  const scale = width / unscaledViewport.width;
-  const viewport = state.page.getViewport({ scale });
-  const outputScale = window.devicePixelRatio || 1;
 
   const pageElement = document.createElement('div');
   pageElement.className = 'resume-pdf-page';
@@ -106,8 +129,8 @@ const buildPage = async (container, state) => {
 
   const canvas = document.createElement('canvas');
   canvas.className = 'resume-pdf-canvas';
-  canvas.width = Math.floor(viewport.width * outputScale);
-  canvas.height = Math.floor(viewport.height * outputScale);
+  canvas.width = Math.ceil(viewport.width * outputScale);
+  canvas.height = Math.ceil(viewport.height * outputScale);
   canvas.style.width = `${viewport.width}px`;
   canvas.style.height = `${viewport.height}px`;
   canvas.setAttribute('aria-hidden', 'true');
@@ -123,6 +146,8 @@ const buildPage = async (container, state) => {
   pageElement.append(annotationLayerElement);
 
   const canvasContext = canvas.getContext('2d', { alpha: false });
+  canvasContext.imageSmoothingEnabled = true;
+  canvasContext.imageSmoothingQuality = 'high';
   const transform = outputScale === 1
     ? null
     : [outputScale, 0, 0, outputScale, 0, 0];
@@ -178,6 +203,7 @@ const buildPage = async (container, state) => {
   container.replaceChildren(pageElement);
   state.pageElement = pageElement;
   state.renderedWidth = width;
+  state.renderedOutputScale = outputScale;
 };
 
 export const clearResumePdf = (container) => {
@@ -194,11 +220,13 @@ export const renderResumePdf = async ({ container, url, label }) => {
     id: ++renderSequence,
     renderId: 0,
     renderedWidth: 0,
+    renderedOutputScale: 0,
     pageElement: null,
     renderTask: null,
     textLayer: null,
     resizeObserver: null,
     resizeTimer: null,
+    viewportResizeHandler: null,
     loadingTask: null,
     pdf: null,
     page: null,
@@ -230,13 +258,17 @@ export const renderResumePdf = async ({ container, url, label }) => {
   }
   container.removeAttribute('aria-busy');
 
-  state.resizeObserver = new ResizeObserver(() => {
+  const queueRender = () => {
     window.clearTimeout(state.resizeTimer);
     state.resizeTimer = window.setTimeout(() => {
       buildPage(container, state).catch((error) => {
         console.error('Unable to resize resume preview.', error);
       });
     }, 120);
-  });
+  };
+
+  state.resizeObserver = new ResizeObserver(queueRender);
   state.resizeObserver.observe(container);
+  state.viewportResizeHandler = queueRender;
+  window.visualViewport?.addEventListener('resize', state.viewportResizeHandler, { passive: true });
 };
