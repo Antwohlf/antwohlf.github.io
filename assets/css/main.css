@@ -1816,7 +1816,11 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 			padding: 0.35rem 0.6rem;
 			background: transparent;
 			color: #ffffff;
-			font: inherit;
+			font-family: "Source Sans Pro", sans-serif;
+			font-size: 0.92rem;
+			font-weight: 600;
+			line-height: 1.65;
+			letter-spacing: 0.14rem;
 			text-align: left;
 			cursor: pointer;
 			text-transform: none;
@@ -1953,7 +1957,6 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 		}
 
 			.bg-menu button {
-				font-size: 0.7rem;
 				padding: 0.3rem 0.5rem;
 			}
 
