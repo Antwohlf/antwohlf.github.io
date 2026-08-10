@@ -480,6 +480,7 @@
   const FADE_OUT_DELAY = 120;
   const PDF_VIEW_OPTIONS = 'toolbar=0&navpanes=0&scrollbar=0&view=FitH';
   const resumeViews = [frame, preview].filter(Boolean);
+  let rendererPromise = null;
   const brandColors = new Map([
     ['default', '#4fc3ff'],
     ['google', '#4285f4'],
@@ -496,22 +497,29 @@
     btn.classList.add('is-active');
   };
 
-  const setResume = (src, previewSrc, label) => {
-    download.href = src;
-    if (preview && previewSrc) {
-      preview.src = previewSrc;
-      preview.alt = `${label} resume preview for Anthony Wohlfeil`;
-      preview.hidden = false;
-      frame.hidden = true;
-      return preview;
-    }
+  const getResumeRenderer = () => {
+    rendererPromise ||= import('./resume-pdf-viewer.mjs?v=20260809-interactive-pdf');
+    return rendererPromise;
+  };
 
+  const clearInteractivePreview = () => {
+    if (!preview || !rendererPromise) {
+      return;
+    }
+    rendererPromise.then(({ clearResumePdf }) => {
+      clearResumePdf(preview);
+    }).catch(() => {});
+  };
+
+  const setNativeResume = (src) => {
+    download.href = src;
+    clearInteractivePreview();
     frame.src = `${src}#${PDF_VIEW_OPTIONS}`;
     frame.hidden = false;
     if (preview) {
       preview.hidden = true;
-      preview.removeAttribute('src');
-      preview.alt = '';
+      preview.removeAttribute('aria-label');
+      preview.removeAttribute('aria-busy');
     }
     return frame;
   };
@@ -570,13 +578,41 @@
     download.hidden = !isVisible;
   };
 
-  const showResume = (src, previewSrc, label, token) => {
+  const showResume = async (src, renderSrc, label, token) => {
     resumeViews.forEach((view) => view.classList.remove('is-hidden'));
     if (placeholder) {
       placeholder.classList.remove('is-visible');
     }
     setDownloadVisible(true);
-    const activeView = setResume(src, previewSrc, label);
+    download.href = src;
+
+    if (preview && renderSrc) {
+      frame.hidden = true;
+      preview.hidden = false;
+      preview.setAttribute('aria-busy', 'true');
+      try {
+        const { renderResumePdf } = await getResumeRenderer();
+        if (token !== selectionToken) {
+          return;
+        }
+        await renderResumePdf({ container: preview, url: renderSrc, label });
+        if (token !== selectionToken) {
+          clearInteractivePreview();
+          return;
+        }
+        preview.classList.remove('is-fading');
+      } catch (error) {
+        if (token !== selectionToken) {
+          return;
+        }
+        console.error('Unable to render interactive resume preview.', error);
+        const fallbackView = setNativeResume(src);
+        fallbackView.classList.remove('is-fading');
+      }
+      return;
+    }
+
+    const activeView = setNativeResume(src);
     const handleLoad = () => {
       if (token !== selectionToken) {
         return;
@@ -584,18 +620,6 @@
       activeView.classList.remove('is-fading');
     };
     activeView.addEventListener('load', handleLoad, { once: true });
-    if (activeView === preview && activeView.complete && activeView.naturalWidth > 0) {
-      activeView.classList.remove('is-fading');
-    }
-    if (activeView === preview) {
-      activeView.addEventListener('error', () => {
-        if (token !== selectionToken) {
-          return;
-        }
-        const fallbackView = setResume(src, null, label);
-        fallbackView.classList.remove('is-fading');
-      }, { once: true });
-    }
     window.setTimeout(() => {
       if (token !== selectionToken) {
         return;
@@ -606,6 +630,7 @@
 
   const showPlaceholder = (label, token, btn) => {
     setDownloadVisible(false);
+    clearInteractivePreview();
     if (!placeholder) {
       resumeViews.forEach((view) => {
         view.classList.add('is-hidden');
@@ -721,7 +746,7 @@
     selectionToken += 1;
     const token = selectionToken;
     const src = btn.getAttribute('data-resume-src');
-    const previewSrc = btn.getAttribute('data-resume-preview-src');
+    const renderSrc = btn.getAttribute('data-resume-render-src');
     const label = btn.getAttribute('data-resume-label') || 'This';
     setActive(btn);
     resumeViews.forEach((view) => view.classList.add('is-fading'));
@@ -746,7 +771,7 @@
       return;
     }
     if (ready) {
-      showResume(src, previewSrc, label, token);
+      showResume(src, renderSrc, label, token);
       return;
     }
     showPlaceholder(label, token, btn);

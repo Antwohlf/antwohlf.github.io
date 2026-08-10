@@ -4414,11 +4414,118 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 
 .resume-embed .resume-preview {
     width: 100%;
-    height: auto;
     display: block;
+    position: relative;
     border-radius: 0;
-    background: #fff;
+    background: transparent;
     opacity: 1;
+}
+
+.resume-pdf-page {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    background: #fff;
+    --scale-round-x: 1px;
+    --scale-round-y: 1px;
+}
+
+.resume-pdf-canvas {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.resume-pdf-text-layer {
+    position: absolute;
+    inset: 0;
+    overflow: clip;
+    color-scheme: only light;
+    text-align: initial;
+    line-height: 1;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-size-adjust: none;
+    forced-color-adjust: none;
+    transform-origin: 0 0;
+    caret-color: transparent;
+    z-index: 2;
+    --min-font-size: 1;
+    --text-scale-factor: calc(var(--total-scale-factor) * var(--min-font-size));
+    --min-font-size-inv: calc(1 / var(--min-font-size));
+}
+
+.resume-pdf-text-layer :is(span, br) {
+    position: absolute;
+    color: transparent;
+    white-space: pre;
+    cursor: text;
+    transform-origin: 0 0;
+    user-select: text;
+}
+
+.resume-pdf-text-layer > :not(.markedContent),
+.resume-pdf-text-layer .markedContent span:not(.markedContent) {
+    z-index: 1;
+    --font-height: 0;
+    --scale-x: 1;
+    --rotate: 0deg;
+    font-size: calc(var(--text-scale-factor) * var(--font-height));
+    transform: rotate(var(--rotate)) scaleX(var(--scale-x)) scale(var(--min-font-size-inv));
+}
+
+.resume-pdf-text-layer .markedContent {
+    display: contents;
+}
+
+.resume-pdf-text-layer ::selection {
+    color: transparent;
+    background: rgba(60, 132, 244, 0.34);
+}
+
+.resume-pdf-text-layer .endOfContent {
+    display: block;
+    position: absolute;
+    inset: 100% 0 0;
+    cursor: default;
+    user-select: none;
+}
+
+.resume-pdf-annotation-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    transform-origin: 0 0;
+    z-index: 3;
+}
+
+.resume-pdf-annotation-layer section {
+    position: absolute;
+    box-sizing: border-box;
+    text-align: initial;
+    pointer-events: auto;
+    transform-origin: 0 0;
+    user-select: none;
+}
+
+.resume-pdf-annotation-layer .linkAnnotation > a {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.resume-pdf-annotation-layer .linkAnnotation > a:focus-visible {
+    outline: 2px solid #4fc3ff;
+    outline-offset: 2px;
+    border-radius: 2px;
 }
 
 .resume-embed .resume-preview[hidden] {
