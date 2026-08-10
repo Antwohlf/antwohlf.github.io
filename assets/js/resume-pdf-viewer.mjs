@@ -47,6 +47,18 @@ const cancelState = (state) => {
   state.loadingTask?.destroy();
 };
 
+const releaseResumePdf = (container, { clearContent }) => {
+  const state = renderStates.get(container);
+  if (state) {
+    renderStates.delete(container);
+    cancelState(state);
+  }
+  if (clearContent) {
+    container.replaceChildren();
+  }
+  container.removeAttribute('aria-busy');
+};
+
 const labelAnnotationLinks = (annotationLayer) => {
   annotationLayer.querySelectorAll('a[href]').forEach((link) => {
     let label = 'Open profile link';
@@ -169,18 +181,14 @@ const buildPage = async (container, state) => {
 };
 
 export const clearResumePdf = (container) => {
-  const state = renderStates.get(container);
-  if (!state) {
-    return;
-  }
-  renderStates.delete(container);
-  cancelState(state);
-  container.replaceChildren();
-  container.removeAttribute('aria-busy');
+  releaseResumePdf(container, { clearContent: true });
 };
 
 export const renderResumePdf = async ({ container, url, label }) => {
-  clearResumePdf(container);
+  // Keep the current rendered page in place while the replacement is prepared.
+  // buildPage swaps in the completed page atomically, preventing a zero-height
+  // preview and white flash between resume themes.
+  releaseResumePdf(container, { clearContent: false });
 
   const state = {
     id: ++renderSequence,

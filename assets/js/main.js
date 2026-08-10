@@ -498,7 +498,7 @@
   };
 
   const getResumeRenderer = () => {
-    rendererPromise ||= import('./resume-pdf-viewer.mjs?v=20260809-interactive-pdf-default');
+    rendererPromise ||= import('./resume-pdf-viewer.mjs?v=20260810-seamless-switching');
     return rendererPromise;
   };
 
@@ -597,7 +597,6 @@
         }
         await renderResumePdf({ container: preview, url: renderSrc, label });
         if (token !== selectionToken) {
-          clearInteractivePreview();
           return;
         }
         preview.classList.remove('is-fading');
@@ -748,14 +747,19 @@
     const src = btn.getAttribute('data-resume-src');
     const renderSrc = btn.getAttribute('data-resume-render-src');
     const label = btn.getAttribute('data-resume-label') || 'This';
+    const isInteractiveSelection = Boolean(preview && renderSrc);
     setActive(btn);
-    resumeViews.forEach((view) => view.classList.add('is-fading'));
+    resumeViews.forEach((view) => {
+      view.classList.toggle('is-fading', !isInteractiveSelection);
+    });
     if (placeholder) {
       placeholder.classList.remove('is-visible');
     }
-    const fadeOut = new Promise((resolve) => {
-      window.setTimeout(resolve, FADE_OUT_DELAY);
-    });
+    const fadeOut = isInteractiveSelection
+      ? Promise.resolve()
+      : new Promise((resolve) => {
+          window.setTimeout(resolve, FADE_OUT_DELAY);
+        });
     if (!src) {
       await fadeOut;
       if (token !== selectionToken || !btn.classList.contains('is-active')) {
