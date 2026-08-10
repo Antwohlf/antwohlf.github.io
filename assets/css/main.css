@@ -1813,9 +1813,12 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 			font: inherit;
 			text-align: left;
 			cursor: pointer;
-			pointer-events: auto;
 			text-transform: none;
 			transition: background-color 0.2s ease-in-out;
+		}
+
+		.bg-menu:not(.is-visible) button {
+			pointer-events: none;
 		}
 
 		.bg-menu .bg-menu-label {
@@ -4264,6 +4267,47 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
     grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
     gap: 0.9rem;
     margin: 0.2rem 0 calc(1rem + 10px);
+}
+
+.resume-embed .resume-mobile-contact {
+    display: none;
+}
+
+@media screen and (max-width: 736px) {
+    .resume-embed .resume-mobile-contact {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.65rem;
+        margin: -0.2rem 0 1rem;
+    }
+
+    .resume-embed .resume-mobile-contact a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        min-width: 44px;
+        height: 44px;
+        min-height: 44px;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.06);
+        color: rgba(255, 255, 255, 0.95);
+        text-decoration: none;
+        transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .resume-embed .resume-mobile-contact a:hover,
+    .resume-embed .resume-mobile-contact a:focus-visible {
+        border-color: rgba(255, 255, 255, 0.7);
+        background: rgba(255, 255, 255, 0.13);
+        transform: translateY(-1px);
+    }
+
+    .resume-embed .resume-mobile-contact .icon {
+        font-size: 1rem;
+    }
 }
 
     .resume-embed .resume-variant {
