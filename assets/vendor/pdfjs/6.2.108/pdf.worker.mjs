@@ -26,6 +26,19 @@
  */
 
 ;// ./src/shared/util.js
+if (typeof Math.sumPrecise !== "function") {
+  Math.sumPrecise = values => {
+    let sum = 0;
+    let correction = 0;
+    for (const value of values) {
+      const adjusted = Number(value) - correction;
+      const next = sum + adjusted;
+      correction = next - sum - adjusted;
+      sum = next;
+    }
+    return sum;
+  };
+}
 const isNodeJS = typeof process === "object" && process + "" === "[object process]" && !process.versions.nw && !(process.versions.electron && process.type && process.type !== "browser");
 const BBOX_INIT = [Infinity, Infinity, -Infinity, -Infinity];
 const F32_BBOX_INIT = new Float32Array(BBOX_INIT);

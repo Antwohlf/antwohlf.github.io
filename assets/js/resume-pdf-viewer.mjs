@@ -6,6 +6,20 @@ import {
   getDocument
 } from '../vendor/pdfjs/6.2.108/pdf.mjs';
 
+if (typeof Math.sumPrecise !== 'function') {
+  Math.sumPrecise = (values) => {
+    let sum = 0;
+    let correction = 0;
+    for (const value of values) {
+      const adjusted = Number(value) - correction;
+      const next = sum + adjusted;
+      correction = (next - sum) - adjusted;
+      sum = next;
+    }
+    return sum;
+  };
+}
+
 GlobalWorkerOptions.workerSrc = new URL(
   '../vendor/pdfjs/6.2.108/pdf.worker.mjs',
   import.meta.url

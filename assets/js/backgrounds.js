@@ -69,6 +69,7 @@
   var weatherApprovalState = getWeatherApprovalState();
   var isLocalReviewMode = window.location.protocol === 'file:' || ['localhost', '127.0.0.1', '0.0.0.0'].indexOf(window.location.hostname) !== -1;
   var remoteStorageBaseUrl = 'https://uqmjvvghhhtjqbzzvtop.supabase.co/storage/v1/object/public/personal-website/backgrounds/';
+  var remoteTransformBaseUrl = 'https://uqmjvvghhhtjqbzzvtop.supabase.co/storage/v1/render/image/public/personal-website/backgrounds/';
   var localStorageBaseUrl = '/dev-assets/supabase-mirror/personal-website/backgrounds/';
   var storageBaseUrl = isLocalReviewMode ? localStorageBaseUrl : remoteStorageBaseUrl;
   var storageKey = 'bgLocation';
@@ -572,7 +573,12 @@
       ? clearFilename
       : location.id + '_' + segment + '.png';
 
-    return storageBaseUrl + filename;
+    if (isLocalReviewMode) {
+      return storageBaseUrl + filename;
+    }
+
+    var targetWidth = window.innerWidth <= 736 ? 1280 : 1920;
+    return remoteTransformBaseUrl + filename + '?width=' + targetWidth + '&quality=72&resize=cover';
   }
 
   function getReviewImageUrl(location, segment, sky) {
@@ -592,7 +598,13 @@
 
   function updateActiveButton(locationId) {
     Array.prototype.forEach.call(menu.querySelectorAll('[data-location]'), function(button) {
-      button.classList.toggle('is-active', button.getAttribute('data-location') === locationId);
+      var isActive = button.getAttribute('data-location') === locationId;
+      button.classList.toggle('is-active', isActive);
+      if (isActive) {
+        button.setAttribute('aria-current', 'true');
+      } else {
+        button.removeAttribute('aria-current');
+      }
     });
 
     Array.prototype.forEach.call(menu.querySelectorAll('[data-review-segment]'), function(button) {
@@ -676,18 +688,27 @@
     });
   }
 
-  function closeMenu() {
+  function closeMenu(restoreFocus) {
     menu.classList.remove('is-visible');
     menu.setAttribute('aria-hidden', 'true');
+    menu.setAttribute('inert', '');
     toggle.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('is-bg-menu-open');
+    if (restoreFocus) {
+      toggle.focus();
+    }
   }
 
   function openMenu() {
+    menu.removeAttribute('inert');
     menu.classList.add('is-visible');
     menu.setAttribute('aria-hidden', 'false');
     toggle.setAttribute('aria-expanded', 'true');
     document.body.classList.add('is-bg-menu-open');
+    var current = menu.querySelector('[aria-current="true"]') || menu.querySelector('button');
+    if (current) {
+      current.focus();
+    }
   }
 
   function keepReviewMenuOpen() {
@@ -797,6 +818,13 @@
   document.addEventListener('click', function(event) {
     if (!menu.contains(event.target) && !toggle.contains(event.target)) {
       closeMenu();
+    }
+  });
+
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape' && menu.classList.contains('is-visible')) {
+      event.preventDefault();
+      closeMenu(true);
     }
   });
 

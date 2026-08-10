@@ -10,6 +10,59 @@
 		$footer = $('#footer'),
 		$main = $('#main'),
 		$main_articles = $main.children('article');
+	var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	var articleTrigger = null;
+
+	var setBackgroundControlsAvailable = function(isAvailable) {
+		var toggle = document.getElementById('bg-toggle');
+		var menu = document.getElementById('bg-menu');
+		if (toggle)
+			toggle.toggleAttribute('inert', !isAvailable);
+		if (!isAvailable && menu) {
+			menu.classList.remove('is-visible');
+			menu.setAttribute('aria-hidden', 'true');
+			menu.setAttribute('inert', '');
+			toggle && toggle.setAttribute('aria-expanded', 'false');
+		}
+	};
+
+	var focusArticle = function($article) {
+		var target = $article.find('.close').get(0) || $article.find('h1, h2').get(0);
+		if (target)
+			target.focus({ preventScroll: true });
+	};
+
+	var restoreArticleTrigger = function() {
+		if (articleTrigger && document.contains(articleTrigger))
+			articleTrigger.focus({ preventScroll: true });
+		articleTrigger = null;
+	};
+
+	// Keep hidden article imagery off the homepage request path. Images are
+	// hydrated only when they approach the visible viewport inside an article.
+	var deferredImages = document.querySelectorAll('#main img[data-src]');
+	var loadDeferredImage = function(image) {
+		if (!image || !image.dataset.src)
+			return;
+		image.src = image.dataset.src;
+		image.removeAttribute('data-src');
+	};
+	if ('IntersectionObserver' in window) {
+		var deferredImageObserver = new IntersectionObserver(function(entries) {
+			entries.forEach(function(entry) {
+				if (!entry.isIntersecting)
+					return;
+				loadDeferredImage(entry.target);
+				deferredImageObserver.unobserve(entry.target);
+			});
+		}, { rootMargin: '500px 0px' });
+		Array.prototype.forEach.call(deferredImages, function(image) {
+			deferredImageObserver.observe(image);
+		});
+	}
+	else {
+		Array.prototype.forEach.call(deferredImages, loadDeferredImage);
+	}
 
 	// Breakpoints.
 		breakpoints({
@@ -63,13 +116,15 @@
 			}
 
 	// Main.
-		var	delay = 325,
+		var	delay = prefersReducedMotion ? 0 : 325,
 			locked = false;
 
 		// Methods.
 			$main._show = function(id, initial) {
 
 				var $article = $main_articles.filter('#' + id);
+				if (!$body.hasClass('is-article-visible') && !articleTrigger)
+					articleTrigger = document.activeElement;
 
 				// No such article? Bail.
 					if ($article.length == 0)
@@ -90,15 +145,17 @@
 								$main_articles.removeClass('active');
 
 							// Hide header, footer.
-								$header.hide();
-								$footer.hide();
+								$header.attr('hidden', '').hide();
+								$footer.attr('hidden', '').hide();
 
 							// Show main, article.
-								$main.show();
-								$article.show();
+								$main.removeAttr('hidden').show();
+								$article.removeAttr('hidden').show();
 
 							// Activate article.
 								$article.addClass('active');
+								setBackgroundControlsAvailable(false);
+								focusArticle($article);
 
 							// Unlock.
 								locked = false;
@@ -127,15 +184,16 @@
 							setTimeout(function() {
 
 								// Hide current article.
-									$currentArticle.hide();
+									$currentArticle.attr('hidden', '').hide();
 
 								// Show article.
-									$article.show();
+									$article.removeAttr('hidden').show();
 
 								// Activate article.
 									setTimeout(function() {
 
 										$article.addClass('active');
+										focusArticle($article);
 
 										// Window stuff.
 											$window
@@ -164,17 +222,19 @@
 							setTimeout(function() {
 
 								// Hide header, footer.
-									$header.hide();
-									$footer.hide();
+									$header.attr('hidden', '').hide();
+									$footer.attr('hidden', '').hide();
 
 								// Show main, article.
-									$main.show();
-									$article.show();
+									$main.removeAttr('hidden').show();
+									$article.removeAttr('hidden').show();
 
 								// Activate article.
 									setTimeout(function() {
 
 										$article.addClass('active');
+										setBackgroundControlsAvailable(false);
+										focusArticle($article);
 
 										// Window stuff.
 											$window
@@ -219,15 +279,17 @@
 								$article.removeClass('active');
 
 							// Hide article, main.
-								$article.hide();
-								$main.hide();
+								$article.attr('hidden', '').hide();
+								$main.attr('hidden', '').hide();
 
 							// Show footer, header.
-								$footer.show();
-								$header.show();
+								$footer.removeAttr('hidden').show();
+								$header.removeAttr('hidden').show();
 
 							// Unmark as visible.
 								$body.removeClass('is-article-visible');
+								setBackgroundControlsAvailable(true);
+								restoreArticleTrigger();
 
 							// Unlock.
 								locked = false;
@@ -254,17 +316,19 @@
 					setTimeout(function() {
 
 						// Hide article, main.
-							$article.hide();
-							$main.hide();
+							$article.attr('hidden', '').hide();
+							$main.attr('hidden', '').hide();
 
 						// Show footer, header.
-							$footer.show();
-							$header.show();
+							$footer.removeAttr('hidden').show();
+							$header.removeAttr('hidden').show();
 
 						// Unmark as visible.
 							setTimeout(function() {
 
 								$body.removeClass('is-article-visible');
+								setBackgroundControlsAvailable(true);
+								restoreArticleTrigger();
 
 								// Window stuff.
 									$window
@@ -288,18 +352,32 @@
 
 				var $this = $(this);
 
-				// Close.
-					$('<div class="close">Close</div>')
-						.appendTo($this)
-						.on('click', function() {
-							location.hash = '';
-						});
-
-				// Prevent clicks from inside article from bubbling.
-					$this.on('click', function(event) {
-						event.stopPropagation();
+					var $heading = $this.find('h1, h2').first();
+					var headingId = $heading.attr('id') || ($this.attr('id') + '-title');
+					$heading.attr('id', headingId);
+					$this.attr({
+						'role': 'dialog',
+						'aria-modal': 'true',
+						'aria-labelledby': headingId
 					});
 
+					// Close.
+						$('<button type="button" class="close">Close</button>')
+							.attr('aria-label', 'Close ' + $heading.text())
+							.appendTo($this)
+						.on('click', function() {
+							location.hash = '';
+				});
+
+					// Prevent clicks from inside article from bubbling.
+					$this.on('click', function(event) {
+						event.stopPropagation();
+				});
+
+			});
+
+			$header.find('a[href^="#"]').on('click', function() {
+				articleTrigger = this;
 			});
 
 		// Events.
@@ -311,7 +389,23 @@
 
 			});
 
-			$window.on('keyup', function(event) {
+			$window.on('keydown', function(event) {
+
+				if (event.key === 'Tab' && $body.hasClass('is-article-visible')) {
+					var $activeArticle = $main_articles.filter('.active');
+					var focusable = $activeArticle.find('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])').filter(':visible').get();
+					if (focusable.length) {
+						var first = focusable[0];
+						var last = focusable[focusable.length - 1];
+						if (event.shiftKey && document.activeElement === first) {
+							event.preventDefault();
+							last.focus();
+						} else if (!event.shiftKey && document.activeElement === last) {
+							event.preventDefault();
+							first.focus();
+						}
+					}
+				}
 
 				switch (event.keyCode) {
 
@@ -385,8 +479,8 @@
 		// Initialize.
 
 			// Hide main, articles.
-				$main.hide();
-				$main_articles.hide();
+				$main.attr('hidden', '').hide();
+				$main_articles.attr('hidden', '').hide();
 
 			// Initial article.
 				if (location.hash != ''
@@ -468,6 +562,7 @@
   const frame = document.getElementById('resume-frame');
   const preview = document.getElementById('resume-preview');
   const placeholder = document.getElementById('resume-placeholder');
+  const openFull = document.getElementById('resume-open');
   const download = document.getElementById('resume-download');
   const downloadWrap = download ? download.closest('.resume-link') : null;
   const resumeEmbed = frame?.closest('.resume-embed');
@@ -500,6 +595,9 @@
     });
     btn.classList.add('is-active');
     btn.setAttribute('aria-pressed', 'true');
+    const label = btn.getAttribute('data-resume-label') || 'Default';
+    openFull?.setAttribute('aria-label', `Open ${label} resume at full size`);
+    download.setAttribute('aria-label', `Download ${label} resume PDF`);
     resumeEmbed?.classList.toggle(
       'is-netflix-resume',
       btn.getAttribute('data-resume-label') === 'Netflix'
@@ -507,7 +605,7 @@
   };
 
   const getResumeRenderer = () => {
-    rendererPromise ||= import('./resume-pdf-viewer.mjs?v=20260810-hidpi-mobile');
+    rendererPromise ||= import('./resume-pdf-viewer.mjs?v=20260810-accessible-viewer');
     return rendererPromise;
   };
 
@@ -522,6 +620,9 @@
 
   const setNativeResume = (src, label = 'Anthony Wohlfeil') => {
     download.href = src;
+    if (openFull) {
+      openFull.href = src;
+    }
     clearInteractivePreview();
     frame.src = `${src}#${PDF_VIEW_OPTIONS}`;
     frame.title = `${label} resume for Anthony Wohlfeil`;
@@ -595,6 +696,9 @@
     }
     setDownloadVisible(true);
     download.href = src;
+    if (openFull) {
+      openFull.href = src;
+    }
 
     if (preview && renderSrc) {
       frame.hidden = true;
@@ -797,14 +901,29 @@
     });
   });
 
-  const initial = document.querySelector('.resume-variant.is-active') || buttons[0];
-  if (initial) {
-    applySelection(initial);
-  }
+  let viewerInitialized = false;
+  const initializeResumeViewer = () => {
+    if (viewerInitialized) {
+      return;
+    }
+    viewerInitialized = true;
+    const initial = document.querySelector('.resume-variant.is-active') || buttons[0];
+    if (initial) {
+      applySelection(initial);
+    }
+    buttons.forEach((btn) => {
+      if (!btn.classList.contains('is-active')) {
+        ensureAvailability(btn);
+      }
+    });
+  };
 
-  buttons.forEach((btn) => {
-    if (!btn.classList.contains('is-active')) {
-      ensureAvailability(btn);
+  if (window.location.hash === '#resume') {
+    initializeResumeViewer();
+  }
+  window.addEventListener('hashchange', () => {
+    if (window.location.hash === '#resume') {
+      initializeResumeViewer();
     }
   });
 })();
@@ -822,6 +941,7 @@
 
     const actions = document.createElement('div');
     actions.className = 'project-actions';
+    const projectName = card.querySelector('h2')?.textContent.trim() || 'project';
 
     const skills = card.dataset.skills;
     const categorizedSkills = [
@@ -838,6 +958,10 @@
       skillsButton.className = 'button project-skills-trigger';
       skillsButton.type = 'button';
       skillsButton.textContent = 'Tech Stack';
+      skillsButton.setAttribute('aria-label', `View the tech stack for ${projectName}`);
+      skillsButton.setAttribute('aria-haspopup', 'dialog');
+      skillsButton.setAttribute('aria-expanded', 'false');
+      skillsButton.setAttribute('aria-controls', 'skills-popover');
       skillsButton.dataset.skills = skills || '';
       if (hasCategorized) {
         categorizedSkills.forEach((item) => {
@@ -858,6 +982,7 @@
       linkEl.href = link;
       linkEl.target = '_blank';
       linkEl.rel = 'noopener';
+      linkEl.setAttribute('aria-label', `Visit ${projectName}`);
       actions.appendChild(linkEl);
     }
 
@@ -870,6 +995,7 @@
       githubEl.href = github;
       githubEl.target = '_blank';
       githubEl.rel = 'noopener';
+      githubEl.setAttribute('aria-label', `View ${projectName} on GitHub`);
       actions.appendChild(githubEl);
     }
     card.appendChild(actions);
@@ -884,9 +1010,21 @@
 
   const backdrop = document.createElement('div');
   backdrop.className = 'skills-popover-backdrop';
+  backdrop.setAttribute('aria-hidden', 'true');
 
   const popover = document.createElement('div');
   popover.className = 'skills-popover';
+  popover.id = 'skills-popover';
+  popover.setAttribute('role', 'dialog');
+  popover.setAttribute('aria-modal', 'true');
+  popover.setAttribute('aria-hidden', 'true');
+
+  const closeButton = document.createElement('button');
+  closeButton.className = 'skills-popover-close';
+  closeButton.type = 'button';
+  closeButton.setAttribute('aria-label', 'Close tech stack');
+  closeButton.textContent = '×';
+  popover.appendChild(closeButton);
 
   const list = document.createElement('ul');
   list.className = 'skills-popover-list';
@@ -897,10 +1035,17 @@
 
   let activeTrigger = null;
 
-  const closePopover = () => {
+  const closePopover = (restoreFocus = true) => {
+    const previousTrigger = activeTrigger;
     backdrop.classList.remove('is-visible');
     popover.classList.remove('is-visible');
+    backdrop.setAttribute('aria-hidden', 'true');
+    popover.setAttribute('aria-hidden', 'true');
+    previousTrigger?.setAttribute('aria-expanded', 'false');
     activeTrigger = null;
+    if (restoreFocus && previousTrigger) {
+      previousTrigger.focus({ preventScroll: true });
+    }
   };
 
   const positionPopover = (trigger) => {
@@ -921,6 +1066,7 @@
     if (top + popRect.height > window.innerHeight - 12 + scrollY) {
       top = rect.top - popRect.height - gap + scrollY;
     }
+    top = Math.max(scrollY + 12, top);
 
     popover.style.left = `${left}px`;
     popover.style.top = `${top}px`;
@@ -967,7 +1113,12 @@
 
     backdrop.classList.add('is-visible');
     popover.classList.add('is-visible');
+    backdrop.setAttribute('aria-hidden', 'false');
+    popover.setAttribute('aria-hidden', 'false');
+    popover.setAttribute('aria-label', `Tech stack for ${trigger.closest('.project-card')?.querySelector('h2')?.textContent.trim() || 'project'}`);
     activeTrigger = trigger;
+    trigger.setAttribute('aria-expanded', 'true');
+    closeButton.focus({ preventScroll: true });
 
     window.requestAnimationFrame(() => {
       positionPopover(trigger);
@@ -990,12 +1141,21 @@
     closePopover();
   });
 
+  closeButton.addEventListener('click', () => {
+    closePopover();
+  });
+
   popover.addEventListener('click', (event) => {
     event.stopPropagation();
   });
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
+    if (event.key === 'Escape' && activeTrigger) {
+      event.preventDefault();
       closePopover();
+    }
+    if (event.key === 'Tab' && activeTrigger) {
+      event.preventDefault();
+      closeButton.focus();
     }
   });
 
