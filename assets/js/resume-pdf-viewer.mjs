@@ -51,8 +51,13 @@ const labelAnnotationLinks = (annotationLayer) => {
   annotationLayer.querySelectorAll('a[href]').forEach((link) => {
     let label = 'Open profile link';
     try {
-      const hostname = new URL(link.href).hostname.replace(/^www\./, '');
-      label = linkLabels.get(hostname) || label;
+      const url = new URL(link.href);
+      if (url.protocol === 'mailto:') {
+        label = 'Email Anthony Wohlfeil';
+      } else {
+        const hostname = url.hostname.replace(/^www\./, '');
+        label = linkLabels.get(hostname) || label;
+      }
     } catch (error) {
       // Keep the generic accessible label for malformed or internal links.
     }

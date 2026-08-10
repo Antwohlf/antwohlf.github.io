@@ -498,7 +498,7 @@
   };
 
   const getResumeRenderer = () => {
-    rendererPromise ||= import('./resume-pdf-viewer.mjs?v=20260809-interactive-pdf');
+    rendererPromise ||= import('./resume-pdf-viewer.mjs?v=20260809-interactive-pdf-default');
     return rendererPromise;
   };
 
