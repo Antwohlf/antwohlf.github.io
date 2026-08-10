@@ -477,6 +477,7 @@
   const availabilityCache = new Map();
   const FADE_DURATION = 250;
   const FADE_OUT_DELAY = 120;
+  const PDF_VIEW_OPTIONS = 'page=1&zoom=page-width&toolbar=0&navpanes=0&scrollbar=0';
   const brandColors = new Map([
     ['default', '#4fc3ff'],
     ['google', '#4285f4'],
@@ -494,7 +495,7 @@
   };
 
   const setResume = (src) => {
-    frame.src = src + '#toolbar=0&navpanes=0&scrollbar=0&view=FitH';
+    frame.src = `${src}#${PDF_VIEW_OPTIONS}`;
     download.href = src;
   };
 
