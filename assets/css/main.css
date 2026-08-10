@@ -4416,6 +4416,7 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
     width: 100%;
     height: auto;
     display: block;
+    border-radius: 0;
     background: #fff;
     opacity: 1;
 }
