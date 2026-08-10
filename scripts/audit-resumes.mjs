@@ -103,8 +103,8 @@ const failures = [];
 const warnings = [];
 const rows = [];
 
-if (files.length !== 7) {
-  failures.push(`Expected 7 resume PDFs; found ${files.length}.`);
+if (files.length !== 8) {
+  failures.push(`Expected 8 resume PDFs; found ${files.length}.`);
 }
 
 for (const file of files) {

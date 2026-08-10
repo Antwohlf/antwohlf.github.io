@@ -4212,6 +4212,15 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
     background: #fff;
 }
 
+.resume-embed.is-netflix-resume .resume-frame-wrap {
+    background: #101010;
+}
+
+.resume-embed.is-netflix-resume .resume-frame,
+.resume-embed.is-netflix-resume .resume-pdf-page {
+    background: #101010;
+}
+
 .resume-embed .resume-frame,
 .resume-embed .resume-preview,
 .resume-embed .resume-placeholder {

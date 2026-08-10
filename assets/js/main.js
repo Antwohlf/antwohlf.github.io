@@ -470,6 +470,7 @@
   const placeholder = document.getElementById('resume-placeholder');
   const download = document.getElementById('resume-download');
   const downloadWrap = download ? download.closest('.resume-link') : null;
+  const resumeEmbed = frame?.closest('.resume-embed');
   const buttons = document.querySelectorAll('.resume-variant');
   if (!frame || !download || !buttons.length) {
     return;
@@ -493,8 +494,16 @@
   ]);
 
   const setActive = (btn) => {
-    buttons.forEach((b) => b.classList.remove('is-active'));
+    buttons.forEach((b) => {
+      b.classList.remove('is-active');
+      b.setAttribute('aria-pressed', 'false');
+    });
     btn.classList.add('is-active');
+    btn.setAttribute('aria-pressed', 'true');
+    resumeEmbed?.classList.toggle(
+      'is-netflix-resume',
+      btn.getAttribute('data-resume-label') === 'Netflix'
+    );
   };
 
   const getResumeRenderer = () => {
@@ -511,10 +520,11 @@
     }).catch(() => {});
   };
 
-  const setNativeResume = (src) => {
+  const setNativeResume = (src, label = 'Anthony Wohlfeil') => {
     download.href = src;
     clearInteractivePreview();
     frame.src = `${src}#${PDF_VIEW_OPTIONS}`;
+    frame.title = `${label} resume for Anthony Wohlfeil`;
     frame.hidden = false;
     if (preview) {
       preview.hidden = true;
@@ -605,13 +615,13 @@
           return;
         }
         console.error('Unable to render interactive resume preview.', error);
-        const fallbackView = setNativeResume(src);
+        const fallbackView = setNativeResume(src, label);
         fallbackView.classList.remove('is-fading');
       }
       return;
     }
 
-    const activeView = setNativeResume(src);
+    const activeView = setNativeResume(src, label);
     const handleLoad = () => {
       if (token !== selectionToken) {
         return;
