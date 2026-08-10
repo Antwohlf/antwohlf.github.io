@@ -9,10 +9,10 @@
   }
 
   var locations = [
-    { id: 'detroit', label: 'Detroit', timeZone: 'America/New_York', latitude: 42.3314, longitude: -83.0458, alertProvider: 'nws', active: true },
-    { id: 'annarbor', label: 'Ann Arbor', timeZone: 'America/New_York', latitude: 42.2808, longitude: -83.7430, alertProvider: 'nws', active: true },
-    { id: 'nyc', label: 'New York City', timeZone: 'America/New_York', latitude: 40.7812, longitude: -73.9665, alertProvider: 'nws', active: true },
-    { id: 'sansebastian', label: 'San Sebastian', timeZone: 'Europe/Madrid', latitude: 43.3183, longitude: -1.9812, active: true },
+    { id: 'detroit', label: 'Detroit', timeZone: 'America/New_York', latitude: 42.3314, longitude: -83.0458, alertProvider: 'nws', mobileBackgroundPosition: '100% center', active: true },
+    { id: 'annarbor', label: 'Ann Arbor', timeZone: 'America/New_York', latitude: 42.2808, longitude: -83.7430, alertProvider: 'nws', mobileBackgroundPosition: '10% center', active: true },
+    { id: 'nyc', label: 'New York City', timeZone: 'America/New_York', latitude: 40.7812, longitude: -73.9665, alertProvider: 'nws', mobileBackgroundPosition: '50% center', active: true },
+    { id: 'sansebastian', label: 'San Sebastian', timeZone: 'Europe/Madrid', latitude: 43.3183, longitude: -1.9812, mobileBackgroundPosition: '50% center', active: true },
     { id: 'tokyo', label: 'Tokyo', timeZone: 'Asia/Tokyo', active: false },
     { id: 'losangeles', label: 'Los Angeles', timeZone: 'America/Los_Angeles', active: false }
   ];
@@ -579,8 +579,9 @@
     return storageBaseUrl + location.id + '_summer_' + segment + '_' + sky + '.png';
   }
 
-  function applyBackgroundImage(imageUrl) {
+  function applyBackgroundImage(imageUrl, mobileBackgroundPosition) {
     bg.style.setProperty('--bg-image', 'url("' + imageUrl + '")');
+    bg.style.setProperty('--bg-mobile-position', mobileBackgroundPosition || 'center');
   }
 
   function applyWeatherOverlay(overlay) {
@@ -624,7 +625,10 @@
     toggle.setAttribute('title', location.label + ' · ' + titleCase(segment) + ' · ' + weatherText);
     updateActiveButton(location.id);
     applyWeatherOverlay(weather.overlay);
-    applyBackgroundImage(isLocalReviewMode ? getReviewImageUrl(location, segment, weather.sky) : getImageUrl(location, season, segment, weather));
+    applyBackgroundImage(
+      isLocalReviewMode ? getReviewImageUrl(location, segment, weather.sky) : getImageUrl(location, season, segment, weather),
+      location.mobileBackgroundPosition
+    );
   }
 
   function buildLocalReviewControls() {

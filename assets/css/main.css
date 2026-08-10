@@ -1702,6 +1702,12 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 			z-index: 1;
 		}
 
+		@media screen and (max-width: 736px) {
+			#bg:after {
+				background-position: var(--bg-mobile-position, center);
+			}
+		}
+
 		body.is-article-visible #bg:after {
 			-moz-transform: scale(1);
 			-webkit-transform: scale(1);
