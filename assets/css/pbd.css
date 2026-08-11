@@ -1730,14 +1730,28 @@ input, select, textarea {
 	background: #fff;
 }
 
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible,
-summary:focus-visible,
-[tabindex]:focus-visible {
-	outline: 2px solid #4fc3ff !important;
+html {
+	-webkit-tap-highlight-color: transparent;
+}
+
+body:not(.is-keyboard-navigation) a:focus,
+body:not(.is-keyboard-navigation) button:focus,
+body:not(.is-keyboard-navigation) input:focus,
+body:not(.is-keyboard-navigation) select:focus,
+body:not(.is-keyboard-navigation) textarea:focus,
+body:not(.is-keyboard-navigation) summary:focus,
+body:not(.is-keyboard-navigation) [tabindex]:focus {
+	outline: none !important;
+}
+
+body.is-keyboard-navigation a:focus,
+body.is-keyboard-navigation button:focus,
+body.is-keyboard-navigation input:focus,
+body.is-keyboard-navigation select:focus,
+body.is-keyboard-navigation textarea:focus,
+body.is-keyboard-navigation summary:focus,
+body.is-keyboard-navigation [tabindex]:focus {
+	outline: 2px solid rgba(255, 255, 255, 0.92) !important;
 	outline-offset: 4px;
 }
 
