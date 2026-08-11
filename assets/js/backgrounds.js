@@ -589,15 +589,17 @@
     }
 
     var isMobileViewport = window.innerWidth <= 736;
-    var pixelWidth = Math.round(window.innerWidth * Math.min(window.devicePixelRatio || 1, 2));
-    var targetWidth = isMobileViewport
-      ? 1280
-      : pixelWidth <= 1920
+    var sourceAspectRatio = 16 / 9;
+    var coverPixelWidth = Math.round(
+      Math.max(window.innerWidth, window.innerHeight * sourceAspectRatio) *
+      Math.min(window.devicePixelRatio || 1, 2)
+    );
+    var targetWidth = coverPixelWidth <= 1920
       ? 1920
-      : pixelWidth <= 2560
+      : coverPixelWidth <= 2560
       ? 2560
       : 2816;
-    var quality = isMobileViewport ? 74 : 88;
+    var quality = isMobileViewport ? 90 : 88;
 
     // Preserve the source composition here and let CSS perform the single
     // viewport crop. Server-side `cover` was cropping the image a second time.
@@ -788,7 +790,7 @@
     }
   }
 
-  function openMenu() {
+  function openMenu(focusCurrent) {
     menu.removeAttribute('inert');
     menu.classList.add('is-visible');
     menu.setAttribute('aria-hidden', 'false');
@@ -798,23 +800,27 @@
       primaryNav.setAttribute('aria-hidden', 'true');
       primaryNav.setAttribute('inert', '');
     }
-    var current = menu.querySelector('[aria-current="true"]') || menu.querySelector('button');
-    if (current) {
-      current.focus();
+    if (focusCurrent) {
+      var current = menu.querySelector('[aria-current="true"]') || menu.querySelector('button');
+      if (current) {
+        current.focus();
+      }
     }
   }
 
   function keepReviewMenuOpen() {
-    window.setTimeout(openMenu, 0);
+    window.setTimeout(function() {
+      openMenu(false);
+    }, 0);
   }
 
-  toggle.addEventListener('click', function() {
+  toggle.addEventListener('click', function(event) {
     if (menu.classList.contains('is-visible')) {
       closeMenu();
       return;
     }
 
-    openMenu();
+    openMenu(event.detail === 0);
   });
 
   mobileMenuQuery.addEventListener('change', function() {
@@ -858,11 +864,6 @@
       }
 
       setBackground();
-      if (isLocalReviewMode) {
-        keepReviewMenuOpen();
-      } else {
-        closeMenu();
-      }
       return;
     }
 
@@ -918,12 +919,6 @@
 
       setBackground();
       keepReviewMenuOpen();
-    }
-  });
-
-  document.addEventListener('click', function(event) {
-    if (!menu.contains(event.target) && !toggle.contains(event.target)) {
-      closeMenu();
     }
   });
 

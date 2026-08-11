@@ -12,18 +12,28 @@
 		$main_articles = $main.children('article');
 	var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 	var articleTrigger = null;
+	var keyboardNavigationKeys = ['Tab', 'Enter', ' ', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Home', 'End', 'Escape'];
+
+	document.addEventListener('keydown', function(event) {
+		if (keyboardNavigationKeys.indexOf(event.key) !== -1)
+			$body.addClass('is-keyboard-navigation');
+	}, true);
+
+	var clearKeyboardNavigation = function() {
+		$body.removeClass('is-keyboard-navigation');
+	};
+
+	document.addEventListener('pointerdown', clearKeyboardNavigation, true);
+	document.addEventListener('mousedown', clearKeyboardNavigation, true);
+	document.addEventListener('touchstart', clearKeyboardNavigation, { capture: true, passive: true });
 
 	var setBackgroundControlsAvailable = function(isAvailable) {
 		var toggle = document.getElementById('bg-toggle');
 		var menu = document.getElementById('bg-menu');
 		if (toggle)
 			toggle.toggleAttribute('inert', !isAvailable);
-		if (!isAvailable && menu) {
-			menu.classList.remove('is-visible');
-			menu.setAttribute('aria-hidden', 'true');
-			menu.setAttribute('inert', '');
-			toggle && toggle.setAttribute('aria-expanded', 'false');
-		}
+		if (menu)
+			menu.toggleAttribute('inert', !isAvailable || !menu.classList.contains('is-visible'));
 	};
 
 	var focusArticle = function($article) {
