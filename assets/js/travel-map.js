@@ -85,7 +85,7 @@
       attributionControl: false,
       maxBounds: [[-85, -180], [85, 180]],
       minZoom: 0,
-      scrollWheelZoom: false,
+      scrollWheelZoom: true,
       worldCopyJump: false,
       zoomControl: true
     });

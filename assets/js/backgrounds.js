@@ -5,8 +5,11 @@
   var locationTime = document.getElementById('location-time');
   var primaryNav = document.querySelector('#header nav');
   var mobileMenuQuery = window.matchMedia('(max-width: 736px)');
+  var backgroundLayers = bg
+    ? Array.prototype.slice.call(bg.querySelectorAll('.background-layer'))
+    : [];
 
-  if (!bg || !toggle || !menu || !locationTime) {
+  if (!bg || !toggle || !menu || !locationTime || backgroundLayers.length < 2) {
     return;
   }
 
@@ -88,6 +91,12 @@
   var reviewSky = getSavedReviewSky();
   var reviewOverlay = getSavedReviewOverlay();
   var weatherStateByLocation = {};
+  var activeBackgroundLayerIndex = -1;
+  var backgroundImageRequestId = 0;
+  var currentBackgroundImageUrl = '';
+  var currentBackgroundPosition = '';
+  var pendingBackgroundImageUrl = '';
+  var pendingBackgroundPosition = '';
 
   function getSeasonalApprovalState() {
     var state = {};
@@ -600,8 +609,70 @@
   }
 
   function applyBackgroundImage(imageUrl, mobileBackgroundPosition) {
-    bg.style.setProperty('--bg-image', 'url("' + imageUrl + '")');
-    bg.style.setProperty('--bg-mobile-position', mobileBackgroundPosition || 'center');
+    var backgroundPosition = mobileBackgroundPosition || 'center';
+
+    if (
+      (imageUrl === currentBackgroundImageUrl && backgroundPosition === currentBackgroundPosition) ||
+      (imageUrl === pendingBackgroundImageUrl && backgroundPosition === pendingBackgroundPosition)
+    ) {
+      return;
+    }
+
+    var requestId = ++backgroundImageRequestId;
+    var preloader = new Image();
+    pendingBackgroundImageUrl = imageUrl;
+    pendingBackgroundPosition = backgroundPosition;
+    preloader.decoding = 'async';
+
+    preloader.onload = function() {
+      var ready = typeof preloader.decode === 'function'
+        ? preloader.decode().catch(function() {})
+        : Promise.resolve();
+
+      ready.then(function() {
+        if (requestId !== backgroundImageRequestId) {
+          return;
+        }
+
+        var nextLayerIndex = activeBackgroundLayerIndex === -1
+          ? 0
+          : (activeBackgroundLayerIndex + 1) % backgroundLayers.length;
+        var nextLayer = backgroundLayers[nextLayerIndex];
+        var previousLayer = activeBackgroundLayerIndex === -1
+          ? null
+          : backgroundLayers[activeBackgroundLayerIndex];
+
+        nextLayer.style.backgroundImage = 'url("' + imageUrl.replace(/"/g, '%22') + '")';
+        nextLayer.style.setProperty('--bg-layer-position', backgroundPosition);
+        nextLayer.classList.remove('is-active');
+        void nextLayer.offsetWidth;
+
+        window.requestAnimationFrame(function() {
+          if (requestId !== backgroundImageRequestId) {
+            return;
+          }
+          nextLayer.classList.add('is-active');
+          if (previousLayer) {
+            previousLayer.classList.remove('is-active');
+          }
+          activeBackgroundLayerIndex = nextLayerIndex;
+          currentBackgroundImageUrl = imageUrl;
+          currentBackgroundPosition = backgroundPosition;
+          pendingBackgroundImageUrl = '';
+          pendingBackgroundPosition = '';
+        });
+      });
+    };
+
+    preloader.onerror = function() {
+      if (requestId !== backgroundImageRequestId) {
+        return;
+      }
+      pendingBackgroundImageUrl = '';
+      pendingBackgroundPosition = '';
+    };
+
+    preloader.src = imageUrl;
   }
 
   function applyWeatherOverlay(overlay) {

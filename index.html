@@ -311,7 +311,7 @@
 									<div id="travel-map" class="travel-map" role="region" aria-label="Interactive map of Anthony Wohlfeil's travel destinations" aria-describedby="travel-map-caption">
 										<div class="travel-map-loading">Loading destinations&hellip;</div>
 									</div>
-									<p id="travel-map-caption" class="travel-map-caption"><span>79 destinations &middot; 43 flight markers</span><span>Drag or zoom to explore</span><span class="travel-map-credit"><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">&copy; OpenStreetMap</a> &middot; <a href="https://carto.com/attributions" target="_blank" rel="noopener">&copy; CARTO</a></span></p>
+									<p id="travel-map-caption" class="travel-map-caption"><span>79 destinations &middot; 43 flight markers</span><span>Drag, scroll, or pinch to explore</span><span class="travel-map-credit"><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">&copy; OpenStreetMap</a> &middot; <a href="https://carto.com/attributions" target="_blank" rel="noopener">&copy; CARTO</a></span></p>
 									<noscript><p class="travel-map-fallback"><a href="https://snazzymaps.com/embed/474495" target="_blank" rel="noopener">Open the travel map</a></p></noscript>
 								</div>
 
@@ -1019,6 +1019,8 @@
 
 		<!-- BG -->
 		<div id="bg">
+			<div class="background-layer" aria-hidden="true"></div>
+			<div class="background-layer" aria-hidden="true"></div>
 			<div class="weather-particles" aria-hidden="true"></div>
 		</div>
 		<div id="location-time" class="location-time" aria-live="polite">
@@ -1034,8 +1036,8 @@
 				<script src="assets/js/browser.min.js"></script>
 				<script src="assets/js/breakpoints.min.js"></script>
 				<script src="assets/js/util.js"></script>
-					<script src="assets/js/backgrounds.js?v=20260811-nav-mode-transition"></script>
-					<script src="assets/js/travel-map.js?v=20260811-columbus-x"></script>
+					<script src="assets/js/backgrounds.js?v=20260811-background-crossfade"></script>
+					<script src="assets/js/travel-map.js?v=20260811-trackpad-zoom"></script>
 					<script src="assets/js/main.js?v=20260811-nav-mode-transition"></script>
 
 	</body>
