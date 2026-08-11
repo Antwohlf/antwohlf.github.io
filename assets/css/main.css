@@ -1907,8 +1907,8 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		width: 3.25rem;
-		height: 3.25rem;
+		width: 3.5rem;
+		height: 3.5rem;
 		isolation: isolate;
 		border-radius: 999px;
 		border: 0;
@@ -1925,13 +1925,13 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 		}
 
 		.bg-toggle .icon {
-			width: 1.6rem;
-			height: 1.6rem;
+			width: 1.75rem;
+			height: 1.75rem;
 			display: block;
 			position: relative;
 			z-index: 1;
-			font-size: 1.55rem;
-			line-height: 1.6rem;
+			font-size: 1.7rem;
+			line-height: 1.75rem;
 		}
 
 		.bg-toggle:hover {
@@ -1952,7 +1952,7 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 	.bg-menu {
 		position: fixed;
 		right: 1.5rem;
-		bottom: 5.9rem;
+		bottom: 6.15rem;
 		z-index: 101;
 		display: flex;
 		flex-direction: column;
