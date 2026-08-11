@@ -86,11 +86,14 @@
   var stormWeatherCacheTtlMs = 2 * 60 * 1000;
   var staleWeatherCacheTtlMs = 60 * 60 * 1000;
   var weatherFetchTimeoutMs = 4500;
+  var backgroundCacheName = 'weather-backgrounds-v1';
+  var backgroundCacheLimit = 8;
   var locationIndex = getSavedLocationIndex();
   var reviewSegment = getSavedReviewSegment();
   var reviewSky = getSavedReviewSky();
   var reviewOverlay = getSavedReviewOverlay();
   var weatherStateByLocation = {};
+  var weatherRequestByLocation = {};
   var activeBackgroundLayerIndex = -1;
   var backgroundImageRequestId = 0;
   var currentBackgroundImageUrl = '';
@@ -508,20 +511,24 @@
   }
 
   function fetchWeather(location) {
+    if (weatherRequestByLocation[location.id]) {
+      return weatherRequestByLocation[location.id];
+    }
+
     if (!location.latitude || !location.longitude || !window.fetch) {
       weatherStateByLocation[location.id] = getFallbackWeather();
       setBackground();
-      return;
+      return Promise.resolve(weatherStateByLocation[location.id]);
     }
 
     var cachedWeather = readCachedWeather(location.id, false);
     if (cachedWeather) {
       weatherStateByLocation[location.id] = cachedWeather;
       setBackground();
-      return;
+      return Promise.resolve(cachedWeather);
     }
 
-    Promise.all([fetchCurrentWeather(location), fetchWeatherAlerts(location)])
+    weatherRequestByLocation[location.id] = Promise.all([fetchCurrentWeather(location), fetchWeatherAlerts(location)])
       .then(function(results) {
         var weather = results[0] || getFallbackWeather();
         var alertOverride = results[1];
@@ -541,11 +548,18 @@
           writeCachedWeather(location.id, weather);
         }
         setBackground();
+        return weather;
       })
       .catch(function() {
         weatherStateByLocation[location.id] = readCachedWeather(location.id, true) || getFallbackWeather();
         setBackground();
+        return weatherStateByLocation[location.id];
+      })
+      .finally(function() {
+        delete weatherRequestByLocation[location.id];
       });
+
+    return weatherRequestByLocation[location.id];
   }
 
   function getWeatherForLocation(location) {
@@ -560,11 +574,10 @@
     }
 
     if (!weatherStateByLocation[location.id]) {
-      weatherStateByLocation[location.id] = getFallbackWeather();
       fetchWeather(location);
     }
 
-    return weatherStateByLocation[location.id];
+    return weatherStateByLocation[location.id] || null;
   }
 
   function getSeasonalFilename(location, season, segment, sky) {
@@ -610,6 +623,75 @@
     return storageBaseUrl + location.id + '_summer_' + segment + '_' + sky + '.png';
   }
 
+  function pruneBackgroundCache(cache) {
+    cache.keys().then(function(requests) {
+      var excess = requests.length - backgroundCacheLimit;
+
+      if (excess <= 0) {
+        return;
+      }
+
+      requests.slice(0, excess).forEach(function(request) {
+        cache.delete(request);
+      });
+    }).catch(function() {
+      // Cache maintenance is best-effort only.
+    });
+  }
+
+  function fetchBackgroundResponse(imageUrl) {
+    var request = new Request(imageUrl, {
+      mode: 'cors',
+      credentials: 'omit',
+      headers: {
+        Accept: 'image/webp,image/*,*/*;q=0.8'
+      }
+    });
+
+    if (!window.caches) {
+      return window.fetch(request);
+    }
+
+    return window.caches.open(backgroundCacheName).then(function(cache) {
+      return cache.match(request).then(function(cachedResponse) {
+        if (cachedResponse) {
+          return cachedResponse;
+        }
+
+        return window.fetch(request).then(function(response) {
+          if (response.ok) {
+            cache.put(request, response.clone()).then(function() {
+              pruneBackgroundCache(cache);
+            }).catch(function() {
+              // Browsing still works if storage is unavailable or full.
+            });
+          }
+          return response;
+        });
+      });
+    });
+  }
+
+  function getBackgroundDisplayUrl(imageUrl) {
+    if (!window.fetch || !window.URL || typeof window.URL.createObjectURL !== 'function') {
+      return Promise.resolve(imageUrl);
+    }
+
+    return fetchBackgroundResponse(imageUrl)
+      .then(function(response) {
+        if (!response.ok) {
+          throw new Error('Background request failed');
+        }
+        return response.blob();
+      })
+      .then(function(blob) {
+        return window.URL.createObjectURL(blob);
+      })
+      .catch(function() {
+        return imageUrl;
+      });
+  }
+
   function applyBackgroundImage(imageUrl, mobileBackgroundPosition) {
     var backgroundPosition = mobileBackgroundPosition || 'center';
 
@@ -626,55 +708,79 @@
     pendingBackgroundPosition = backgroundPosition;
     preloader.decoding = 'async';
 
-    preloader.onload = function() {
-      var ready = typeof preloader.decode === 'function'
-        ? preloader.decode().catch(function() {})
-        : Promise.resolve();
+    getBackgroundDisplayUrl(imageUrl).then(function(displayUrl) {
+      if (requestId !== backgroundImageRequestId) {
+        if (displayUrl.indexOf('blob:') === 0) {
+          window.URL.revokeObjectURL(displayUrl);
+        }
+        return;
+      }
 
-      ready.then(function() {
+      preloader.onload = function() {
+        var ready = typeof preloader.decode === 'function'
+          ? preloader.decode().catch(function() {})
+          : Promise.resolve();
+
+        ready.then(function() {
+          if (requestId !== backgroundImageRequestId) {
+            if (displayUrl.indexOf('blob:') === 0) {
+              window.URL.revokeObjectURL(displayUrl);
+            }
+            return;
+          }
+
+          var nextLayerIndex = activeBackgroundLayerIndex === -1
+            ? 0
+            : (activeBackgroundLayerIndex + 1) % backgroundLayers.length;
+          var nextLayer = backgroundLayers[nextLayerIndex];
+          var previousLayer = activeBackgroundLayerIndex === -1
+            ? null
+            : backgroundLayers[activeBackgroundLayerIndex];
+          var previousObjectUrl = nextLayer.getAttribute('data-background-object-url');
+
+          if (previousObjectUrl) {
+            window.URL.revokeObjectURL(previousObjectUrl);
+            nextLayer.removeAttribute('data-background-object-url');
+          }
+
+          nextLayer.style.backgroundImage = 'url("' + displayUrl.replace(/"/g, '%22') + '")';
+          if (displayUrl.indexOf('blob:') === 0) {
+            nextLayer.setAttribute('data-background-object-url', displayUrl);
+          }
+          nextLayer.style.setProperty('--bg-layer-position', backgroundPosition);
+          nextLayer.classList.remove('is-active');
+          void nextLayer.offsetWidth;
+
+          window.requestAnimationFrame(function() {
+            if (requestId !== backgroundImageRequestId) {
+              return;
+            }
+            nextLayer.classList.add('is-active');
+            if (previousLayer) {
+              previousLayer.classList.remove('is-active');
+            }
+            activeBackgroundLayerIndex = nextLayerIndex;
+            currentBackgroundImageUrl = imageUrl;
+            currentBackgroundPosition = backgroundPosition;
+            pendingBackgroundImageUrl = '';
+            pendingBackgroundPosition = '';
+          });
+        });
+      };
+
+      preloader.onerror = function() {
+        if (displayUrl.indexOf('blob:') === 0) {
+          window.URL.revokeObjectURL(displayUrl);
+        }
         if (requestId !== backgroundImageRequestId) {
           return;
         }
+        pendingBackgroundImageUrl = '';
+        pendingBackgroundPosition = '';
+      };
 
-        var nextLayerIndex = activeBackgroundLayerIndex === -1
-          ? 0
-          : (activeBackgroundLayerIndex + 1) % backgroundLayers.length;
-        var nextLayer = backgroundLayers[nextLayerIndex];
-        var previousLayer = activeBackgroundLayerIndex === -1
-          ? null
-          : backgroundLayers[activeBackgroundLayerIndex];
-
-        nextLayer.style.backgroundImage = 'url("' + imageUrl.replace(/"/g, '%22') + '")';
-        nextLayer.style.setProperty('--bg-layer-position', backgroundPosition);
-        nextLayer.classList.remove('is-active');
-        void nextLayer.offsetWidth;
-
-        window.requestAnimationFrame(function() {
-          if (requestId !== backgroundImageRequestId) {
-            return;
-          }
-          nextLayer.classList.add('is-active');
-          if (previousLayer) {
-            previousLayer.classList.remove('is-active');
-          }
-          activeBackgroundLayerIndex = nextLayerIndex;
-          currentBackgroundImageUrl = imageUrl;
-          currentBackgroundPosition = backgroundPosition;
-          pendingBackgroundImageUrl = '';
-          pendingBackgroundPosition = '';
-        });
-      });
-    };
-
-    preloader.onerror = function() {
-      if (requestId !== backgroundImageRequestId) {
-        return;
-      }
-      pendingBackgroundImageUrl = '';
-      pendingBackgroundPosition = '';
-    };
-
-    preloader.src = imageUrl;
+      preloader.src = displayUrl;
+    });
   }
 
   function applyWeatherOverlay(overlay) {
@@ -714,15 +820,24 @@
     var segment = isLocalReviewMode ? reviewSegment : getTimeSegment(parts.hour);
     var renderSeason = isLocalReviewMode ? 'summer' : season;
     var weather = getWeatherForLocation(location);
+
+    locationTime.querySelector('.value').textContent = location.label + ' · ' + parts.time;
+    updateActiveButton(location.id);
+
+    if (!weather) {
+      locationTime.querySelector('.context').textContent = titleCase(segment) + ' · Checking weather';
+      toggle.setAttribute('aria-label', 'Change background location');
+      toggle.setAttribute('title', location.label + ' · ' + titleCase(segment) + ' · Checking weather');
+      return;
+    }
+
     var weatherText = weather.temperature === null
       ? weather.label
       : weather.temperature + '°F · ' + weather.label;
 
-    locationTime.querySelector('.value').textContent = location.label + ' · ' + parts.time;
     locationTime.querySelector('.context').textContent = titleCase(segment) + ' · ' + weatherText;
     toggle.setAttribute('aria-label', 'Change background location');
     toggle.setAttribute('title', location.label + ' · ' + titleCase(segment) + ' · ' + weatherText);
-    updateActiveButton(location.id);
     applyWeatherOverlay(weather.overlay);
     applyBackgroundImage(
       isLocalReviewMode ? getReviewImageUrl(location, segment, weather.sky) : getImageUrl(location, season, segment, weather),

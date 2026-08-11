@@ -55,6 +55,10 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;}
 
+[hidden] {
+	display: none !important;
+}
+
 body {
 	line-height: 1;
 }
@@ -2466,7 +2470,7 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 			min-height: 1.6em;
 			padding-right: 0.2em;
 			border-right: 3px solid currentColor;
-			font-family: "Source Code Pro", monospace;
+			font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
 			font-size: 1.35rem;
 			font-weight: 600;
 			white-space: nowrap;
@@ -2570,9 +2574,6 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 			}
 
 			body.is-preload #header .content .inner {
-				max-height: 0;
-				padding-top: 0;
-				padding-bottom: 0;
 				opacity: 0;
 			}
 
@@ -5031,12 +5032,21 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
     }
 
 @media screen and (max-width: 480px) {
+	#header .content {
+		width: 23.5rem;
+		max-width: calc(100vw - 1rem);
+	}
+
 	#header h1 .full-name {
 		display: none;
 	}
 
 	#header h1 .mobile-name {
 		display: inline;
+	}
+
+	#header .typing-demo {
+		font-size: clamp(1.05rem, 5.5vw, 1.35rem);
 	}
 }
 
