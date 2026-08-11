@@ -577,8 +577,20 @@
       return storageBaseUrl + filename;
     }
 
-    var targetWidth = window.innerWidth <= 736 ? 1280 : 1920;
-    return remoteTransformBaseUrl + filename + '?width=' + targetWidth + '&quality=72&resize=cover';
+    var isMobileViewport = window.innerWidth <= 736;
+    var pixelWidth = Math.round(window.innerWidth * Math.min(window.devicePixelRatio || 1, 2));
+    var targetWidth = isMobileViewport
+      ? 1280
+      : pixelWidth <= 1920
+      ? 1920
+      : pixelWidth <= 2560
+      ? 2560
+      : 2816;
+    var quality = isMobileViewport ? 74 : 88;
+
+    // Preserve the source composition here and let CSS perform the single
+    // viewport crop. Server-side `cover` was cropping the image a second time.
+    return remoteTransformBaseUrl + filename + '?width=' + targetWidth + '&quality=' + quality + '&resize=contain';
   }
 
   function getReviewImageUrl(location, segment, sky) {
