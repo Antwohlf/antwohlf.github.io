@@ -691,6 +691,19 @@ input, select, textarea {
 			display: block;
 		}
 
+		.image.pbd-hero-image {
+			display: block;
+			width: min(600px, 100%);
+			margin-right: auto;
+			margin-left: auto;
+			overflow: hidden;
+		}
+
+			.image.pbd-hero-image img {
+				width: 100%;
+				height: auto;
+			}
+
 		.image.left, .image.right {
 			max-width: 40%;
 		}
