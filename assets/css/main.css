@@ -744,6 +744,7 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 
 			.image.main img {
 				width: 100%;
+				height: auto;
 			}
 
 		@media screen and (max-width: 736px) {
