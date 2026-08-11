@@ -41,7 +41,7 @@
 			<link rel="preload" href="assets/webfonts/source-sans-pro-300.woff2" as="font" type="font/woff2" crossorigin />
 			<link rel="preload" href="assets/webfonts/source-sans-pro-600.woff2" as="font" type="font/woff2" crossorigin />
 			<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
-			<link rel="stylesheet" href="assets/css/main.css?v=20260811-mobile-nav-alignment" />
+			<link rel="stylesheet" href="assets/css/main.css?v=20260811-nav-mode-transition" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<link rel="icon" type="image/png" href="assets/images/favicon.png"/>
 	</head>
@@ -67,21 +67,23 @@
 								</div>
 							</div>
 						</div>
-						<nav>
-							<ul>
-								<li><a href="#intro">Intro</a></li>
-								<li><a href="#projects">Projects</a></li>
-								<li><a href="#travel">Travel</a></li>
-								<li><a href="#resume">Resume</a></li>
-								<li><a href="#contact">Contact</a></li>
-								<!--<li><a href="#external">External</a></li>-->
-							</ul>
-						</nav>
-						<div id="bg-menu" class="bg-menu" role="menu" aria-label="Background location" aria-hidden="true" inert>
-							<button type="button" data-location="detroit" role="menuitem">Detroit</button>
-							<button type="button" data-location="annarbor" role="menuitem">Ann Arbor</button>
-							<button type="button" data-location="nyc" role="menuitem">New York City</button>
-							<button type="button" data-location="sansebastian" role="menuitem">San Sebastian</button>
+						<div class="header-nav-slot">
+							<nav>
+								<ul>
+									<li><a href="#intro">Intro</a></li>
+									<li><a href="#projects">Projects</a></li>
+									<li><a href="#travel">Travel</a></li>
+									<li><a href="#resume">Resume</a></li>
+									<li><a href="#contact">Contact</a></li>
+									<!--<li><a href="#external">External</a></li>-->
+								</ul>
+							</nav>
+							<div id="bg-menu" class="bg-menu" role="menu" aria-label="Background location" aria-hidden="true" inert>
+								<button type="button" data-location="detroit" role="menuitem">Detroit</button>
+								<button type="button" data-location="annarbor" role="menuitem">Ann Arbor</button>
+								<button type="button" data-location="nyc" role="menuitem">New York City</button>
+								<button type="button" data-location="sansebastian" role="menuitem">San Sebastian</button>
+							</div>
 						</div>
 					</header>
 
@@ -1032,9 +1034,9 @@
 				<script src="assets/js/browser.min.js"></script>
 				<script src="assets/js/breakpoints.min.js"></script>
 				<script src="assets/js/util.js"></script>
-					<script src="assets/js/backgrounds.js?v=20260811-desktop-background-quality"></script>
+					<script src="assets/js/backgrounds.js?v=20260811-nav-mode-transition"></script>
 					<script src="assets/js/travel-map.js?v=20260811-columbus-x"></script>
-					<script src="assets/js/main.js?v=20260810-site-quality"></script>
+					<script src="assets/js/main.js?v=20260811-nav-mode-transition"></script>
 
 	</body>
 </html>

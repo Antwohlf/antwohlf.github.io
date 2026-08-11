@@ -104,7 +104,7 @@
 		}
 
 	// Nav.
-		var $nav = $header.children('nav'),
+		var $nav = $header.children('.header-nav-slot').children('nav'),
 			$nav_li = $nav.find('li');
 
 		// Add "middle" alignment classes if we're dealing with an even number of items.
