@@ -476,7 +476,7 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 	.travel-map .travel-map-airport-icon,
 	.travel-map .travel-map-columbus-icon {
 		border: 0;
-		background: transparent;
+		background: rgba(0, 0, 0, 0.35);
 	}
 
 	.travel-map .travel-map-pin-icon span {
