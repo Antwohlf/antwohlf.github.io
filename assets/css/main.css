@@ -1948,13 +1948,14 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 		z-index: 101;
 		display: flex;
 		flex-direction: column;
-		gap: 0.35rem;
+		gap: 0;
+		min-width: 10rem;
 		max-height: calc(100vh - 8.2rem);
 		overflow-y: auto;
-		padding: 0.6rem;
-		border-radius: 0.6rem;
-		border: 1px solid rgba(255, 255, 255, 0.3);
-		background: rgba(0, 0, 0, 0.55);
+		padding: 0;
+		border-radius: 4px;
+		border: 1px solid #ffffff;
+		background: transparent;
 		-webkit-overflow-scrolling: touch;
 		opacity: 0;
 		pointer-events: none;
@@ -1974,21 +1975,27 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 			display: block;
 			width: 100%;
 			appearance: none;
+			height: 2.75rem;
 			border: 0;
-			border-radius: 0.4rem;
-			padding: 0.35rem 0.6rem;
-			background: transparent;
+			border-top: solid 1px #ffffff;
+			border-radius: 0;
+			padding: 0 1.25rem 0 1.45rem;
+			background-color: rgba(0, 0, 0, 0.35);
 			color: #ffffff;
 			font-family: "Source Sans Pro", sans-serif;
 			font-size: 0.92rem;
 			font-weight: 600;
-			line-height: 1.65;
+			line-height: 2.75rem;
 			letter-spacing: 0.14rem;
-			text-align: left;
+			text-align: center;
 			cursor: pointer;
 			text-transform: none;
 			transition: background-color 0.2s ease-in-out;
 		}
+
+			.bg-menu button:first-child {
+				border-top: 0;
+			}
 
 		.bg-menu:not(.is-visible) button {
 			pointer-events: none;
@@ -2003,9 +2010,12 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 			text-transform: uppercase;
 		}
 
-		.bg-menu button:hover,
+		.bg-menu button:hover {
+			background-color: rgba(255, 255, 255, 0.075);
+		}
+
 		.bg-menu button.is-active {
-			background-color: rgba(255, 255, 255, 0.2);
+			background-color: rgba(255, 255, 255, 0.175);
 		}
 
 	.bg-menu button:focus-visible {
