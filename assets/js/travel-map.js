@@ -108,6 +108,12 @@
       iconAnchor: [6, 6],
       iconSize: [12, 12]
     });
+    var columbusIcon = window.L.divIcon({
+      className: 'travel-map-columbus-icon',
+      html: '<span aria-hidden="true"></span>',
+      iconAnchor: [7, 7],
+      iconSize: [14, 14]
+    });
     var markers = window.L.featureGroup();
 
     destinations.forEach(function(destination) {
@@ -117,12 +123,12 @@
         title: 'Travel destination'
       }));
     });
-    airports.forEach(function(airport) {
+    airports.forEach(function(airport, index) {
       markers.addLayer(window.L.marker(airport, {
-        icon: airportIcon,
+        icon: index === 0 ? columbusIcon : airportIcon,
         interactive: false,
-        zIndexOffset: -100,
-        title: 'Flight connection'
+        zIndexOffset: index === 0 ? 100 : -100,
+        title: index === 0 ? 'Columbus (Go Blue)' : 'Flight connection'
       }));
     });
     map.addLayer(markers);
