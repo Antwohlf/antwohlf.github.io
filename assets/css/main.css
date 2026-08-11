@@ -5038,6 +5038,10 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 }
 
 /* Accessibility and interaction refinements. */
+html {
+	-webkit-tap-highlight-color: transparent;
+}
+
 body:not(.is-keyboard-navigation) a:focus,
 body:not(.is-keyboard-navigation) button:focus,
 body:not(.is-keyboard-navigation) input:focus,
