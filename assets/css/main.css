@@ -5072,6 +5072,7 @@ body.is-keyboard-navigation .resume-pdf-annotation-layer .linkAnnotation > a:foc
 	appearance: none;
 	padding: 0;
 	border: 0;
+	box-shadow: none;
 	background: transparent;
 	color: inherit;
 	font: inherit;
@@ -5117,6 +5118,7 @@ body.is-keyboard-navigation .resume-pdf-annotation-layer .linkAnnotation > a:foc
 	height: 2.25rem;
 	padding: 0;
 	border: 0;
+	box-shadow: none;
 	background: transparent;
 	color: #fff;
 	font: inherit;

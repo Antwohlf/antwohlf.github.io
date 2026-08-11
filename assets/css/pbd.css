@@ -1760,6 +1760,7 @@ body.is-keyboard-navigation [tabindex]:focus {
 	appearance: none;
 	padding: 0;
 	border: 0;
+	box-shadow: none;
 	background: transparent;
 	color: inherit;
 	font: inherit;
