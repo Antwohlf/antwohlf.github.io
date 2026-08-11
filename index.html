@@ -41,7 +41,7 @@
 			<link rel="preload" href="assets/webfonts/source-sans-pro-300.woff2" as="font" type="font/woff2" crossorigin />
 			<link rel="preload" href="assets/webfonts/source-sans-pro-600.woff2" as="font" type="font/woff2" crossorigin />
 			<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
-			<link rel="stylesheet" href="assets/css/main.css?v=20260811-mobile-viewport" />
+			<link rel="stylesheet" href="assets/css/main.css?v=20260811-mobile-nav-alignment" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<link rel="icon" type="image/png" href="assets/images/favicon.png"/>
 	</head>
@@ -77,6 +77,12 @@
 								<!--<li><a href="#external">External</a></li>-->
 							</ul>
 						</nav>
+						<div id="bg-menu" class="bg-menu" role="menu" aria-label="Background location" aria-hidden="true" inert>
+							<button type="button" data-location="detroit" role="menuitem">Detroit</button>
+							<button type="button" data-location="annarbor" role="menuitem">Ann Arbor</button>
+							<button type="button" data-location="nyc" role="menuitem">New York City</button>
+							<button type="button" data-location="sansebastian" role="menuitem">San Sebastian</button>
+						</div>
 					</header>
 
 				<!-- Main -->
@@ -1021,13 +1027,6 @@
 		<button id="bg-toggle" class="bg-toggle" type="button" aria-label="Change background location" title="Change background location" aria-controls="bg-menu" aria-expanded="false">
 			<span class="icon solid fa-globe-americas" aria-hidden="true"></span>
 		</button>
-			<div id="bg-menu" class="bg-menu" role="menu" aria-label="Background location" aria-hidden="true" inert>
-			<button type="button" data-location="detroit" role="menuitem">Detroit</button>
-			<button type="button" data-location="annarbor" role="menuitem">Ann Arbor</button>
-			<button type="button" data-location="nyc" role="menuitem">New York City</button>
-			<button type="button" data-location="sansebastian" role="menuitem">San Sebastian</button>
-		</div>
-
 		<!-- Scripts -->
 				<script src="assets/js/jquery.min.js"></script>
 				<script src="assets/js/browser.min.js"></script>
