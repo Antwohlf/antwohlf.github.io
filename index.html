@@ -41,7 +41,7 @@
 			<link rel="preload" href="assets/webfonts/source-sans-pro-300.woff2" as="font" type="font/woff2" crossorigin />
 			<link rel="preload" href="assets/webfonts/source-sans-pro-600.woff2" as="font" type="font/woff2" crossorigin />
 			<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
-			<link rel="stylesheet" href="assets/css/main.css?v=20260811-image-aspect-ratios" />
+			<link rel="stylesheet" href="assets/css/main.css?v=20260811-fast-travel-map" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<link rel="icon" type="image/png" href="assets/images/favicon.png"/>
 	</head>
@@ -299,8 +299,13 @@
 								<p>My happiest memories are with wonderful people in cool places. Currently documenting my travels at <a href="https://www.instagram.com/antspassport/" style="color:cyan;border:none" target="_blank" rel="noopener">@antspassport</a></p>
 
 								<h2>Travel Map</h2>
-								<iframe src="https://snazzymaps.com/embed/474495" height="300" style="width:100%; border:none;" title="Map of Anthony Wohlfeil's travels" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-								<br><br>
+								<div class="travel-map-shell">
+									<div id="travel-map" class="travel-map" role="region" aria-label="Interactive map of Anthony Wohlfeil's travel destinations" aria-describedby="travel-map-caption">
+										<div class="travel-map-loading">Loading destinations&hellip;</div>
+									</div>
+									<p id="travel-map-caption" class="travel-map-caption"><span>79 destinations &middot; 43 flight markers</span><span>Drag or zoom to explore</span><span class="travel-map-credit"><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">&copy; OpenStreetMap</a> &middot; <a href="https://carto.com/attributions" target="_blank" rel="noopener">&copy; CARTO</a></span></p>
+									<noscript><p class="travel-map-fallback"><a href="https://snazzymaps.com/embed/474495" target="_blank" rel="noopener">Open the travel map</a></p></noscript>
+								</div>
 
 								<details id="travel-2026" class="travel-year" open>
 									<summary class="year-heading">2026</summary>
@@ -1029,6 +1034,7 @@
 				<script src="assets/js/breakpoints.min.js"></script>
 				<script src="assets/js/util.js"></script>
 					<script src="assets/js/backgrounds.js?v=20260811-desktop-background-quality"></script>
+					<script src="assets/js/travel-map.js?v=20260811-all-markers"></script>
 					<script src="assets/js/main.js?v=20260810-site-quality"></script>
 
 	</body>
