@@ -423,7 +423,7 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 	}
 
 	.travel-map {
-		height: clamp(20rem, 42vw, 27rem);
+		height: clamp(16rem, 34vw, 20rem);
 		overflow: hidden;
 		overscroll-behavior: contain;
 		border: 1px solid rgba(255, 255, 255, 0.18);
@@ -538,7 +538,7 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
 
 	@media screen and (max-width: 480px) {
 		.travel-map {
-			height: 19rem;
+			height: 14rem;
 		}
 
 		.travel-map-caption {
