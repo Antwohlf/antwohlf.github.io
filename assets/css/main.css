@@ -4852,6 +4852,10 @@ h1.major, h2.major, h3.major, h4.major, h5.major, h6.major {
     #projects .projects-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    #projects .project-card-title-two-lines h2 {
+        min-height: 4.2rem;
+    }
 }
 
 .project-card {
