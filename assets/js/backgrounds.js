@@ -60,9 +60,33 @@
       sansebastian_summer_day_clear: true,
       sansebastian_summer_evening_clear: true,
       sansebastian_summer_night_clear: true
+    },
+    fall: {
+      detroit_fall_morning_clear: true,
+      detroit_fall_day_clear: true,
+      detroit_fall_evening_clear: true,
+      detroit_fall_night_clear: true,
+      annarbor_fall_morning_clear: true,
+      annarbor_fall_day_clear: true,
+      annarbor_fall_evening_clear: true,
+      annarbor_fall_night_clear: true,
+      nyc_fall_morning_clear: true,
+      nyc_fall_day_clear: true,
+      nyc_fall_evening_clear: true,
+      nyc_fall_night_clear: true,
+      sansebastian_fall_morning_clear: true,
+      sansebastian_fall_day_clear: true,
+      sansebastian_fall_evening_clear: true,
+      sansebastian_fall_night_clear: true
     }
   };
   var weatherAssetApprovals = {
+    fall: {
+      detroit: true,
+      annarbor: true,
+      nyc: true,
+      sansebastian: true
+    },
     summer: {
       detroit: true,
       annarbor: true,
@@ -86,7 +110,7 @@
   var stormWeatherCacheTtlMs = 2 * 60 * 1000;
   var staleWeatherCacheTtlMs = 60 * 60 * 1000;
   var weatherFetchTimeoutMs = 4500;
-  var backgroundCacheName = 'weather-backgrounds-v1';
+  var backgroundCacheName = 'weather-backgrounds-v2-fall-2026';
   var backgroundCacheLimit = 8;
   var locationIndex = getSavedLocationIndex();
   var reviewSegment = getSavedReviewSegment();
