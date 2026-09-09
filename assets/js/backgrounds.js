@@ -226,6 +226,7 @@
 
   function getLocationDateParts(location) {
     var parts = new Intl.DateTimeFormat('en-US', {
+      year: 'numeric',
       month: 'numeric',
       day: 'numeric',
       hour: 'numeric',
@@ -240,6 +241,7 @@
     });
 
     return {
+      year: Number(values.year),
       month: Number(values.month),
       day: Number(values.day),
       hour: Number(values.hour) % 12 + (values.dayPeriod === 'PM' ? 12 : 0),
@@ -247,8 +249,13 @@
     };
   }
 
-  function getSeason(month, day) {
+  function getSeason(month, day, year) {
     var date = month * 100 + day;
+
+    // Activate the approved 2026 fall set early; later years keep the calendar schedule.
+    if (year === 2026 && date >= 909 && date < 922) {
+      return 'fall';
+    }
 
     if (date >= 320 && date < 621) {
       return 'spring';
@@ -827,7 +834,7 @@
   function setBackground() {
     var location = locations[locationIndex];
     var parts = getLocationDateParts(location);
-    var season = getSeason(parts.month, parts.day);
+    var season = getSeason(parts.month, parts.day, parts.year);
     var segment = isLocalReviewMode ? reviewSegment : getTimeSegment(parts.hour);
     var renderSeason = isLocalReviewMode ? 'summer' : season;
     var weather = getWeatherForLocation(location);
