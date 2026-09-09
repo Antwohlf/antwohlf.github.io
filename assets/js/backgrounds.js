@@ -98,7 +98,7 @@
   var weatherApprovalState = getWeatherApprovalState();
   var isLocalReviewMode = window.location.protocol === 'file:' || ['localhost', '127.0.0.1', '0.0.0.0'].indexOf(window.location.hostname) !== -1;
   var remoteStorageBaseUrl = 'https://uqmjvvghhhtjqbzzvtop.supabase.co/storage/v1/object/public/personal-website/backgrounds/';
-  var remoteTransformBaseUrl = 'https://uqmjvvghhhtjqbzzvtop.supabase.co/storage/v1/render/image/public/personal-website/backgrounds/';
+  var staticBackgroundBaseUrl = remoteStorageBaseUrl + 'static-20260909/';
   var localStorageBaseUrl = '/dev-assets/supabase-mirror/personal-website/backgrounds/';
   var storageBaseUrl = isLocalReviewMode ? localStorageBaseUrl : remoteStorageBaseUrl;
   var storageKey = 'bgLocation';
@@ -110,7 +110,7 @@
   var stormWeatherCacheTtlMs = 2 * 60 * 1000;
   var staleWeatherCacheTtlMs = 60 * 60 * 1000;
   var weatherFetchTimeoutMs = 4500;
-  var backgroundCacheName = 'weather-backgrounds-v2-fall-2026';
+  var backgroundCacheName = 'weather-backgrounds-v3-static-20260909';
   var backgroundCacheLimit = 8;
   var locationIndex = getSavedLocationIndex();
   var reviewSegment = getSavedReviewSegment();
@@ -625,22 +625,9 @@
       return storageBaseUrl + filename;
     }
 
-    var isMobileViewport = window.innerWidth <= 736;
-    var sourceAspectRatio = 16 / 9;
-    var coverPixelWidth = Math.round(
-      Math.max(window.innerWidth, window.innerHeight * sourceAspectRatio) *
-      Math.min(window.devicePixelRatio || 1, 2)
-    );
-    var targetWidth = coverPixelWidth <= 1920
-      ? 1920
-      : coverPixelWidth <= 2560
-      ? 2560
-      : 2816;
-    var quality = isMobileViewport ? 90 : 88;
-
-    // Preserve the source composition here and let CSS perform the single
-    // viewport crop. Server-side `cover` was cropping the image a second time.
-    return remoteTransformBaseUrl + filename + '?width=' + targetWidth + '&quality=' + quality + '&resize=contain';
+    // Pre-compressed, full-resolution assets avoid Supabase's monthly
+    // distinct-image transformation allowance. CSS performs the viewport crop.
+    return staticBackgroundBaseUrl + filename.replace(/\.png$/, '.webp');
   }
 
   function getReviewImageUrl(location, segment, sky) {
