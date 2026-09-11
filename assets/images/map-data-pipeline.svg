@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="800" viewBox="0 0 1600 800" role="img" aria-labelledby="title desc">
+  <title id="title">Map Data Aggregation and Enhancement Pipeline</title>
+  <desc id="desc">A flow from public and municipal data sources through adapters, product plugins, human review, and three map products.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07111f"/>
+      <stop offset="1" stop-color="#10263a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4bc3d5"/>
+      <stop offset="1" stop-color="#7c73ff"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-30%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000814" flood-opacity="0.34"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#55c4d7"/>
+    </marker>
+    <style>
+      .label { fill: #90a6b9; font-family: Arial, Helvetica, sans-serif; font-size: 22px; font-weight: 600; letter-spacing: 2px; }
+      .heading { fill: #f4f8fb; font-family: Arial, Helvetica, sans-serif; font-size: 34px; font-weight: 700; }
+      .detail { fill: #b8c7d3; font-family: Arial, Helvetica, sans-serif; font-size: 24px; font-weight: 500; }
+      .product { fill: #f8fbfd; font-family: Arial, Helvetica, sans-serif; font-size: 25px; font-weight: 700; }
+      .connector { fill: none; stroke: #55c4d7; stroke-width: 5; stroke-linecap: round; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1600" height="800" rx="34" fill="url(#background)"/>
+  <circle cx="1450" cy="-20" r="310" fill="#5c64f6" opacity="0.11"/>
+  <circle cx="120" cy="820" r="360" fill="#24bfd0" opacity="0.08"/>
+
+  <text x="80" y="90" class="label">SHARED DATA PIPELINE</text>
+  <text x="80" y="145" class="heading">Collect once. Keep product rules separate.</text>
+
+  <g filter="url(#shadow)">
+    <rect x="80" y="250" width="260" height="280" rx="24" fill="#0e2134" stroke="#2c526a" stroke-width="2"/>
+    <text x="112" y="304" class="label">SOURCES</text>
+    <text x="112" y="365" class="heading">Raw map data</text>
+    <text x="112" y="416" class="detail">OpenStreetMap</text>
+    <text x="112" y="454" class="detail">Foursquare</text>
+    <text x="112" y="492" class="detail">Overture · ArcGIS</text>
+
+    <rect x="420" y="250" width="260" height="280" rx="24" fill="#10273a" stroke="#337089" stroke-width="2"/>
+    <text x="452" y="304" class="label">ADAPTERS</text>
+    <text x="452" y="365" class="heading">Bring it in</text>
+    <text x="452" y="416" class="detail">Network</text>
+    <text x="452" y="454" class="detail">Files</text>
+    <text x="452" y="492" class="detail">PostgreSQL</text>
+
+    <rect x="760" y="250" width="260" height="280" rx="24" fill="#15283c" stroke="#5d63a8" stroke-width="2"/>
+    <text x="792" y="304" class="label">PLUGINS</text>
+    <text x="792" y="365" class="heading">Shape the data</text>
+    <text x="792" y="416" class="detail">Normalize</text>
+    <text x="792" y="454" class="detail">Match</text>
+    <text x="792" y="492" class="detail">Enrich</text>
+
+    <rect x="1100" y="250" width="220" height="280" rx="24" fill="#192a40" stroke="#756cce" stroke-width="2"/>
+    <text x="1132" y="304" class="label">REVIEW</text>
+    <text x="1132" y="365" class="heading">Check it</text>
+    <text x="1132" y="416" class="detail">Audit trail</text>
+    <text x="1132" y="454" class="detail">Human approval</text>
+    <text x="1132" y="492" class="detail">Safe publish</text>
+  </g>
+
+  <path class="connector" d="M 340 390 H 405"/>
+  <path class="connector" d="M 680 390 H 745"/>
+  <path class="connector" d="M 1020 390 H 1085"/>
+
+  <path d="M 1320 390 H 1370 V 290" fill="none" stroke="url(#accent)" stroke-width="5" stroke-linecap="round"/>
+  <path d="M 1370 390 V 490" fill="none" stroke="url(#accent)" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="1370" cy="390" r="9" fill="#6c8ee8"/>
+
+  <g filter="url(#shadow)">
+    <rect x="1400" y="236" width="160" height="96" rx="18" fill="#164051" stroke="#55c4d7" stroke-width="2"/>
+    <text x="1480" y="276" text-anchor="middle" class="product">A Pizza</text>
+    <text x="1480" y="306" text-anchor="middle" class="product">Michigan</text>
+
+    <rect x="1400" y="342" width="160" height="96" rx="18" fill="#243657" stroke="#7680ec" stroke-width="2"/>
+    <text x="1480" y="383" text-anchor="middle" class="product">TacoBout</text>
+    <text x="1480" y="413" text-anchor="middle" class="product">Michigan</text>
+
+    <rect x="1400" y="448" width="160" height="96" rx="18" fill="#29344f" stroke="#9289fa" stroke-width="2"/>
+    <text x="1480" y="489" text-anchor="middle" class="product">BuiltHere</text>
+    <text x="1480" y="519" text-anchor="middle" class="product">.city</text>
+  </g>
+
+  <path class="connector" d="M 1370 284 H 1385"/>
+  <path class="connector" d="M 1370 390 H 1385"/>
+  <path class="connector" d="M 1370 496 H 1385"/>
+
+  <rect x="80" y="635" width="1440" height="84" rx="20" fill="#0c1a2a" stroke="#284259" stroke-width="2"/>
+  <text x="800" y="688" text-anchor="middle" class="detail">Product-specific adapters and plugins keep each database contract independent.</text>
+</svg>
