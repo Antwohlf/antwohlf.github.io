@@ -3,6 +3,9 @@
 .codex/
 .env
 .pycache/
+__pycache__/
+*.py[cod]
+.playwright-cli/
 node_modules/
 package-lock.json
 package.json

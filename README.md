@@ -30,4 +30,17 @@ The site is plain HTML, CSS, and JavaScript with no build step.
 python3 -m http.server 8000
 ```
 
+Edit the served stylesheets in `assets/css/` directly.
+There is no Sass compilation step; the old template Sass sources were removed
+because they no longer represented the site.
+
+Keep `art.html`, `pbd.html`, and `Resume.pdf` available at their existing URLs.
+The resume viewer renders the PDFs in `assets/resumes/` using the bundled PDF.js;
+it does not need separate PNG previews.
+
+Background maintenance workflows are documented in
+[`scripts/backgrounds/README.md`](scripts/backgrounds/README.md) and
+[`tools/background-generation/README.md`](tools/background-generation/README.md).
+Generated output, local experiments, and browser/Python caches stay ignored.
+
 The original layout was based on [Dimension by HTML5 UP](https://html5up.net/dimension).

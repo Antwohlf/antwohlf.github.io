@@ -4,11 +4,9 @@ import argparse
 import csv
 import json
 import math
-import os
 import pathlib
 import urllib.error
 import urllib.request
-from collections import defaultdict
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple
 
