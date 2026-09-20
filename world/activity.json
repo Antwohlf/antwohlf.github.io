@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-20T12:50:30.683435+00:00",
+  "buildings": {
+    "pizza": {
+      "signals": [
+        {
+          "label": "Food runtime",
+          "state": "running",
+          "detail": "2 of 2 classifier/scraper supervisors have running process IDs. This is process availability, not proof every child job succeeds.",
+          "url": null,
+          "checkedAt": "2026-09-20T12:50:30.683267+00:00",
+          "staleAfterSeconds": 900
+        },
+        {
+          "label": "Latest workflow",
+          "state": "idle",
+          "detail": "Contract checks: success. Only the latest run is represented.",
+          "url": "https://github.com/Antwohlf/apizzamichigan/actions/runs/34646104392",
+          "checkedAt": "2026-09-20T12:50:28.313795+00:00",
+          "staleAfterSeconds": 900,
+          "eventAt": "2026-09-11T20:48:51Z"
+        },
+        {
+          "label": "Review queue",
+          "state": "idle",
+          "detail": "0 open pull requests. Open does not mean review is required.",
+          "url": "https://github.com/Antwohlf/apizzamichigan/pulls",
+          "checkedAt": "2026-09-20T12:50:28.313741+00:00",
+          "staleAfterSeconds": 900
+        },
+        {
+          "label": "Website",
+          "state": "ok",
+          "detail": "HTTP 200 in 176 ms. This checks the public page, not every application feature.",
+          "url": "https://www.apizzamichigan.com",
+          "checkedAt": "2026-09-20T12:50:27.015243+00:00",
+          "staleAfterSeconds": 900
+        }
+      ]
+    },
+    "resume": {
+      "signals": [
+        {
+          "label": "Website",
+          "state": "ok",
+          "detail": "HTTP 200 in 167 ms. This checks the public page, not every application feature.",
+          "url": "https://resumerevamped.com",
+          "checkedAt": "2026-09-20T12:50:27.006419+00:00",
+          "staleAfterSeconds": 900
+        }
+      ]
+    },
+    "duo": {
+      "signals": [
+        {
+          "label": "Latest workflow",
+          "state": "idle",
+          "detail": "Scrape Duolingo Course Data: success. Only the latest run is represented.",
+          "url": "https://github.com/Antwohlf/duocalculator/actions/runs/35499192250",
+          "checkedAt": "2026-09-20T12:50:28.324481+00:00",
+          "staleAfterSeconds": 900,
+          "eventAt": "2026-09-20T08:21:13Z"
+        },
+        {
+          "label": "Review queue",
+          "state": "idle",
+          "detail": "0 open pull requests. Open does not mean review is required.",
+          "url": "https://github.com/Antwohlf/duocalculator/pulls",
+          "checkedAt": "2026-09-20T12:50:28.324443+00:00",
+          "staleAfterSeconds": 900
+        },
+        {
+          "label": "Website",
+          "state": "ok",
+          "detail": "HTTP 200 in 280 ms. This checks the public page, not every application feature.",
+          "url": "https://www.duocalculator.com",
+          "checkedAt": "2026-09-20T12:50:27.119397+00:00",
+          "staleAfterSeconds": 900
+        }
+      ]
+    },
+    "builthere": {
+      "signals": [
+        {
+          "label": "Repository",
+          "state": "unknown",
+          "detail": "Private repository activity is not exported.",
+          "url": null,
+          "checkedAt": "2026-09-20T12:50:27.451037+00:00",
+          "staleAfterSeconds": 900
+        },
+        {
+          "label": "Website",
+          "state": "failed",
+          "detail": "HTTP 307. No access gate bypassed.",
+          "url": "https://builthere.city",
+          "checkedAt": "2026-09-20T12:50:26.953611+00:00",
+          "staleAfterSeconds": 900
+        }
+      ]
+    },
+    "homelab": {
+      "signals": [
+        {
+          "label": "Food runtime",
+          "state": "running",
+          "detail": "2 of 2 classifier/scraper supervisors have running process IDs. This is process availability, not proof every child job succeeds.",
+          "url": null,
+          "checkedAt": "2026-09-20T12:50:30.683267+00:00",
+          "staleAfterSeconds": 900
+        }
+      ]
+    },
+    "travel": {
+      "signals": []
+    }
+  }
+}

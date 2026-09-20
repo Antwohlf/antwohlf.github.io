@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="Explore Anthony Wohlfeil's projects as a small, interactive pixel-art town."
+    />
+    <meta name="theme-color" content="#081522" />
+    <link rel="canonical" href="https://anthonywohlfeil.com/world/" />
+    <meta property="og:title" content="Project Town · Anthony Wohlfeil" />
+    <meta
+      property="og:description"
+      content="Walk through a tiny pixel-art town and explore the projects Anthony keeps building."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://anthonywohlfeil.com/world/" />
+    <meta
+      property="og:image"
+      content="https://anthonywohlfeil.com/assets/world/project-town-v8.png"
+    />
+    <meta
+      property="og:image:alt"
+      content="A pixel-art town with six interactive project buildings"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Project Town · Anthony Wohlfeil" />
+    <meta
+      name="twitter:description"
+      content="Walk through a tiny pixel-art town and explore the projects Anthony keeps building."
+    />
+    <meta
+      name="twitter:image"
+      content="https://anthonywohlfeil.com/assets/world/project-town-v8.png"
+    />
+    <title>Project Town · Anthony Wohlfeil</title>
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
+    <link
+      rel="preload"
+      as="image"
+      href="../assets/world/anthony-walkcycle-v5.png"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="../assets/world/llm-worker-walkcycle-v2.png"
+    />
+  <link rel="stylesheet" href="world.css?v=59" />
+  <script src="world.js?v=60" defer></script>
+    <link rel="stylesheet" href="activity.css?v=1" />
+    <script src="activity-model.js?v=1" defer></script>
+    <script src="activity.js?v=1" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#project-directory"
+      >Skip the game and browse projects</a
+    >
+
+    <div class="page-glow" aria-hidden="true"></div>
+
+    <header class="world-header">
+      <a
+        class="pixel-button pixel-button--quiet"
+        href="../"
+        aria-label="Return to Anthony's home page"
+      >
+        <span aria-hidden="true">←</span>
+        Home
+      </a>
+
+      <div class="world-brand" aria-label="Anthony's Project Town">
+        <span class="world-brand__eyebrow">Anthony's</span>
+        <h1>Project Town</h1>
+      </div>
+
+      <div class="header-actions">
+        <button
+          class="pixel-button pixel-button--quiet"
+          id="directory-button"
+          type="button"
+        >
+          Directory
+        </button>
+        <button
+          class="pixel-button pixel-button--icon"
+          id="help-button"
+          type="button"
+          aria-label="How to explore"
+        >
+          ?
+        </button>
+      </div>
+    </header>
+
+    <main class="world-main">
+      <section class="game-shell" aria-labelledby="location-title">
+        <div class="game-statusbar">
+          <div>
+            <span class="game-statusbar__label">NOW EXPLORING</span>
+            <h2 id="location-title">Project Town</h2>
+          </div>
+          <div class="status-legend" aria-hidden="true">
+            <span class="status-legend__spark">◆</span>
+            Interactive exhibit
+          </div>
+        </div>
+
+        <div class="room-observation"><p id="room-activity">Explore a building or open the activity board.</p><a href="#activity-heading">Activity board ↓</a></div>
+
+        <div
+          class="game-stage is-loading"
+          id="game-stage"
+          data-scene="town"
+          role="application"
+          tabindex="0"
+          aria-label="Interactive project town. Use the arrow keys or W A S D to move Anthony. Press E or Enter to interact."
+          aria-describedby="game-instructions"
+        >
+          <div class="scene" id="scene" aria-hidden="true"></div>
+          <div class="town-fountain-water" aria-hidden="true">
+            <svg
+              class="town-fountain-water__svg"
+              viewBox="0 0 136 118"
+              preserveAspectRatio="none"
+              focusable="false"
+            >
+              <g class="fountain-streams">
+                <path
+                  class="fountain-stream fountain-stream--base"
+                  d="M68 40 C68 28 68 14 68 2"
+                />
+                <path
+                  class="fountain-stream fountain-stream--flow fountain-stream--center"
+                  d="M68 40 C68 28 68 14 68 2"
+                />
+
+                <path
+                  class="fountain-stream fountain-stream--base"
+                  d="M56 43 C47 46 36 55 31 70"
+                />
+                <path
+                  class="fountain-stream fountain-stream--flow fountain-stream--left"
+                  d="M56 43 C47 46 36 55 31 70"
+                />
+
+                <path
+                  class="fountain-stream fountain-stream--base"
+                  d="M80 43 C89 46 100 55 105 70"
+                />
+                <path
+                  class="fountain-stream fountain-stream--flow fountain-stream--right"
+                  d="M80 43 C89 46 100 55 105 70"
+                />
+
+                <path
+                  class="fountain-plume fountain-plume--base"
+                  d="M68 2 C64 6 61 15 60 27 M68 2 C72 6 75 15 76 27"
+                />
+                <path
+                  class="fountain-plume fountain-plume--flow"
+                  d="M68 2 C64 6 61 15 60 27 M68 2 C72 6 75 15 76 27"
+                />
+              </g>
+
+              <g class="fountain-impacts">
+                <path
+                  class="fountain-impact fountain-impact--left"
+                  d="M31 71 L26 67 M31 71 L30 64 M31 71 L36 66"
+                />
+                <path
+                  class="fountain-impact fountain-impact--right"
+                  d="M105 71 L100 66 M105 71 L106 64 M105 71 L110 67"
+                />
+              </g>
+
+              <g class="fountain-surface">
+                <path
+                  class="fountain-current fountain-current--outer"
+                  d="M20 78 C39 65 97 65 116 78 C100 94 36 94 20 78"
+                />
+                <path
+                  class="fountain-current fountain-current--inner"
+                  d="M31 78 C47 70 89 70 105 78 C91 88 45 88 31 78"
+                />
+                <ellipse
+                  class="fountain-ripple fountain-ripple--left"
+                  cx="31"
+                  cy="72"
+                  rx="4"
+                  ry="1.6"
+                />
+                <ellipse
+                  class="fountain-ripple fountain-ripple--right"
+                  cx="105"
+                  cy="72"
+                  rx="4"
+                  ry="1.6"
+                />
+              </g>
+            </svg>
+          </div>
+          <div class="hotspots" id="hotspots"></div>
+          <div class="npcs" id="npcs" aria-hidden="true"></div>
+
+          <div class="player" id="player" aria-hidden="true">
+            <div class="player__shadow"></div>
+            <div class="player__sprite"></div>
+          </div>
+
+          <div
+            class="town-building-foreground town-building-foreground--builthere"
+            id="town-builthere-foreground"
+            aria-hidden="true"
+          ></div>
+
+          <div
+            class="interaction-prompt"
+            id="interaction-prompt"
+            role="status"
+            aria-live="polite"
+          >
+            <kbd>E</kbd>
+            <span id="interaction-text">Explore</span>
+          </div>
+
+          <div class="arrival-card" id="arrival-card">
+            <span class="arrival-card__eyebrow">WELCOME TO</span>
+            <strong>PROJECT TOWN</strong>
+            <span>Walk to a glowing marker to explore.</span>
+          </div>
+
+          <div class="loading-card" id="loading-card" role="status">
+            <span class="loading-card__pizza" aria-hidden="true">◆</span>
+            <span>Building the town…</span>
+          </div>
+
+          <div
+            class="scene-transition"
+            id="scene-transition"
+            aria-hidden="true"
+          ></div>
+        </div>
+
+        <p class="desktop-instructions" id="game-instructions">
+          <span><kbd>WASD</kbd> or <kbd>ARROWS</kbd> move</span>
+          <span><kbd>E</kbd> or <kbd>ENTER</kbd> interact</span>
+          <span><kbd>ESC</kbd> close</span>
+        </p>
+      </section>
+
+      <section class="mobile-controls" aria-label="Game controls">
+        <div class="d-pad" aria-label="Movement controls">
+          <button
+            class="d-pad__button d-pad__up"
+            type="button"
+            data-direction="up"
+            aria-label="Move up"
+          >
+            ▲
+          </button>
+          <button
+            class="d-pad__button d-pad__left"
+            type="button"
+            data-direction="left"
+            aria-label="Move left"
+          >
+            ◀
+          </button>
+          <span class="d-pad__center" aria-hidden="true"></span>
+          <button
+            class="d-pad__button d-pad__right"
+            type="button"
+            data-direction="right"
+            aria-label="Move right"
+          >
+            ▶
+          </button>
+          <button
+            class="d-pad__button d-pad__down"
+            type="button"
+            data-direction="down"
+            aria-label="Move down"
+          >
+            ▼
+          </button>
+        </div>
+
+        <button class="action-button" id="action-button" type="button">
+          <span class="action-button__key">A</span>
+          <span class="action-button__label">Interact</span>
+        </button>
+      </section>
+
+      <section
+        class="project-directory"
+        id="project-directory"
+        aria-labelledby="directory-title"
+      >
+        <div class="project-directory__heading">
+          <div>
+            <span class="section-kicker">TOWN DIRECTORY</span>
+            <h2 id="directory-title">Six projects, built to explore</h2>
+          </div>
+          <p>Prefer the traditional route? Jump straight to any exhibit.</p>
+        </div>
+
+        <div class="directory-grid">
+          <article class="directory-card directory-card--pizza">
+            <div class="directory-card__number">01</div>
+            <div>
+              <span class="directory-card__type">Food + location platform</span>
+              <h3>Pizza + Taco 'Bout Michigan</h3>
+              <p>
+                Two food-discovery experiences sharing one home-server research,
+                enrichment, and validation pipeline.
+              </p>
+            </div>
+            <button class="pixel-button" type="button" data-enter-scene="pizza">
+              Enter exhibit
+            </button>
+          </article>
+
+          <article class="directory-card directory-card--resume">
+            <div class="directory-card__number">02</div>
+            <div>
+              <span class="directory-card__type">Design + career platform</span>
+              <h3>Resume Revamped</h3>
+              <p>
+                A live résumé studio with eight themes, AI assistance, and
+                precise PDF export.
+              </p>
+            </div>
+            <button
+              class="pixel-button"
+              type="button"
+              data-enter-scene="resume"
+            >
+              Enter exhibit
+            </button>
+          </article>
+
+          <article class="directory-card directory-card--duo">
+            <div class="directory-card__number">03</div>
+            <div>
+              <span class="directory-card__type">Language planning</span>
+              <h3>DuoCalculator</h3>
+              <p>
+                A course planner that turns language progress into a finish date
+                and practical daily pace.
+              </p>
+            </div>
+            <button class="pixel-button" type="button" data-enter-scene="duo">
+              Enter exhibit
+            </button>
+          </article>
+
+          <article class="directory-card directory-card--buildhere">
+            <div class="directory-card__number">04</div>
+            <div>
+              <span class="directory-card__type">City building</span>
+              <h3>BuiltHere.City</h3>
+              <p>
+                A living workshop for parcels, neighborhoods, and the choices
+                connecting them.
+              </p>
+            </div>
+            <button
+              class="pixel-button"
+              type="button"
+              data-enter-scene="builthere"
+            >
+              Enter exhibit
+            </button>
+          </article>
+
+          <article class="directory-card directory-card--homelab">
+            <div class="directory-card__number">05</div>
+            <div>
+              <span class="directory-card__type"
+                >Self-hosted infrastructure</span
+              >
+              <h3>Homelab</h3>
+              <p>
+                The storage, services, private networking, and automated jobs
+                running beneath the projects.
+              </p>
+            </div>
+            <button
+              class="pixel-button"
+              type="button"
+              data-enter-scene="homelab"
+            >
+              Enter exhibit
+            </button>
+          </article>
+
+          <article class="directory-card directory-card--travel">
+            <div class="directory-card__number">06</div>
+            <div>
+              <span class="directory-card__type"
+                >Experiments + adventures</span
+              >
+              <h3>Side Quests</h3>
+              <p>
+                Travel stories and smaller explorations that live beyond the
+                main project path.
+              </p>
+            </div>
+            <button
+              class="pixel-button"
+              type="button"
+              data-enter-scene="travel"
+            >
+              Enter exhibit
+            </button>
+          </article>
+        </div>
+      </section>
+      <section class="activity-board" aria-labelledby="activity-heading">
+        <h2 id="activity-heading">Observed project activity</h2>
+        <p id="activity-summary" role="status">Loading project observations…</p>
+        <p>Website reachability, public workflow runs, and public pull requests. Observations expire after 15 minutes. Character routines are illustrative.</p>
+        <button class="pixel-button" id="refresh-activity" type="button">Reload observations</button>
+        <div id="activity-cards" class="activity-cards"></div>
+      </section>
+    </main>
+
+    <footer class="world-footer">
+      <p>
+        Designed and built by Anthony Wohlfeil. Original artwork created for
+        this project.
+      </p>
+      <a href="../#projects">View every project</a>
+    </footer>
+
+    <dialog
+      class="project-dialog"
+      id="project-dialog"
+      aria-labelledby="dialog-title"
+    >
+      <div class="project-dialog__frame">
+        <button
+          class="dialog-close"
+          id="dialog-close"
+          type="button"
+          aria-label="Close dialog"
+        >
+          ×
+        </button>
+        <div class="project-dialog__content" id="dialog-content"></div>
+      </div>
+    </dialog>
+
+    <dialog class="help-dialog" id="help-dialog" aria-labelledby="help-title">
+      <div class="help-dialog__frame">
+        <button
+          class="dialog-close"
+          id="help-close"
+          type="button"
+          aria-label="Close instructions"
+        >
+          ×
+        </button>
+        <span class="section-kicker">FIELD GUIDE</span>
+        <h2 id="help-title">How to explore</h2>
+        <div class="help-grid">
+          <div>
+            <span class="help-key">WASD</span>
+            <strong>Walk around</strong>
+            <p>Arrow keys work too. On a phone, use the direction pad.</p>
+          </div>
+          <div>
+            <span class="help-key">E</span>
+            <strong>Interact</strong>
+            <p>Use Enter or the A button when a prompt appears.</p>
+          </div>
+          <div>
+            <span class="help-key">◆</span>
+            <strong>Find exhibits</strong>
+            <p>Gold markers show doors, tools, demos, and project stories.</p>
+          </div>
+        </div>
+        <button class="pixel-button" id="help-done" type="button">
+          Start exploring
+        </button>
+      </div>
+    </dialog>
+
+    <noscript>
+      <div class="noscript-card">
+        <h2>Project Town needs JavaScript to move.</h2>
+        <p>You can still visit the projects directly:</p>
+        <p>
+          <a href="https://www.apizzamichigan.com">A Pizza Michigan</a>
+          ·
+          <a href="https://resumerevamped.com">Resume Revamped</a>
+          ·
+          <a href="https://www.duocalculator.com">DuoCalculator</a>
+          ·
+          <a href="https://builthere.city">BuiltHere.City</a>
+          ·
+          <a href="../#travel">Side Quests</a>
+        </p>
+      </div>
+    </noscript>
+  </body>
+</html>
