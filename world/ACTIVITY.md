@@ -8,7 +8,7 @@ For the already-configured food host, set `TOWN_FOOD_SSH_HOST` to its SSH alias.
 
 All observations expire after 15 minutes. A stopped collector therefore stops advertising fresh activity. Feed errors suppress current-state claims while showing the last observations as historical. HTTP success only establishes public-page reachability; a running supervisor is process availability, not proof that every child job is succeeding. Latest workflow results include the event's own timestamp separately from observation time. Private repositories are not queried beyond their visibility metadata; private review titles and commit details are never exported. No home sensor readings, occupancy, travel locations, IPs or process IDs enter the JSON.
 
-Character movement and station demos remain illustrative. Only the extra activity glow follows an observed running signal. The food pipeline simulator is explicitly labeled as a demo. Side Quests has no connected activity source.
+Character movement and station demos remain illustrative. Only an observed in-progress workflow drives the extra activity glow; queued, stopping, cancelled, skipped, neutral, and supervisor-available states remain explicit non-active labels. The food pipeline simulator is explicitly labeled as a demo. Side Quests has no connected activity source.
 
 Validation: `node --test world/activity.test.cjs` and `python3 -m unittest discover -s world -p 'test_*.py'`. Browser checks cover building transitions, live source recovery, expired observations, missing-feed failure, real process indicators, and a 390px mobile view.
 

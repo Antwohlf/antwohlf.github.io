@@ -10,13 +10,26 @@ class CollectionTests(unittest.TestCase):
         self.assertEqual(result[0]['state'],'unknown')
         self.assertNotIn('url',result[0] if result[0].get('url') else {})
 
-    def test_only_named_running_supervisors_count(self):
+    def test_named_supervisor_processes_are_availability_not_work(self):
         rows='123\t0\tcom.apizzamichigan.classifier\n-\t0\tcom.apizzamichigan.scraper\n999\t0\tunrelated.secret\n'
         with patch.dict(os.environ,{'TOWN_FOOD_SSH_HOST':'test-host'}), patch.object(activity.subprocess,'run',return_value=subprocess.CompletedProcess([],0,rows,'')):
             result=activity.food_runtime()[0]
-        self.assertEqual(result['state'],'running')
+        self.assertEqual(result['state'],'available')
         self.assertIn('1 of 2',result['detail'])
         self.assertNotIn('123',str(result));self.assertNotIn('test-host',str(result));self.assertNotIn('secret',str(result))
+
+    def test_workflow_lifecycle_states_do_not_overstate_queued_work(self):
+        self.assertEqual(activity.workflow_state({'status':'queued','conclusion':None}),'queued')
+        self.assertEqual(activity.workflow_state({'status':'waiting','conclusion':None}),'queued')
+        self.assertEqual(activity.workflow_state({'status':'requested','conclusion':None}),'queued')
+        self.assertEqual(activity.workflow_state({'status':'in_progress','conclusion':None}),'running')
+        self.assertEqual(activity.workflow_state({'status':'completed','conclusion':'success'}),'idle')
+        for conclusion in ('failure','timed_out','action_required'):
+            self.assertEqual(activity.workflow_state({'status':'completed','conclusion':conclusion}),'failed')
+        for conclusion in ('cancelled','skipped','neutral'):
+            self.assertEqual(activity.workflow_state({'status':'completed','conclusion':conclusion}),conclusion)
+        self.assertEqual(activity.workflow_state({'status':'canceling','conclusion':None}),'stopping')
+        self.assertEqual(activity.workflow_state({'status':'future','conclusion':None}),'unknown')
 
     def test_ssh_failure_does_not_export_stderr_or_claim_offline(self):
         with patch.dict(os.environ,{'TOWN_FOOD_SSH_HOST':'private-host'}), patch.object(activity.subprocess,'run',side_effect=subprocess.CalledProcessError(255,[],stderr='sensitive information')):

@@ -7,9 +7,8 @@
   const panel = document.querySelector('#activity-cards');
   function signals(scene) { return snapshot?.buildings?.[scene]?.signals ?? []; }
   function sceneState(scene) {
-    const checks = signals(scene).map(s => classify(s));
     if (connectionFailed) return { state: 'unknown', label: 'Feed unavailable', active: false };
-    return checks.find(s => s.state === 'failed' || s.state === 'blocked') || checks.find(s => s.state === 'stale') || checks.find(s => s.active) || checks.find(s => s.state === 'ok') || checks[0] || classify(null);
+    return window.TownActivityModel.summarize(signals(scene));
   }
   function add(parent, tag, text, cls) {
     const el = document.createElement(tag); el.textContent = text;

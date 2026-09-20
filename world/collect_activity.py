@@ -26,6 +26,20 @@ def probe(url):
 def gh(path):
     result=subprocess.run(['gh','api',path],capture_output=True,text=True,timeout=20,check=True)
     return json.loads(result.stdout)
+def workflow_state(run):
+    """Map GitHub's run lifecycle to claims the UI can safely make."""
+    status, conclusion = run.get('status'), run.get('conclusion')
+    if status == 'completed':
+        if conclusion == 'success': return 'idle'
+        if conclusion in ('failure', 'timed_out', 'action_required'):
+            return 'failed'
+        if conclusion in ('cancelled', 'skipped', 'neutral'):
+            return conclusion
+        return 'unknown'
+    if status == 'in_progress': return 'running'
+    if status in ('queued', 'requested', 'waiting', 'pending'): return 'queued'
+    if status == 'canceling': return 'stopping'
+    return 'unknown'
 def repository(repo):
     url='https://github.com/'+repo
     try:
@@ -37,7 +51,7 @@ def repository(repo):
         latest=runs[0] if runs else None
         checks=[signal('Review queue','idle',f'{len(pulls)}'+('+' if len(pulls)==100 else '')+' open pull requests. Open does not mean review is required.',url+'/pulls')]
         if latest:
-            state='running' if latest['status']!='completed' else 'failed' if latest.get('conclusion') in ('failure','timed_out','action_required') else 'idle'
+            state=workflow_state(latest)
             checks.append(signal('Latest workflow',state,f"{latest['name']}: {latest.get('conclusion') or latest['status']}. Only the latest run is represented.",latest['html_url'],eventAt=latest['updated_at']))
         else: checks.append(signal('Latest workflow','idle','No workflow runs returned.',url+'/actions'))
         return checks
@@ -55,7 +69,7 @@ def food_runtime():
         expected={'com.apizzamichigan.classifier','com.apizzamichigan.scraper'}
         rows=[line.split() for line in result.stdout.splitlines()]
         running=sum(len(row)==3 and row[2] in expected and row[0].isdigit() for row in rows)
-        return [signal('Food runtime','running' if running else 'idle',f'{running} of 2 classifier/scraper supervisors have running process IDs. This is process availability, not proof every child job succeeds.')]
+        return [signal('Food runtime','available' if running else 'idle',f'{running} of 2 classifier/scraper supervisors have running process IDs. This is process availability, not proof every child job succeeds.')]
     except Exception as error:
         return [signal('Food runtime','unknown',f'Host observation unavailable ({type(error).__name__}).')]
 def collect(output=ROOT/'activity.json'):
