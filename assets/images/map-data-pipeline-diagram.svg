@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="800" viewBox="0 0 1600 800" role="img" aria-labelledby="title description">
+  <title id="title">Map data pipeline</title>
+  <desc id="description">Sources connect to shared jobs, state, artifacts, and audit trail. Separate food and BuiltHere runtimes use adapters and plugins. A Pizza Michigan, TacoBoutMichigan, and BuiltHere.city each own review and publishing.</desc>
+  <rect width="1600" height="800" fill="#15191d"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="72" y="104" fill="#f0f1f2" font-size="55" font-weight="600" letter-spacing="-1.5">Map data pipeline</text>
+    <text x="73" y="151" fill="#aeb7be" font-size="25">Shared infrastructure. Separate product rules.</text>
+    <path d="M72 185H1528" stroke="#374149" stroke-width="2"/>
+
+    <g fill="none" stroke="#697781" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M306 407H380"/>
+      <path d="M702 407H756V316H815"/>
+      <path d="M756 407V529H815"/>
+      <path d="M1120 316H1166V257H1210"/>
+      <path d="M1166 316V381H1210"/>
+      <path d="M1120 529H1210"/>
+    </g>
+    <g fill="#8998a3">
+      <path d="M380 407l-14-9v18z"/>
+      <path d="M815 316l-14-9v18z"/>
+      <path d="M815 529l-14-9v18z"/>
+      <path d="M1210 257l-14-9v18z"/>
+      <path d="M1210 381l-14-9v18z"/>
+      <path d="M1210 529l-14-9v18z"/>
+    </g>
+
+    <g fill="#1c2227" stroke="#66747e" stroke-width="2">
+      <rect x="72" y="250" width="234" height="314" rx="16"/>
+      <rect x="380" y="250" width="322" height="314" rx="16"/>
+      <rect x="815" y="250" width="305" height="132" rx="16"/>
+      <rect x="815" y="463" width="305" height="132" rx="16"/>
+      <rect x="1210" y="210" width="318" height="94" rx="16"/>
+      <rect x="1210" y="334" width="318" height="94" rx="16"/>
+      <rect x="1210" y="482" width="318" height="94" rx="16"/>
+    </g>
+
+    <g fill="#edf0f1" font-size="29" font-weight="600">
+      <text x="103" y="306">Sources</text>
+      <text x="412" y="306">Shared core</text>
+      <text x="844" y="304">Food runtime</text>
+      <text x="844" y="517">BuiltHere runtime</text>
+      <text x="1237" y="249" font-size="27">A Pizza Michigan</text>
+      <text x="1237" y="373" font-size="27">TacoBoutMichigan</text>
+      <text x="1237" y="521" font-size="27">BuiltHere.city</text>
+    </g>
+    <g fill="#b8c1c7" font-size="24">
+      <text x="103" y="368">Open data</text>
+      <text x="103" y="415">Web sources</text>
+      <text x="103" y="462">Municipal feeds</text>
+      <text x="412" y="368">Jobs and state</text>
+      <text x="412" y="415">Artifacts</text>
+      <text x="412" y="462">Audit trail</text>
+      <text x="844" y="349">Adapters · plugins</text>
+      <text x="844" y="562">Adapters · plugins</text>
+    </g>
+    <g fill="#a8b4bc" font-size="20">
+      <text x="1237" y="282">Own review · publish</text>
+      <text x="1237" y="406">Own review · publish</text>
+      <text x="1237" y="554">Own review · publish</text>
+    </g>
+    <text x="73" y="715" fill="#8f9aa2" font-size="22">Collection and processing can be shared. Product data contracts stay independent.</text>
+  </g>
+</svg>
