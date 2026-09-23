@@ -9,6 +9,8 @@ __pycache__/
 node_modules/
 package-lock.json
 package.json
+!scripts/r2/package.json
+!scripts/r2/package-lock.json
 tests/
 tmp/
 tmp-*

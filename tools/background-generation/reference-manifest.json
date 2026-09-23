@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "storage_base_url": "https://uqmjvvghhhtjqbzzvtop.supabase.co/storage/v1/object/public/personal-website/backgrounds/",
+  "storage_base_url": "",
   "thresholds": {
     "geometry_max_shift_px": 3.0,
     "sun_angle_tolerance_deg": 30.0,

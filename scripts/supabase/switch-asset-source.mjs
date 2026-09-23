@@ -16,11 +16,12 @@ const args = new Set(process.argv.slice(2));
 const scopeArg = process.argv.find((arg) => arg.startsWith('--scope='));
 const scope = scopeArg ? scopeArg.slice('--scope='.length) : 'all';
 const includeWeatherMatrix = args.has('--include-weather-matrix');
-const remotePrefix = 'https://uqmjvvghhhtjqbzzvtop.supabase.co/storage/v1/object/public/personal-website/';
+const remotePrefix = 'https://assets.anthonywohlfeil.com/';
 const localPrefix = '/dev-assets/supabase-mirror/personal-website/';
 const mirrorRoot = path.join(cwd, 'dev-assets', 'supabase-mirror', 'personal-website');
 const targetFiles = [
   'index.html',
+  'pbd.html',
   'assets/js/backgrounds.js',
   'assets/css/main.css',
   'assets/css/pbd.css',
@@ -49,6 +50,9 @@ function collectLocalTargets() {
   }
 
   const targets = new Set();
+  const publicKeys = JSON.parse(fs.readFileSync(path.join(cwd, 'scripts/r2/public-keys.json'), 'utf8'));
+  publicKeys.filter((key) => scope === 'all' || key.startsWith('backgrounds/'))
+    .forEach((key) => targets.add(key));
   const pattern = new RegExp(escapeRegex(from) + '([^"\'\\s)<>]+)', 'g');
 
   targetFiles.forEach((file) => {

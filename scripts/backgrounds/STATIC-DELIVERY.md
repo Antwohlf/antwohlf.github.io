@@ -2,14 +2,12 @@
 
 The production site uses full-resolution WebP objects under a versioned
 `backgrounds/static-20260909/` prefix. CSS performs the only viewport crop.
-These copies use WebP quality 92; original PNG masters remain available.
-Serving ordinary Storage object URLs avoids the distinct-origin-image quota
-of Supabase's image transformation endpoint. Do not restore `/render/image/`
-URLs without reviewing that allowance (Pro includes 100 origins per cycle).
+These copies use WebP quality 92; original PNG masters remain in a private R2
+bucket and the local backup. The website serves the public R2 custom domain.
 
 For the next approved background release:
 
-1. Upload approved canonical PNGs and back up current hosted backgrounds with
+1. Upload approved canonical PNGs to the private R2 bucket and back up current hosted backgrounds with
    a manifest containing `files`: `local_path`, `object_key`, `sha256`, `bytes`.
    Local paths are relative to the backup root. Backups belong in the ignored
    `tools/background-generation/backups/` directory.
@@ -31,8 +29,11 @@ For the next approved background release:
      tools/background-generation/generated/static-backgrounds-20260909/manifest.json
    ```
 
-   Credentials come from `.env` via `shared.mjs`. Checksums are checked locally
-   before upload and against every hosted object's ETag afterward.
+   Set `R2_ACCOUNT_ID`, `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`,
+   `R2_PUBLIC_BUCKET`, and `R2_PRIVATE_BUCKET` in `.env` or the shell. Install
+   dependencies with `npm ci --prefix scripts/r2`. The script checks MD5 locally
+   and compares SHA-256 of every hosted object after upload. Never overwrite a
+   versioned key with different content; publish under a new prefix.
 4. Only after all files verify, update `staticBackgroundBaseUrl`, the browser
    cache name, and the script version in `index.html`. Validate each season's
    approved routes and fallback routes before publishing.
