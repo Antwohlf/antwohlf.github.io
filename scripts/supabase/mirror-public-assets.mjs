@@ -3,13 +3,6 @@
 import fs from 'node:fs';
 import https from 'node:https';
 import path from 'node:path';
-import {
-  ACTIVE_LOCATIONS,
-  LOCATIONS,
-  SEASONS,
-  SEGMENTS,
-  SKIES
-} from '../backgrounds/shared.mjs';
 
 const cwd = process.cwd();
 const args = new Set(process.argv.slice(2));
@@ -18,17 +11,11 @@ const scope = scopeArg ? scopeArg.slice('--scope='.length) : 'all';
 const extraLocalRoots = process.argv
   .filter((arg) => arg.startsWith('--local-root='))
   .map((arg) => path.resolve(cwd, arg.slice('--local-root='.length)));
-const remotePrefix = 'https://uqmjvvghhhtjqbzzvtop.supabase.co/storage/v1/object/public/personal-website/';
-const localPrefix = '/dev-assets/supabase-mirror/personal-website/';
+const remotePrefix = 'https://assets.anthonywohlfeil.com/';
 const mirrorRoot = path.join(cwd, 'dev-assets', 'supabase-mirror', 'personal-website');
-const sourceFiles = [
-  'index.html',
-  'assets/js/backgrounds.js',
-  'assets/css/main.css',
-  'assets/css/pbd.css',
-  'assets/css/art.css'
-];
 const localSearchRoots = [
+  'tools/background-generation/backups/supabase-seasonal-2026-09-09/objects',
+  'tools/background-generation/generated/static-backgrounds-20260909',
   'tools/background-generation/backups/supabase-prune-2026-04-15',
   'tools/background-generation/backups/supabase-prune-2026-05-06-root',
   'tools/background-generation/backups/supabase-winter-retirement-2026-06-07',
@@ -44,72 +31,19 @@ localSearchRoots.push(...extraLocalRoots);
 const shouldDownload = args.has('--download');
 const dryRun = args.has('--dry-run');
 const force = args.has('--force');
-const includeWeatherMatrix = args.has('--include-weather-matrix');
 
 if (!['all', 'backgrounds'].includes(scope)) {
-  console.error('Usage: node scripts/supabase/mirror-public-assets.mjs [--scope=all|backgrounds] [--include-weather-matrix] [--download] [--dry-run] [--force] [--local-root=/path]');
+  console.error('Usage: node scripts/supabase/mirror-public-assets.mjs [--scope=all|backgrounds] [--download] [--dry-run] [--force] [--local-root=/path]');
   process.exit(1);
 }
 
-function readIfExists(filePath) {
-  try {
-    return fs.readFileSync(filePath, 'utf8');
-  } catch {
-    return '';
-  }
-}
-
 function collectAssetPaths() {
-  const assets = new Set();
-  const remotePattern = new RegExp(remotePrefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '([^"\'\\s)<>]+)', 'g');
-  const localPattern = new RegExp(localPrefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '([^"\'\\s)<>]+)', 'g');
-
-  const addAsset = (value) => {
-    const cleanValue = decodeURI(value).split('#')[0];
-    if (cleanValue && !cleanValue.endsWith('/')) {
-      assets.add(cleanValue);
-    }
-  };
-
-  if (scope === 'all') {
-    sourceFiles.forEach((sourceFile) => {
-      const content = readIfExists(path.join(cwd, sourceFile));
-      for (const match of content.matchAll(remotePattern)) {
-        addAsset(match[1]);
-      }
-      for (const match of content.matchAll(localPattern)) {
-        addAsset(match[1]);
-      }
-    });
+  const keys = JSON.parse(fs.readFileSync(path.join(cwd, 'scripts/r2/public-keys.json'), 'utf8'));
+  const originalManifest = path.join(cwd, 'tools/background-generation/backups/supabase-seasonal-2026-09-09/manifest.json');
+  if (fs.existsSync(originalManifest)) {
+    keys.push(...JSON.parse(fs.readFileSync(originalManifest, 'utf8')).files.map((item) => item.object_key));
   }
-
-  LOCATIONS.forEach((location) => {
-    SEGMENTS.forEach((segment) => {
-      addAsset(`backgrounds/${location}_${segment}.png`);
-    });
-  });
-
-  ACTIVE_LOCATIONS.forEach((location) => {
-    ['spring', 'summer'].forEach((season) => {
-      SEGMENTS.forEach((segment) => {
-        addAsset(`backgrounds/${location}_${season}_${segment}_clear.png`);
-      });
-    });
-  });
-
-  if (includeWeatherMatrix) {
-    ACTIVE_LOCATIONS.forEach((location) => {
-      SEASONS.forEach((season) => {
-        SEGMENTS.forEach((segment) => {
-          SKIES.forEach((sky) => {
-            addAsset(`backgrounds/${location}_${season}_${segment}_${sky}.png`);
-          });
-        });
-      });
-    });
-  }
-
-  return Array.from(assets).sort();
+  return Array.from(new Set(keys)).filter((key) => scope === 'all' || key.startsWith('backgrounds/')).sort();
 }
 
 function walkFiles(root) {
@@ -253,7 +187,7 @@ async function run() {
 
   console.log(JSON.stringify(summary, null, 2));
   if (summary.missing.length > 0) {
-    console.log('\nRun with --download to fetch only missing files from Supabase. Existing mirror files are skipped unless --force is set.');
+    console.log('\nRun with --download to fetch only missing files from R2. Existing mirror files are skipped unless --force is set.');
   }
 }
 

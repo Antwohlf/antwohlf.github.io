@@ -1,7 +1,8 @@
 # Background Rollout Scripts
 
 These scripts support seasonal background rollouts without committing generated
-images or review artifacts. Production assets live in Supabase. Local generated
+images or review artifacts. Production delivery images live in public R2; original
+PNG masters live in private R2. Local generated
 files, contact sheets, mirrors, backups, and QA output are ignored by git.
 
 ## Current Seasonal Review Flow
@@ -46,15 +47,18 @@ python3 scripts/backgrounds/create-approval-contact-sheet.py \
   --out=output/fall-approval-contact-sheet.png
 ```
 
-Upload only after the complete approved set is ready:
+Install the R2 script dependencies with `npm ci --prefix scripts/r2`, then upload
+the approved PNG masters to private R2 only after the complete set is ready:
 
 ```bash
 node scripts/backgrounds/upload-selected-backgrounds.mjs \
   tools/background-generation/generated/fall-active-clear/*_fall_*_clear.png
 ```
 
-Then update the approval gate in `assets/js/backgrounds.js` so production starts
-requesting the uploaded season.
+Encode and upload a new versioned WebP set with
+`build-static-backgrounds.py` and `upload-static-backgrounds.mjs` as described
+in `STATIC-DELIVERY.md`. Only then update the approval gate and static prefix in
+`assets/js/backgrounds.js` so production starts requesting the new season.
 
 ## Weather Extension
 
@@ -91,6 +95,6 @@ clear seasonal image, then to the original `location_time.png` image.
 ## Legacy Helpers
 
 The older preflight, validator, migration, and release-gate scripts are retained
-because they may be useful for weather QA, Supabase inventory checks, or future
+because they may be useful for weather QA, R2 inventory checks, or future
 hard-reference validation. They are not the default upload path for the current
 manual approval workflow.

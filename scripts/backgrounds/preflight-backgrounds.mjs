@@ -1,18 +1,14 @@
 #!/usr/bin/env node
 
 import {
-  BUCKET,
   PREFIX,
   LOCATIONS,
   SEGMENTS,
   SKIES,
   DEFAULT_SEASONS,
-  loadDotEnv,
-  requireEnv,
   getArgValue
 } from './shared.mjs';
-
-loadDotEnv();
+import { ListObjectsV2Command, r2Bucket, r2Client } from '../r2/storage.mjs';
 
 const args = process.argv.slice(2);
 const seasonsArg = getArgValue(args, '--seasons', DEFAULT_SEASONS.join(','));
@@ -26,44 +22,16 @@ if (!seasons.length) {
   process.exit(1);
 }
 
-const supabaseUrl = requireEnv('SUPABASE_URL');
-const serviceRoleKey = requireEnv('SUPABASE_SERVICE_ROLE_KEY');
-const apiBase = `${supabaseUrl}/storage/v1/object/list/${BUCKET}`;
-const listHeaders = {
-  apikey: serviceRoleKey,
-  Authorization: `Bearer ${serviceRoleKey}`,
-  'content-type': 'application/json'
-};
-
 const listObjects = async () => {
   const names = [];
-  const limit = 1000;
-  let offset = 0;
-  let keepGoing = true;
-
-  while (keepGoing) {
-    const body = JSON.stringify({
-      prefix: PREFIX,
-      limit,
-      offset,
-      sortBy: { column: 'name', order: 'asc' }
-    });
-    const response = await fetch(apiBase, {
-      method: 'POST',
-      headers: listHeaders,
-      body
-    });
-
-    if (!response.ok) {
-      throw new Error(`Storage list failed (${response.status}): ${await response.text()}`);
-    }
-
-    const batch = await response.json();
-    const filtered = batch.filter((item) => typeof item.name === 'string').map((item) => item.name);
-    names.push(...filtered);
-    offset += filtered.length;
-    keepGoing = filtered.length === limit;
-  }
+  let token;
+  do {
+    const page = await r2Client().send(new ListObjectsV2Command({
+      Bucket: r2Bucket('private'), Prefix: `${PREFIX}/`, ContinuationToken: token,
+    }));
+    names.push(...(page.Contents || []).map((item) => item.Key.slice(PREFIX.length + 1)));
+    token = page.NextContinuationToken;
+  } while (token);
 
   return names;
 };

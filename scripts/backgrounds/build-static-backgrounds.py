@@ -5,7 +5,7 @@ from concurrent.futures import ThreadPoolExecutor
 parser=argparse.ArgumentParser(description='Encode backed-up background PNGs as full-resolution WebP files.')
 parser.add_argument('--backup', required=True)
 parser.add_argument('--out', required=True)
-parser.add_argument('--prefix', required=True, help='Versioned Supabase object prefix, e.g. backgrounds/static-20260909')
+parser.add_argument('--prefix', required=True, help='Versioned R2 object prefix, e.g. backgrounds/static-20260909')
 args=parser.parse_args()
 root=Path(args.backup)
 manifest=json.loads((root/'manifest.json').read_text())

@@ -97,7 +97,7 @@
   var seasonalApprovalState = getSeasonalApprovalState();
   var weatherApprovalState = getWeatherApprovalState();
   var isLocalReviewMode = window.location.protocol === 'file:' || ['localhost', '127.0.0.1', '0.0.0.0'].indexOf(window.location.hostname) !== -1;
-  var remoteStorageBaseUrl = 'https://uqmjvvghhhtjqbzzvtop.supabase.co/storage/v1/object/public/personal-website/backgrounds/';
+  var remoteStorageBaseUrl = 'https://assets.anthonywohlfeil.com/backgrounds/';
   var staticBackgroundBaseUrl = remoteStorageBaseUrl + 'static-20260909/';
   var localStorageBaseUrl = '/dev-assets/supabase-mirror/personal-website/backgrounds/';
   var storageBaseUrl = isLocalReviewMode ? localStorageBaseUrl : remoteStorageBaseUrl;
@@ -110,7 +110,7 @@
   var stormWeatherCacheTtlMs = 2 * 60 * 1000;
   var staleWeatherCacheTtlMs = 60 * 60 * 1000;
   var weatherFetchTimeoutMs = 4500;
-  var backgroundCacheName = 'weather-backgrounds-v3-static-20260909';
+  var backgroundCacheName = 'weather-backgrounds-v4-r2-static-20260909';
   var backgroundCacheLimit = 8;
   var locationIndex = getSavedLocationIndex();
   var reviewSegment = getSavedReviewSegment();
@@ -632,8 +632,8 @@
       return storageBaseUrl + filename;
     }
 
-    // Pre-compressed, full-resolution assets avoid Supabase's monthly
-    // distinct-image transformation allowance. CSS performs the viewport crop.
+    // Pre-compressed, full-resolution R2 assets keep delivery simple.
+    // CSS performs the viewport crop.
     return staticBackgroundBaseUrl + filename.replace(/\.png$/, '.webp');
   }
 

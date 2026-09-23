@@ -1,8 +1,11 @@
-# Supabase Asset Mirror
+# Local Asset Mirror
 
-Use this workflow to keep development from burning Supabase cached egress.
+Use this workflow to inspect the site with local asset copies.
 
-Production should use Supabase URLs. Local development can switch the same files to a local mirror.
+Production uses `https://assets.anthonywohlfeil.com/`. The legacy script path
+is retained for existing local commands; it now mirrors the public R2 object
+list in `scripts/r2/public-keys.json`. Original PNGs are copied from the
+verified local master backup when present.
 
 ## Mirror Assets
 
@@ -12,18 +15,17 @@ Dry-run/report only, no network:
 node scripts/supabase/mirror-public-assets.mjs
 ```
 
-Copy anything already present in local backups and download only missing files from Supabase:
+Copy anything already present in local backups and download missing public files from R2:
 
 ```bash
 node scripts/supabase/mirror-public-assets.mjs --download
 ```
 
-By default, background mirroring includes original time-of-day backgrounds and
-currently live clear seasonal assets for active locations. When weather variants
-are ready, include the full sky matrix:
+Mirror just the backgrounds, including the published WebPs and any local PNG
+masters:
 
 ```bash
-node scripts/supabase/mirror-public-assets.mjs --scope=backgrounds --include-weather-matrix --download
+node scripts/supabase/mirror-public-assets.mjs --scope=backgrounds --download
 ```
 
 Search an extra local folder before downloading:
@@ -32,7 +34,7 @@ Search an extra local folder before downloading:
 node scripts/supabase/mirror-public-assets.mjs --local-root=/Users/anthony/Downloads
 ```
 
-Existing mirrored files are skipped. Use `--force` only when you intentionally want to refresh from local backups/Supabase.
+Existing mirrored files are skipped. Use `--force` only when you intentionally want to refresh from local backups/R2. Private PNG masters cannot be fetched through the public R2 hostname; restore them from the private bucket or the verified local backup first.
 
 ## Switch Local Dev To The Mirror
 
@@ -44,13 +46,6 @@ If you only need to debug rotating backgrounds, avoid touching gallery/project i
 
 ```bash
 node scripts/supabase/switch-asset-source.mjs local --scope=backgrounds
-```
-
-When actively debugging weather variants, require the full local weather mirror
-before switching:
-
-```bash
-node scripts/supabase/switch-asset-source.mjs local --scope=backgrounds --include-weather-matrix
 ```
 
 Serve the repo root locally, for example:

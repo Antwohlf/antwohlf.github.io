@@ -336,9 +336,9 @@ def parse_args():
         help="Output directory for validation artifacts.",
     )
     parser.add_argument(
-        "--use-supabase",
+        "--use-remote-candidates",
         action="store_true",
-        help="Download missing images from Supabase object URLs.",
+        help="Download missing candidate images from storage_base_url when that URL is public.",
     )
     parser.add_argument(
         "--fail-on-missing",
@@ -373,7 +373,9 @@ def main():
     ]
 
     thresholds = manifest["thresholds"]
-    base_url = manifest["storage_base_url"].rstrip("/") + "/"
+    base_url = manifest.get("storage_base_url", "").rstrip("/")
+    if base_url:
+        base_url += "/"
     locations = manifest["locations"]
 
     failures: List[ValidationFailure] = []
@@ -391,7 +393,7 @@ def main():
             image_map[key] = entry
             resolved_trace.append({"key": key, "source": str(local), "type": "candidate"})
             return entry
-        if args.use_supabase:
+        if args.use_remote_candidates and base_url:
             cache_path = cache_dir / "candidates" / key
             remote = fetch_remote_image(base_url + key, cache_path)
             if remote is not None:
@@ -414,7 +416,7 @@ def main():
         if local is not None:
             source = str(local)
             path = local
-        else:
+        elif base_url:
             cache_path = cache_dir / "references" / ref_key
             remote = fetch_remote_image(base_url + ref_key, cache_path)
             if remote is not None:
