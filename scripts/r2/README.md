@@ -1,14 +1,13 @@
-# R2 asset and jobs backup runbook
+# R2 image migration runbook
 
 The website serves 407 public objects from `https://assets.anthonywohlfeil.com/`:
 264 versioned WebP backgrounds and 143 other images/files. The 264 PNG masters
-belong in a separate private R2 bucket. Never make the masters or `jobs` exports
-public.
+belong in a separate private R2 bucket. Never make the masters public.
 
 ## R2 setup
 
-Use Standard storage. Create separate public assets, private masters, and private
-jobs-backup buckets. Attach the hostname above to the public bucket in the same
+Use Standard storage. Create separate public assets and private masters buckets.
+Attach the hostname above to the public bucket in the same
 Cloudflare account as the domain. Configure its CORS policy for
 `https://anthonywohlfeil.com` and `https://www.anthonywohlfeil.com` with GET and
 HEAD. Versioned WebPs are uploaded with a one-year immutable cache header.
@@ -59,34 +58,6 @@ PNG references from the verified master backup or a private R2 restore.
 The legacy `scripts/supabase/` mirror commands now read public R2; their
 directory names are retained for compatibility. The mirror may also copy
 private PNG originals from the ignored local backup for local review.
-
-## Database recovery
-
-`backup-jobs.py` exports `public.jobs` to `jobs.jsonl.gz` with a row count and
-SHA-256 manifest. `make-restore-sql.py` validates the archive and exact column
-set, then writes SQL suitable for PostgreSQL 17:
-
-```sh
-python3 scripts/r2/backup-jobs.py --out-dir=tmp/jobs-backup
-python3 scripts/r2/make-restore-sql.py tmp/jobs-backup --output=tmp/jobs-backup/restore.sql
-psql -v ON_ERROR_STOP=1 -f scripts/r2/jobs-schema.sql -f tmp/jobs-backup/restore.sql
-```
-
-The schema SQL includes the `jobs` indexes, RLS policy, and role grants. A
-standalone local PostgreSQL cluster must have `anon`, `authenticated`, and
-`service_role` roles before running it. The first 2026-09-23 backup was
-restore-tested locally: 6,896 unique rows and 2,565 active rows matched live.
-This HTTP export is a best-effort pagination snapshot; it is not transactionally
-consistent like `pg_dump`. It fails if the row count changes during export. If
-database credentials become available, replace it with scheduled `pg_dump`.
-
-The private `target_jobs_bot` repository contains the daily backup workflow.
-It checks out these scripts, validates the export, and uploads the compressed
-data, manifest, and schema to the private R2 backup bucket. Configure its
-`R2_ACCOUNT_ID` and `R2_BACKUP_BUCKET` repository variables, plus
-`R2_BACKUP_ACCESS_KEY_ID` and `R2_BACKUP_SECRET_ACCESS_KEY` secrets. The backup
-token should have access only to the backup bucket. Run it manually once and
-confirm three objects plus a successful log before relying on its schedule.
 
 ## Rollback and retirement
 
