@@ -76,7 +76,7 @@
   }
 
   function showError() {
-    mapElement.innerHTML = '<div class="travel-map-error">The map could not load. <a href="https://snazzymaps.com/embed/474495" target="_blank" rel="noopener">Open the original map</a>.</div>';
+    mapElement.innerHTML = '<div class="travel-map-error">The interactive map could not load. Travel destinations are listed below.</div>';
   }
 
   function buildMap() {
@@ -90,10 +90,17 @@
       zoomControl: true
     });
 
-    window.L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-      maxZoom: 18,
-      subdomains: 'abcd'
+    // Keep a bundled, keyless world map underneath the live tiles. If a tile
+    // request fails, the destinations still sit on a geographic base map.
+    window.L.imageOverlay('assets/maps/world-land.svg', [[-85.05112878, -180], [85.05112878, 180]], {
+      pane: 'tilePane',
+      interactive: false
+    }).addTo(map);
+
+    window.L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
+      maxZoom: 19,
+      errorTileUrl: 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
     }).addTo(map);
 
     var pinIcon = window.L.divIcon({

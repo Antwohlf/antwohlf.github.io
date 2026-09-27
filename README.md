@@ -38,6 +38,10 @@ Keep `art.html`, `pbd.html`, and `Resume.pdf` available at their existing URLs.
 The resume viewer renders the PDFs in `assets/resumes/` using the bundled PDF.js;
 it does not need separate PNG previews.
 
+The travel map uses keyless OpenStreetMap tiles. A bundled Natural Earth
+world outline stays visible if tile requests fail. Keep the map free of
+API-key-dependent tile services and embedded map fallbacks.
+
 Background maintenance workflows are documented in
 [`scripts/backgrounds/README.md`](scripts/backgrounds/README.md) and
 [`tools/background-generation/README.md`](tools/background-generation/README.md).
