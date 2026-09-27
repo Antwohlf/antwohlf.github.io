@@ -1,0 +1,1800 @@
+{
+  "release": "20260927-quality-v2",
+  "source_manifest_sha256": "36ad7edca51e078b6ffab23d6ef8b5fd9caea93fce9898688d2247e7bb2c164d",
+  "public_prefix": "backgrounds/static-20260927-quality-v2",
+  "private_prefix": "backgrounds/releases/20260927-quality-v2",
+  "assets": [
+    {
+      "filename": "annarbor_fall_day_clear.png",
+      "delivery_sha256": "968fa71f33804026d9439d76d999e4b86cc1712b09cb30be34ed889aef8c1663",
+      "native_sha256": "c75cada6d5808555dab13a75fc648295f2af38182e34351f326c798fcdc14ca9",
+      "webp_sha256": "7333184eca47de6e773d15cc8c130f4af20475bcedda9851a1f93bb58cc2af12",
+      "webp_bytes": 967824
+    },
+    {
+      "filename": "annarbor_fall_day_cloudy.png",
+      "delivery_sha256": "e3a00651dac1085c77aaa0d74d3ec63d2a243039c327d9f35b1708331f3a3a4c",
+      "native_sha256": "950caf590abd1d015801488de83f63a85def352b6ce81adfc2a812be99634060",
+      "webp_sha256": "e735a669a0e006b32500290075c791381b79bcb8792f9f7a74f9f799874e89a3",
+      "webp_bytes": 833796
+    },
+    {
+      "filename": "annarbor_fall_day_dark.png",
+      "delivery_sha256": "1426be55a76dbcedfdc0c16b9a24fa353bcd38a5d303d70b10694c5917e6ee40",
+      "native_sha256": "22e1a3a76738050bf12e37ce01bf6cdd938469dd36bae188b9e3c47ac0745582",
+      "webp_sha256": "d4d8f12118a5c3b7fdf58a5f909c4f38df2beca545e1a0070ec33ffbaf631ad2",
+      "webp_bytes": 786712
+    },
+    {
+      "filename": "annarbor_fall_day_partly.png",
+      "delivery_sha256": "5f5d5a1d7796fbf591e61f6a36300774ae576c19baa1f59134a4afd55eeeb361",
+      "native_sha256": "5b2b1cb9ca176ac15a88cd004ab69a0cededbee8a51039e07da0da4fb5369be5",
+      "webp_sha256": "cd168cf27d351cf8d84acc8320479f6f6afad7b3f96fcf3b4946ad999bff3481",
+      "webp_bytes": 888962
+    },
+    {
+      "filename": "annarbor_fall_evening_clear.png",
+      "delivery_sha256": "5c9aba50f053cc12a0d9dcf18f9700b6c870e923a246da167208b5b27b10c968",
+      "native_sha256": "175dde45491a53980ec7fddfdee188324586b3e2f833ba54df13241e3a082717",
+      "webp_sha256": "68fa8e2b46d9d2af048f637c6343bd6f409b6d62916db5d396a2ab58378f4202",
+      "webp_bytes": 941742
+    },
+    {
+      "filename": "annarbor_fall_evening_cloudy.png",
+      "delivery_sha256": "7d1ddb1181f02361d1c1c76771469c052be4e3d19ecf60b7304aaf0f7121f911",
+      "native_sha256": "27daacf73812dbed4563633fc3cb63bb1cfb3e030227172419811a8d21193750",
+      "webp_sha256": "b0fddf1e4bd170f44f23e391f8fb45820179dc056fed0565378dc5b051c7cc5b",
+      "webp_bytes": 835482
+    },
+    {
+      "filename": "annarbor_fall_evening_dark.png",
+      "delivery_sha256": "ab805dfdd90ccfa942e165f415764f73b1d343eb0b9f10c95903ec67a1d6158e",
+      "native_sha256": "bf6fb79ae5d6cd3c3218d49c7289c445261901b60711310d6b7ee92b5c45db3a",
+      "webp_sha256": "3e58c6c885488e3556f980021206e81fcb6ef03465e31ae49ed02b93385f656f",
+      "webp_bytes": 880044
+    },
+    {
+      "filename": "annarbor_fall_evening_partly.png",
+      "delivery_sha256": "4b3badec67bf2f032a56b928b320491c389a32a0d7bd6041895a96018ed8fb9f",
+      "native_sha256": "314be27093097d2f611eba5805d2d6da75126a60f64d29a0500a05449b5b1813",
+      "webp_sha256": "f4fc4620ef607f1d7aa8a877ff72dc382769dbcb75b9b1e74459a251e9c1cb0d",
+      "webp_bytes": 893900
+    },
+    {
+      "filename": "annarbor_fall_morning_clear.png",
+      "delivery_sha256": "9da10d953b88e52e168d1d1001f334046af19b713b41bf36705e81872a22082f",
+      "native_sha256": "8fb7e9baac53181f49844d12d61ffe02d36eac7e27caacc7968120924ea492f6",
+      "webp_sha256": "5f0009fe00dfcdca64b9d5b1d102274ea939abfeccdea6b4139f5ebab46d5173",
+      "webp_bytes": 791810
+    },
+    {
+      "filename": "annarbor_fall_morning_cloudy.png",
+      "delivery_sha256": "9aaccc6828d3f7c780727db1c18d6824f466a2fc8c16af704a7f94f4089c82e3",
+      "native_sha256": "f9caad862daa17e8031c395f82913e6c3d6941e6b5fa7a9561e35fc357a20ac8",
+      "webp_sha256": "9d57b12d6f1aa05b101f987e7da19d5dae84b911266ba321eb334e753a483d46",
+      "webp_bytes": 767818
+    },
+    {
+      "filename": "annarbor_fall_morning_dark.png",
+      "delivery_sha256": "c250758cdc1e00a31a249cf87076d7421379cc2fe7889460cb0d61d1df3b82b4",
+      "native_sha256": "0009df3115fe33d070013151c36572b000bab1271bc000ba682eaa000aa7bba9",
+      "webp_sha256": "bc096c608c7ac66986d52f50b4e25c21bc28ec06c8eb1eb0d4f12b57e07dcb74",
+      "webp_bytes": 712128
+    },
+    {
+      "filename": "annarbor_fall_morning_partly.png",
+      "delivery_sha256": "62db8701d97b1c984a3384264b253a0b0f56cd82042c6a9dd33b04231238c797",
+      "native_sha256": "40dc36e03d0288ff2aa9a3c43fa68c6b21ecf5ebf155d6bcd4f8bbbe241c5914",
+      "webp_sha256": "8f609fc092b29074fbb440c7c3671df4c3ef7e7dbc29bd143b506c10b83c7493",
+      "webp_bytes": 832222
+    },
+    {
+      "filename": "annarbor_fall_night_clear.png",
+      "delivery_sha256": "69ef3a5426cc342a1bfc0eaf42b43cb2c403ddaeba175e7ccc724267df01a6f9",
+      "native_sha256": "4d4b903288d5ac3711ce765036861f4b2934600ca7b99228d0be87464fe6f831",
+      "webp_sha256": "43cb6dbcff7a2e751b26f636b7b8eea056f1277f21daa3086881fe7d3556ecd6",
+      "webp_bytes": 812422
+    },
+    {
+      "filename": "annarbor_fall_night_cloudy.png",
+      "delivery_sha256": "c9f71d8027286cb1d2976e6cb1ecfef6e8d5f018d5200e3b6f498da1c3325a72",
+      "native_sha256": "3b961f1678411be73d09b217f5dc4a806adecdf554dcf86549ba3b6207a54864",
+      "webp_sha256": "37424f28314ac577e27a14da052630b012b908a1a4ffb7528a9d016cfaa20256",
+      "webp_bytes": 809654
+    },
+    {
+      "filename": "annarbor_fall_night_dark.png",
+      "delivery_sha256": "a0864af6f464120f29ae52869f6e90b958c6670870d2509ffe06dc9eb4a1eec0",
+      "native_sha256": "111c569eced3a190cc9b88eda3009d680b1361b593c7df263adfbb5cb1f4f5c7",
+      "webp_sha256": "3bab79a1083f3bd6c64d865e9a0b69db0beaad7b7a6f175f4b3166c6c381a6a0",
+      "webp_bytes": 772378
+    },
+    {
+      "filename": "annarbor_fall_night_partly.png",
+      "delivery_sha256": "e0cb1f21aed43971c15b17d25d68a42b485aa5b723e4b305c727a85f191f0a92",
+      "native_sha256": "34fee65dd38c8a967c831d5bc981638a24c5a01bb3ea1d6b427ccae443e31b12",
+      "webp_sha256": "dffd8973859c4a3232525707debbbc83517f73cefb25005792e28cde574f56df",
+      "webp_bytes": 868642
+    },
+    {
+      "filename": "annarbor_spring_day_clear.png",
+      "delivery_sha256": "213af98c15d3a1b9d6aec4777468cfe3c1a7879f6463f49c8ec2ca5fdaf110a5",
+      "native_sha256": "22bc93476c670f6059e3e3f31163f9869d165110830b0af66e41fa06072505b2",
+      "webp_sha256": "8eb696914b64aeb04a8bc08fb9f61647e6fd1afbdbbe62cb8e2b0acb2052b0c4",
+      "webp_bytes": 919142
+    },
+    {
+      "filename": "annarbor_spring_day_cloudy.png",
+      "delivery_sha256": "28a3d8f5042094685c9fc5d2cefe7b88e3f4803557be9fb08e78f5237d1ba510",
+      "native_sha256": "ae5c4586af6190793a0ce4755bd663351604edb1283c967bdd1276c419811653",
+      "webp_sha256": "cafe1c952dbefd077767f6279ee4689ceccb3cf5876b2da8777e2ed186f8d107",
+      "webp_bytes": 819588
+    },
+    {
+      "filename": "annarbor_spring_day_dark.png",
+      "delivery_sha256": "5e0fc7b8a47d9dfb23621cc8d694258b23dc725a2b713666bae589ea0cd5b2ae",
+      "native_sha256": "6c265773c9ff5780a2dfd9855aa1f8b45bcbbdccc1bdeb742837a508bce2e24b",
+      "webp_sha256": "273e305f10f5a2845f9d670398745230e660693649866349147137bcd2913780",
+      "webp_bytes": 805076
+    },
+    {
+      "filename": "annarbor_spring_day_partly.png",
+      "delivery_sha256": "5b69642264205ecbb7f5099da99ba5668de85dbb2b681f9dceb87c8f84066b7c",
+      "native_sha256": "d0ad98dcc55b4213f9653bbf8d48b9b3e75a7e3978cda135d61e9598b18906be",
+      "webp_sha256": "57acf4a45bee95de5d92790479b5b9cfc15b116d1c7d28fef62fa5c6407cf4fc",
+      "webp_bytes": 917782
+    },
+    {
+      "filename": "annarbor_spring_evening_clear.png",
+      "delivery_sha256": "c33d04932d25be99d08c053eef3482fdfad0b4cec3fbca9d0855dd7e6e1ad2dd",
+      "native_sha256": "ce8c515d7eb5676d0216ac825ec44558374c7918d82bd20da834ee38e40d9f56",
+      "webp_sha256": "1162bf7245c46fc91710132eede401e1a5b23bd8f8a5595941f1f303c603ba2c",
+      "webp_bytes": 860588
+    },
+    {
+      "filename": "annarbor_spring_evening_cloudy.png",
+      "delivery_sha256": "1c9ccfb16aa595afdc02fea02cfb4c870fa75e0355c20de62d961238702c711c",
+      "native_sha256": "2e38be79a7dfce8323b5ec210676599054f72c0bad86dec3a1d7fb031fd6e1ef",
+      "webp_sha256": "5b796d32dea02ad786b488f85e1b399fcef11e6f5f0250fcf6737ddde337f6dd",
+      "webp_bytes": 749730
+    },
+    {
+      "filename": "annarbor_spring_evening_dark.png",
+      "delivery_sha256": "ad870782a55e41b0ae1491214dbeb02394d59d1df10ed18f8d7262d2c607cca4",
+      "native_sha256": "b986492f9de583d1b8d94a38f2d68acd6ad5c5f7a31245e8ae03020ff901059f",
+      "webp_sha256": "5da914d6710dd183b6454a2b4302967ea04928b09f9017b8636fc2abfb0c3fad",
+      "webp_bytes": 738052
+    },
+    {
+      "filename": "annarbor_spring_evening_partly.png",
+      "delivery_sha256": "c1f980eaec8b3938aabbd2254b553e96589f925b2fb3dcd86d9d1cccc9adc797",
+      "native_sha256": "a67af639616431f319d287ec92bb93552203f36f7ec112a29d743e79af191abc",
+      "webp_sha256": "e2df5f7ca89a81b1de8432f3b203500123c0cd1a52e5436393f8a67e46316842",
+      "webp_bytes": 861088
+    },
+    {
+      "filename": "annarbor_spring_morning_clear.png",
+      "delivery_sha256": "2dee4b34a78fd6ccf3e8ae263a2f2a1b213ac0b3be4a053146dee1f1c26fe790",
+      "native_sha256": "f7db6eaa05a6082d83fcb7cb9b8a487d3d2d1d1706ae93bc21cbd06ef154a527",
+      "webp_sha256": "9b4dcf94ea85b266314c179484e5a43fc7fde17aa784881c67c12c619c1dc010",
+      "webp_bytes": 914914
+    },
+    {
+      "filename": "annarbor_spring_morning_cloudy.png",
+      "delivery_sha256": "fc6b1903b1a07f0f107d5e9a84dabc15acd4bd4db1e97abf16cad03bec8678a4",
+      "native_sha256": "c118a5af10849ca1d1f8c5a3b0f54821122cc7cdd8a99422ee9c338c5b96934d",
+      "webp_sha256": "36969e0ac9994fa42288cf8393c23ca3cfda86e427b9cc749df55b8935a804e4",
+      "webp_bytes": 794474
+    },
+    {
+      "filename": "annarbor_spring_morning_dark.png",
+      "delivery_sha256": "e2be6f704d82f585fbd43625c487f0bb4d4d6d642087b14226ef393b2ba331ed",
+      "native_sha256": "0e4928a8e1b8d7f8485bcaa9f721eaa65419a7abbc74ef0f905437c783cf5f94",
+      "webp_sha256": "a6ccf74deeba2d79de1a3390cf0acd0b02fc4fc17b5b43838d9facf0511bc23c",
+      "webp_bytes": 745516
+    },
+    {
+      "filename": "annarbor_spring_morning_partly.png",
+      "delivery_sha256": "0720192675c8176121cd5b087e625f773567544040f6cd0ee8b46914df40aa45",
+      "native_sha256": "43f73eb6a408aa238f28f967b68ebff2ed9f7ebcd565614c4e4f866bd4773775",
+      "webp_sha256": "bb784cbf3a73f5303618374074c440a90732553e82d6d9f2f11633e961797f04",
+      "webp_bytes": 889916
+    },
+    {
+      "filename": "annarbor_spring_night_clear.png",
+      "delivery_sha256": "526e99b18c140d42fbdf5689203deb39427a336884196c0e5035d6a58d637fa5",
+      "native_sha256": "6aa4f982df8ca1be863f3ad1ae7cc6bd73b01b46b5c56bad995e127def217b6d",
+      "webp_sha256": "1fe64000de1bfc773645e40f03ccf2108c320f1749bc93607b40e9a6d1cae5a8",
+      "webp_bytes": 833970
+    },
+    {
+      "filename": "annarbor_spring_night_cloudy.png",
+      "delivery_sha256": "756b3c1d14dab2f72a2373bd2b64a22b982da960523a80c0b54624b702a6a5fd",
+      "native_sha256": "5e1c736b2b337e6a3c7175a900089c01d2f9abff43e101a3877af4f7402ad535",
+      "webp_sha256": "924716f3880328f8dfa1790c5fdfd7eaf117b9f1105fe636f36487a203df4dda",
+      "webp_bytes": 727394
+    },
+    {
+      "filename": "annarbor_spring_night_dark.png",
+      "delivery_sha256": "1f448ef59425c1ba7a66cc43e0c1ce5fa96994d904515044b24e6d1c1cf7a95a",
+      "native_sha256": "307c7dcbeb01403b7ed5e9e1fe3c03d26ea4d6f5bea5ef21eb564da9ebb18d8a",
+      "webp_sha256": "1bc21ecd8edbdeff640034e022e3ed83154d4edc05d8c69b18598f4f59ea5350",
+      "webp_bytes": 752376
+    },
+    {
+      "filename": "annarbor_spring_night_partly.png",
+      "delivery_sha256": "9d15260200bcfadd3a4569e0ac4889b6409831bced487146b0a8fd18cbe5e730",
+      "native_sha256": "43462c3d6eeb572852ead3c72460e01b5496a68b8f3e3c05561ca2730b5ffbfc",
+      "webp_sha256": "934d3bdd430a00e5ccf3f4ebed384cb71756208e18e998019d9da1a9e9434059",
+      "webp_bytes": 800932
+    },
+    {
+      "filename": "annarbor_summer_day_clear.png",
+      "delivery_sha256": "ca797e3e50f74c7b4f3de2dcf4bf8957ddd76471ef9a16f0d9f6f479532575b5",
+      "native_sha256": "c88e5cfd853a6913bbcc5454bd9fd799fc15f457f56ceb69d2579e406462b8c1",
+      "webp_sha256": "e51c1264602763474217cb39605d6458d93559978aa36a3e92df5e7927f4c470",
+      "webp_bytes": 860294
+    },
+    {
+      "filename": "annarbor_summer_day_cloudy.png",
+      "delivery_sha256": "ab34c7705e0e40f2ac6ad5602b63e7641b510de5012b26fa396393676c8fc513",
+      "native_sha256": "75f8211e6442b85824b0aaf9b489823eb4faca7b564d806b13f86087812c620c",
+      "webp_sha256": "15713c4462200343cf423791498095a5d7c745caf626a081a4947044a5bff14f",
+      "webp_bytes": 758552
+    },
+    {
+      "filename": "annarbor_summer_day_dark.png",
+      "delivery_sha256": "22dbba677c1b111261bfbf374619ef056aada12256ae633312b368833dc81ee0",
+      "native_sha256": "9be0469ad4fb5ad61c336b7a726bb2bb442a6238ae6af30b8a340206bcd8f25e",
+      "webp_sha256": "3846fc0965be50ba528a1efd666b8091d686e3b7672711732efeef31d3ffb723",
+      "webp_bytes": 688490
+    },
+    {
+      "filename": "annarbor_summer_day_partly.png",
+      "delivery_sha256": "d4cf8470ede738d1f670929f5cbed31025bcdfdeb5d11038e08b725e27a4f28e",
+      "native_sha256": "eb2b90fde4cd23c6c2f941a2914ee42d57684a32b745563f6411159eecb7c182",
+      "webp_sha256": "0732a5b0bd386dd7e55afb3dd80b869ef467ac1b468583be79a16d16a0143bde",
+      "webp_bytes": 901038
+    },
+    {
+      "filename": "annarbor_summer_evening_clear.png",
+      "delivery_sha256": "49ca662ee5339c75cf3bc13515bea74f77ff2ab98629561612167e801cc22018",
+      "native_sha256": "c99cdf43b628dafd74d24544503ba9d4eac68e97c42b7fa89e7997920f5c590f",
+      "webp_sha256": "5cb69a2daa554b231a8f78dd7a419fe313c12d39e44326ed8553484881ddf3c8",
+      "webp_bytes": 813048
+    },
+    {
+      "filename": "annarbor_summer_evening_cloudy.png",
+      "delivery_sha256": "ce9da84d039fc83cefa54a2f9bef684a4902d7589065bceae213e0a64752cbd8",
+      "native_sha256": "33dcbe9ee2866836bc987bc26d5e8c2c1d37d92e68bd6f9b1ef2052ade556e54",
+      "webp_sha256": "d30f03407bbd1166fd53e857693144c06eddc728bb8feb07aca185633f68e479",
+      "webp_bytes": 741634
+    },
+    {
+      "filename": "annarbor_summer_evening_dark.png",
+      "delivery_sha256": "ebc94396c20e028b57947707915c448fae9cd5e5fb2a7ff944273f091a48f272",
+      "native_sha256": "c1fb87c9af4db12df05522b6abc2d955654de36a65d1bbab1fc6e31b933cc690",
+      "webp_sha256": "5695b24f538e5894e86b9415a5617816b8e8ae3292b81805553f9ef9062a0dfc",
+      "webp_bytes": 759222
+    },
+    {
+      "filename": "annarbor_summer_evening_partly.png",
+      "delivery_sha256": "be67e861cb0e0c3489c9c9f377b9da894bd054d3358c85de44cae69df20ba6be",
+      "native_sha256": "03ccff9117dc6908e60e7accda8820512f661ce788795b3f771ef2860b1330a9",
+      "webp_sha256": "4fa5164ca2b40b8206a5a119aeaa9be9e71db83e1f8142a42533650ea014c9f9",
+      "webp_bytes": 824362
+    },
+    {
+      "filename": "annarbor_summer_morning_clear.png",
+      "delivery_sha256": "fbf99fc07002d9be6f91b7036cf79d6a9269b764c64dd3eb5f371aa57fbcedff",
+      "native_sha256": "b8edccc32d166289c311572ea87b8af7dde0c4f304e326671c85b24bdfa853c5",
+      "webp_sha256": "e58c921f25d1d6e23e24a7382b54bfa4d855c54824fa5c214d61d89b6c094a35",
+      "webp_bytes": 779232
+    },
+    {
+      "filename": "annarbor_summer_morning_cloudy.png",
+      "delivery_sha256": "daaa5d8ab408184b44f76463fc3d40409de8a2e1235c6f5d56b82c1ac86082eb",
+      "native_sha256": "1f00ce9a6ac509cb0bc89bc9a45b48503a052e59edd94aa3b8c4516df055b727",
+      "webp_sha256": "a9e01806901071a57bb20a7300e8155900be0e7f9333d234bc6d78342fcddf7b",
+      "webp_bytes": 707652
+    },
+    {
+      "filename": "annarbor_summer_morning_dark.png",
+      "delivery_sha256": "d4554226c731b0dfc6ab3bf472217eba4cb6c95b4420b06941ef219b05016284",
+      "native_sha256": "a0e4bfd16da4bfb9836fd959c43d09e25414a8a1f9840dde91a26d6eb6ee497e",
+      "webp_sha256": "097a945e4ce67ff17d777ff81a012449db117cdb24d6e9b6c6c05f6fefbba3e3",
+      "webp_bytes": 653120
+    },
+    {
+      "filename": "annarbor_summer_morning_partly.png",
+      "delivery_sha256": "479a91f57c9c6466e7e66b4a3be8fc96e2b63d377499f9a7590883b0617eec85",
+      "native_sha256": "fe62077baffd1e80112024ccf00072274225b0d4241319b718e2a8f5eaf5406f",
+      "webp_sha256": "f8f8f5bfb0d2f0a832a6ef3e748a2228125dd522f78b6a479ef60fde5d1630ba",
+      "webp_bytes": 815252
+    },
+    {
+      "filename": "annarbor_summer_night_clear.png",
+      "delivery_sha256": "daa3d1ad4e8a259233c226fdf4fecfabff78c8d79081d0e9cd109dfbc92be3bf",
+      "native_sha256": "a1c131f011ea3e7d335087a4848c963d0e4431d7c617def64b4b119a6e71ecec",
+      "webp_sha256": "92146f3283a1dec6d84ada13c0b57bca48f7c15d9a2d1ed15f9f4cf1518e2cd2",
+      "webp_bytes": 763750
+    },
+    {
+      "filename": "annarbor_summer_night_cloudy.png",
+      "delivery_sha256": "cc7c3d5ba3b29b4327f6bded542333d57b526fdbe9c46e73ef1669afb36f2a32",
+      "native_sha256": "161432d03a2fa56bcd266eff1bc2958ea10ce18c37e6fd3466084788adaecdf5",
+      "webp_sha256": "7d39133c329f9118bfdbbff12fd8f1d272c970f1ebe83d4ed9e3c5bf25808001",
+      "webp_bytes": 690728
+    },
+    {
+      "filename": "annarbor_summer_night_dark.png",
+      "delivery_sha256": "0b7eaeae8c0c1800f2fc8347cf7a893cf1138e4d535305b4417be7f8d34157e4",
+      "native_sha256": "6c21c357ad6f0516ad1b559055db80f7b6e99fe1dc45b904b2f5e78d00149a5b",
+      "webp_sha256": "209d0925cea0cfadddcd8c818f6ee93c5f5602d788d0992cdfb7160a269ca73e",
+      "webp_bytes": 642040
+    },
+    {
+      "filename": "annarbor_summer_night_partly.png",
+      "delivery_sha256": "22538a559f6ce5ac98010cec3083cfbc73d3da1bd06b8bb4090545d8ebe4d859",
+      "native_sha256": "f70f38cd2f6647da5ecad53f73f78643035a5da5374c0e653d830a2c40570cfc",
+      "webp_sha256": "f750ea00827762d8096e233645ed43987bdccc7b8c33edc08c483844ae102ffd",
+      "webp_bytes": 713338
+    },
+    {
+      "filename": "annarbor_winter_day_clear.png",
+      "delivery_sha256": "62eef5482e4ab6e2cbd145eac88a03e8f57864f9093d5232b7110eb954497318",
+      "native_sha256": "cf8939904e0c11d4eb968a780d471575586c0741556bc2ce328fae1f8d250dfe",
+      "webp_sha256": "4df44d9d3bb40b9046a794f7dea77cbced7b546f03b5d0de06c1819c17c52b7b",
+      "webp_bytes": 862228
+    },
+    {
+      "filename": "annarbor_winter_day_cloudy.png",
+      "delivery_sha256": "21fb86a818e4e67b29faf917e4142267481ebf0aba49372e0c25df5153c95e1a",
+      "native_sha256": "6859a52bc4397c875b1636cfc23ad6d3532d9ff55dfa44b43e6e8edebd79a04d",
+      "webp_sha256": "79400684daa9a9029f16e94353791998f56e78393fe4bb7ab63f8b8024d0508d",
+      "webp_bytes": 749288
+    },
+    {
+      "filename": "annarbor_winter_day_dark.png",
+      "delivery_sha256": "22349d77b915e8298faccff0f159fa40e8d1bc78f2a96edc58cf9b1c55ec1d52",
+      "native_sha256": "eb5fb30ef9449c953bc01d7cd68b7b93c311fa43218631d375694125008958e7",
+      "webp_sha256": "5fb461ef2b761acf0170bf74f3977b48754bf41ba9fa2d65f8919d9e483a508e",
+      "webp_bytes": 738964
+    },
+    {
+      "filename": "annarbor_winter_day_partly.png",
+      "delivery_sha256": "061dda020094ccb90e11ace6eaa6aa376b7bd35b4313685e576ded1d553dec88",
+      "native_sha256": "61698bf220962ba6f536433411ab06cfe836d9067c52c8ce2b489215b574a107",
+      "webp_sha256": "c8d32f4aa5489a65d8aaf0106b0c92d6252c0f776f4b9d749cc42785d7a7ed75",
+      "webp_bytes": 865502
+    },
+    {
+      "filename": "annarbor_winter_evening_clear.png",
+      "delivery_sha256": "d06c49e7b3d9153af9867f450af0221dc5c884ccd9b463cace6c3cfe90ed18df",
+      "native_sha256": "76be00bdf37041bad395af71d944fe2f2101618c768968fa2770274872a617a9",
+      "webp_sha256": "035db0abb6b298ee4defb2dda13485536d433526f45e2ad6c888404c31be92fa",
+      "webp_bytes": 835948
+    },
+    {
+      "filename": "annarbor_winter_evening_cloudy.png",
+      "delivery_sha256": "bb7373e5fba8f9728516c1e9311c7d11075be3580e68b763d099d6ccec36b775",
+      "native_sha256": "8b73092a430aea05a0f65ba05ae44fc918a3988e7e4e73820ca3872c64dc2bcc",
+      "webp_sha256": "3933fecd91a1d5ddf665fc546a22a7639f14d2ee52121b8710c75942c8b2c926",
+      "webp_bytes": 745960
+    },
+    {
+      "filename": "annarbor_winter_evening_dark.png",
+      "delivery_sha256": "640c55b2a9ebeae64f1ce8f2525d2f533a22b5a96fb5c51fdb6420cbbe0e4a5a",
+      "native_sha256": "7f27ff32bf0461a67c115d42d953e295b3897ae937fbb812a554d35e6b895b7e",
+      "webp_sha256": "079944a3b4343c9ef4d612ce22fdde1668e2d2c1e6ba63ea03ff14abf11d641e",
+      "webp_bytes": 750744
+    },
+    {
+      "filename": "annarbor_winter_evening_partly.png",
+      "delivery_sha256": "3df43a59ad8dd39863552cc1d06d4b8c4fe9bb33dde60e36605463fa9037b04b",
+      "native_sha256": "faf243c268f35428b17eb986d9a76b8e701d211fb069014a2a969155ad7f6c47",
+      "webp_sha256": "34e4add128148c949d9b208fffeb29b578f70e9ac60a9187b49b49e1b1cb807e",
+      "webp_bytes": 796912
+    },
+    {
+      "filename": "annarbor_winter_morning_clear.png",
+      "delivery_sha256": "908871f108349058ce2551ef21f038885f9bea305221482920e62d2ef6731750",
+      "native_sha256": "f0d2bb7b3a208cd55938a4c47be235e327e3bdc2758a43d77db069e4fd2d6bd1",
+      "webp_sha256": "db72963347c0a950f18e81b55026396198756e52f66353fd2f023bd5c302a4a3",
+      "webp_bytes": 820984
+    },
+    {
+      "filename": "annarbor_winter_morning_cloudy.png",
+      "delivery_sha256": "6d21d6be509804f47830da254bde5a961689c0370e0c808a914657d9891765df",
+      "native_sha256": "1869f26ab691153dadc8ab6c45020a27e4b662928dc337b2ca87c835c12dc645",
+      "webp_sha256": "02d3565f38313e19ba0bcb78751b5e6cc747905a99b88aa36c8f1b3a47a60f0c",
+      "webp_bytes": 642754
+    },
+    {
+      "filename": "annarbor_winter_morning_dark.png",
+      "delivery_sha256": "4a948c7765942717e99b0c82b555726a5ed0a3539455aef2bb8707436a26e55d",
+      "native_sha256": "96ec74a5d658bb34a171493ebf76809ff3ea8a3da1f544c5378354777504f38b",
+      "webp_sha256": "f0cabe4e2b7d3831a5db578aa1c0828e147f50f21330bb271a95f74546378476",
+      "webp_bytes": 712484
+    },
+    {
+      "filename": "annarbor_winter_morning_partly.png",
+      "delivery_sha256": "718ab0f39878e103606121f6f392976c524a16c7347fbf644e63469c9321ec74",
+      "native_sha256": "bb0d155484b96a8414a0b1b52e3e2a98dbe42bba52655a34de4700dbe47a7382",
+      "webp_sha256": "67ef2d716db143c8193f58df153ac67a2e3aa8e78e7f0a3baf43ef5abdf481b4",
+      "webp_bytes": 832568
+    },
+    {
+      "filename": "annarbor_winter_night_clear.png",
+      "delivery_sha256": "fa8c6634af17758d0f7a9da54199956304e6f00e7481682590f7ec7de0beebf8",
+      "native_sha256": "2da0cf9a212bf80987e7f0d07e398e72865e1c078015aa526e1f9cf28d2484c0",
+      "webp_sha256": "34d3cd25d60832811896518641c357d596488a6df65eafc2652f376a61b0740b",
+      "webp_bytes": 823848
+    },
+    {
+      "filename": "annarbor_winter_night_cloudy.png",
+      "delivery_sha256": "67ce2e5ec00975f0e159cd2676b38c224a8135f93aa91308c8afe02078efcdc1",
+      "native_sha256": "5494f505cf8bfec625af669d6b434080d001ad3099b0a74243d4f1db65ec4811",
+      "webp_sha256": "68d24e1df9a9820919a4b15e50598a9fef72593dd0cfb67e02c7083012962e39",
+      "webp_bytes": 726804
+    },
+    {
+      "filename": "annarbor_winter_night_dark.png",
+      "delivery_sha256": "7cb0d16391ee4799b5444b4f5c26bf38410718763c25351cca02b633aa43ce4d",
+      "native_sha256": "20f3f028d52fd0982fa853318930b5895989f2ee8e5482786947897741b43ba2",
+      "webp_sha256": "99386dc2bbe5201c6bf661dd2190d98f04e0638146d84f92b0a39c215afad04c",
+      "webp_bytes": 739598
+    },
+    {
+      "filename": "annarbor_winter_night_partly.png",
+      "delivery_sha256": "2354077671c856c3a8892198e47836d6e890011eaad97b4069813a066b975228",
+      "native_sha256": "1ffa8aed940c98d9d8be510706a41db1f7f94d652994299c5b5f8c062d81b94a",
+      "webp_sha256": "c6b8ed84a7d61b07ef0e6e85ba64811fae45d42a0b94c5159fc8f7e68b235ed3",
+      "webp_bytes": 809068
+    },
+    {
+      "filename": "detroit_fall_day_clear.png",
+      "delivery_sha256": "66fe9725fbe7c11e4e1319431dc9fb7979d36106da7c879c8671e55f90a24c14",
+      "native_sha256": "612220fa868c9640c27c57cbc04b8e76ef74d189be99177e84fc7c205f3426a2",
+      "webp_sha256": "c1a172ab3f19b1dd9023a03f52a7b2b9c8520bb13bd5ea42f73a764c2f4e3e2d",
+      "webp_bytes": 888170
+    },
+    {
+      "filename": "detroit_fall_day_cloudy.png",
+      "delivery_sha256": "3a9ae225bb642c1534136d8c12da6788524a91f7639e90072d571141fe595760",
+      "native_sha256": "029350a9b8c1c3a8c92cb351abb9111092344218b5b6740ef15a64510450df2c",
+      "webp_sha256": "7e7e82b8030fcce431b057f774db38c34e710842b0c06fa28af6c352715731e5",
+      "webp_bytes": 817094
+    },
+    {
+      "filename": "detroit_fall_day_dark.png",
+      "delivery_sha256": "34f7f4f20be5a6806b2836b9d2c0dc43dce439d530b12323483b3bef7ec5cfe4",
+      "native_sha256": "d1667579013ead23c5ebdf6e0d79b0924ef50fadd7811f1c96b4200870ad4a62",
+      "webp_sha256": "a75bd39c28fd7b62c75bca0c4c0671799645e4269ddc4e81648c9c0af5900f4b",
+      "webp_bytes": 802408
+    },
+    {
+      "filename": "detroit_fall_day_partly.png",
+      "delivery_sha256": "508c1c4b434af6097ea9826dbeabcfd844721fada101705bd0857de1c2275ded",
+      "native_sha256": "34995290b1feabbf3d2031b20256194f8083de8b6c2bc625e8d0f11eb58cb004",
+      "webp_sha256": "1d6fe28677709134071eaf7c0514179302967f714ff2f15cf7b8a02237d52371",
+      "webp_bytes": 932442
+    },
+    {
+      "filename": "detroit_fall_evening_clear.png",
+      "delivery_sha256": "9d3e47ab795d1cb3827ed0836fada4d71cd125d53f1877aba64c6b2947a83e2b",
+      "native_sha256": "a44f691c205de7fdd872d75c68fe7ccd0c45a4089cf1bbda5c10efb0b5bebcaa",
+      "webp_sha256": "984dfd593e388d70cee2b7dbe64a50bd25fc7c0e78fb69afaec88bfb844df183",
+      "webp_bytes": 911376
+    },
+    {
+      "filename": "detroit_fall_evening_cloudy.png",
+      "delivery_sha256": "0882378540b057aa4e96c1a02a553b9de199b0ce893b36b35d36143343c9c18e",
+      "native_sha256": "20d22204551f305ae39742015b1a1c1c2b602ca87f20488f44ca1e36b80c04af",
+      "webp_sha256": "a1cd2e4b8e3c2a0d2d06202b9be0f9f7096114a8c565f425cfc32a4417fe548a",
+      "webp_bytes": 842834
+    },
+    {
+      "filename": "detroit_fall_evening_dark.png",
+      "delivery_sha256": "2bbe2e26db8bab29e6601ae733be595bbee7f93d57359c4af35d62303bdf0354",
+      "native_sha256": "b00191ec707a332c969057685966faf71da63a491312f4259258145d7303bdc6",
+      "webp_sha256": "b9fb213c8dbf79c64f7fe81f868389b6585141c1300b2d8185120833cb57b7c6",
+      "webp_bytes": 909420
+    },
+    {
+      "filename": "detroit_fall_evening_partly.png",
+      "delivery_sha256": "a244dfc620393025f7d41252678a81c325c401404830a6ecde2a630c8a6698e7",
+      "native_sha256": "d3e59d21f2fc37734c765138c8e5646e78dfe2b5ea0d60cb60cf2b0d5f3be72a",
+      "webp_sha256": "1d59a139745abde244fd7096c6e61d957957ad82940ae9952ee9285a25915991",
+      "webp_bytes": 936358
+    },
+    {
+      "filename": "detroit_fall_morning_clear.png",
+      "delivery_sha256": "d431cdb9226d5e325b37d66a0c7e4616cf2272e0dd5f01b65d4423ed9366379a",
+      "native_sha256": "b1cc2ce5cd65ca6e783e6d958242bd1804feff7147a313015d7e49c29b178dc7",
+      "webp_sha256": "6a68e90439830b8d0f541184ee6288fd14217043e1fa17debb8ee5d65a6964a7",
+      "webp_bytes": 877698
+    },
+    {
+      "filename": "detroit_fall_morning_cloudy.png",
+      "delivery_sha256": "21a541ebfe504038bf7d7035180fd17dff7db6c38f9c47ee41bbdf9d099d8622",
+      "native_sha256": "c7cbc90b85dceb937777273aa29952640da2ed6c3a47b29c7f224be4e9f47a1b",
+      "webp_sha256": "26152e3c767d9a31e9332a38d21343bd5fae697f1d1ca07d2caeeb557a163aef",
+      "webp_bytes": 818542
+    },
+    {
+      "filename": "detroit_fall_morning_dark.png",
+      "delivery_sha256": "fbdb66744de090f4d5ce3390616c2c913063e862c51ac35c9abe3c29b28c05e9",
+      "native_sha256": "49f9bdae5e9e6b1c70cc5622556141add7255e40fc94cfcea62c3da1180af968",
+      "webp_sha256": "83ae0e2170122cb6796df754cb47b46166ff25a4259d46f3fadc366e05b6f799",
+      "webp_bytes": 838360
+    },
+    {
+      "filename": "detroit_fall_morning_partly.png",
+      "delivery_sha256": "45c402edbd00cbd4dc41a01297b5342edd081b2c0bcb43bbde8e223c2c28fdd6",
+      "native_sha256": "85d61d68f9b97688d4b634a4d97c52005a1bfb8ec1a0bbcc4fff4732ae579766",
+      "webp_sha256": "5e66493aae414410d6485d8315783507bb5f3356009c7fcf3df11a4811a51dea",
+      "webp_bytes": 923118
+    },
+    {
+      "filename": "detroit_fall_night_clear.png",
+      "delivery_sha256": "9df60d1a0ed4a005178242a190951c4d15426836492adc0a534b55e57fdf4524",
+      "native_sha256": "e3c5f604a6ea8d23c535ce8deaa6d3b1575f53e1bd34b5ab95621f4004169e6b",
+      "webp_sha256": "f0b25f915a5abb444ff15fb92ddae6ab8248f02813276aaf623c5cb95468674b",
+      "webp_bytes": 1003424
+    },
+    {
+      "filename": "detroit_fall_night_cloudy.png",
+      "delivery_sha256": "72dabb1f2e260e5516c90fc3feccd4a25acd7b88891b7452267b1cc815a43382",
+      "native_sha256": "6e6492c1c965741227f2676e70690cbfd305e46c8822de2bca3fb8c991975c5c",
+      "webp_sha256": "d90c381e8f55bde5b5121c35deb7c7407dd0c4e16161bf8639af148777b232ff",
+      "webp_bytes": 953732
+    },
+    {
+      "filename": "detroit_fall_night_dark.png",
+      "delivery_sha256": "fc3505588c1c7db85191ac7866c79ae214a5d22ef5e40a90c8c857adb2100ab9",
+      "native_sha256": "54108b9a71ac6962e7bed57bc07a1adb87b7897f85bcd463d87602351ec64f71",
+      "webp_sha256": "b33c819af454d233d01eba0b601a88ef0fd76ea03439982bf6ee14b61b7d2cef",
+      "webp_bytes": 922540
+    },
+    {
+      "filename": "detroit_fall_night_partly.png",
+      "delivery_sha256": "19a5a6b175cac7476c9c38ed060abed59e9783e62c21d59002ffc7767f741f0a",
+      "native_sha256": "69953d2a1f8d2cc6ca737f56f7490d5abecf9ae0e4ca36fc3f3ea2c12cdc70d1",
+      "webp_sha256": "66fbf0d2b72d2467db7f8c7e81f66ac86eddbc0b5a7a1d5ec64cd16465538aa8",
+      "webp_bytes": 965354
+    },
+    {
+      "filename": "detroit_spring_day_clear.png",
+      "delivery_sha256": "b31218824c5e683a1023fea13c8fee269775e9287ffcc40f0582f421d2eb82f8",
+      "native_sha256": "a1515381ff4945daec06119fa157aa2387240a5a1462931a766f9965f97eb39c",
+      "webp_sha256": "433c2e5492da4adea22d5b8dab3b03b3a3d14a1e5fcfe2cd809be44548d8e2d3",
+      "webp_bytes": 909312
+    },
+    {
+      "filename": "detroit_spring_day_cloudy.png",
+      "delivery_sha256": "4073ac678c591328c0b15e14723ef54069851f125180591cd0f6829eda7147f8",
+      "native_sha256": "de05c02e4aed30eb2ebce24a902f2faf39c9c59b34a627ea9b819e6c431e8b11",
+      "webp_sha256": "783cb77eb04829db08445d382ac3d4a9b1e9c4d42b4eb1582ba030c51aebe44f",
+      "webp_bytes": 844964
+    },
+    {
+      "filename": "detroit_spring_day_dark.png",
+      "delivery_sha256": "cfdb5f954f05f769552e5ecfaaa3e9f1e0d0fb8157a174a662dcd92dfe09e070",
+      "native_sha256": "2f1fed306f0675d8dd01267904d9e163b8335ce4bec9da1980924a003952513f",
+      "webp_sha256": "17511fc650a60e139ecaed8959612ebcc9423c8f9b82f2f8623d85cd74769130",
+      "webp_bytes": 745534
+    },
+    {
+      "filename": "detroit_spring_day_partly.png",
+      "delivery_sha256": "35b7b62e14fd9017e7d772686f3b1aeb0cbd0d468c1b8988720f9b7e1cd10a33",
+      "native_sha256": "fdad0698b6b5a5f02b7327c2b6de83dc95f3b166924020facfd542cb135f6c80",
+      "webp_sha256": "f9a5d1c4e338052e0b9027665136d6848f56ad384dc04260c6c51392d876adf7",
+      "webp_bytes": 938704
+    },
+    {
+      "filename": "detroit_spring_evening_clear.png",
+      "delivery_sha256": "3ad92b2951ae18fbb42c4432c53f3b7165a182baa39555f12a455bbf71098738",
+      "native_sha256": "a1bdb8cc9965ef89960e1fff5a49d165e02dbdeb72477206c61f3fa5831d0140",
+      "webp_sha256": "a5a777bee2d012f535e3b1b65bf2c4925a00450c83176caa10683caf7c2451fc",
+      "webp_bytes": 943146
+    },
+    {
+      "filename": "detroit_spring_evening_cloudy.png",
+      "delivery_sha256": "99e9efd0b35e45237f4aafa1dc387f63860403f281c43bb4faf1b7aaa55b375e",
+      "native_sha256": "5036fab8cb06cac08872937a41ec09220b9a813b6482a72be8371277ada4a93d",
+      "webp_sha256": "a833e9536f6da7cef3826e5e21f16328048c745a558f291c6d79623fc627fc8d",
+      "webp_bytes": 864548
+    },
+    {
+      "filename": "detroit_spring_evening_dark.png",
+      "delivery_sha256": "13bb9519af84b20ede6b0ca6574db94b1e0cdd91416c2f1ad5987daadcfdfb47",
+      "native_sha256": "a17ea417729d8017491f239b553f7824071cd1f953204020eb6542e4e9e38d28",
+      "webp_sha256": "c9fa5e255bf72d07a1ca38ac4b64d1b5ee90a7862af48aa361dca9b69d24e537",
+      "webp_bytes": 855756
+    },
+    {
+      "filename": "detroit_spring_evening_partly.png",
+      "delivery_sha256": "24134b7295b29f70e1ae9bf6b69cefc826b8b60483e4bbdeaa2a19f469309778",
+      "native_sha256": "46fcf12c956f5bc148136b9d6cb57bbd0ba9564cbae02b18272e8596c83acbf3",
+      "webp_sha256": "4858c4837b1c5b6fe91f0e15e559f98e988c3f4b2e5b9babfa61bf0494fb2d42",
+      "webp_bytes": 966006
+    },
+    {
+      "filename": "detroit_spring_morning_clear.png",
+      "delivery_sha256": "c7ea5a55a4ebb1ed8458fbe2a586481143c8718eacd583564d8426d7c5c18fcf",
+      "native_sha256": "f9f2e32fc231e922b360e154c1d9e17cd7426f816225bb2086ece262c5e9caf6",
+      "webp_sha256": "92878b0b32dda72f463808192969bf8b4c3fadde14f02e6af4d7e46e4a6c0499",
+      "webp_bytes": 981226
+    },
+    {
+      "filename": "detroit_spring_morning_cloudy.png",
+      "delivery_sha256": "3ca553c5673c4b5f0855c5337ef2e8b66ad231c5df5640c5ba4e41faea8e51b6",
+      "native_sha256": "ecd3cfa49e019427088d53218ef305311ee9770bb6f47f6bc7061a08c6351acf",
+      "webp_sha256": "d91204024704a0ac9e9e8d960a050ba2454dc878bc3c701eaaf44293416069c7",
+      "webp_bytes": 882264
+    },
+    {
+      "filename": "detroit_spring_morning_dark.png",
+      "delivery_sha256": "91903e35fda99508fe4eec05befe576e9a9db9210c86b858b07d1176ca63eb20",
+      "native_sha256": "78d63259e4da4b754c101134c55caa969927e080d46c735167a56c3957b1c009",
+      "webp_sha256": "ac49405d4d554614ec40fa4689965e442712120ea15481bb1825d9cbf7d7cf9b",
+      "webp_bytes": 911388
+    },
+    {
+      "filename": "detroit_spring_morning_partly.png",
+      "delivery_sha256": "2681e0e2bf71a10340eef7df82fe476c32d8e78d372b04ca7adbc90dbf6deca3",
+      "native_sha256": "b387df335aba2fcec74770e8a1f0e7c33075d795d9b6c64913c60572ae82e579",
+      "webp_sha256": "ca228528cd8b948427fd4cde151db2a5f02456c2983e7b9ebd3c16a4aa44be36",
+      "webp_bytes": 929832
+    },
+    {
+      "filename": "detroit_spring_night_clear.png",
+      "delivery_sha256": "1e0ecca59f0ee68affa66141d766668477539225ab85d20ec01bdce83963b03a",
+      "native_sha256": "bbd91781873ce580a3e0282bd3c32ba17638f94a97028dac1ba71c5366be2ada",
+      "webp_sha256": "853d3ed6844258c0e4a572e88bc0cc9803f447e3ca54db1d3479875b7150674d",
+      "webp_bytes": 1026250
+    },
+    {
+      "filename": "detroit_spring_night_cloudy.png",
+      "delivery_sha256": "43b9b93e48e436d1c058916b10bf4d9d7f7605dc6002315a91997aff5759a3b0",
+      "native_sha256": "78ab7260cdb9473be31efc62521d758b10af2a3f01c3ef821af5b2653dd48af1",
+      "webp_sha256": "b021b667e918e6f0ca25605f34f113ac5f507032da46c239b0ccba2db2ff6956",
+      "webp_bytes": 823956
+    },
+    {
+      "filename": "detroit_spring_night_dark.png",
+      "delivery_sha256": "8f689e0cb73bc697e236450ecb54ebcc72a02940064372427a7fff4eac83283d",
+      "native_sha256": "f6277d017f3cbd3b82d1979e956c0f6f2bd9151246bd66dc29fb318d89b5e210",
+      "webp_sha256": "867fbbd0c03d6a389b9dfd987801afc6a5b9b1e3b8d51a411d60bbb9f723879e",
+      "webp_bytes": 898872
+    },
+    {
+      "filename": "detroit_spring_night_partly.png",
+      "delivery_sha256": "eb66868d9ab4d20f70c539e97bfd78c9bcb0c7a28c982d04179b420ce5ee40d7",
+      "native_sha256": "fb655de002ce7dcc24b59148982863fe3bd372b426874278dae83b54af32569f",
+      "webp_sha256": "5c04e3453ea5298b50c78167954752c61be1d307350601ad45c55b2f81ad5489",
+      "webp_bytes": 989616
+    },
+    {
+      "filename": "detroit_summer_day_clear.png",
+      "delivery_sha256": "8df916ee79faddb2b96f98884ff7a20c5cd1cfe60f98b940af265d5378012a8a",
+      "native_sha256": "2c84088e8cfc30e6bcdab73499907aa9fc89b094548a833850d40480eabbc738",
+      "webp_sha256": "760fbb08ca9c1a7f618dd44f3f336c20ac9a9d5f1c06ce4805e3b985053e3999",
+      "webp_bytes": 908740
+    },
+    {
+      "filename": "detroit_summer_day_cloudy.png",
+      "delivery_sha256": "b0375fd1589ccfd7386d501ab1a41979ee283f390aa896f13bbfad0ba3aebe4f",
+      "native_sha256": "42646c4887fdb2fd7b2a2e40c2169a7580d554dfb6fd78b7e35efe3f4e61290d",
+      "webp_sha256": "df614fdf79e83425a38ecd62c70c39da96a222bdb66a63702486e5b78f417c02",
+      "webp_bytes": 799856
+    },
+    {
+      "filename": "detroit_summer_day_dark.png",
+      "delivery_sha256": "a52d1e2cb5b442a1eb90984b788a14c1754f74024707a768a78ba4bd9c8509b7",
+      "native_sha256": "f481550efdc8d938f73cb6d8a3ddc59bf2592d2d633d776296fc241739b4c0d0",
+      "webp_sha256": "52096a215dc748f3725be55f1834f2daa525615ba1930a89e8d685291c73755b",
+      "webp_bytes": 775650
+    },
+    {
+      "filename": "detroit_summer_day_partly.png",
+      "delivery_sha256": "bf9858989ebd21136849bc1939192fa5ee466a1c858f11236f4e592c9adcf5b7",
+      "native_sha256": "ed9d7e1155ed3c6b3aeed42e392409ce2fc651d59c0a2dc6a990ac535baac8aa",
+      "webp_sha256": "cec898c8ab7aad3b66500e5e0f36938c5e3a38da45f2a37042c646e2e905f785",
+      "webp_bytes": 947912
+    },
+    {
+      "filename": "detroit_summer_evening_clear.png",
+      "delivery_sha256": "de8e7772162f2873ce090dba402aab119ffd242dd5d9b37cdc50554814c2cee9",
+      "native_sha256": "3f0dba2652b5d906f4b072afd5520a07c0653df351f40ca52afae337fc1f417b",
+      "webp_sha256": "ee64994489ed7006ca0600c6416500ae25ad927fc3ad2aeef48e4a497ed0de97",
+      "webp_bytes": 938106
+    },
+    {
+      "filename": "detroit_summer_evening_cloudy.png",
+      "delivery_sha256": "aeea8e2aa2c477cd055bc451948e40a52ea941a66c12c126bd6ac4e777cbf5ab",
+      "native_sha256": "b393c1c8687a8c278268d0d788e8bc6b72f803cd6ca9602361447e118da828a8",
+      "webp_sha256": "10b5b05632203bfb9b1be4959af44032687f83c53edecf1e01efec990acf250a",
+      "webp_bytes": 879258
+    },
+    {
+      "filename": "detroit_summer_evening_dark.png",
+      "delivery_sha256": "b4638bbac5cdfaecdbf9dcf12edf2a52c67d2ec98ed163f9ca61958cd94cd6f1",
+      "native_sha256": "5db8009bd637a6411220be65ba853eb374f3b557de4118c2fdc39b8b556dbc78",
+      "webp_sha256": "7301748a65ff3ca3826c1f9c263d622da8b7f698916595c554cfec6830ed239a",
+      "webp_bytes": 849316
+    },
+    {
+      "filename": "detroit_summer_evening_partly.png",
+      "delivery_sha256": "aa458894dbea32d866674952fca6b79bc6db137d4b989e0aa1aced980c116633",
+      "native_sha256": "bb34fc6a76b3da7976d0cf1ed6b8cce1ef5daa46426737a589e1c2766324250c",
+      "webp_sha256": "6ff7fb5e05ea7f44252cbc751774bc3e3b7009cbbcdaa73c47c4eda6756c8ed6",
+      "webp_bytes": 937040
+    },
+    {
+      "filename": "detroit_summer_morning_clear.png",
+      "delivery_sha256": "4dcab70fa1c02b2825ddf0be7707a58d10e97377869ff6c740590037a866926a",
+      "native_sha256": "77225c69fdaa7e53a58a13f9d193395aa5a8bdcc4fb220c7820188691731900a",
+      "webp_sha256": "d7fa84eab49e06ea2b70ecdbe3977646f4d7b9e3797337a17b0f91aee3a206fe",
+      "webp_bytes": 925772
+    },
+    {
+      "filename": "detroit_summer_morning_cloudy.png",
+      "delivery_sha256": "27358f06bde8e2bae89700f25528bd3a3a936d41118fb347eb1f1edc1736dc04",
+      "native_sha256": "24deeecefef49d5bd1e3556ec6ffc4962b8c59938e460da91a7f979d488d9bdc",
+      "webp_sha256": "8d662d3556002de28c2ba79a0e520898c844e0b67b65d2d544d4e1e892a6aaa8",
+      "webp_bytes": 799330
+    },
+    {
+      "filename": "detroit_summer_morning_dark.png",
+      "delivery_sha256": "b5183ce45f28395b6be37db4943d6f52f0c8161fadcb64872daab888ed275908",
+      "native_sha256": "08746808b5436417a7831f777a796d80db6fd826f8edad2113bef078a2401e5e",
+      "webp_sha256": "8254de7522119a1cdaf6926703d585c16d1929b0901beb12ab9f26f0325999b3",
+      "webp_bytes": 753778
+    },
+    {
+      "filename": "detroit_summer_morning_partly.png",
+      "delivery_sha256": "79b6d66a555cbf2530f11f3a88b8c3e04f36f403c5cc7abadb74a31a13add86e",
+      "native_sha256": "be505beda813b2ab08808ace7a7baf18a42118ac8f4dc2ede9dc66909fd670f5",
+      "webp_sha256": "5139e58cafaf250108a50a8bc8a003a80bd2b67107f593f3434d7e06a167f109",
+      "webp_bytes": 981140
+    },
+    {
+      "filename": "detroit_summer_night_clear.png",
+      "delivery_sha256": "e67317b5b477ddeaf2a2959ed1217186b59c4e3d334d112e45d15b3b8051b99b",
+      "native_sha256": "6214f4c5d17e41bdf7d478793ec3a5cdd51d382aa3bf3943666c658105bd03a9",
+      "webp_sha256": "4f581aed7a7dfbe95f04e9a9c095b96a0bfd16799b9de2e1f4212e5e9aa2e984",
+      "webp_bytes": 1004592
+    },
+    {
+      "filename": "detroit_summer_night_cloudy.png",
+      "delivery_sha256": "92bc9e90238e85a4c3978e8ffea684f275fa994f5055846ca886b9fad3b5003a",
+      "native_sha256": "ddf686fccdd1b64cc79611e56b2404c2ff6e8d870b4ce2327f3e45c52178daca",
+      "webp_sha256": "2ce8ad0a08620c878734a9b4b071d908e488a4daf0d9a33b4103a356f257a463",
+      "webp_bytes": 865778
+    },
+    {
+      "filename": "detroit_summer_night_dark.png",
+      "delivery_sha256": "ed9210e403633d19bc441c5a76ff665a78c0ad57767375adf99aca8cbbbf8497",
+      "native_sha256": "0719d6d94b89246d513b3f7aa0a59e050d54fce7f75efd1a00c7f6c7d440df69",
+      "webp_sha256": "02851ca522d6a06da7cfe4f65e6de79392afdd32f7f6c64150f7b658ea997c5c",
+      "webp_bytes": 830662
+    },
+    {
+      "filename": "detroit_summer_night_partly.png",
+      "delivery_sha256": "727f35b61327bd4849583c18f899f34245aa299cf7c77311707c359fa829462e",
+      "native_sha256": "2e12acb6e7bced707ff0eb4829a3cf07465eef30949d4e60313a799cea611ed3",
+      "webp_sha256": "67d64bb0800cb2d2956f01c1b3cfada9040da89e0d26045fad2d0f91854e77a7",
+      "webp_bytes": 973930
+    },
+    {
+      "filename": "detroit_winter_day_clear.png",
+      "delivery_sha256": "61f896c50b140004f26a73288b5dbdbe8cfcd4eaea619b7d32f9f3163acde417",
+      "native_sha256": "d2c5ff2a1ce35ac3fe65901e06922ac20717a67d25efaef2154cba170ca0c722",
+      "webp_sha256": "d6119f8f6db1bdc43919d3983d903730ede5cccc714c4a576456a5151c2f2e26",
+      "webp_bytes": 874820
+    },
+    {
+      "filename": "detroit_winter_day_cloudy.png",
+      "delivery_sha256": "bae04ed0ad75ceae15589e0e24bc0d8d1cb4e78cc6705b5f6c90c65d123e9f64",
+      "native_sha256": "9fcd182ec8b037125b6f076cd79220902c896272588c4a87168819816bdb6dd5",
+      "webp_sha256": "fc18c4107c40bbedc128c96592b834c5d688a613deed88d972ebdaa9ebd78a08",
+      "webp_bytes": 759546
+    },
+    {
+      "filename": "detroit_winter_day_dark.png",
+      "delivery_sha256": "d541bced9e1b23e6ca79cbb10b37d489fd117f01d71b394ddcc3fdcbaf8bda06",
+      "native_sha256": "34add21e32fbebed6b6f8d595a32687216d189fe0fad403aa6940e17ea89af74",
+      "webp_sha256": "49b0416eaf8df916d794a9919d6f1a2c146a0df37eccdcc4820937a216adabb6",
+      "webp_bytes": 720190
+    },
+    {
+      "filename": "detroit_winter_day_partly.png",
+      "delivery_sha256": "75aa28768bccee0a10bd94eedfcfd4dcd64ad8402630a880ccdf871dd21f691b",
+      "native_sha256": "82f1fa366b36d1241fc1c0f955a7a03ea9902d5e5be66334eddf928a05ea5fba",
+      "webp_sha256": "bdfa60eaf0fbc63fd793ba53dffa21aacefd7db3c3726c828ad5315ba7f88d77",
+      "webp_bytes": 891914
+    },
+    {
+      "filename": "detroit_winter_evening_clear.png",
+      "delivery_sha256": "80e125d68a58f8fb672c89a5dab5311b24424aee28c7f16e9b49d3a53e68fdcc",
+      "native_sha256": "593a4d80c4c2f84a686f3d66d7a5e73a32f9aa2221771194a1f17e1770bc33a9",
+      "webp_sha256": "c790599cc728a67ff1766bfd10f747718fe07fe710c7efff2741cdbb75093ef6",
+      "webp_bytes": 955468
+    },
+    {
+      "filename": "detroit_winter_evening_cloudy.png",
+      "delivery_sha256": "a7b98a00c644635d8770412d7f378c7abd5f1152b08870314cdfa90432c76f2e",
+      "native_sha256": "50dd0d201a09307143678a72e116e9df74888e5d5d83c54adfa4fd1ac4c0efe9",
+      "webp_sha256": "54008711eb7df0f80407f4ccb8aa33bd3f8bc0c95e96a990f99fabec106b10ad",
+      "webp_bytes": 839832
+    },
+    {
+      "filename": "detroit_winter_evening_dark.png",
+      "delivery_sha256": "fed495a405f8d952c3203704f2b40675557ef13d708851db13334946db22ab91",
+      "native_sha256": "d77895907d8388343243bd58492259fbff6df76ddd9a3d7528f4afb1fba88846",
+      "webp_sha256": "fe8a867b2b6ab4c16f7931e3a2d488077fe9bfbb9d182e37b7ded4053722662a",
+      "webp_bytes": 832534
+    },
+    {
+      "filename": "detroit_winter_evening_partly.png",
+      "delivery_sha256": "a9659ff60c1cffc71b40b54edcb2227732615463429e2bf1f7f212df549e0e46",
+      "native_sha256": "1944fd5e6c7f13a32e366906bb6ebd15966cd26fc67fb5a6fd2fabdde2f18096",
+      "webp_sha256": "52b64c22590428f0091bf5ac8d86d9887650a6320e54a4be183c611c05abeff7",
+      "webp_bytes": 923056
+    },
+    {
+      "filename": "detroit_winter_morning_clear.png",
+      "delivery_sha256": "fe31e8ef503e556fccbcd2d44370037c3455c0e21be0f01b70025bc9f9dfecde",
+      "native_sha256": "2ba6558a66458bcea8daa245f2d69b445280df17603e990fe6d569fc412802fa",
+      "webp_sha256": "d755adee14fb202908691a8b396d721bdd0c17c7a6a92bfcc0fbd8c22763aeba",
+      "webp_bytes": 926580
+    },
+    {
+      "filename": "detroit_winter_morning_cloudy.png",
+      "delivery_sha256": "374048b9e9052bcd4e854b14e1f094e07f060d1b8f1ed43e5b491df52bee66a3",
+      "native_sha256": "9421fbe9de45d67586ceb3e1f4b04eaec8ae3d1c073598b846e4e0632b835004",
+      "webp_sha256": "3a4e677c69dfe5eb0919c104276f4bcdb766af541eddfaec61e03325f618b5b3",
+      "webp_bytes": 837692
+    },
+    {
+      "filename": "detroit_winter_morning_dark.png",
+      "delivery_sha256": "b8bdc5831dfc59dce41e548efcd216aa2385d15a2aba18393e193a5c20dc0714",
+      "native_sha256": "88eb50cdb9671cb57c90f72f326fb386c129ee9b36d147097416dbdec756e51c",
+      "webp_sha256": "f9aab276a14cd08d5686a0c3dddb4ab1252fd09c906873ce8dc403111d29bde3",
+      "webp_bytes": 814926
+    },
+    {
+      "filename": "detroit_winter_morning_partly.png",
+      "delivery_sha256": "66c4757b42bcab489f08920623d3acce96c905978df4bbf55740604586663adf",
+      "native_sha256": "4e259ea9249f777a16c0f6e690c8bf939f34d5c23b965f634de9ff6f557eb150",
+      "webp_sha256": "a845ee52bb725fb56f27a3ab22d2499f08ea94197b447c4668e1add48348aa69",
+      "webp_bytes": 884322
+    },
+    {
+      "filename": "detroit_winter_night_clear.png",
+      "delivery_sha256": "7f754980fd15b031a37f8f3648cd4ce3c8c790f0c3e1255f38ab8aa88f0b066e",
+      "native_sha256": "109d98086257da2b5411f8e7e75a960e32e700d2494c4839138c215f2fa7a13d",
+      "webp_sha256": "ec6234728ad428fa445e9a4bd294365f7afb7d70b83111690ea97b0e9f7aceb6",
+      "webp_bytes": 836672
+    },
+    {
+      "filename": "detroit_winter_night_cloudy.png",
+      "delivery_sha256": "39c63fe68958fb4726fa2904010adb028e2731d43fb53ae5dddfead097d74f1d",
+      "native_sha256": "d78c0cda58d477273124397b032c9e79ff43f8ff06bd183e2cc4eb65cd414202",
+      "webp_sha256": "98723d22d62a1b1af5bbe8a0f5a1f215baa8a273d79ad2ad9be8c4d0af236ea2",
+      "webp_bytes": 724704
+    },
+    {
+      "filename": "detroit_winter_night_dark.png",
+      "delivery_sha256": "201db762ec22a1d86455f930d35e4d2c0f309dceef2662f2de9d5c345eed1ee8",
+      "native_sha256": "2cd52b5e83dbee97712c6a91f72da500e6b06df52a9061854765601d08bb15aa",
+      "webp_sha256": "7b57220102458458349eea6bb18ceb449d29c4f519473916c7c22e2c3ca7b293",
+      "webp_bytes": 789928
+    },
+    {
+      "filename": "detroit_winter_night_partly.png",
+      "delivery_sha256": "7a15c5648f2b5d663e17dda2a4adeadd3b2c5208d2f75d0566228fa9ec4cb8b9",
+      "native_sha256": "062dd90b83cca0dd0a1c3016b520b54bab228570a0beed31d72faaf3b07d6e4a",
+      "webp_sha256": "00b722713b66f3b028969c5db304a2a4ff9d9df73912ff8544acad8c3c9113f8",
+      "webp_bytes": 873662
+    },
+    {
+      "filename": "nyc_fall_day_clear.png",
+      "delivery_sha256": "ffe099995a483d8473c93520768af0722c17d7e1b122e3f148666f953b0c55f6",
+      "native_sha256": "da7a9e4e74f5c5b6935a36e097e0c76bf1d9e9a766f55e814707a26738e7bd01",
+      "webp_sha256": "43bcb39d751a0b2c118f5769f2ab099409a2c14f9d2be6dc70f51dcb867ef997",
+      "webp_bytes": 1021596
+    },
+    {
+      "filename": "nyc_fall_day_cloudy.png",
+      "delivery_sha256": "4406ec958e443181885e51f4e7ca86f51babf580276d30f70af6f62c40f981f4",
+      "native_sha256": "e697c83cd7797cedde9c9e6a308d3f3d41de6def24537b44623afaab06fd4ea9",
+      "webp_sha256": "18bb6a1c592a9555d2546155208e60421f20a74d7a5d8afa559ec265dfdc5c10",
+      "webp_bytes": 996626
+    },
+    {
+      "filename": "nyc_fall_day_dark.png",
+      "delivery_sha256": "f94a7629d07f7245d0631396d904679e6bb28bb879a57ea180a63dad7fb302b4",
+      "native_sha256": "c9e67400475a201706fd2e98574c813de55decd6a75a48599fb536fc3d0db3a2",
+      "webp_sha256": "18786bf15fa79b3c4ed8df3086fd199db430ccb0f76474e74582e331e2c069f8",
+      "webp_bytes": 994000
+    },
+    {
+      "filename": "nyc_fall_day_partly.png",
+      "delivery_sha256": "e7b1c332d49647433f66a32a3eba7399338d0cd56d2b559db968619dc67a77ac",
+      "native_sha256": "f2020645b69320e9768ea1ef079d348744597cefcf28fe70f5a4da2662e749af",
+      "webp_sha256": "d7c51342f8a73039efefe902a249b1bef0f3567898328c9e8c8f45630d777b1c",
+      "webp_bytes": 1081536
+    },
+    {
+      "filename": "nyc_fall_evening_clear.png",
+      "delivery_sha256": "9279c295bacce6d19d8353c156f4ef62b7facff00a8ada7edd65ec2a78fcf242",
+      "native_sha256": "64087780bdfa05cdebbe6b349ef8783e27b8ce7af32e798d14e075e35de0e4eb",
+      "webp_sha256": "3da51f9740bba88851b0d9983afb00ff44a83a0f1c9cf75008ffcc9df546e4ad",
+      "webp_bytes": 1021876
+    },
+    {
+      "filename": "nyc_fall_evening_cloudy.png",
+      "delivery_sha256": "911d780147a03e90947605d653016bff415fb5ed28f90a3c8983079032baccd1",
+      "native_sha256": "3a66ae7110b0b6018988b6af1ecc1e6d5395d42535c1c18deb091e2ad33e10d4",
+      "webp_sha256": "77b64c091b88abac428c2b5b72885c699b1f2acecdd4f9f98ce76ec6327a3927",
+      "webp_bytes": 1010152
+    },
+    {
+      "filename": "nyc_fall_evening_dark.png",
+      "delivery_sha256": "25a65c834baea6a17429c33619fcedab2cf3f7a731faacff491a430c798a21dd",
+      "native_sha256": "011a5f8990c9cf6f0f0a35e1697be4a66c17e997d1b12d3f951109b3077a7665",
+      "webp_sha256": "8300323cd5ee3965ae636e255aec97683e17000acf0cb42ccabff8500f204135",
+      "webp_bytes": 891014
+    },
+    {
+      "filename": "nyc_fall_evening_partly.png",
+      "delivery_sha256": "6a5cc6920529e45caf7db336e419f6076988aa601198d4f93624ce141b37f3ab",
+      "native_sha256": "1769afb9972eb9907a84c2e5f46d6a9dd38d49f63ebb778badd7d2a6d16acb07",
+      "webp_sha256": "f97cc1611d4e099671c2c1b334421127e59d803fd667d5f725193957efafbb78",
+      "webp_bytes": 1055178
+    },
+    {
+      "filename": "nyc_fall_morning_clear.png",
+      "delivery_sha256": "2c77b11305bdd5c0a89ea3fe2a3b008dd26d82ad7b070630395cd5291edeba43",
+      "native_sha256": "307fcb855e3883fbbc177aefde298d026cf71ef9df1336882a75e4b09b26abb4",
+      "webp_sha256": "316797bf36b394a5934028df5e66c8ee9b0e5973625e6603dd28a1c97ab5a475",
+      "webp_bytes": 1074206
+    },
+    {
+      "filename": "nyc_fall_morning_cloudy.png",
+      "delivery_sha256": "a10f3f220b7a4d457c38b627b48d5bd2e68c350e479a3b228f738787ffc8de3b",
+      "native_sha256": "e32c932aac478bb826a76d9ae94b98971befac4f1e3c998a7e8477d7d2fb2db0",
+      "webp_sha256": "1eb26f3ee94bd495ec71a3be64b84036877e0c2fad778521852abb20281a4f2f",
+      "webp_bytes": 1022842
+    },
+    {
+      "filename": "nyc_fall_morning_dark.png",
+      "delivery_sha256": "cac5be3cfba6ba70e16a3b18d26292b132cf04e171c37d875e442229172fe3fa",
+      "native_sha256": "81c010080550e12107dc2f56dcfc279d5da27e5fc1523a444b412a62d813a6d3",
+      "webp_sha256": "99e6eee563799077bbc320b037317da027aaecd3febb43708f87571e6510da3e",
+      "webp_bytes": 1031630
+    },
+    {
+      "filename": "nyc_fall_morning_partly.png",
+      "delivery_sha256": "66f029e4d0f992b3eb6c598e296cac7fcd88331eccda33ef452ee092a919de3b",
+      "native_sha256": "e7e292df89c6ea107743cc9f52aa7a42e107dc6376b27cc44ea00a6844f6384f",
+      "webp_sha256": "678435ed91939d2f9599855bf9a505e0852bb387fb53f3b5c9f941971afbcafa",
+      "webp_bytes": 1086054
+    },
+    {
+      "filename": "nyc_fall_night_clear.png",
+      "delivery_sha256": "e00f77aeadc866ec265f31753575cc2d39837407bd581c24f22fb3e6d6c88914",
+      "native_sha256": "f147b1f0fbb7d9b5cc8e8c437a8cc859d0612e4d2f25b565f967228b95cffd3f",
+      "webp_sha256": "b940d284a2b3d1d032c91bd6959ec06f84707f507bd9898f877291ca13ad4ef4",
+      "webp_bytes": 954404
+    },
+    {
+      "filename": "nyc_fall_night_cloudy.png",
+      "delivery_sha256": "1fadd08f6a3a96e136afe9601ecc22bb5707b7c5ac7022f1b51b5569d4deb11d",
+      "native_sha256": "a6b581b50706ac637e23b1c5de581529241ff9eb7672e77448dda5e6c0341977",
+      "webp_sha256": "8bfafd3b7948632ad2771a24dc8a9e3362cbb059bd3e56a36296ef20286204f6",
+      "webp_bytes": 884404
+    },
+    {
+      "filename": "nyc_fall_night_dark.png",
+      "delivery_sha256": "55d72af6a57d8a19eae24b91f65938edd52938ff9ce8a66adf4dd3b5694fe7c7",
+      "native_sha256": "009c2c1560e0dd786c2214cd20da1b4f77d1fa7f6ef9446dfab655b82d7f0744",
+      "webp_sha256": "850aa8902ce560a59c3a2f135cba9599e0d76704c1117034d53a545187302800",
+      "webp_bytes": 924398
+    },
+    {
+      "filename": "nyc_fall_night_partly.png",
+      "delivery_sha256": "c2d460dc52389d629fc77a3d30f16f52801fbbb043c8bf2267ef2c656889167c",
+      "native_sha256": "fae3e2a27bd4728e82431c7a65f14d96b2b55030007557a5ca922dddcf76e918",
+      "webp_sha256": "1a77eeb767ca42197c945bfb1d8bfb3e85d64c703c81549b2b6a52eeff9ad456",
+      "webp_bytes": 928112
+    },
+    {
+      "filename": "nyc_spring_day_clear.png",
+      "delivery_sha256": "36de2a5df7d8e381717d820e8b8982887bfd7d97a32c323789da036071dddeaa",
+      "native_sha256": "053f0c63358d7d10d6f74e35fa8996ebad6a83804e9ae893272ed5df59c87e55",
+      "webp_sha256": "b8a768007fde29db5dc00b0db2642636a6aadd460611642cacf7c3eceb49032e",
+      "webp_bytes": 820946
+    },
+    {
+      "filename": "nyc_spring_day_cloudy.png",
+      "delivery_sha256": "a854a1ae95b81ce41820f64e5c1b1e83ef69299abb394db77993a74f2102e2ac",
+      "native_sha256": "1526b56eb6b9800a498a85b3cdd0b2ece765167393224c0bd7ae213478c6a635",
+      "webp_sha256": "a2f9dbad92e3472ce5e42fe45dee75a83b41975d995777a42e2987a5eadd7445",
+      "webp_bytes": 654444
+    },
+    {
+      "filename": "nyc_spring_day_dark.png",
+      "delivery_sha256": "4ff478c6a5c2527876e36e22c19e4b79f8480e9ddab668aac8bfb4dba087c766",
+      "native_sha256": "33ec9a4b69061d0231ace387f28da300701c22e49642d1ff120da5353bc55605",
+      "webp_sha256": "594bb53ca505e4ab8142c3b0db0d1a23c3b0260c6c0afb74f0e28c84e524e4f4",
+      "webp_bytes": 612166
+    },
+    {
+      "filename": "nyc_spring_day_partly.png",
+      "delivery_sha256": "d49782b7411eb6959d6b00af4f72d39ead793daa3c92537ad2294ea81a6d5bf7",
+      "native_sha256": "cbbac01bc3970d7207ca4061e7260f3ce2c2f1816f6d61882bc49911d68a64b9",
+      "webp_sha256": "3f80e9b8c0583ba0e857b7af90cb0bd3bf701514cbbfbda0eeaca2b372affc18",
+      "webp_bytes": 829014
+    },
+    {
+      "filename": "nyc_spring_evening_clear.png",
+      "delivery_sha256": "b54aa29e97aee1657a8d041a2bedbd0593ac763c8b59334517a84020644f65f9",
+      "native_sha256": "b2ed8d2946bffcdcad10438402276a12d0b68ff2bd06ba0fd845e6b923d98508",
+      "webp_sha256": "8365b4836ec10d97575f14d69a98972d8dcf66ebffda074c853458f20d6d703a",
+      "webp_bytes": 858488
+    },
+    {
+      "filename": "nyc_spring_evening_cloudy.png",
+      "delivery_sha256": "107606cd1a7d4dba32bc8a52d9f4f326f4cbbad73ff7dd228dca3da1bf0cd107",
+      "native_sha256": "158f09e4a6e48fd7b2eb197c11cb64592256f7aeacc0f68f07d20da91dd086a6",
+      "webp_sha256": "adbc70cd184181c8d77ee4fc8ac4a6b2c55d6ba7324d1fb04027ce216861ec69",
+      "webp_bytes": 783236
+    },
+    {
+      "filename": "nyc_spring_evening_dark.png",
+      "delivery_sha256": "1e4b7c715a5a752b0f52e37687a11692ca7e4d658a78a3bd21b68f450f964827",
+      "native_sha256": "a7020bd1378babef6c688285ed3177af818bc7cb23ad58db306d808c53debdd6",
+      "webp_sha256": "a7d1e8c91d8db7eed50a899fcb86acc2a61210a3284c90f889094138874344b6",
+      "webp_bytes": 790258
+    },
+    {
+      "filename": "nyc_spring_evening_partly.png",
+      "delivery_sha256": "990390c07cbfc86ab736138595a62725179838fa2e4e48fa29b99edef19a0f6d",
+      "native_sha256": "c6507ba63f9db9bd0e5fdbb15ed0ee51a762d240712846656e02137e997bb4fb",
+      "webp_sha256": "56fbaa8f374129ebbf3ae14160bde2f5bd49b45bfeb75a30d2f8b90b2e2e6943",
+      "webp_bytes": 831204
+    },
+    {
+      "filename": "nyc_spring_morning_clear.png",
+      "delivery_sha256": "6d276c798630d8fd3cece0d1e10e5af51d366ec8721860fe516729b9b4fbff00",
+      "native_sha256": "950d23f1c5dc69b7f6216cf58b9f87229742823154336e738998c87c280d72bb",
+      "webp_sha256": "d9c30252619a62cbc2b2c43f0246a80ad9ee5e0b08d31e288898db357af6f112",
+      "webp_bytes": 778050
+    },
+    {
+      "filename": "nyc_spring_morning_cloudy.png",
+      "delivery_sha256": "3cb34fe58a134c825e924df98ae58dbee9d7648cb5432bb0214a40a9bae66853",
+      "native_sha256": "8717522687b33fa566a46bdc01a79fea87de2a3832bf4ed09754835b38034a9b",
+      "webp_sha256": "5d1540f3fbf7c07f25be2cef2cde9f3c570396bd149c59cc415b53106803a652",
+      "webp_bytes": 738366
+    },
+    {
+      "filename": "nyc_spring_morning_dark.png",
+      "delivery_sha256": "37ba825ed61f56925f001c2db9e90c2e7b30220bd5c2d4aaf5452688f07e7b3b",
+      "native_sha256": "8cd838e44193be88126f8731d96ec188b03b7d4dbdad452e1c22256d5608bf02",
+      "webp_sha256": "5e17ccd843c27c8125209038d3c93064cd9c19b606b8f49255bb697b51fa8f51",
+      "webp_bytes": 673680
+    },
+    {
+      "filename": "nyc_spring_morning_partly.png",
+      "delivery_sha256": "122d50727ed5477e5ad1d3fd94a69233f0db80f9387f0a1e18ca9633a4b1d171",
+      "native_sha256": "de99bf2ef0a63794f2b29f72af0b655d42fe769ec7ceb6ab73aa178e14bb8973",
+      "webp_sha256": "b1927044efcdc68b78b2f328c1f539fbf7460a29ff37b35ccadd5e2700843067",
+      "webp_bytes": 748764
+    },
+    {
+      "filename": "nyc_spring_night_clear.png",
+      "delivery_sha256": "00de182571d2fbc34595763abcd3b34fcb268efbb030c875420ab89632a2ea02",
+      "native_sha256": "51e0169fb483e0a1a181494395ba881c953de4643cb2dbbcbee14384dd57afdf",
+      "webp_sha256": "cecb081db73a301c123785044820a3e0a580410bcaebe41d0488087b44828f8d",
+      "webp_bytes": 835866
+    },
+    {
+      "filename": "nyc_spring_night_cloudy.png",
+      "delivery_sha256": "359a9c39d736dd036c996c7380b336ad227b0eea5d32bd77ae215588363bf57e",
+      "native_sha256": "4791940aeed959da92a8fc2beedcee16a1bf3ea8e3398589facfa5c5d5c55a11",
+      "webp_sha256": "3b8e1d52a906e0a5196615ea997f212f9fb3e6289d22d9e9c833b2afaaa8d2b9",
+      "webp_bytes": 794030
+    },
+    {
+      "filename": "nyc_spring_night_dark.png",
+      "delivery_sha256": "192809ee6b889eb725f7c41e63f17508b3425c196da130ecb68c40263732bde3",
+      "native_sha256": "6ed6d9b0eb7c5a861f8182c6e746ce0af39bda498c465067e1c6a0c512c063fc",
+      "webp_sha256": "e204d165bcd0eae99dde8297b0f98763130c9588918d9902df741353cf449702",
+      "webp_bytes": 716294
+    },
+    {
+      "filename": "nyc_spring_night_partly.png",
+      "delivery_sha256": "e5f6ff34747014189d6e749ca1be8a4f7454ea97b53113f9d539716480e9010a",
+      "native_sha256": "2d25ce48ffaf1eaa282553ff82ce8f11c171d8292e23956326ae0e3e3c266d7d",
+      "webp_sha256": "b6a6d8dd2117f7d87f4eba887bc15439b7fd9560a483826c0cfbd930b2ea2cf4",
+      "webp_bytes": 815702
+    },
+    {
+      "filename": "nyc_summer_day_clear.png",
+      "delivery_sha256": "5f9eb2b4eb4887ddbaf7186576ab7a403945b5c98eaf7635240693248c168177",
+      "native_sha256": "525e0ab3811d594c7ab30ff06194e7683c9adca938924b553b2a969805c0448f",
+      "webp_sha256": "0810a742fc3a59c2235382cde170f059b8c86abd036861a8abc4a334a4a2ec2b",
+      "webp_bytes": 978086
+    },
+    {
+      "filename": "nyc_summer_day_cloudy.png",
+      "delivery_sha256": "a861a6dad4da12327e9fda16abf57168e71180635f7c3a0e32e9478a4c618919",
+      "native_sha256": "efd6c0b4eb74ba4069f6e5c9b91397b1e9b0e93413070a7992a98fb701f7d4f8",
+      "webp_sha256": "a76d04d48e9a98a02521cfa5def8cb5e68c7928d9ee9e8c9f79999632fc40219",
+      "webp_bytes": 698530
+    },
+    {
+      "filename": "nyc_summer_day_dark.png",
+      "delivery_sha256": "85f0e8e7b2eebd1cf1879c0e88bbda3ad1fb5ea7f412c2cdd0ba69713d383a88",
+      "native_sha256": "007ac6c3fde8cef9cb4429e208450cfc0234c8e0390fabe0839bf14d01dd4be3",
+      "webp_sha256": "8c1d5f37583402eaae83703084e61a83e824d6f5da117841ce485197e0e09e10",
+      "webp_bytes": 609062
+    },
+    {
+      "filename": "nyc_summer_day_partly.png",
+      "delivery_sha256": "f3c4fb1a501ed32f2fa4446ea5db55537ec640c77bba45f1c38e108893818837",
+      "native_sha256": "28df428dcbcffa46181987d009dae96de341dde9a2cba93775c3fbc1029b44cd",
+      "webp_sha256": "30d3fc12d50d6d03956b2888513845bf9fcdd998aa99b2f5257aa7db05064bcb",
+      "webp_bytes": 789390
+    },
+    {
+      "filename": "nyc_summer_evening_clear.png",
+      "delivery_sha256": "020900d740e842d969891a981b55e82a16b92fc9af0298a5bcd02d7b50000c2b",
+      "native_sha256": "11d1d7aa8d02d6e6af7831e83cecd29a85b87ba91f69905fd03ebe5fd275402c",
+      "webp_sha256": "d2104415f6bbea9ee52433cb42c7e6a9eb410fb191bab19abd87fd4dcee05bde",
+      "webp_bytes": 785814
+    },
+    {
+      "filename": "nyc_summer_evening_cloudy.png",
+      "delivery_sha256": "c6a40b294da93d80268e01d078b2ac660c58cd35939a3b4cfd122f94f1d25770",
+      "native_sha256": "b335de3f37d7b2ab0af0f1b31c5f28f856175c298e738f65a156a95d78785eb1",
+      "webp_sha256": "6b213e318f2b45dddf9641e26da4601734649f28e3f14116ec8ff21b4f065677",
+      "webp_bytes": 628774
+    },
+    {
+      "filename": "nyc_summer_evening_dark.png",
+      "delivery_sha256": "93d43e931ba3daba98d486c216e59caeb48f025f5bf1b34f2ffb3db7f1227f9a",
+      "native_sha256": "3d14bc9445326ec46b00b4887626f509c566fed29760d4ee879b4ae4c3b51461",
+      "webp_sha256": "6c68ec4b23cfd67750c514bfb237dc0ddb25950848bca37efd3353845bec5641",
+      "webp_bytes": 649084
+    },
+    {
+      "filename": "nyc_summer_evening_partly.png",
+      "delivery_sha256": "42ae54fd09534affc2992e7825f234c0a90565d52248396c09bb9b68464654b6",
+      "native_sha256": "2c35df271308f79856d9f80cb7e1f8b96a0918200621b13dd6e44333a2162bdb",
+      "webp_sha256": "8ceca85df6e207fd188f21bc489f29acdfa2d92f6ee5aca46386c821d8182ad7",
+      "webp_bytes": 769330
+    },
+    {
+      "filename": "nyc_summer_morning_clear.png",
+      "delivery_sha256": "7cfb8d44e36fe31c7b5d94fb50f2d8e3efc9e97fd84f849c464ae4854f061cb3",
+      "native_sha256": "24a0117d25fcaa6c4540d28984e5baaa7ab2c967b9d013a35c0d96d1a6be6014",
+      "webp_sha256": "a3c5ca5bb011c9327a332a2e9c47c569071d03889191551b13c2a85c35205deb",
+      "webp_bytes": 833272
+    },
+    {
+      "filename": "nyc_summer_morning_cloudy.png",
+      "delivery_sha256": "ab5770bd5859ea384c907c968954d2e4f4fbda3cdd32457fa82249951cebec0f",
+      "native_sha256": "4a1227cb329f472769fce61de35a44a8db7bab6e050251dc81f2afc9db6af16b",
+      "webp_sha256": "8901b5a4bc1e0eb075aa736f894160e36882bc492ee8776d1c30bffea5e6bfde",
+      "webp_bytes": 636510
+    },
+    {
+      "filename": "nyc_summer_morning_dark.png",
+      "delivery_sha256": "f0f3ce9fe1060879233f4621c8bfc2e82351666b30606b8579833e318b126637",
+      "native_sha256": "7a3ba0d631d7e0e4b7bb2ba3c0732dcb0c7f676cd2c4ebd9e7a672cdb8bcb0ce",
+      "webp_sha256": "3ac2409abb9035a22f86441938594c56ee723f74abb548433cd7455aca37df27",
+      "webp_bytes": 573748
+    },
+    {
+      "filename": "nyc_summer_morning_partly.png",
+      "delivery_sha256": "586d4743a86d6fb7adc7651afe1f83639c8302556f431e47d72fa5e86465b550",
+      "native_sha256": "07300af7c80b570a833b770a492bf05e6b02c474932f5433209522d374c577cd",
+      "webp_sha256": "bc5af3a7e20d527b1e444279f75174d704c70552d81713ffb0ffd834491f7995",
+      "webp_bytes": 751446
+    },
+    {
+      "filename": "nyc_summer_night_clear.png",
+      "delivery_sha256": "e11d2bca01c21ee16c62e81f2a0eea851f8b45295c5bc8e78a36f07e21178ad5",
+      "native_sha256": "c12ca5e05aa5e485935403cda77c21a5fd59cb68a76c79b201302af9109cd73b",
+      "webp_sha256": "d7342cc07a5f5003fc3f6f58c1ad3fb2345b8cd9f91306d4960036e6d8a5ac98",
+      "webp_bytes": 753216
+    },
+    {
+      "filename": "nyc_summer_night_cloudy.png",
+      "delivery_sha256": "8512d31c8cd78b9d81f3ec7cb3d5991679b6e4fc2b5db3dbf1327223d0a7fd0c",
+      "native_sha256": "f2f1cb9a964058ba034f01fdc49a7c9780b94ffbe083467dfdd680951cb7841b",
+      "webp_sha256": "51e9c0c73d0af4dde9c0c1e965ceca5aee61fe1e7c04009886997bb8d6f3d9de",
+      "webp_bytes": 628982
+    },
+    {
+      "filename": "nyc_summer_night_dark.png",
+      "delivery_sha256": "4dac2ca57ed6ef959a4808dedb844c33be15d83e5b9110922e00a2eb17bb2a00",
+      "native_sha256": "ac9474965ddfa7501f16ac14aab4e404a5d715469318df8f2fbd7c011499ebbb",
+      "webp_sha256": "bc968c6cf3f7c7ffb70e27decd4dee77cfef9613d2f9dddc65cd7cb2b4b304b9",
+      "webp_bytes": 615204
+    },
+    {
+      "filename": "nyc_summer_night_partly.png",
+      "delivery_sha256": "b5a178ebce451ef4d6843cc76d9bfa6836a6647fed7ff6b0e3d10b1de4d1baf0",
+      "native_sha256": "4dd438ce636c2816cb86b8c5393f9e6705e62b3fe0a244a67fc1de097c0957e6",
+      "webp_sha256": "a9b0cdc304d29ac398acc60f8b291ed4a2897cc97c2ff406a3c3f40a0bda27de",
+      "webp_bytes": 740072
+    },
+    {
+      "filename": "nyc_winter_day_clear.png",
+      "delivery_sha256": "7d844996d1b8a7c231d0113607734cc525a80b1cb3d04d36eb3ecd2d37dc2b7e",
+      "native_sha256": "5400467b64e728ca56abf7801d8af94e2da42323e559a67f9614012e8095a064",
+      "webp_sha256": "047e36e2a74be2a1c2fc233c6c2eecccf4d2923192a1a828e466fe784200f5cc",
+      "webp_bytes": 699340
+    },
+    {
+      "filename": "nyc_winter_day_cloudy.png",
+      "delivery_sha256": "a4d3c5b2472cf5e1062205032a6fd7e0acc8e06e56e7d593b90637d982a5f5fd",
+      "native_sha256": "ae300087f0cfd3f8ba2c8af6387b0fc6da66420a5e82feaff3c171605abb5b1f",
+      "webp_sha256": "9143ff8877f5c9d162dd3cc4b256045c55f3987ad600c8a4257a3a7a068b2869",
+      "webp_bytes": 578906
+    },
+    {
+      "filename": "nyc_winter_day_dark.png",
+      "delivery_sha256": "6767a489023ab2607fa3f31fd5dbfdd8f06e9281c7bd9f32eb06a8493e584cc7",
+      "native_sha256": "6d1669547bd4283d7cc3c6bc2061d224b5a6b87199cfcc6094a1961fdfb1572d",
+      "webp_sha256": "bb3aa01a72f7e08e2e8cc5c59b7f7469c8c35ccde60f307f740905cf7b1327df",
+      "webp_bytes": 650288
+    },
+    {
+      "filename": "nyc_winter_day_partly.png",
+      "delivery_sha256": "a5b7d1ae4d1daf88bc35c10ed94f229269790c0cab13cdb50bff29524fdab49f",
+      "native_sha256": "5111c0de73e65af7be560e544ae2b29d739df4da43b093da47bb87579211224f",
+      "webp_sha256": "3899092c18767d6e79fb915a374f3681384417accdc57d1aa82ae21776c5057c",
+      "webp_bytes": 717520
+    },
+    {
+      "filename": "nyc_winter_evening_clear.png",
+      "delivery_sha256": "05ce35667f65540493f4e00643a1c52caf004ff1ab463bb2b0609e6d1c94bb34",
+      "native_sha256": "907dccf7e0930d5ae468d922174a009a0126d4aae92f49e604933514f3654ad2",
+      "webp_sha256": "1c56c23e135ede693d15a07c9eeb67a801f97ceffbca0c0fe1c011af19ecf57d",
+      "webp_bytes": 711448
+    },
+    {
+      "filename": "nyc_winter_evening_cloudy.png",
+      "delivery_sha256": "c9b74edac79ccf7b0a1f58dcc969c266f0604e0c1509c1976f677c019f88c602",
+      "native_sha256": "5fa48bff2249b7e54a7741782d024785e4290f6b080c74a6cc79dc82c02962d7",
+      "webp_sha256": "efd1bb6a57d5f50e7f2cc0ba87c70a589105fec19807db2e571ef8c239b97e58",
+      "webp_bytes": 659322
+    },
+    {
+      "filename": "nyc_winter_evening_dark.png",
+      "delivery_sha256": "e788b238b94acd7219b66e241021c24e46e0d7c9e0e81664744d6609b889c7c1",
+      "native_sha256": "e549cbaea6390a6f07e42d8d567ee071d2c33746b00819466b4108e06e9473d4",
+      "webp_sha256": "78a6b596ece374d95c944af7cbc38d7ae75940044498fdb16d1a12d2a4ba2b9b",
+      "webp_bytes": 645688
+    },
+    {
+      "filename": "nyc_winter_evening_partly.png",
+      "delivery_sha256": "f48b5934801078bde1af21a447ee1be8d50fe0d1c46a926f9a1d1dcfcc76e660",
+      "native_sha256": "d816b6cd2935add6fd2d7981a84804850e31af8f562ad8a45907bfbafcc360e2",
+      "webp_sha256": "376d98745d40604218fc1466d1658996de78dcf20cc6b5d5e0cac6c6fc789ddd",
+      "webp_bytes": 677962
+    },
+    {
+      "filename": "nyc_winter_morning_clear.png",
+      "delivery_sha256": "5751fbd5c0f497ec4fc652106e53c8b3912a76f26437143bff813ba5710792e6",
+      "native_sha256": "2ffbb928860f9c0126728e4617eb398f482f06ce05b7e3e60444dc330721547c",
+      "webp_sha256": "bc004b3ff26adc14c409a40252fd156b3f4f6a9d2ff964f9b1812b90769cefd4",
+      "webp_bytes": 744326
+    },
+    {
+      "filename": "nyc_winter_morning_cloudy.png",
+      "delivery_sha256": "0fc40a301242dbc56a0013c949c6221ab9ab15c4b68000a7014a5e69ea30fa5f",
+      "native_sha256": "4a613127ca02333968eb95b8cd496913d1ca084111b5e836b6ccc265b6a7530e",
+      "webp_sha256": "d3bc1c5a7daf5d0eea5f6cd993391a223870d6b8df377435034c424ace156494",
+      "webp_bytes": 664536
+    },
+    {
+      "filename": "nyc_winter_morning_dark.png",
+      "delivery_sha256": "d36afd756e56090b43b73b16c6a1c711aac6a4fb6ae075efa2b18468cb9a3637",
+      "native_sha256": "0314915170ba943d605ff04fef3d38913a5963d3810e9e8a7a7653c59714c288",
+      "webp_sha256": "09c63498603763542b83fcd13437c93c87df7daf1d6a295169b356bbb381b842",
+      "webp_bytes": 560856
+    },
+    {
+      "filename": "nyc_winter_morning_partly.png",
+      "delivery_sha256": "f2d36fe9ebabe1a6a6c3bd2fe6340ccee9997c5747cb66ed75c15e70ea842fbf",
+      "native_sha256": "43c449d5f66192cc64e6a8fa136b823e2e9d134217441c66adf044f90af3c040",
+      "webp_sha256": "8fb696da9092bac77605bc8d2a77e702ca8f76306e43aec00b8f988a5e229adb",
+      "webp_bytes": 761238
+    },
+    {
+      "filename": "nyc_winter_night_clear.png",
+      "delivery_sha256": "7adfa5b9adc372bfe6dad9e4a9bd85a786762c05ffbe6c02f48f5bfc43a78f47",
+      "native_sha256": "c294e78763b3549dccd32dfd5258c33ba254aa7d9b6283f6e1e371d6485580b7",
+      "webp_sha256": "70641401f6b15231fc2a7057bcb60fc9fb5814649e6411435b7d2e246fa6bfe1",
+      "webp_bytes": 710318
+    },
+    {
+      "filename": "nyc_winter_night_cloudy.png",
+      "delivery_sha256": "b7ded79e29a311ec8a29a612ac822ba1300da03c372dfadb4cf5c0a49c66a12a",
+      "native_sha256": "831ad30de0861094a4a68115ff44287045e116ab8ece47e1ddc60ffc4b30ea1b",
+      "webp_sha256": "76aef60b8b172e5e814b95acd090570c8696c0215e7ef9f5cd14882f6f2cfd16",
+      "webp_bytes": 562066
+    },
+    {
+      "filename": "nyc_winter_night_dark.png",
+      "delivery_sha256": "caa9a42272feca43b4b9fb49ebe56ad60c4a72a9ca8e2e4e0f44525f68ba63ae",
+      "native_sha256": "a64cc6f9cc8bec96ab6634bc52bd6a0dcb228e277cc261f596c8b88cf84259f5",
+      "webp_sha256": "c7493ccd8b14c673c36145e8b168f1268c6a92cbe88deaeb1c5d6910ce4c43a8",
+      "webp_bytes": 723672
+    },
+    {
+      "filename": "nyc_winter_night_partly.png",
+      "delivery_sha256": "87c1ac32c6162dc22d8796d0f894ba5d70f828c64b171f543bc6ed11a60b2fef",
+      "native_sha256": "6ef01e8e67927e63abd70cc7ba82e8e9d3d6934c82bc9419a139f88c009466a5",
+      "webp_sha256": "6f5affc6425ecb37d8bc674f3c08e3d065ec1ff6e86ddd7e51306ff56dc3da2b",
+      "webp_bytes": 682050
+    },
+    {
+      "filename": "sansebastian_fall_day_clear.png",
+      "delivery_sha256": "79f808d832564911fd1391c3df06f33524da1505e115e59f447795a5097b74d8",
+      "native_sha256": "626b65988abe9e8e63511917a3846ccad5863a0c5d13099f34f1f73208516b8d",
+      "webp_sha256": "8ac2dc184a799fed43d1d4cdace0a24c275ea8ece5015cddcfb3dea7688d1e4a",
+      "webp_bytes": 877964
+    },
+    {
+      "filename": "sansebastian_fall_day_cloudy.png",
+      "delivery_sha256": "244bc7b19e1d87f72950bb6ce92323d40689b78b7af18e839610856f5bd13801",
+      "native_sha256": "b2626d43db33b357511a391b71f2387cd25c133e2638659acd1763eb9c56fe7a",
+      "webp_sha256": "9efac3c98308f16b2ce3e289f1befc4adad11a5c73dfa040dc46343cce8e604e",
+      "webp_bytes": 779194
+    },
+    {
+      "filename": "sansebastian_fall_day_dark.png",
+      "delivery_sha256": "ad6bc752a7964c06c4b8cd1c83db64eecb27f64b7dc57584628868fe9d88ea7d",
+      "native_sha256": "9e144af1b9bd6c6d687f649819662a9420e90da2b4e3d44e4ea6919a5f311539",
+      "webp_sha256": "97536d9e31e89505b1f065d4524b0d4cc4b5871a6750f87668e248d9d6f32844",
+      "webp_bytes": 736084
+    },
+    {
+      "filename": "sansebastian_fall_day_partly.png",
+      "delivery_sha256": "41da95eadfd09d00340e182c881994f00881fe8ede248887e6436156d29e0973",
+      "native_sha256": "3fc5cdd47f08f8d3cc1f635c1aa525ff11b42ad093d4ec126388bb144da50e94",
+      "webp_sha256": "8b7834fbdd773f0504c87d7741da72802368f400d6a6e6df9f24c50855ccb5b4",
+      "webp_bytes": 934990
+    },
+    {
+      "filename": "sansebastian_fall_evening_clear.png",
+      "delivery_sha256": "5e8c78a4d2338739f79641837291d29a1e3b3c7f494e590bc0f5e49246ab8389",
+      "native_sha256": "2eaf318a2c7a66e1d44954deb92ea0caf8f838aeec3ce8048d81806a38ad2eaf",
+      "webp_sha256": "a5462be47c390f5a5c4db505b15f681c0f0a183874f4c7288b8825831bbb0302",
+      "webp_bytes": 857406
+    },
+    {
+      "filename": "sansebastian_fall_evening_cloudy.png",
+      "delivery_sha256": "ab93804751f615606ab7c6888bc12e0956025059afe52c89e40fb5294e13ac64",
+      "native_sha256": "3db892c82083db3de038841803829a3c1725e4a1ee059ec2d514ee70b01ef00b",
+      "webp_sha256": "21b2beb9defba60a391435deac639fad1e32490825c56c865a8312f50ac1c97f",
+      "webp_bytes": 728258
+    },
+    {
+      "filename": "sansebastian_fall_evening_dark.png",
+      "delivery_sha256": "29a147dfe3beaf9b12ae9bfee34580f9dd2a5aafefe2debeb1b3b03ff07dfc7f",
+      "native_sha256": "1653299e213d2132393d8fa4ceb7fa8271d6bac21fcda59f0673f9d81fa6ac41",
+      "webp_sha256": "affec6aef47af3595f6ef288887c86ee72dfeb452808250398f790b07bdc7076",
+      "webp_bytes": 714858
+    },
+    {
+      "filename": "sansebastian_fall_evening_partly.png",
+      "delivery_sha256": "43dbada9f41256d08bc8936898b2e8987e851456fcc0643a683fe2835d5ecb9b",
+      "native_sha256": "4155fbc0c91b0e236fedd8ba88dd4332b216e369fb002ea26906da0f4d9903be",
+      "webp_sha256": "fcd4ca9154ccf8750d0f6322390624fcd8dd3e87c1c73f9e54761eb61874e408",
+      "webp_bytes": 809020
+    },
+    {
+      "filename": "sansebastian_fall_morning_clear.png",
+      "delivery_sha256": "07a296804c6450545a5cdf9f59e421115d20f740d450273cb0614d780913a025",
+      "native_sha256": "a8753769a17fb107b6470168653760c742ae213d438ab5e5c9cf28f7d01b76d3",
+      "webp_sha256": "69ebfd2483b3f5b4d91caa3640cb8ab9f9080f80644b31a83a4d62a77b41b1db",
+      "webp_bytes": 858434
+    },
+    {
+      "filename": "sansebastian_fall_morning_cloudy.png",
+      "delivery_sha256": "2111d8dee5709cd127b93ea7f798c71746ef1db4f3890418867e64695b7abcdd",
+      "native_sha256": "8872cabe3e94945a136cff3d727a06d076f41f9383e83a2cf17881509c33035d",
+      "webp_sha256": "616603d5d66bb90d61cb26a7c373c01da2fd0293d7f4bdf14d9a65c302d0eaa0",
+      "webp_bytes": 600114
+    },
+    {
+      "filename": "sansebastian_fall_morning_dark.png",
+      "delivery_sha256": "4b6ff509d8819f08bca0b169b8bb37f64e130a72cfee02e4fd07a5b643879d09",
+      "native_sha256": "e9c99beded6ecd180707d90f293c013f729186b599813016ae404f8051e737d5",
+      "webp_sha256": "7dc93a89be23919e272fe37fc97553fbd95c4dd7ebf99280aeedf3dbb41b7649",
+      "webp_bytes": 582918
+    },
+    {
+      "filename": "sansebastian_fall_morning_partly.png",
+      "delivery_sha256": "a6a4b7097cd4f823bd2ae387842e0b13628661b785ddd0c761e3071656a2404d",
+      "native_sha256": "1b7815f353bc9e71c05059676eaeb4a5bfcbe9a75da814f572ae48f67dfe7008",
+      "webp_sha256": "32a01042fedae817fa0b96c91fb7b98030841e7adb58992c0b9da60290f8d19e",
+      "webp_bytes": 859330
+    },
+    {
+      "filename": "sansebastian_fall_night_clear.png",
+      "delivery_sha256": "753026a3253eef1906028bdf9dfd0774afaab98dbf5cce8c7725cc998059d185",
+      "native_sha256": "328a3fe4c2ba6a44ac7b4cb39e5101edb5503d8f9b5dae7c33f36bbc108325f8",
+      "webp_sha256": "ddb5380ebf9e26f69c0f97d447e306476d2af56cce3c8efaeee2c645f8173a34",
+      "webp_bytes": 802248
+    },
+    {
+      "filename": "sansebastian_fall_night_cloudy.png",
+      "delivery_sha256": "9ad5802c50103e679785c9fb7b40a580ea5aa05552794929097353311b185d2d",
+      "native_sha256": "b0960f8aa4b0fd6b4c68a20b13d9ff2a94e0399b9693158fdeda4c8cd9481dbc",
+      "webp_sha256": "569b8c280e4f7529792d26a7afd1897ce8bfb42c33b399edb45ce8db0b38d0c8",
+      "webp_bytes": 663700
+    },
+    {
+      "filename": "sansebastian_fall_night_dark.png",
+      "delivery_sha256": "44e94e2770d4e175a81391eff4270371e92b929cecffac1b2a45697db180a973",
+      "native_sha256": "a584635b86f281d389351da074056fb4c225eb2dcd8d411b98240cbcfd66bfca",
+      "webp_sha256": "7c9967a707313fd1bead4a6386d7702285043e58cdf0c7ed0bce2dcc40f28e6c",
+      "webp_bytes": 664388
+    },
+    {
+      "filename": "sansebastian_fall_night_partly.png",
+      "delivery_sha256": "b03b9d1f3995ae33c574352e0fa9ba69cdc0eeffb0a65edf3a263a170390b3be",
+      "native_sha256": "cf1caa7acfd31c1196af0c0a4fb1132dd91354458aeb0d222e7f8b623ac6de6f",
+      "webp_sha256": "e0212632766fbb4335249491f10ad0ab2032c4c76fe40cf8f3d942d071618fd7",
+      "webp_bytes": 670898
+    },
+    {
+      "filename": "sansebastian_spring_day_clear.png",
+      "delivery_sha256": "fd6909a858fc0470fa07e7fc118b33dea23cdecbeab57e68a31eae33794d42ab",
+      "native_sha256": "d357e7a4532d2d07fc064438c0bc08a91e64c84a7d620cd96a94464bd200a875",
+      "webp_sha256": "179487a6749e5e8bb844a2b739725491ee8192d09e1175b33c69ad095c48a795",
+      "webp_bytes": 941342
+    },
+    {
+      "filename": "sansebastian_spring_day_cloudy.png",
+      "delivery_sha256": "34dcc2a7fbb1b94d65ef3b5e3c27356e7819cfc77a7e1739f094fa1401025a38",
+      "native_sha256": "f53c811363c627068bc7dd25f98124670f46873ed21fba59383b2a99f0b104e2",
+      "webp_sha256": "d386c41d6f94de7174cff7b3024cce997bf1a5f343d98d68949dc4d686cfcb57",
+      "webp_bytes": 756164
+    },
+    {
+      "filename": "sansebastian_spring_day_dark.png",
+      "delivery_sha256": "16f84cd41990ef3ca5f4cc48ab80bb23858431d479c44ece09e950d89a99e963",
+      "native_sha256": "494d4a223d132069f33de93dd8cf083138f4a67a9e15b3e49f0217682d34cdcb",
+      "webp_sha256": "5d8db07061d464b23c25a0b2a9fda6c522dfd275e4d4825bdac300b69a2ee79c",
+      "webp_bytes": 730656
+    },
+    {
+      "filename": "sansebastian_spring_day_partly.png",
+      "delivery_sha256": "0ccdd2c1aadef8159761e46857dd2009a146c678f7f8a141a10056b44cf15ae8",
+      "native_sha256": "8929d09dc02297f62ce4558655e2c7c7d2365cecf30bd7da5b56eb964b043ab9",
+      "webp_sha256": "e24ef14dc4b6582f775858540430c80e94e381dffc19b07458909f7e8b656af6",
+      "webp_bytes": 921042
+    },
+    {
+      "filename": "sansebastian_spring_evening_clear.png",
+      "delivery_sha256": "e73d727072e0b45447c60c86c89e092dbc6b1edc579bafc457c70821d918dfb8",
+      "native_sha256": "87539a131653feb5b0a46005d3e47a583b6ad4fdf0763cb3fd55b354c3f37570",
+      "webp_sha256": "818280fe2abab94171ae5262a99430fd1fd2b1e3405acf4714b72fcb8662b0f2",
+      "webp_bytes": 864218
+    },
+    {
+      "filename": "sansebastian_spring_evening_cloudy.png",
+      "delivery_sha256": "98e5c23f9c7d883cbb2d1c933cb86e3ff5c32f7629fa0acdb99bce27cb458c0b",
+      "native_sha256": "2e0a707d2963e12be5851b51a5ca0e5a417b22438c53d56d7fe517f2a0d725ab",
+      "webp_sha256": "0a2b538ee1a494282e75d5f9620acacb71798850d9958d799ac396df0f71de48",
+      "webp_bytes": 739850
+    },
+    {
+      "filename": "sansebastian_spring_evening_dark.png",
+      "delivery_sha256": "ca941890dafa211ac1a6350ebc28c3a55b6f7d4fa49c3e3b92cb9c92a17202c3",
+      "native_sha256": "3c381efe761fb9b9277bb13a7e81787913208cf1582ecc264b99445616ad8499",
+      "webp_sha256": "e676beb777f2b6559f436a62dbd50422e5968a960077e2b62e6e9dde3629383e",
+      "webp_bytes": 735424
+    },
+    {
+      "filename": "sansebastian_spring_evening_partly.png",
+      "delivery_sha256": "ff279557e4eeef0269856f3c28499c2257e9eef0c3df1d8832fec5f806981970",
+      "native_sha256": "579af7b8490121d474a2a0a6b10e9e5b30ae201ae6714735b22ccf6cca27c3a2",
+      "webp_sha256": "92c5ce19b4cd7fcc12ec1f291436afabe5992afb262191f7730a464bb3dce25e",
+      "webp_bytes": 864374
+    },
+    {
+      "filename": "sansebastian_spring_morning_clear.png",
+      "delivery_sha256": "7d4099c3fc3398e42f5715eda556759af262dddbd86f3f1bf6326e8adabde14e",
+      "native_sha256": "9a834631ba5adfed10fe1918edfdfb750c3a1748b64a5435ab61aea83cd01107",
+      "webp_sha256": "97207db03c5a547488eaa8450ac4e1d7ae26839697ee4c107b9725d747918e64",
+      "webp_bytes": 889756
+    },
+    {
+      "filename": "sansebastian_spring_morning_cloudy.png",
+      "delivery_sha256": "91b2b78287c45badce96a7fb5a4dd370ab2ce64e6ae6aa0230dc4bb7573a03d6",
+      "native_sha256": "0b5ec30b051b8ce036a8f23890a964e9bbcda4c2520a3e72b72be3b9ccbd222b",
+      "webp_sha256": "f07c8fb7bc727c146297d6b1be22084035552f1a23c7603e0ac29a4f89344813",
+      "webp_bytes": 760922
+    },
+    {
+      "filename": "sansebastian_spring_morning_dark.png",
+      "delivery_sha256": "37e033a9132b49437d66761371ee1bb3490548296c893f261794d311af76c16a",
+      "native_sha256": "f272ef4f0ee141484b5eae600d926d4cf022a2777bbe9ecbad501a29c49f58c8",
+      "webp_sha256": "3dd632397105e123cde47b48fc73e44191ffcc12bcfd90702d9eafa04f29370c",
+      "webp_bytes": 737354
+    },
+    {
+      "filename": "sansebastian_spring_morning_partly.png",
+      "delivery_sha256": "662884a0a5cf9fe20829d5b72c0e041e31dcf0bb0b9bad3bc595f99131f10439",
+      "native_sha256": "e567fdb5fcbfd8b023b661c737fc88a345aa5cc14291da35feb3c5adf0594611",
+      "webp_sha256": "0eb9548f2baff15eb9abf67d33bc0bf50c6e500ddcd72db143ec5ff2b9842fa0",
+      "webp_bytes": 892150
+    },
+    {
+      "filename": "sansebastian_spring_night_clear.png",
+      "delivery_sha256": "42926799a4ecb190a6768cfefb7a397cd52676a3a3885b73eaefe22e8f21e97c",
+      "native_sha256": "c6c2fb494c1669058d4efcce7f259f737202d62685d25dedc12abe74039de803",
+      "webp_sha256": "6c56342d3b9e10d3d95918bf3122fdac3c88740ef5c4ae27f0fc6cfb47882f9c",
+      "webp_bytes": 781274
+    },
+    {
+      "filename": "sansebastian_spring_night_cloudy.png",
+      "delivery_sha256": "0877d467cee4e37a013fa778655f0bf17e97cec79483ece96021e73a669151d3",
+      "native_sha256": "dd9321336d5a13172cccf7cbeea729a66ad606bbf6d25767d5679c8e3c2b9c28",
+      "webp_sha256": "63c0ec6480359b71b14b96ced6d5455fae1d3e85cc43743650e630d212d8e179",
+      "webp_bytes": 679856
+    },
+    {
+      "filename": "sansebastian_spring_night_dark.png",
+      "delivery_sha256": "3e4251cb4337d7d2ef3afd1b67f3b1568021a207a4aa50483e7ac1feefe492b7",
+      "native_sha256": "a910b5e56707518fc35b407361f92936accfbbae24024ac0700375865a9e1d11",
+      "webp_sha256": "775cebde81f435c162b9b292c12991e3cfd4fcd5432fc53c9b4122b33ab9de07",
+      "webp_bytes": 664234
+    },
+    {
+      "filename": "sansebastian_spring_night_partly.png",
+      "delivery_sha256": "d32e8de315e4414aee516e4d0bb67bff61183dc2cee62ef1b7e7dc8dd63a66a8",
+      "native_sha256": "fb06737491517e4603a9f807b71f7dd0ecc03d015955943cd9351b666e51ffad",
+      "webp_sha256": "4571336d96a2ddc0cd00ea1b2ffed423b47b84ab085e55bd6ac9cb6975fe2355",
+      "webp_bytes": 739364
+    },
+    {
+      "filename": "sansebastian_summer_day_clear.png",
+      "delivery_sha256": "fecc65680be01ea56c0cd8e6d7d0a8956379fc8b6dcdda35ef0312b104898c98",
+      "native_sha256": "4f320de4dd2e32194bc5f3b95e8a2ea024fec22bc0fb2ed4dc38afc0a6318d30",
+      "webp_sha256": "5dcc580111faa13ee1ee87dfa77fd9d96dd80ae219d930495ceef9771f77804a",
+      "webp_bytes": 977726
+    },
+    {
+      "filename": "sansebastian_summer_day_cloudy.png",
+      "delivery_sha256": "aa71427f788b415d3084fd5e129282e5534ce37e2ef81f39f1b028036a9e6edf",
+      "native_sha256": "5a9d2d123bf8dff84b0087ef83422bf373ab7aedf28af62221249e6b2d1f0190",
+      "webp_sha256": "87adef3b0d5b12636711b4c1c5ffa26956beed10ff048e7bb66d279ab4197a20",
+      "webp_bytes": 822740
+    },
+    {
+      "filename": "sansebastian_summer_day_dark.png",
+      "delivery_sha256": "a9f850b819b165dcbf5ce19e50a3abcea94dd1c1f420a2b9f5eccce0681e2df7",
+      "native_sha256": "a3d332e89994dd0498447eb57ed15c8150b8399ee1388732d985bed35f813e78",
+      "webp_sha256": "ab1c77730e0163293ec722f02cc99f078087380f9c42fbc4117cb4ebf368a27b",
+      "webp_bytes": 719972
+    },
+    {
+      "filename": "sansebastian_summer_day_partly.png",
+      "delivery_sha256": "d5fcb1c5de53329a2bf51b01541257e120061a298becc0b7ac4cf0c7e830761a",
+      "native_sha256": "2d4bda552d85e37d67f2e7c471bc44e9b155b0746e420344e1b12b6ce2a14dd7",
+      "webp_sha256": "a4376ee2765a35b39980625ca5a96298a84675d22d6a85e31daadebf8a4e801a",
+      "webp_bytes": 945472
+    },
+    {
+      "filename": "sansebastian_summer_evening_clear.png",
+      "delivery_sha256": "b3a932325f55d9345f5e914c9ebe07123f02ebbb673643e4fe1bec54f55a8df9",
+      "native_sha256": "701e809ac2090cfa36de9fb029049be3a02174cfbb656b6e1c3824df40d640a3",
+      "webp_sha256": "b044dd561b6a1ef3c63cef6a4441d6d2a7d108de27150e26231abb3bfff9a4dd",
+      "webp_bytes": 825890
+    },
+    {
+      "filename": "sansebastian_summer_evening_cloudy.png",
+      "delivery_sha256": "a9cf13818c81774ed176458105c3d534668866653187f02fae3b1677153c8c14",
+      "native_sha256": "6286896b7848615f91df475445c8b33a4fc079ff9777d3d595a83b7d46495e0e",
+      "webp_sha256": "f1b1fd2a33783c82591edbd6b874739196a1a1b9cb2213d6ca07207f7a0b5c67",
+      "webp_bytes": 724196
+    },
+    {
+      "filename": "sansebastian_summer_evening_dark.png",
+      "delivery_sha256": "a12c3a5de9a88ed2ca812cd0892d3f944e1a60e6614838635e89f9fb21d7210d",
+      "native_sha256": "f7db0c7fd463417b86bd81ba25f6109889f60354e304bd09a618313929a69d4f",
+      "webp_sha256": "4183ef3702a0fa2f0ddd42a999fd7b62377daf6ce4c8fb566c7a0aabf477f020",
+      "webp_bytes": 719822
+    },
+    {
+      "filename": "sansebastian_summer_evening_partly.png",
+      "delivery_sha256": "aca0524b3a48cea36c32240ac8bfcfa174bb7075aeaaf871efa1d08296635f24",
+      "native_sha256": "04537ee5222272899fc3292cff1ebfece28ba6ece36b6a49d7e9190f17f72183",
+      "webp_sha256": "c6f81dd783ea4605587d36a5eae99882869e55bd4827604ef21b7816ad87f5d4",
+      "webp_bytes": 829126
+    },
+    {
+      "filename": "sansebastian_summer_morning_clear.png",
+      "delivery_sha256": "9e54035ab688fb0e93fac8d03b9e196a97e8c50b93b7c862d7a18983f978ae67",
+      "native_sha256": "9b8434651251203765c8c8bb9a41f82851e45481af091a2d03cc924c78814e32",
+      "webp_sha256": "f3cb26ca021760c99ddf6b268cd87399c6f9a1a3c5043f8ca14461ab49323104",
+      "webp_bytes": 866304
+    },
+    {
+      "filename": "sansebastian_summer_morning_cloudy.png",
+      "delivery_sha256": "cf2deedc6acaa4a6a535e253642d46023ef30b425074a7a8305f67eca5cba88e",
+      "native_sha256": "c072b57bfb6dc90718aa4181a3cb8c7bf75f8f6edb3b385c9d09327fc384a8d4",
+      "webp_sha256": "dd46e0770332ac411c334c6d0ac3864efc8385794682f876817af8c0de6ca833",
+      "webp_bytes": 746170
+    },
+    {
+      "filename": "sansebastian_summer_morning_dark.png",
+      "delivery_sha256": "c8e892051c77eb6c0aec0773ae0dfa469133ab72ab9ebf1ea0e15d03189df02b",
+      "native_sha256": "3b01a69b3332cdf9a8246550b72ca9b199013ba547a9ea0aa9f4020e51abb8da",
+      "webp_sha256": "ebd1da8e55975f1f727d5d35fe94976478349d38f91ff75812d403af82598fe2",
+      "webp_bytes": 703054
+    },
+    {
+      "filename": "sansebastian_summer_morning_partly.png",
+      "delivery_sha256": "546708ea6071417230c080f5f04aa461dd2cdfd1d473cf75f341405f2a933031",
+      "native_sha256": "7d0e24c6a14b07a8e6ade24e4f6998dbe270ebbe4e341ca128c8a59e33c20670",
+      "webp_sha256": "56c14cea3db2b56993613b8ee2a2f897cf4bfc92da52b22a97a39a5ce98c866d",
+      "webp_bytes": 922150
+    },
+    {
+      "filename": "sansebastian_summer_night_clear.png",
+      "delivery_sha256": "7abd826d3fb11f9926184f09caeb362017cf5958505763cdf5a2c24c6f36c5ad",
+      "native_sha256": "da65c55d912fc44f52a45ffc8fa15c94263e8011b112e196f07a43a89a451507",
+      "webp_sha256": "6c1526de32d26d9c7dc3c2ffab55e27e4797021aa26f03e08cbab2bd2ad9b3c1",
+      "webp_bytes": 711472
+    },
+    {
+      "filename": "sansebastian_summer_night_cloudy.png",
+      "delivery_sha256": "e3839487f1750a6e275542ad61595fc84871610414fcbca8d61c16d2419bd1c5",
+      "native_sha256": "c23839e30eb5ba1375602c5234503943c1ecdf1ec2be64eb97ce0ae3b3fc81cd",
+      "webp_sha256": "5e1c9049f624f96efdbacae6dacd584be4899fa25594cf234cbce61ce62456c0",
+      "webp_bytes": 655000
+    },
+    {
+      "filename": "sansebastian_summer_night_dark.png",
+      "delivery_sha256": "d5d33435dbd2d710bf9780bc16a442fde4ea190de8de8a16da7f48fcccce0a44",
+      "native_sha256": "ebf0cdb2bde4df67274b78f978b631335c61b94420d75f339e92b68a6788ca86",
+      "webp_sha256": "ea222dee33c943bc154ca09f24a8de267fd2cb2839a4b4dadd29bedaca14e9d5",
+      "webp_bytes": 628774
+    },
+    {
+      "filename": "sansebastian_summer_night_partly.png",
+      "delivery_sha256": "3579c5c21a04324632a5488a37af0f108d39cc94e3dfb7a3e8ee2a8e11cb2293",
+      "native_sha256": "74264dc1abf638588cabddc2f37b072df270dca7ee80a8fe13c45f4f80c3a3dd",
+      "webp_sha256": "c342d7220e239f479767443f6ec04fd8ee57a26f1d02f893bb12ca6d7f664e65",
+      "webp_bytes": 723328
+    },
+    {
+      "filename": "sansebastian_winter_day_clear.png",
+      "delivery_sha256": "0787c93f35183feee6700dbd7b866fd5f86dd5b8d62387e32ace08c7e0ba1c59",
+      "native_sha256": "f6499f18cd29b63872d3c1a2de7c9591d1f6c606e0f4a0fde777223ed88ae800",
+      "webp_sha256": "242c866431dcfb7a6e99fe927796e1ba5af0232345da0e843e0303d06c52f789",
+      "webp_bytes": 791654
+    },
+    {
+      "filename": "sansebastian_winter_day_cloudy.png",
+      "delivery_sha256": "e42bb4579bd95e81006d8b62df3fa6badefe794ee5a31151d786a45d4c29a8bc",
+      "native_sha256": "80e967bbf34181affe588b8ba442ddbb4fac193a20f4d3dd7ff6de79caa92724",
+      "webp_sha256": "48955064afac442f3482d4c1049a433e068b43cc22850625ec0da3575a06ebb4",
+      "webp_bytes": 688420
+    },
+    {
+      "filename": "sansebastian_winter_day_dark.png",
+      "delivery_sha256": "8acb41f586a5cb89a325cf4e7311217f28bc4542fe4a6e7fa25dfab389598d0c",
+      "native_sha256": "d8f4031f9f5775f99b8f8be02a20fe805ef4cf701922220bc070fe31ecbb6988",
+      "webp_sha256": "6953fd11fe18b095114587847b754ab735570f8a8e8fdedfe99fd879f9bb5a19",
+      "webp_bytes": 645566
+    },
+    {
+      "filename": "sansebastian_winter_day_partly.png",
+      "delivery_sha256": "8ddaacf431cef06cd3ac5a14b434f88bb5b8cb45ac556d99d57a8574c4b804aa",
+      "native_sha256": "b0e280c0e1569710d8f65f441d9f60d90ecef3838b800d17270f30e5acbe0fee",
+      "webp_sha256": "39bd8d1188565cb21fb01eaf98f23df016f3aed9659989480ec846b7608a0d35",
+      "webp_bytes": 757672
+    },
+    {
+      "filename": "sansebastian_winter_evening_clear.png",
+      "delivery_sha256": "fc8aeb451493d80afbd268a5aabb3c22a25b19b99a5ed457a6a7b661f4f7de98",
+      "native_sha256": "c2b6f9fe0e3e32950222a57a67e3841cfaf7b9b0b4691a40241bee128ea7f794",
+      "webp_sha256": "c818c48a760a1800555f97f035ee1404c523e1f416278351bced671e6799e709",
+      "webp_bytes": 769832
+    },
+    {
+      "filename": "sansebastian_winter_evening_cloudy.png",
+      "delivery_sha256": "e36cdf98f2ecc7eb2ccf319eec46cd734afd6a5901a95b6959578a0e4c4a77e7",
+      "native_sha256": "7a563d4aa599351cd7bfc4e7592219ab915bb2b71d6f4555c24a5f52b48a01b6",
+      "webp_sha256": "d1786c82f79d5c47259722e6fbbeb469e08fe1fa34eeaf003bad3ec9fc3c6cef",
+      "webp_bytes": 689566
+    },
+    {
+      "filename": "sansebastian_winter_evening_dark.png",
+      "delivery_sha256": "8ed39d884048572c39fac894937140b039b248dc26f6735e2cb898bec456fb91",
+      "native_sha256": "0b54abeed0429841df14a2573090c6cd96c8973249a667ff468d56f39a27bb84",
+      "webp_sha256": "142efaca6f861569573590054ff17c9a612cd7935399bfd75e0bf415e07bb36e",
+      "webp_bytes": 680134
+    },
+    {
+      "filename": "sansebastian_winter_evening_partly.png",
+      "delivery_sha256": "1a400b44163f110ba87d19b3d0e91da3b7d7b3915bc54d5ce8577507af3bbc36",
+      "native_sha256": "158bbe741ede88769ff8bc2b342afe70f5a3289b2d7f168203a455be6f54bed1",
+      "webp_sha256": "f89122fb3bcd91fb6f695d844e5d36d306b9a96668320f1a26f63674b2915cb5",
+      "webp_bytes": 728118
+    },
+    {
+      "filename": "sansebastian_winter_morning_clear.png",
+      "delivery_sha256": "18c6795ac986e85b8a72145570c0d490c483e739ae8499840c8ea7ddd7e6a6da",
+      "native_sha256": "c4d4d11124e1cd3309d6c20025ad5c4af75d2751b7852416dd17f04f8e992661",
+      "webp_sha256": "f125fd7b69125bc84df82185dd8e34ad4c24de6d4d2ab1d2f0877d4d0d7707fa",
+      "webp_bytes": 712368
+    },
+    {
+      "filename": "sansebastian_winter_morning_cloudy.png",
+      "delivery_sha256": "f981bc1f100a356bf5bd0a6efc2d0de4fc50a0297f3dbf6b398764265cc8dcf7",
+      "native_sha256": "ffc23e1650cd31323a691e9bd487320c388c9cf5e41ef767b5f74561073b4225",
+      "webp_sha256": "1539377dd0174f7c3be032805d8f38d7911b4fd91edadf9ef27c8778b7504977",
+      "webp_bytes": 652862
+    },
+    {
+      "filename": "sansebastian_winter_morning_dark.png",
+      "delivery_sha256": "7b94bcf47b7bad41530ec2e9617ff068f1b9e899c42dab8a170f5522ed27f93e",
+      "native_sha256": "3158be25daba1e08bc5b888ca721cd7eb7009fc841c148ca19a31fbf3f4d64b4",
+      "webp_sha256": "6b0de9396a8642ca053ce6cbfa9df3497b6050f5296a6e4a368b91e8835a5a68",
+      "webp_bytes": 637620
+    },
+    {
+      "filename": "sansebastian_winter_morning_partly.png",
+      "delivery_sha256": "3a3a1645e1d5d87e37e27e91ed044460fd48f3aa2c4cb7e28ab5035caff67cdb",
+      "native_sha256": "3cf5334f3dc66907f75971652cd7688e790c5329b19f7b7d5b9c70862eaabe35",
+      "webp_sha256": "6c8237bd453981835fc79db6dfd427016a8c1e8493f79932ba10344224b4dca8",
+      "webp_bytes": 724034
+    },
+    {
+      "filename": "sansebastian_winter_night_clear.png",
+      "delivery_sha256": "f745d814e323c2b7b4e8b04f2564649f03b6b8469da5185ac2746cf09108d994",
+      "native_sha256": "a32d472926a4b6c815028005215f6b7806ca18ad23ff57ab92e8ae767819f69a",
+      "webp_sha256": "e2b995ffd15976e37a3b8319c0a35345b73ca0e73bbee91a24bf5c16901140fc",
+      "webp_bytes": 740786
+    },
+    {
+      "filename": "sansebastian_winter_night_cloudy.png",
+      "delivery_sha256": "90dcffac66a847e78764111f4092f56d932af8b083b6421ffc3284052c7b0ac3",
+      "native_sha256": "f5476c6a9ee235741be25b4f5d3f546ebb0271d6679e3c8fafec6fd82258b99a",
+      "webp_sha256": "0cd0897fe2cbfb76a73abc6be521288320d20070c453ee3acc5f97990f81a257",
+      "webp_bytes": 624676
+    },
+    {
+      "filename": "sansebastian_winter_night_dark.png",
+      "delivery_sha256": "4087fb09402ccf969e3df308ae9c70812b626a7164e2c75784afe190e642f026",
+      "native_sha256": "4ec3625fb5403ca94bae93dc52753104725a0d3e8d36a2a47757c1c11a0613e2",
+      "webp_sha256": "c5dded0eb936ccdea176a40af04175692d12815dc5a23bf6741003764fe451b3",
+      "webp_bytes": 571876
+    },
+    {
+      "filename": "sansebastian_winter_night_partly.png",
+      "delivery_sha256": "5aadd1c5ff30c545bf5bb31923d63ebdda78057cac10aa6087f762d437669ad5",
+      "native_sha256": "43caf80d16fa8b38e3634bd784a62a9d7278b0d676b8615ac7faae4d82bbba9e",
+      "webp_sha256": "c35c7176c703b5ac8f328a68a0b124957ad58a80810fbbbbd26d18cdcc5ce39b",
+      "webp_bytes": 665520
+    }
+  ]
+}

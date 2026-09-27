@@ -24,81 +24,24 @@
   var activeLocationIds = ['detroit', 'annarbor', 'nyc', 'sansebastian'];
   var timeSegments = ['morning', 'day', 'evening', 'night'];
   var skyVariants = ['clear', 'partly', 'cloudy', 'dark'];
-  var seasonalAssetApprovals = {
-    spring: {
-      detroit_spring_morning_clear: false,
-      detroit_spring_day_clear: false,
-      detroit_spring_evening_clear: true,
-      detroit_spring_night_clear: false,
-      annarbor_spring_morning_clear: true,
-      annarbor_spring_day_clear: true,
-      annarbor_spring_evening_clear: true,
-      annarbor_spring_night_clear: true,
-      nyc_spring_morning_clear: true,
-      nyc_spring_day_clear: false,
-      nyc_spring_evening_clear: true,
-      nyc_spring_night_clear: true,
-      sansebastian_spring_morning_clear: false,
-      sansebastian_spring_day_clear: false,
-      sansebastian_spring_evening_clear: true,
-      sansebastian_spring_night_clear: true
-    },
-    summer: {
-      detroit_summer_morning_clear: true,
-      detroit_summer_day_clear: true,
-      detroit_summer_evening_clear: true,
-      detroit_summer_night_clear: true,
-      annarbor_summer_morning_clear: true,
-      annarbor_summer_day_clear: true,
-      annarbor_summer_evening_clear: true,
-      annarbor_summer_night_clear: true,
-      nyc_summer_morning_clear: true,
-      nyc_summer_day_clear: true,
-      nyc_summer_evening_clear: true,
-      nyc_summer_night_clear: true,
-      sansebastian_summer_morning_clear: true,
-      sansebastian_summer_day_clear: true,
-      sansebastian_summer_evening_clear: true,
-      sansebastian_summer_night_clear: true
-    },
-    fall: {
-      detroit_fall_morning_clear: true,
-      detroit_fall_day_clear: true,
-      detroit_fall_evening_clear: true,
-      detroit_fall_night_clear: true,
-      annarbor_fall_morning_clear: true,
-      annarbor_fall_day_clear: true,
-      annarbor_fall_evening_clear: true,
-      annarbor_fall_night_clear: true,
-      nyc_fall_morning_clear: true,
-      nyc_fall_day_clear: true,
-      nyc_fall_evening_clear: true,
-      nyc_fall_night_clear: true,
-      sansebastian_fall_morning_clear: true,
-      sansebastian_fall_day_clear: true,
-      sansebastian_fall_evening_clear: true,
-      sansebastian_fall_night_clear: true
-    }
-  };
-  var weatherAssetApprovals = {
-    fall: {
-      detroit: true,
-      annarbor: true,
-      nyc: true,
-      sansebastian: true
-    },
-    summer: {
-      detroit: true,
-      annarbor: true,
-      nyc: true,
-      sansebastian: true
-    }
-  };
+  // The reviewed release contains every city/season/time/sky combination.
+  var seasonalAssetApprovals = {};
+  var weatherAssetApprovals = {};
+  ['spring', 'summer', 'fall', 'winter'].forEach(function(season) {
+    seasonalAssetApprovals[season] = {};
+    weatherAssetApprovals[season] = {};
+    activeLocationIds.forEach(function(locationId) {
+      weatherAssetApprovals[season][locationId] = true;
+      timeSegments.forEach(function(segment) {
+        seasonalAssetApprovals[season][locationId + '_' + season + '_' + segment + '_clear'] = true;
+      });
+    });
+  });
   var seasonalApprovalState = getSeasonalApprovalState();
   var weatherApprovalState = getWeatherApprovalState();
   var isLocalReviewMode = window.location.protocol === 'file:' || ['localhost', '127.0.0.1', '0.0.0.0'].indexOf(window.location.hostname) !== -1;
   var remoteStorageBaseUrl = 'https://assets.anthonywohlfeil.com/backgrounds/';
-  var staticBackgroundBaseUrl = remoteStorageBaseUrl + 'static-20260909/';
+  var staticBackgroundBaseUrl = remoteStorageBaseUrl + 'static-20260927-quality-v2/';
   var localStorageBaseUrl = '/dev-assets/supabase-mirror/personal-website/backgrounds/';
   var storageBaseUrl = isLocalReviewMode ? localStorageBaseUrl : remoteStorageBaseUrl;
   var storageKey = 'bgLocation';
@@ -110,7 +53,7 @@
   var stormWeatherCacheTtlMs = 2 * 60 * 1000;
   var staleWeatherCacheTtlMs = 60 * 60 * 1000;
   var weatherFetchTimeoutMs = 4500;
-  var backgroundCacheName = 'weather-backgrounds-v4-r2-static-20260909';
+  var backgroundCacheName = 'weather-backgrounds-v5-static-20260927-quality-v2';
   var backgroundCacheLimit = 8;
   var locationIndex = getSavedLocationIndex();
   var reviewSegment = getSavedReviewSegment();
@@ -762,6 +705,7 @@
           }
 
           nextLayer.style.backgroundImage = 'url("' + displayUrl.replace(/"/g, '%22') + '")';
+          nextLayer.setAttribute('data-background-source', imageUrl);
           if (displayUrl.indexOf('blob:') === 0) {
             nextLayer.setAttribute('data-background-object-url', displayUrl);
           }
