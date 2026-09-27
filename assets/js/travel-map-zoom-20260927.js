@@ -143,11 +143,18 @@
       }));
     });
     map.addLayer(markers);
+
+    function updateMarkerScale() {
+      var scale = Math.min(1.4, 1 + Math.max(0, map.getZoom() - 2) * 0.05);
+      mapElement.style.setProperty('--travel-marker-scale', scale.toFixed(2));
+    }
+    map.on('zoomend', updateMarkerScale);
     map.fitBounds(markers.getBounds(), {
       animate: false,
       maxZoom: 2,
       padding: [24, 24]
     });
+    updateMarkerScale();
     window.setTimeout(function() {
       map.invalidateSize();
     }, 0);

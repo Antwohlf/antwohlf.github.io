@@ -1,0 +1,8 @@
+.travel-map .travel-map-pin-icon span,
+.travel-map .travel-map-columbus-icon span {
+  transform: scale(var(--travel-marker-scale, 1));
+}
+
+.travel-map .travel-map-airport-icon span {
+  transform: rotate(-24deg) scale(var(--travel-marker-scale, 1));
+}
