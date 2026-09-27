@@ -40,7 +40,9 @@ it does not need separate PNG previews.
 
 The travel map uses keyless OpenStreetMap tiles. A bundled Natural Earth
 world outline stays visible if tile requests fail. Keep the map free of
-API-key-dependent tile services and embedded map fallbacks.
+API-key-dependent tile services and embedded map fallbacks. Cloudflare may
+serve cached JavaScript despite a changed query string, so use a new script
+filename when publishing another map update.
 
 Background maintenance workflows are documented in
 [`scripts/backgrounds/README.md`](scripts/backgrounds/README.md) and
