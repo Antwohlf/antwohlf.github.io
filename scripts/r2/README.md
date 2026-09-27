@@ -1,8 +1,11 @@
 # R2 image migration runbook
 
-The website serves 407 public objects from `https://assets.anthonywohlfeil.com/`:
-264 versioned WebP backgrounds and 143 other images/files. The 264 PNG masters
-belong in a separate private R2 bucket. Never make the masters public.
+The website serves public images from `https://assets.anthonywohlfeil.com/`.
+The original migration copied 407 public objects (264 legacy WebPs and 143
+other files) and 264 private PNG masters. The September 27 quality release adds
+256 reviewed WebPs and a private archive of their PNG deliveries, native
+originals and manifest. The previous objects remain available for rollback.
+Never make the masters bucket public.
 
 ## R2 setup
 
@@ -45,6 +48,11 @@ the website origin to confirm CORS. Confirm the masters bucket has no public
 hostname or `r2.dev` access.
 
 ## Future background releases
+
+For a full reviewed seasonal set, use the build, publish, public verification,
+and 256-route selector checks in
+[`STATIC-DELIVERY.md`](../backgrounds/STATIC-DELIVERY.md). Uploading assets and
+activating their website prefix are separate required steps.
 
 Upload approved PNGs to the private masters bucket with
 `upload-selected-backgrounds.mjs`. Keep a SHA-256 local manifest. Encode a

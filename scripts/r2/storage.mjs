@@ -18,6 +18,7 @@ export function r2Client() {
         secretAccessKey: requireEnv('R2_SECRET_ACCESS_KEY'),
       },
       maxAttempts: 4,
+      requestHandler: { connectionTimeout: 10000, socketTimeout: 60000 },
     });
   }
   return client;

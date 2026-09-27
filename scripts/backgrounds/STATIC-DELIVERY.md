@@ -1,11 +1,41 @@
 # Static background delivery
 
 The production site uses full-resolution WebP objects under a versioned
-`backgrounds/static-20260909/` prefix. CSS performs the only viewport crop.
+`backgrounds/static-20260927-quality-v2/` prefix. CSS performs the only viewport crop.
 These copies use WebP quality 92; original PNG masters remain in a private R2
 bucket and the local backup. The website serves the public R2 custom domain.
 
-For the next approved background release:
+The September 27 release activates all 256 reviewed combinations: four cities,
+four seasons, four times, and four skies. It includes the September 13 NYC fall
+rebuild. PNG deliveries and native generated originals are archived separately
+under `backgrounds/releases/20260927-quality-v2/` in the private masters bucket.
+The older public prefix and private masters remain available for rollback.
+
+For a complete reviewed release:
+
+```sh
+python3 scripts/backgrounds/build-reviewed-release.py \
+  --source=/absolute/path/to/generated/seasons-2026-r2 \
+  --out=/absolute/path/to/generated/release-YYYYMMDD-quality-vN \
+  --release=YYYYMMDD-quality-vN
+node scripts/backgrounds/publish-reviewed-release.mjs /absolute/path/to/release.json
+node scripts/backgrounds/verify-public-release.mjs /absolute/path/to/release.json
+node scripts/backgrounds/test-seasonal-selection.mjs /absolute/path/to/release.json
+```
+
+The builder verifies the entire reviewed matrix and source hashes before
+encoding. Publishing verifies every object by remote GET and SHA-256, including
+the private PNGs and portable archive manifest. The public check reads all 256
+WebPs through the custom domain and verifies content, MIME, caching and CORS.
+The selector test exercises every production combination against those files.
+Install the pinned R2 dependencies and supply the environment variables below.
+
+After verification, commit the new public-key inventory, production prefix,
+browser cache name, and script version together. The upload does not itself
+activate the website. Keep the generated manifests and verification evidence
+alongside the local release; generated imagery stays out of Git.
+
+The older backup-based workflow remains available for partial sets:
 
 1. Upload approved canonical PNGs to the private R2 bucket and back up current hosted backgrounds with
    a manifest containing `files`: `local_path`, `object_key`, `sha256`, `bytes`.
@@ -39,6 +69,6 @@ For the next approved background release:
    approved routes and fallback routes before publishing.
 
 Do not remove a source or static prefix until its local backup is verified and
-no deployed runtime references it. The calendar switches to fall September 22.
-Keep summer available until then. Winter canonical objects were retired in June;
-production uses its existing nonseasonal fallback for unapproved seasons.
+no deployed runtime references it. All four seasons remain available year-round;
+the calendar selects the appropriate season. The September 27 release restores
+weather-specific winter images for all four active cities.
