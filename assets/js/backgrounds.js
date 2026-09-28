@@ -41,7 +41,9 @@
   var weatherApprovalState = getWeatherApprovalState();
   var isLocalReviewMode = window.location.protocol === 'file:' || ['localhost', '127.0.0.1', '0.0.0.0'].indexOf(window.location.hostname) !== -1;
   var remoteStorageBaseUrl = 'https://assets.anthonywohlfeil.com/backgrounds/';
-  var staticBackgroundBaseUrl = remoteStorageBaseUrl + 'static-20260927-quality-v2/';
+  var staticBackgroundBaseUrl = remoteStorageBaseUrl + 'static-20260928-photographic-v3/';
+  // Ann Arbor retains the approved originals at their existing immutable URLs.
+  var annArborBackgroundBaseUrl = remoteStorageBaseUrl + 'static-20260927-quality-v2/';
   var localStorageBaseUrl = '/dev-assets/supabase-mirror/personal-website/backgrounds/';
   var storageBaseUrl = isLocalReviewMode ? localStorageBaseUrl : remoteStorageBaseUrl;
   var storageKey = 'bgLocation';
@@ -53,7 +55,7 @@
   var stormWeatherCacheTtlMs = 2 * 60 * 1000;
   var staleWeatherCacheTtlMs = 60 * 60 * 1000;
   var weatherFetchTimeoutMs = 4500;
-  var backgroundCacheName = 'weather-backgrounds-v5-static-20260927-quality-v2';
+  var backgroundCacheName = 'weather-backgrounds-v7-photographic-v3';
   var backgroundCacheLimit = 8;
   var locationIndex = getSavedLocationIndex();
   var reviewSegment = getSavedReviewSegment();
@@ -577,7 +579,8 @@
 
     // Pre-compressed, full-resolution R2 assets keep delivery simple.
     // CSS performs the viewport crop.
-    return staticBackgroundBaseUrl + filename.replace(/\.png$/, '.webp');
+    var assetBaseUrl = location.id === 'annarbor' ? annArborBackgroundBaseUrl : staticBackgroundBaseUrl;
+    return assetBaseUrl + filename.replace(/\.png$/, '.webp');
   }
 
   function getReviewImageUrl(location, segment, sky) {
