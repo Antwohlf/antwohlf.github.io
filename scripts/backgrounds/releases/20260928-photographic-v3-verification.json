@@ -1,0 +1,26 @@
+{
+  "release": "20260928-photographic-v3",
+  "verified_at": "2026-09-28T10:10:08.924990+00:00",
+  "replacement_images": 192,
+  "retained_ann_arbor_images": 64,
+  "native_visual_acceptance_sha256": "f7882efdbc5d240d54be7cd98c82f7e5ee089aff24f6522ff086e67f4d2e7fb2",
+  "uploads_get_verified": 578,
+  "public_domain_images_get_verified": 256,
+  "public_checks": [
+    "sha256",
+    "bytes",
+    "image/webp",
+    "immutable caching",
+    "website CORS"
+  ],
+  "all_192_exports_decode_at_native_dimensions": true,
+  "selector_routes_passed": 256,
+  "preview_checks": [
+    "Detroit morning clear desktop",
+    "NYC cloudy night desktop",
+    "NYC cloudy night 391x844 mobile crop",
+    "San Sebastian cloudy night desktop"
+  ],
+  "preview_console_errors": 0,
+  "production_activation_verified": false
+}

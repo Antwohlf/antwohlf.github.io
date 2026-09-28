@@ -16,7 +16,16 @@ for (const c of ['detroit','annarbor','nyc','sansebastian'])
     for (const t of ['morning','day','evening','night'])
       for (const w of ['clear','partly','cloudy','dark']) expected.add(`${c}_${s}_${t}_${w}.png`);
 const entries = release.assets.flatMap(asset => {
-  if (!expected.delete(asset.filename) || asset.files.length !== 3) throw new Error('Invalid or duplicate asset');
+  if (!expected.delete(asset.filename)) throw new Error('Invalid or duplicate asset');
+  if (asset.retained) {
+    const f = asset.files[0];
+    const oldKey = `backgrounds/static-20260927-quality-v2/${asset.filename.replace(/\.png$/, '.webp')}`;
+    if (!asset.filename.startsWith('annarbor_') || asset.files.length !== 1 || f.visibility !== 'public' || f.key !== oldKey || f.content_type !== 'image/webp') throw new Error('Only unchanged Ann Arbor may be retained');
+    const bytes = fs.readFileSync(f.file);
+    if (bytes.length !== f.bytes || hash(bytes) !== f.sha256) throw new Error('Retained backup mismatch');
+    return []; // Retained assets are verified publicly, never rewritten.
+  }
+  if (asset.files.length !== 3) throw new Error('Replacement requires public, delivery and native files');
   const stem = asset.filename.replace(/\.png$/, '');
   const destinations = new Set([
     `public:backgrounds/static-${release.release}/${stem}.webp`,
@@ -30,6 +39,10 @@ const entries = release.assets.flatMap(asset => {
   return asset.files;
 });
 if (expected.size) throw new Error('Incomplete seasonal matrix');
+for (const f of release.provenance || []) {
+  if (f.visibility !== 'private' || f.key !== `backgrounds/releases/${release.release}/review-provenance.tar.gz` || f.content_type !== 'application/gzip') throw new Error('Invalid provenance archive');
+  entries.push(f);
+}
 const archive = path.join(path.dirname(manifestPath), 'archive-manifest.json');
 const archiveBytes = fs.readFileSync(archive);
 entries.push({file:archive,key:`backgrounds/releases/${release.release}/manifest.json`,visibility:'private',content_type:'application/json',bytes:archiveBytes.length,sha256:hash(archiveBytes)});
